@@ -1,0 +1,20 @@
+{
+  "name": "neonix",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "tailwindcss": "^3.4.1",
+    "terser": "^5.48.0"
+  },
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./css/tailwind.min.css --minify",
+    "build:style": "cleancss -o ./css/style.min.css ./css/style.css",
+    "build:js": "terser ./js/main.js -o ./js/main.min.js -c -m",
+    "build": "npm run build:css && npm run build:style && npm run build:js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
