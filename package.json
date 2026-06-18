@@ -8,7 +8,7 @@
     "terser": "^5.48.0"
   },
   "scripts": {
-    "postinstall": "chmod +x node_modules/.bin/tailwindcss",
+    "postinstall": "chmod +x node_modules/.bin/tailwindcss node_modules/.bin/cleancss node_modules/.bin/terser",
     "build:css": "tailwindcss -i ./src/input.css -o ./css/tailwind.min.css --minify",
     "build:style": "cleancss -o ./css/style.min.css ./css/style.css",
     "build:js": "terser ./js/main.js -o ./js/main.min.js -c -m",
