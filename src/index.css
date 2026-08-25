@@ -1,0 +1,338 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* WCAG AA / AAA High Contrast Brand Tokens */
+  --color-primary-green: #0b7542;       /* Higher contrast accessible green */
+  --color-primary-bright: #0F9D58;      /* Accent and buttons */
+  --color-accent-teal: #0d8070;         /* High contrast teal on light bg */
+  --color-accent-teal-bright: #00BFA6;  /* Bright teal for dark backgrounds */
+  --color-neutral-dark: #111827;        /* Crisp dark text */
+  --color-neutral-mid: #374151;         /* WCAG AAA readable body text */
+  --color-neutral-muted: #4B5563;       /* Accessible secondary labels */
+  --color-bg-light: #F8FAFC;
+  --color-warning-amber: #D97706;       /* High contrast amber */
+  
+  /* Dark Sections */
+  --color-dark-navy: #0F172A;
+  --color-dark-card: #0B132B;
+  --color-accent-yellow: #f59e0b;
+  --color-accent-green: #0F9D58;
+}
+
+@layer base {
+  :root {
+    --transition-speed: 0.25s;
+    --color-primary: #0b7542;
+    --color-accent: #0d8070;
+    --color-text-main: #111827;
+    --color-text-muted: #374151;
+    --bg: #F8FAFC;
+    --warning: #D97706;
+  }
+  
+  body {
+    background-color: #F8FAFC;
+    color: #111827;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    @apply antialiased selection:bg-[#0F9D58] selection:text-white;
+  }
+
+
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #111827;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* Accessibility focus visible outline across entire app */
+  *:focus-visible {
+    outline: 2px solid #0F9D58;
+    outline-offset: 2px;
+  }
+}
+
+/* --- LENIS SMOOTH SCROLLING --- */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* --- BASE ANIMATION CLASSES --- */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.is-revealed {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating-element {
+  animation: float 4s ease-in-out infinite;
+}
+
+.tilt-wrapper {
+  perspective: 1000px;
+}
+.tilt-card {
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.play-btn-pulse {
+  position: relative;
+}
+.play-btn-pulse::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background: rgba(15, 157, 88, 0.4);
+  animation: pulse 2s infinite;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+.scrolly-transition {
+  transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform, opacity, visibility;
+}
+
+/* Glass input for dark backgrounds with high contrast */
+.glass-input {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  transition: all 0.2s ease;
+}
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: #0F9D58;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(15, 157, 88, 0.35);
+}
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* High contrast inputs for light surfaces */
+.ui-input {
+  height: 48px;
+  border-radius: 8px;
+  border: 1.5px solid #D1D5DB;
+  background-color: #FFFFFF;
+  padding: 0 16px;
+  color: #111827;
+  font-size: 15px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.ui-input:focus {
+  border-color: #0F9D58;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(15, 157, 88, 0.2);
+}
+
+/* Custom Accessible Range Slider */
+input[type="range"] {
+  height: 8px;
+  border-radius: 4px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #0F9D58;
+  border: 2px solid #FFFFFF;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover,
+input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.2);
+  background: #0b7542;
+  box-shadow: 0 0 0 6px rgba(15, 157, 88, 0.25);
+}
+
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 3s infinite;
+}
+
+/* ── ROI Calculator Animations ───────────────────────────────────────── */
+
+/* Value flash: metric cards pop when numbers change */
+@keyframes valueFlash {
+  0%   { transform: scale(1);    filter: brightness(1); }
+  30%  { transform: scale(1.08); filter: brightness(1.15); }
+  60%  { transform: scale(0.97); filter: brightness(1.05); }
+  100% { transform: scale(1);    filter: brightness(1); }
+}
+.value-flash {
+  animation: valueFlash 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Glow pulse on subsidy badge */
+@keyframes subsidyGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(11, 117, 66, 0.0); }
+  50%       { box-shadow: 0 0 18px 5px rgba(11, 117, 66, 0.35); }
+}
+.subsidy-glow {
+  animation: subsidyGlow 2.4s ease-in-out infinite;
+}
+
+/* Progress bar slide-in from left */
+@keyframes barSlideIn {
+  from { width: 0 !important; }
+}
+.bar-animate {
+  animation: barSlideIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Floating sun orb behind calculator */
+@keyframes roiOrb {
+  0%   { transform: translateY(0px) scale(1);    opacity: 0.5; }
+  50%  { transform: translateY(-18px) scale(1.06); opacity: 0.7; }
+  100% { transform: translateY(0px) scale(1);    opacity: 0.5; }
+}
+.roi-orb {
+  animation: roiOrb 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Spinning solar ring */
+@keyframes solarSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.solar-spin {
+  animation: solarSpin 20s linear infinite;
+}
+.solar-spin-reverse {
+  animation: solarSpin 15s linear infinite reverse;
+}
+
+/* Subtle card lift on hover */
+.calc-card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.calc-card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(11, 117, 66, 0.12);
+}
+
+/* Slide-up pop-in for metric numbers */
+@keyframes numSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.num-pop {
+  animation: numSlideUp 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Ticker dot pulse for "live" indicator */
+@keyframes tickerPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.6); }
+}
+.ticker-dot {
+  animation: tickerPulse 1.4s ease-in-out infinite;
+}
+
+/* Energy beam sweep on the section background */
+@keyframes energyBeam {
+  0%   { opacity: 0; transform: translateX(-100%) skewX(-15deg); }
+  50%  { opacity: 0.06; }
+  100% { opacity: 0; transform: translateX(200%) skewX(-15deg); }
+}
+.energy-beam {
+  animation: energyBeam 6s ease-in-out infinite;
+  pointer-events: none;
+}
+.energy-beam-delay {
+  animation: energyBeam 6s ease-in-out 3s infinite;
+  pointer-events: none;
+}
+
+/* Bounce arrow hint on the slider */
+@keyframes bounceX {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(4px); }
+}
+.bounce-x {
+  animation: bounceX 1.2s ease-in-out infinite;
+}
+

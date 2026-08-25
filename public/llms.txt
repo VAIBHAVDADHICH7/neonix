@@ -1,0 +1,39 @@
+# Neonix Infra Solutions
+
+> Neonix Infra Solutions is a premier certified rooftop solar EPC contractor in India specializing in residential, commercial, and industrial solar installations under the PM Surya Ghar Muft Bijli Yojana government subsidy scheme.
+
+Neonix provides end-to-end clean energy solutions including MNRE-approved Tier-1 solar panel installation, DISCOM net metering facilitation (JVVNL, AVVNL, JdVVNL, and pan-India state DISCOMs), zero-down solar financing options, and 30-year Annual Maintenance Contracts (AMC) to help homes and businesses reduce electricity bills by up to 90%.
+
+## PM Surya Ghar Muft Bijli Yojana Subsidy Breakdown
+- **1 kW System**: ₹30,000 Direct Benefit Transfer (DBT) subsidy
+- **2 kW System**: ₹60,000 Direct Benefit Transfer (DBT) subsidy
+- **3 kW to 10 kW System**: ₹78,000 Direct Benefit Transfer (DBT) maximum residential subsidy
+- **Commercial / Industrial**: Accelerated Depreciation (AD) tax benefits and customized CAPEX / OPEX models
+
+## Hardware & Engineering Specifications
+- **Solar Modules**: Tier-1 ALMM & DCR compliant Mono PERC and TopCon Bifacial solar panels (25 to 30-year performance warranty)
+- **Inverters**: High-efficiency grid-tied smart string inverters with Wi-Fi IoT real-time generation tracking
+- **Mounting Structures**: Hot-dip galvanized steel engineered to withstand wind speeds up to 150 km/h
+
+## Main Services & Interactive Tools
+- [Rooftop Solar Solutions](https://neonixinfra.com/): Comprehensive overview of grid-tied, hybrid, and off-grid rooftop solar plants for residential, commercial, and industrial properties.
+- [Solar ROI & Savings Calculator](https://neonixinfra.com/#roi-calculator): Interactive tool to calculate monthly electricity bill savings, payback period, net savings over 25 years, and PM Surya Ghar subsidy amounts.
+- [PM Surya Ghar Subsidy Guide](https://neonixinfra.com/#subsidy-info): Official subsidy guidelines, eligibility rules, and 4-step subsidy application process.
+- [Rooftop Feasibility Diagnostic](https://neonixinfra.com/#feasibility-checker): 3-step diagnostic questionnaire evaluating rooftop area, shadow-free space, connection sanction load, and recommended kW capacity.
+- [Trust Signals & Certifications](https://neonixinfra.com/#certifications): Tier-1 ALMM accreditation, MNRE channel partnership details, and ISO/BIS standards.
+
+## Legal & Policies
+- [Privacy Policy](https://neonixinfra.com/privacy-policy.html): Privacy policy, customer data protection, and lead submission guidelines.
+- [Terms of Service](https://neonixinfra.com/terms.html): Terms and conditions for site usage, rooftop site surveys, and solar EPC installation agreements.
+- [Sitemap](https://neonixinfra.com/sitemap.xml): Complete XML sitemap listing indexable URLs and image metadata.
+
+## Official Business & Contact Information
+- **Legal Entity**: Neonix Infra Solutions LLP
+- **Headquarters**: Manyawas, Mansarovar, Jaipur, Rajasthan 302020, India
+- **Customer Care & Direct Lines**: +91 99100 00774 / +91 90886 88899
+- **Official Website**: https://neonixinfra.com
+- **Instagram**: https://www.instagram.com/neonix_infra/
+- **LinkedIn**: https://www.linkedin.com/in/neonix-infra-solutions-a4a6b3416/
+- **Facebook**: https://www.facebook.com/profile.php?id=61590804090394
+
+
