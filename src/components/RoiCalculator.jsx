@@ -75,8 +75,12 @@ export default function RoiCalculator({ onDownloadReport }) {
   const [connectionType, setConnectionType] = useState('Residential');
   const [panelType, setPanelType] = useState('DCR');
   const [selectedPhase, setSelectedPhase] = useState('1PH');
-  const [reportSuccess, setReportSuccess] = useState(false);
   const [isSubmittingForm, setIsSubmittingForm] = useState(false);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [mailSentSuccess, setMailSentSuccess] = useState(false);
+  const [generatedGmailUrl, setGeneratedGmailUrl] = useState('');
+  const [generatedMailto, setGeneratedMailto] = useState('');
+  const [formTouched, setFormTouched] = useState({});
   const [formData, setFormData] = useState({
     name: '',
     mobile: '',
@@ -84,6 +88,8 @@ export default function RoiCalculator({ onDownloadReport }) {
     pincode: '',
     city: '',
     state: 'Rajasthan',
+    monthly_bill: '4500',
+    connection_type: 'Residential',
   });
 
   // Flash key — incremented on every output change to retrigger CSS animation
@@ -96,6 +102,7 @@ export default function RoiCalculator({ onDownloadReport }) {
 
   const handleConnectionTypeChange = (type) => {
     setConnectionType(type);
+    setFormData((prev) => ({ ...prev, connection_type: type }));
     if (type === 'Residential') {
       setPanelType('DCR');
     }
@@ -104,7 +111,34 @@ export default function RoiCalculator({ onDownloadReport }) {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === 'monthly_bill' && Number(value) >= 500) {
+      setBill(Number(value));
+    }
+    if (name === 'connection_type') {
+      setConnectionType(value);
+      if (value === 'Residential') setPanelType('DCR');
+    }
   };
+
+  const handleFormBlur = (field) => {
+    setFormTouched((prev) => ({ ...prev, [field]: true }));
+  };
+
+  const isNameValid = formData.name.trim().length >= 2;
+  const isPhoneValid = /^[6-9]\d{9}$/.test(formData.mobile.trim());
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim());
+  const isPincodeValid = /^[1-9][0-9]{5}$/.test(formData.pincode.trim());
+  const isCityValid = formData.city.trim().length >= 2;
+  const isBillValid = Number(formData.monthly_bill || bill) >= 500;
+  const isConnectionTypeValid = Boolean(formData.connection_type || connectionType);
+  const isQuotationFormValid =
+    isNameValid &&
+    isPhoneValid &&
+    isEmailValid &&
+    isPincodeValid &&
+    isCityValid &&
+    isBillValid &&
+    isConnectionTypeValid;
 
   const rawKwNeeded = Math.max(1, Math.min(18, Math.round(bill / 1000)));
   const recommendedCapacity = KW_TO_SYSTEM_MAP[rawKwNeeded] || 3;
@@ -149,6 +183,24 @@ export default function RoiCalculator({ onDownloadReport }) {
     prevCapacityRef.current = recommendedCapacity;
   }, [recommendedCapacity]);
 
+  // Lock body scroll when quotation modal is active
+  useEffect(() => {
+    if (isQuoteModalOpen) {
+      const originalOverflow = document.body.style.overflow;
+      const originalPaddingRight = document.body.style.paddingRight;
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+      document.body.style.overflow = 'hidden';
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        document.body.style.paddingRight = originalPaddingRight;
+      };
+    }
+  }, [isQuoteModalOpen]);
+
   // Animated display values
   const animSavings = useAnimatedCount(annualSavings);
   const animSubsidy = useAnimatedCount(subsidyAmount);
@@ -158,17 +210,49 @@ export default function RoiCalculator({ onDownloadReport }) {
   const animSavings5 = useAnimatedCount(annualSavings * 5);
   const animSavings10 = useAnimatedCount(annualSavings * 10);
 
+  const openQuoteModal = () => {
+    setFormData((prev) => ({
+      ...prev,
+      monthly_bill: String(bill),
+      connection_type: connectionType,
+    }));
+    setMailSentSuccess(false);
+    setIsQuoteModalOpen(true);
+  };
+
+  const closeQuoteModal = () => {
+    setIsQuoteModalOpen(false);
+    setMailSentSuccess(false);
+  };
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    if (!isQuotationFormValid) {
+      setFormTouched({
+        name: true,
+        mobile: true,
+        email: true,
+        pincode: true,
+        city: true,
+        monthly_bill: true,
+        connection_type: true,
+      });
+      return;
+    }
     setIsSubmittingForm(true);
-    setReportSuccess(false);
+
+    const effectiveBillAmount = Number(formData.monthly_bill) || bill;
+    const effectiveConnType = formData.connection_type || connectionType;
 
     const payload = {
       ...formData,
-      bill,
-      requiredRoofArea: recommendedCapacity * 64, // 2 panels per kw, 32 sqft each
-      location,
-      connectionType,
+      name: formData.name,
+      mobile: formData.mobile,
+      phone: formData.mobile,
+      monthly_bill: effectiveBillAmount,
+      connection_type: effectiveConnType,
+      requiredRoofArea: recommendedCapacity * 64,
+      location: `${formData.city}, ${formData.state} - ${formData.pincode}`,
       panelType: effectivePanelType,
       calculatedSystemSize: recommendedCapacity,
       systemPhase: effectivePhase,
@@ -179,9 +263,56 @@ export default function RoiCalculator({ onDownloadReport }) {
       paybackYears,
       co2OffsetTons,
       treeEquivalents,
-      source: 'ROI Calculator Lead Form',
+      receiverEmail: 'amit.sharma@neonixinfra.in',
+      source: 'ROI Calculator Email Lead Form',
       timestamp: new Date().toISOString(),
     };
+
+    // Pre-formatted Email Message
+    const emailSubject = `Solar Quotation & Feasibility Request - ${formData.name} (${recommendedCapacity} kW System)`;
+    const emailBody = `Dear Neonix Solar Team,
+
+I have calculated my solar requirements on the Neonix Solar ROI Calculator and would like to discuss this setup and receive a formal quotation.
+
+==================================================
+CUSTOMER & LOCATION DETAILS
+==================================================
+• Full Name: ${formData.name}
+• Mobile Number: ${formData.mobile}
+• Sender Email: ${formData.email}
+• City: ${formData.city}
+• State: ${formData.state}
+• Area Pincode: ${formData.pincode}
+• Connection Type: ${effectiveConnType}
+• Monthly Electricity Bill: ₹${effectiveBillAmount.toLocaleString()}
+
+==================================================
+CALCULATED SYSTEM SPECIFICATIONS
+==================================================
+• Recommended System Size: ${recommendedCapacity} kW (${effectivePhase})
+• Technology / Panel Type: ${effectivePanelType} Panels
+• Estimated Roof Area Needed: ~${recommendedCapacity * 64} sq. ft.
+• Gross System Cost: ₹${grossCost.toLocaleString()}
+• PM Surya Ghar Govt. Subsidy: ₹${subsidyAmount.toLocaleString()}
+• Net System Cost (After Subsidy): ₹${netCost.toLocaleString()}
+• Estimated Year 1 Bill Savings: ₹${annualSavings.toLocaleString()} / year
+• Estimated 10-Year Total Savings: ₹${(annualSavings * 10).toLocaleString()}
+• Estimated Payback Timeline: ${paybackYears} Years
+• Environmental Impact: ${co2OffsetTons} Tons CO2 (~${treeEquivalents} trees planted)
+
+Please review my requirements and contact me at ${formData.mobile} to proceed with a site survey and consultation.
+
+Best regards,
+${formData.name}
+Phone: ${formData.mobile}
+Email: ${formData.email}`;
+
+    const receiverEmail = 'amit.sharma@neonixinfra.in';
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(receiverEmail)}&su=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    const mailtoUri = `mailto:${receiverEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    
+    setGeneratedGmailUrl(gmailUrl);
+    setGeneratedMailto(mailtoUri);
 
     try {
       await fetch('https://hook.eu1.make.com/z14ylrq8mwzr9iu1vazvxwjhc3kwqu8r', {
@@ -189,23 +320,23 @@ export default function RoiCalculator({ onDownloadReport }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      setReportSuccess(true);
       if (onDownloadReport) {
         onDownloadReport(payload);
       }
-      setFormData({
-        name: '',
-        mobile: '',
-        email: '',
-        pincode: '',
-        city: '',
-        state: 'Rajasthan',
-      });
-      setTimeout(() => setReportSuccess(false), 5000);
     } catch (err) {
-      console.error('Submission failed', err);
+      console.error('Webhook sync log:', err);
     } finally {
       setIsSubmittingForm(false);
+      setMailSentSuccess(true);
+      // Open Gmail by default in a new tab / redirect
+      try {
+        const opened = window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+        if (!opened || opened.closed || typeof opened.closed === 'undefined') {
+          window.location.href = gmailUrl;
+        }
+      } catch {
+        window.location.href = gmailUrl;
+      }
     }
   };
 
@@ -238,10 +369,10 @@ export default function RoiCalculator({ onDownloadReport }) {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start relative z-10">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch relative z-10">
         
         {/* LEFT COLUMN: Input Controls (5 Cols) */}
-        <div className="lg:col-span-5 bg-white p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-gray-200 shadow-sm space-y-5 sm:space-y-6 reveal-left calc-card-hover">
+        <div className="lg:col-span-5 bg-white p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-gray-200 shadow-sm space-y-5 sm:space-y-6 reveal-left calc-card-hover flex flex-col justify-between h-full">
           <div className="border-b border-gray-100 pb-3 flex items-center justify-between">
             <h3 className="text-base sm:text-lg font-bold text-[#111827]">Your Electricity Details</h3>
             <span className="text-[11px] sm:text-xs font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-[#0b7542]/10 text-[#0b7542]">
@@ -440,7 +571,14 @@ export default function RoiCalculator({ onDownloadReport }) {
             <select
               id={locationSelectId}
               value={location}
-              onChange={(e) => setLocation(e.target.value)}
+              onChange={(e) => {
+                const val = e.target.value;
+                setLocation(val);
+                const cityName = val.split(',')[0].trim();
+                if (cityName && !formData.city) {
+                  setFormData((prev) => ({ ...prev, city: cityName }));
+                }
+              }}
               className="w-full h-11 sm:h-12 px-3 bg-white border border-gray-300 rounded-xl text-xs sm:text-sm text-[#111827] font-semibold focus:outline-none focus:border-[#0F9D58] cursor-pointer shadow-xs"
             >
               <option value="Jaipur, Rajasthan">Jaipur, Rajasthan (High Sunlight)</option>
@@ -458,7 +596,7 @@ export default function RoiCalculator({ onDownloadReport }) {
         </div>
 
         {/* RIGHT COLUMN: Results Dashboard (7 Cols) */}
-        <div className="lg:col-span-7 space-y-5 sm:space-y-6 reveal-right">
+        <div className="lg:col-span-7 flex flex-col justify-between gap-5 sm:gap-6 reveal-right h-full">
           
           {/* Main 3 Output Metrics */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
@@ -631,130 +769,361 @@ export default function RoiCalculator({ onDownloadReport }) {
             </div>
           </div>
 
-          {/* Action Box: Lead Generation Form */}
-          <div className="bg-[#0F172A] p-5 sm:p-7 rounded-2xl sm:rounded-3xl shadow-xl border border-white/10 text-white">
-            <h4 className="text-lg sm:text-xl font-extrabold text-white mb-1">
-              Send Your Calculated Quotation to Us
-            </h4>
-            <p className="text-xs sm:text-sm text-gray-300 mb-5 font-normal">
-              Enter your details below to receive your exact {recommendedCapacity} kW setup quotation, subsidy assistance, and free roof layout.
-            </p>
+          {/* Action Box: Email Quotation CTA Banner */}
+          <div className="bg-[#0F172A] p-6 sm:p-8 rounded-2xl sm:rounded-3xl shadow-xl border border-white/10 text-white relative overflow-hidden flex-1 flex flex-col justify-center mt-auto">
+            <div className="absolute top-0 right-0 w-72 h-72 bg-[#0F9D58]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#00BFA6]/10 rounded-full blur-3xl pointer-events-none" />
 
-            <form onSubmit={handleFormSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="E.g. Rajesh Sharma"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#00BFA6] focus:ring-1 focus:ring-[#00BFA6]"
-                  />
+            <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 my-auto">
+              <div className="max-w-xl space-y-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00BFA6]/10 border border-[#00BFA6]/25">
+                  <span className="w-2 h-2 rounded-full bg-[#00BFA6]" />
+                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#00BFA6]">Official Solar Quotation</span>
                 </div>
-                <div>
-                  <label className="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5">
-                    Mobile Number *
-                  </label>
-                  <input
-                    type="tel"
-                    name="mobile"
-                    value={formData.mobile}
-                    onChange={handleInputChange}
-                    required
-                    maxLength={10}
-                    placeholder="9876543210"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#00BFA6] focus:ring-1 focus:ring-[#00BFA6]"
-                  />
-                </div>
+                <h4 className="text-xl sm:text-2xl lg:text-3xl font-black text-white leading-tight">
+                  Happy with this calculation or want to discuss a custom setup?
+                </h4>
+                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-normal">
+                  If you want to discuss your rooftop setup or you are happy with the calculation, mail us your quote directly for immediate engineer review, shadow analysis, and subsidy paperwork.
+                </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="rajesh@example.com"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#00BFA6] focus:ring-1 focus:ring-[#00BFA6]"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5">
-                    Pincode *
-                  </label>
-                  <input
-                    type="text"
-                    name="pincode"
-                    value={formData.pincode}
-                    onChange={handleInputChange}
-                    required
-                    maxLength={6}
-                    placeholder="302001"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#00BFA6] focus:ring-1 focus:ring-[#00BFA6]"
-                  />
-                </div>
+              <div className="w-full lg:w-auto shrink-0 flex flex-col sm:flex-row lg:flex-col gap-2.5">
+                <button
+                  type="button"
+                  onClick={openQuoteModal}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#0F9D58] hover:bg-[#0c8248] active:bg-[#096636] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-[0_4px_20px_rgba(15,157,88,0.4)] hover:shadow-[0_6px_24px_rgba(15,157,88,0.55)] transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer shimmer-btn min-h-[48px] sm:min-h-[50px] focus:outline-none focus:ring-2 focus:ring-[#00BFA6] focus:ring-offset-2 focus:ring-offset-[#0F172A]"
+                >
+                  <span>✉️ Send Us a Quote</span>
+                  <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </button>
+                <span className="text-[11px] text-gray-400 text-center lg:text-left block font-medium">
+                  ⚡ Pre-formats your {recommendedCapacity} kW quote with 1-click
+                </span>
               </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5">
-                    City *
-                  </label>
-                  <input
-                    type="text"
-                    name="city"
-                    value={formData.city}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="Jaipur"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#00BFA6] focus:ring-1 focus:ring-[#00BFA6]"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5">
-                    State *
-                  </label>
-                  <input
-                    type="text"
-                    name="state"
-                    value={formData.state}
-                    onChange={handleInputChange}
-                    required
-                    readOnly
-                    aria-label="State"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-gray-400 focus:outline-none"
-                  />
-                </div>
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmittingForm}
-                className="w-full mt-2 bg-[#0F9D58] hover:bg-[#0c8248] active:bg-[#096636] text-white font-extrabold text-sm uppercase tracking-wider py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer disabled:opacity-50"
-              >
-                {isSubmittingForm ? 'Submitting...' : 'Send Quotation to Team →'}
-              </button>
-            </form>
-          </div>
-
-          {reportSuccess && (
-            <div className="p-3 bg-[#0b7542]/15 border border-[#0b7542] text-[#0b7542] rounded-xl text-center text-xs sm:text-sm font-bold" role="status">
-              ✓ Your customized {recommendedCapacity} kW Solar Report is ready!
             </div>
-          )}
+          </div>
 
         </div>
       </div>
+
+      {/* ── QUOTATION FORMALITY & EMAIL MODAL ── */}
+      {isQuoteModalOpen && (
+        <div 
+          className="fixed inset-0 z-[300] overflow-y-auto overscroll-contain flex items-center justify-center p-3 sm:p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="roi-quote-modal-title"
+        >
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 bg-[#0F172A]/80 backdrop-blur-md transition-opacity cursor-pointer"
+            onClick={closeQuoteModal}
+            aria-hidden="true"
+          />
+
+          {/* Modal Card */}
+          <div 
+            className="relative z-10 w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-gray-200 overflow-y-auto max-h-[88vh] overscroll-contain transform transition-all my-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="absolute top-0 right-0 w-36 h-36 bg-[#0b7542]/10 rounded-full blur-2xl pointer-events-none" />
+            
+            {/* Close Button */}
+            <button
+              type="button"
+              onClick={closeQuoteModal}
+              aria-label="Close modal"
+              className="absolute top-5 right-5 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center font-bold text-sm transition-colors cursor-pointer"
+            >
+              ✕
+            </button>
+
+            {!mailSentSuccess ? (
+              <div>
+                <div className="mb-5">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-xs font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md bg-[#0b7542]/10 text-[#0b7542]">
+                      Email Quotation Request
+                    </span>
+                    <span className="text-xs text-[#4B5563] font-semibold">• Direct to our Engineering Team</span>
+                  </div>
+                  <h3 id="roi-quote-modal-title" className="text-2xl font-black text-[#111827] leading-snug">
+                    Send Us Your Quotation
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#374151] mt-1 font-normal">
+                    Just complete some formalities before sending your quotation. We will pre-format your email with all your calculator estimates and open your mail service.
+                  </p>
+                </div>
+
+                {/* Pre-filled Calculation Specs Box */}
+                <div className="bg-[#F8FAFC] border border-gray-200 rounded-2xl p-3.5 mb-5 text-xs text-[#111827] grid grid-cols-3 gap-2 text-center">
+                  <div>
+                    <span className="text-[#4B5563] block font-medium">System Size</span>
+                    <span className="font-black text-[#0b7542] text-sm">{recommendedCapacity} kW</span>
+                  </div>
+                  <div>
+                    <span className="text-[#4B5563] block font-medium">Govt. Benefits</span>
+                    <span className="font-black text-[#0d8070] text-sm">₹{subsidyAmount.toLocaleString()}</span>
+                  </div>
+                  <div>
+                    <span className="text-[#4B5563] block font-medium">Net Cost</span>
+                    <span className="font-black text-[#111827] text-sm">₹{netCost.toLocaleString()}</span>
+                  </div>
+                </div>
+
+                <form onSubmit={handleFormSubmit} noValidate className="space-y-3.5">
+                  {/* Full Name */}
+                  <div>
+                    <div className="flex justify-between items-center mb-1">
+                      <label className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                        Full Name <span className="text-red-500">*</span>
+                      </label>
+                      {formTouched.name && isNameValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
+                    </div>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      onBlur={() => handleFormBlur('name')}
+                      placeholder="e.g. Rajesh Sharma"
+                      className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                        formTouched.name && !isNameValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
+                      }`}
+                    />
+                    {formTouched.name && !isNameValid && (
+                      <p className="text-xs text-[#D97706] mt-1 font-medium">Please enter your full name.</p>
+                    )}
+                  </div>
+
+                  {/* Mobile & Email */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <div className="flex justify-between items-center mb-1">
+                        <label className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                          Mobile (10 Digits) <span className="text-red-500">*</span>
+                        </label>
+                        {formTouched.mobile && isPhoneValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
+                      </div>
+                      <input
+                        type="tel"
+                        name="mobile"
+                        maxLength={10}
+                        required
+                        value={formData.mobile}
+                        onChange={handleInputChange}
+                        onBlur={() => handleFormBlur('mobile')}
+                        placeholder="9829012345"
+                        className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                          formTouched.mobile && !isPhoneValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
+                        }`}
+                      />
+                      {formTouched.mobile && !isPhoneValid && (
+                        <p className="text-xs text-[#D97706] mt-1 font-medium">Enter a valid 10-digit number.</p>
+                      )}
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between items-center mb-1">
+                        <label className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                          Your Email (Sender ID) <span className="text-red-500">*</span>
+                        </label>
+                        {formTouched.email && isEmailValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
+                      </div>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        onBlur={() => handleFormBlur('email')}
+                        placeholder="name@example.com"
+                        className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                          formTouched.email && !isEmailValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
+                        }`}
+                      />
+                      {formTouched.email && !isEmailValid && (
+                        <p className="text-xs text-[#D97706] mt-1 font-medium">Enter a valid email address.</p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Monthly Bill & Connection Type */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <div className="flex justify-between items-center mb-1">
+                        <label className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                          Monthly Bill (₹) <span className="text-red-500">*</span>
+                        </label>
+                        {formTouched.monthly_bill && isBillValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
+                      </div>
+                      <input
+                        type="number"
+                        name="monthly_bill"
+                        required
+                        value={formData.monthly_bill}
+                        onChange={handleInputChange}
+                        onBlur={() => handleFormBlur('monthly_bill')}
+                        placeholder="4500"
+                        className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                          formTouched.monthly_bill && !isBillValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
+                        }`}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-[#374151] mb-1">
+                        Connection Type <span className="text-red-500">*</span>
+                      </label>
+                      <select
+                        name="connection_type"
+                        required
+                        value={formData.connection_type}
+                        onChange={handleInputChange}
+                        className="w-full h-11 px-3.5 bg-gray-50 border border-gray-300 rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] cursor-pointer"
+                      >
+                        <option value="Residential">Residential (Home)</option>
+                        <option value="Commercial">Commercial (Business / Shop)</option>
+                        <option value="Industrial">Industrial (Factory)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* City & Pincode */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <div className="flex justify-between items-center mb-1">
+                        <label className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                          City <span className="text-red-500">*</span>
+                        </label>
+                        {formTouched.city && isCityValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
+                      </div>
+                      <input
+                        type="text"
+                        name="city"
+                        required
+                        value={formData.city}
+                        onChange={handleInputChange}
+                        onBlur={() => handleFormBlur('city')}
+                        placeholder="e.g. Jaipur, Jodhpur"
+                        className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                          formTouched.city && !isCityValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
+                        }`}
+                      />
+                      {formTouched.city && !isCityValid && (
+                        <p className="text-xs text-[#D97706] mt-1 font-medium">Please enter your city.</p>
+                      )}
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between items-center mb-1">
+                        <label className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                          Pincode (6 Digits) <span className="text-red-500">*</span>
+                        </label>
+                        {formTouched.pincode && isPincodeValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
+                      </div>
+                      <input
+                        type="text"
+                        name="pincode"
+                        maxLength={6}
+                        required
+                        value={formData.pincode}
+                        onChange={handleInputChange}
+                        onBlur={() => handleFormBlur('pincode')}
+                        placeholder="302001"
+                        className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                          formTouched.pincode && !isPincodeValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
+                        }`}
+                      />
+                      {formTouched.pincode && !isPincodeValid && (
+                        <p className="text-xs text-[#D97706] mt-1 font-medium">Enter 6-digit pincode.</p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* State (Fixed) */}
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#374151] mb-1">
+                      State <span className="text-[#0b7542] text-[10px]">(Fixed)</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="state"
+                      value="Rajasthan"
+                      readOnly
+                      aria-label="State"
+                      className="w-full h-11 px-3.5 bg-gray-100 border border-gray-300 rounded-xl text-sm text-gray-600 cursor-not-allowed font-medium"
+                    />
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    disabled={isSubmittingForm}
+                    className="w-full mt-3 inline-flex items-center justify-center gap-2 bg-[#0F9D58] hover:bg-[#0c8248] active:bg-[#096636] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider py-3.5 sm:py-4 rounded-xl shadow-[0_4px_16px_rgba(15,157,88,0.4)] hover:shadow-[0_6px_20px_rgba(15,157,88,0.5)] transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none cursor-pointer shimmer-btn min-h-[48px] focus:outline-none focus:ring-2 focus:ring-[#0F9D58] focus:ring-offset-2"
+                  >
+                    <span>{isSubmittingForm ? 'Preparing Email...' : '✉️ Send Quote to Us →'}</span>
+                  </button>
+                  <p className="text-[11px] text-gray-500 text-center mt-1 font-medium">
+                    Will open Gmail compose with your pre-formatted calculation.
+                  </p>
+                </form>
+              </div>
+            ) : (
+              /* Success / Email Client Redirect state */
+              <div className="text-center py-5 space-y-4">
+                <div className="w-16 h-16 rounded-full bg-[#0b7542]/15 text-[#0b7542] flex items-center justify-center text-3xl mx-auto shadow-inner" aria-hidden="true">
+                  ✉️
+                </div>
+                <h3 className="text-2xl font-black text-[#111827]">Quotation Prepared!</h3>
+                <p className="text-xs sm:text-sm text-[#374151] leading-relaxed max-w-sm mx-auto font-normal">
+                  Your customized <strong>{recommendedCapacity} kW solar quote</strong> has been prepared to send to us.
+                </p>
+
+                <div className="bg-[#F8FAFC] border border-gray-200 rounded-2xl p-3.5 text-xs text-left space-y-1.5 text-[#374151]">
+                  <p>• <strong>To:</strong> Neonix Solar Team</p>
+                  <p>• <strong>From:</strong> {formData.email}</p>
+                  <p>• <strong>Recommended System:</strong> {recommendedCapacity} kW ({effectivePanelType})</p>
+                  <p>• <strong>PM Surya Ghar Subsidy:</strong> ₹{subsidyAmount.toLocaleString()}</p>
+                  <p>• <strong>Estimated Net Cost:</strong> ₹{netCost.toLocaleString()}</p>
+                  <p>• <strong>Annual Savings:</strong> ₹{annualSavings.toLocaleString()}/yr</p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-2.5 pt-2">
+                  <a
+                    href={generatedGmailUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-2 bg-[#0F9D58] hover:bg-[#0c8248] active:bg-[#096636] text-white font-extrabold text-xs uppercase tracking-wider py-3.5 px-4 rounded-xl shadow-[0_4px_16px_rgba(15,157,88,0.35)] hover:shadow-[0_6px_20px_rgba(15,157,88,0.45)] transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer shimmer-btn min-h-[46px]"
+                  >
+                    <span>Open in Gmail ↗</span>
+                  </a>
+                  {generatedMailto && (
+                    <a
+                      href={generatedMailto}
+                      className="px-4 py-3.5 rounded-xl border border-gray-300 hover:border-gray-400 bg-white hover:bg-gray-50 text-xs font-bold text-[#374151] transition-all cursor-pointer inline-flex items-center justify-center gap-1.5 min-h-[46px]"
+                    >
+                      <span>Default Mail</span>
+                    </a>
+                  )}
+                  <button
+                    type="button"
+                    onClick={closeQuoteModal}
+                    className="px-5 py-3.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-xs font-bold text-[#374151] transition-all cursor-pointer min-h-[46px]"
+                  >
+                    Done
+                  </button>
+                </div>
+              </div>
+            )}
+
+          </div>
+        </div>
+      )}
     </section>
   );
 }

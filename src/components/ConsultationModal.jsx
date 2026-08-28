@@ -1,24 +1,55 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function ConsultationModal({ isOpen, onClose, initialData = null }) {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
-    city: initialData?.location || 'Jaipur, Rajasthan',
-    bill: initialData?.bill || '4500',
-    propertyType: initialData?.connectionType || 'Residential',
+    pincode: initialData?.pincode || '',
+    city: initialData?.city || 'Jaipur',
+    state: 'Rajasthan',
+    monthly_bill: initialData?.bill || initialData?.monthly_bill || '4500',
+    connection_type: initialData?.connectionType || initialData?.connection_type || 'Residential',
   });
   const [touched, setTouched] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      const originalPaddingRight = document.body.style.paddingRight;
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+      document.body.style.overflow = 'hidden';
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        document.body.style.paddingRight = originalPaddingRight;
+      };
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
   const isNameValid = formData.name.trim().length >= 2;
   const isPhoneValid = /^[6-9]\d{9}$/.test(formData.phone.trim());
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim());
-  const isFormValid = isNameValid && isPhoneValid && isEmailValid;
+  const isPincodeValid = /^[1-9][0-9]{5}$/.test(formData.pincode.trim());
+  const isCityValid = formData.city.trim().length >= 2;
+  const isBillValid = Number(formData.monthly_bill) >= 500;
+  const isConnectionTypeValid = Boolean(formData.connection_type);
+  const isFormValid =
+    isNameValid &&
+    isPhoneValid &&
+    isEmailValid &&
+    isPincodeValid &&
+    isCityValid &&
+    isBillValid &&
+    isConnectionTypeValid;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +63,15 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isFormValid) {
-      setTouched({ name: true, phone: true, email: true });
+      setTouched({
+        name: true,
+        phone: true,
+        email: true,
+        pincode: true,
+        city: true,
+        monthly_bill: true,
+        connection_type: true,
+      });
       return;
     }
 
@@ -44,6 +83,7 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
+          location: `${formData.city}, ${formData.state} - ${formData.pincode}`,
           roiData: initialData,
           source: 'Free Consultation & ROI Modal',
           timestamp: new Date().toISOString(),
@@ -64,20 +104,23 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
 
   return (
     <div 
-      className="fixed inset-0 z-[300] flex items-center justify-center p-4"
+      className="fixed inset-0 z-[300] overflow-y-auto overscroll-contain flex items-center justify-center p-3 sm:p-4"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-[#0F172A]/80 backdrop-blur-md transition-opacity cursor-pointer"
+        className="fixed inset-0 bg-[#0F172A]/80 backdrop-blur-md transition-opacity cursor-pointer"
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Modal Card */}
-      <div className="relative z-10 w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-gray-200 overflow-hidden transform transition-all max-h-[92vh] overflow-y-auto">
+      <div 
+        className="relative z-10 w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-gray-200 overflow-y-auto max-h-[88vh] overscroll-contain transform transition-all my-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="absolute top-0 right-0 w-36 h-36 bg-[#0b7542]/10 rounded-full blur-2xl pointer-events-none" />
         
         {/* Close Button */}
@@ -93,7 +136,7 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
         {!submitted ? (
           <div>
             {/* Step & Title */}
-            <div className="mb-6">
+            <div className="mb-5">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xs font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md bg-[#0b7542]/10 text-[#0b7542]">
                   {initialData ? 'Personalized ROI Report' : 'Free Expert Site Consultation'}
@@ -110,7 +153,7 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
 
             {/* If initialData is present, show summary box */}
             {initialData && (
-              <div className="bg-[#F8FAFC] border border-gray-200 rounded-2xl p-3.5 mb-5 text-xs text-[#111827] grid grid-cols-3 gap-2 text-center">
+              <div className="bg-[#F8FAFC] border border-gray-200 rounded-2xl p-3 mb-4 text-xs text-[#111827] grid grid-cols-3 gap-2 text-center">
                 <div>
                   <span className="text-[#4B5563] block font-medium">System Size</span>
                   <span className="font-black text-[#0b7542] text-sm">{initialData.calculatedSystemSize || '3.5'} kW</span>
@@ -126,7 +169,8 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
               </div>
             )}
 
-            <form onSubmit={handleSubmit} noValidate className="space-y-4">
+            <form onSubmit={handleSubmit} noValidate className="space-y-3">
+              {/* Full Name */}
               <div>
                 <div className="flex justify-between items-center mb-1">
                   <label htmlFor="modal-name" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
@@ -143,12 +187,13 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
                   onChange={handleChange}
                   onBlur={() => handleBlur('name')}
                   placeholder="e.g. Rajesh Sharma"
-                  className={`w-full h-12 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                  className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
                     touched.name && !isNameValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
                   }`}
                 />
               </div>
 
+              {/* Phone & Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <div className="flex justify-between items-center mb-1">
@@ -167,15 +212,85 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
                     onChange={handleChange}
                     onBlur={() => handleBlur('phone')}
                     placeholder="9829012345"
-                    className={`w-full h-12 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                    className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
                       touched.phone && !isPhoneValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
                     }`}
                   />
                 </div>
                 <div>
-                  <label htmlFor="modal-city" className="block text-xs font-bold uppercase tracking-wider text-[#374151] mb-1">
-                    City / Location
+                  <div className="flex justify-between items-center mb-1">
+                    <label htmlFor="modal-email" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                      Email Address <span className="text-red-500">*</span>
+                    </label>
+                    {touched.email && isEmailValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
+                  </div>
+                  <input
+                    id="modal-email"
+                    type="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    onBlur={() => handleBlur('email')}
+                    placeholder="name@example.com"
+                    className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                      touched.email && !isEmailValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
+                    }`}
+                  />
+                </div>
+              </div>
+
+              {/* Monthly Bill & Connection Type */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <label htmlFor="modal-bill" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                      Monthly Bill (₹) <span className="text-red-500">*</span>
+                    </label>
+                    {touched.monthly_bill && isBillValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
+                  </div>
+                  <input
+                    id="modal-bill"
+                    type="number"
+                    name="monthly_bill"
+                    required
+                    value={formData.monthly_bill}
+                    onChange={handleChange}
+                    onBlur={() => handleBlur('monthly_bill')}
+                    placeholder="e.g. 4500"
+                    className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                      touched.monthly_bill && !isBillValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
+                    }`}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="modal-connection" className="block text-xs font-bold uppercase tracking-wider text-[#374151] mb-1">
+                    Connection Type <span className="text-red-500">*</span>
                   </label>
+                  <select
+                    id="modal-connection"
+                    name="connection_type"
+                    required
+                    value={formData.connection_type}
+                    onChange={handleChange}
+                    className="w-full h-11 px-3.5 bg-gray-50 border border-gray-300 rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] cursor-pointer"
+                  >
+                    <option value="Residential">Residential (Home)</option>
+                    <option value="Commercial">Commercial (Business / Shop)</option>
+                    <option value="Industrial">Industrial (Factory)</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* City & Pincode */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <label htmlFor="modal-city" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                      City <span className="text-red-500">*</span>
+                    </label>
+                    {touched.city && isCityValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
+                  </div>
                   <input
                     id="modal-city"
                     type="text"
@@ -183,38 +298,57 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
                     required
                     value={formData.city}
                     onChange={handleChange}
-                    placeholder="Jaipur, Rajasthan"
-                    className="w-full h-12 px-3.5 bg-gray-50 border border-gray-300 rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58]"
+                    onBlur={() => handleBlur('city')}
+                    placeholder="e.g. Jaipur, Jodhpur"
+                    className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                      touched.city && !isCityValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
+                    }`}
+                  />
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <label htmlFor="modal-pincode" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                      Pincode (6 Digits) <span className="text-red-500">*</span>
+                    </label>
+                    {touched.pincode && isPincodeValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
+                  </div>
+                  <input
+                    id="modal-pincode"
+                    type="text"
+                    name="pincode"
+                    maxLength={6}
+                    required
+                    value={formData.pincode}
+                    onChange={handleChange}
+                    onBlur={() => handleBlur('pincode')}
+                    placeholder="e.g. 302001"
+                    className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                      touched.pincode && !isPincodeValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
+                    }`}
                   />
                 </div>
               </div>
 
+              {/* State (Fixed) */}
               <div>
-                <div className="flex justify-between items-center mb-1">
-                  <label htmlFor="modal-email" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
-                    Email Address <span className="text-red-500">*</span>
-                  </label>
-                  {touched.email && isEmailValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
-                </div>
+                <label htmlFor="modal-state" className="block text-xs font-bold uppercase tracking-wider text-[#374151] mb-1">
+                  State <span className="text-[#0b7542] text-[10px]">(Fixed)</span>
+                </label>
                 <input
-                  id="modal-email"
-                  type="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  onBlur={() => handleBlur('email')}
-                  placeholder="name@example.com"
-                  className={`w-full h-12 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
-                    touched.email && !isEmailValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
-                  }`}
+                  id="modal-state"
+                  type="text"
+                  name="state"
+                  value="Rajasthan"
+                  readOnly
+                  aria-label="State (Fixed to Rajasthan)"
+                  className="w-full h-11 px-3.5 bg-gray-100 border border-gray-300 rounded-xl text-sm text-gray-600 cursor-not-allowed font-medium"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full mt-3 bg-[#0F9D58] hover:bg-[#0c8248] active:bg-[#096636] text-white font-extrabold text-sm tracking-wide py-4 rounded-xl uppercase transition-all shadow-md hover:shadow-lg disabled:opacity-50 cursor-pointer shimmer-btn min-h-[48px]"
+                className="w-full mt-3 bg-[#0F9D58] hover:bg-[#0c8248] active:bg-[#096636] text-white font-extrabold text-sm tracking-wide py-3.5 sm:py-4 rounded-xl uppercase transition-all shadow-md hover:shadow-lg disabled:opacity-50 cursor-pointer shimmer-btn min-h-[48px]"
               >
                 {submitting ? 'Preparing Blueprint...' : (initialData ? 'Generate & Send Report' : 'Confirm Free Consultation')}
               </button>

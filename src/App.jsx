@@ -1,5 +1,4 @@
 import { useState, useEffect, Suspense, lazy } from 'react';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Lenis from 'lenis';
 import ScrollProgress from './components/UI/ScrollProgress';
 import CursorGlow from './components/UI/CursorGlow';
@@ -100,27 +99,21 @@ function App() {
   }, []);
 
   return (
-    <HelmetProvider>
-      <div className="font-sans antialiased text-[#111827] bg-[#F8FAFC] selection:bg-[#0F9D58] selection:text-white pb-16 md:pb-0 min-h-screen flex flex-col justify-between">
-        <Helmet>
-          <title>Neonix | Rooftop Solar Panels, Clean & Green Energy Solutions in India</title>
-          <meta name="description" content="Switch to clean & green solar energy with Neonix. Expert rooftop solar panel installations for homes and businesses across India. Get up to ₹78,000 PM Surya Ghar subsidy and save 90% on electricity bills." />
-        </Helmet>
+    <div className="font-sans antialiased text-[#111827] bg-[#F8FAFC] selection:bg-[#0F9D58] selection:text-white pb-16 md:pb-0 min-h-screen flex flex-col justify-between">
+      <ScrollProgress />
+      <CursorGlow />
+      
+      {/* 1. Header (Sticky Minimalist Navigation) */}
+      <Navbar onOpenConsultation={() => handleOpenConsultation()} />
+      
+      <main id="main-content" className="flex-grow">
+        {/* 2. Hero Section (with scrollyteller effect) */}
+        <Hero onOpenConsultation={() => handleOpenConsultation()} />
         
-        <ScrollProgress />
-        <CursorGlow />
+        <Suspense fallback={<div className="min-h-screen bg-[#F8FAFC]" />}>
+          {/* 3. Key Benefits (4 Columns) */}
+          <KeyBenefits />
         
-        {/* 1. Header (Sticky Minimalist Navigation) */}
-        <Navbar onOpenConsultation={() => handleOpenConsultation()} />
-        
-        <main id="main-content" className="flex-grow">
-          {/* 2. Hero Section (with scrollyteller effect) */}
-          <Hero onOpenConsultation={() => handleOpenConsultation()} />
-          
-          <Suspense fallback={<div className="min-h-screen bg-[#F8FAFC]" />}>
-            {/* 3. Key Benefits (4 Columns) */}
-            <KeyBenefits />
-          
           {/* 4. ROI Calculator */}
           <RoiCalculator onDownloadReport={(data) => handleOpenConsultation(data)} />
 
@@ -144,22 +137,21 @@ function App() {
           
           {/* 12. Contact Section & Footer */}
           <Contact />
-          </Suspense>
-        </main>
-
-        <Suspense fallback={null}>
-          {/* Interactive Consultation & ROI Report Modal */}
-          <ConsultationModal 
-            isOpen={modalState.isOpen}
-            onClose={handleCloseModal}
-            initialData={modalState.initialData}
-          />
         </Suspense>
+      </main>
 
-        {/* Minimalist Mobile Quick Action Bar */}
-        <MobileActionBar onOpenConsultation={() => handleOpenConsultation()} />
-      </div>
-    </HelmetProvider>
+      <Suspense fallback={null}>
+        {/* Interactive Consultation & ROI Report Modal */}
+        <ConsultationModal 
+          isOpen={modalState.isOpen}
+          onClose={handleCloseModal}
+          initialData={modalState.initialData}
+        />
+      </Suspense>
+
+      {/* Minimalist Mobile Quick Action Bar */}
+      <MobileActionBar onOpenConsultation={() => handleOpenConsultation()} />
+    </div>
   );
 }
 

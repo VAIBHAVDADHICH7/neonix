@@ -4,6 +4,12 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
+    email: '',
+    pincode: '',
+    city: '',
+    state: 'Rajasthan',
+    monthly_bill: '',
+    connection_type: 'Residential',
     message: '',
   });
   const [touched, setTouched] = useState({});
@@ -14,8 +20,19 @@ export default function Contact() {
   // Live Validation Rules
   const isNameValid = formData.name.trim().length >= 2;
   const isPhoneValid = /^[6-9]\d{9}$/.test(formData.phone.trim());
-  const isMessageValid = formData.message.trim().length >= 5;
-  const isFormValid = isNameValid && isPhoneValid && isMessageValid;
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim());
+  const isPincodeValid = /^[1-9][0-9]{5}$/.test(formData.pincode.trim());
+  const isCityValid = formData.city.trim().length >= 2;
+  const isBillValid = Number(formData.monthly_bill) >= 500;
+  const isConnectionTypeValid = Boolean(formData.connection_type);
+  const isFormValid =
+    isNameValid &&
+    isPhoneValid &&
+    isEmailValid &&
+    isPincodeValid &&
+    isCityValid &&
+    isBillValid &&
+    isConnectionTypeValid;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +46,15 @@ export default function Contact() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (!isFormValid) {
-      setTouched({ name: true, phone: true, message: true });
+      setTouched({
+        name: true,
+        phone: true,
+        email: true,
+        pincode: true,
+        city: true,
+        monthly_bill: true,
+        connection_type: true,
+      });
       return;
     }
 
@@ -41,12 +66,23 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
+          location: `${formData.city}, ${formData.state} - ${formData.pincode}`,
           source: 'Website Contact Section Inquiry',
           submittedAt: new Date().toISOString(),
         }),
       });
       setStatus({ submitting: false, success: true, error: false });
-      setFormData({ name: '', phone: '', message: '' });
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        pincode: '',
+        city: '',
+        state: 'Rajasthan',
+        monthly_bill: '',
+        connection_type: 'Residential',
+        message: '',
+      });
       setTouched({});
       setTimeout(() => setStatus((prev) => ({ ...prev, success: false })), 8000);
     } catch (err) {
@@ -177,89 +213,230 @@ export default function Contact() {
                   </div>
                 )}
 
-                {/* Name Field */}
-                <div className="space-y-1">
-                  <div className="flex justify-between items-center">
-                    <label htmlFor="inquiry-name" className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gray-300">
-                      Your Name <span className="text-red-400">*</span>
-                    </label>
-                    {touched.name && isNameValid && (
-                      <span className="text-xs text-[#00BFA6] font-bold">✓ Valid</span>
+                {/* Name & Phone */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  <div className="space-y-1">
+                    <div className="flex justify-between items-center">
+                      <label htmlFor="inquiry-name" className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gray-300">
+                        Full Name <span className="text-red-400">*</span>
+                      </label>
+                      {touched.name && isNameValid && (
+                        <span className="text-xs text-[#00BFA6] font-bold">✓</span>
+                      )}
+                    </div>
+                    <input
+                      id="inquiry-name"
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur('name')}
+                      placeholder="e.g. Rajesh Sharma"
+                      className={`w-full p-3 sm:p-3.5 rounded-xl glass-input text-xs sm:text-sm focus:outline-none ${
+                        touched.name && !isNameValid ? 'border-red-400 bg-red-500/10' : ''
+                      }`}
+                    />
+                    {touched.name && !isNameValid && (
+                      <p className="text-xs text-[#F59E0B] font-semibold">Please enter your full name.</p>
                     )}
                   </div>
-                  <input
-                    id="inquiry-name"
-                    type="text"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    onBlur={() => handleBlur('name')}
-                    placeholder="Enter your name"
-                    className={`w-full p-3 sm:p-3.5 rounded-xl glass-input text-xs sm:text-sm focus:outline-none ${
-                      touched.name && !isNameValid ? 'border-red-400 bg-red-500/10' : ''
-                    }`}
-                  />
-                  {touched.name && !isNameValid && (
-                    <p className="text-xs text-[#F59E0B] font-semibold">Please enter your name.</p>
-                  )}
+
+                  <div className="space-y-1">
+                    <div className="flex justify-between items-center">
+                      <label htmlFor="inquiry-phone" className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gray-300">
+                        Mobile (10 Digits) <span className="text-red-400">*</span>
+                      </label>
+                      {touched.phone && isPhoneValid && (
+                        <span className="text-xs text-[#00BFA6] font-bold">✓</span>
+                      )}
+                    </div>
+                    <input
+                      id="inquiry-phone"
+                      type="tel"
+                      name="phone"
+                      maxLength={10}
+                      required
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur('phone')}
+                      placeholder="e.g. 9829012345"
+                      className={`w-full p-3 sm:p-3.5 rounded-xl glass-input text-xs sm:text-sm focus:outline-none ${
+                        touched.phone && !isPhoneValid ? 'border-red-400 bg-red-500/10' : ''
+                      }`}
+                    />
+                    {touched.phone && !isPhoneValid && (
+                      <p className="text-xs text-[#F59E0B] font-semibold">Enter a valid 10-digit mobile number.</p>
+                    )}
+                  </div>
                 </div>
 
-                {/* Phone Field */}
-                <div className="space-y-1">
-                  <div className="flex justify-between items-center">
-                    <label htmlFor="inquiry-phone" className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gray-300">
-                      Mobile Number (10 Digits) <span className="text-red-400">*</span>
-                    </label>
-                    {touched.phone && isPhoneValid && (
-                      <span className="text-xs text-[#00BFA6] font-bold">✓ 10-Digit Mobile Verified</span>
+                {/* Email & Monthly Bill */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  <div className="space-y-1">
+                    <div className="flex justify-between items-center">
+                      <label htmlFor="inquiry-email" className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gray-300">
+                        Email Address <span className="text-red-400">*</span>
+                      </label>
+                      {touched.email && isEmailValid && (
+                        <span className="text-xs text-[#00BFA6] font-bold">✓</span>
+                      )}
+                    </div>
+                    <input
+                      id="inquiry-email"
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur('email')}
+                      placeholder="name@example.com"
+                      className={`w-full p-3 sm:p-3.5 rounded-xl glass-input text-xs sm:text-sm focus:outline-none ${
+                        touched.email && !isEmailValid ? 'border-red-400 bg-red-500/10' : ''
+                      }`}
+                    />
+                    {touched.email && !isEmailValid && (
+                      <p className="text-xs text-[#F59E0B] font-semibold">Please enter a valid email address.</p>
                     )}
                   </div>
-                  <input
-                    id="inquiry-phone"
-                    type="tel"
-                    name="phone"
-                    maxLength={10}
-                    required
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    onBlur={() => handleBlur('phone')}
-                    placeholder="e.g. 9829012345"
-                    className={`w-full p-3 sm:p-3.5 rounded-xl glass-input text-xs sm:text-sm focus:outline-none ${
-                      touched.phone && !isPhoneValid ? 'border-red-400 bg-red-500/10' : ''
-                    }`}
-                  />
-                  {touched.phone && !isPhoneValid && (
-                    <p className="text-xs text-[#F59E0B] font-semibold">Please enter a valid 10-digit mobile number.</p>
-                  )}
+
+                  <div className="space-y-1">
+                    <div className="flex justify-between items-center">
+                      <label htmlFor="inquiry-bill" className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gray-300">
+                        Monthly Bill (₹) <span className="text-red-400">*</span>
+                      </label>
+                      {touched.monthly_bill && isBillValid && (
+                        <span className="text-xs text-[#00BFA6] font-bold">✓</span>
+                      )}
+                    </div>
+                    <input
+                      id="inquiry-bill"
+                      type="number"
+                      name="monthly_bill"
+                      required
+                      value={formData.monthly_bill}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur('monthly_bill')}
+                      placeholder="e.g. 4500"
+                      className={`w-full p-3 sm:p-3.5 rounded-xl glass-input text-xs sm:text-sm focus:outline-none ${
+                        touched.monthly_bill && !isBillValid ? 'border-red-400 bg-red-500/10' : ''
+                      }`}
+                    />
+                    {touched.monthly_bill && !isBillValid && (
+                      <p className="text-xs text-[#F59E0B] font-semibold">Enter your average monthly bill (min ₹500).</p>
+                    )}
+                  </div>
                 </div>
 
-                {/* Message Field */}
-                <div className="space-y-1">
-                  <div className="flex justify-between items-center">
-                    <label htmlFor="inquiry-msg" className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gray-300">
-                      How Can We Help You? <span className="text-red-400">*</span>
+                {/* Connection Type & City */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  <div className="space-y-1">
+                    <label htmlFor="inquiry-connection" className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gray-300">
+                      Connection Type <span className="text-red-400">*</span>
                     </label>
-                    {touched.message && isMessageValid && (
-                      <span className="text-xs text-[#00BFA6] font-bold">✓</span>
+                    <select
+                      id="inquiry-connection"
+                      name="connection_type"
+                      required
+                      value={formData.connection_type}
+                      onChange={handleInputChange}
+                      className="w-full p-3 sm:p-3.5 rounded-xl glass-input text-xs sm:text-sm focus:outline-none bg-[#0B132B] text-white cursor-pointer"
+                    >
+                      <option value="Residential" className="bg-[#0B132B] text-white">Residential (Home / Villa)</option>
+                      <option value="Commercial" className="bg-[#0B132B] text-white">Commercial (Office / Shop / Hospital)</option>
+                      <option value="Industrial" className="bg-[#0B132B] text-white">Industrial (Factory / Warehouse)</option>
+                      <option value="Agricultural" className="bg-[#0B132B] text-white">Agricultural (Farm / Pump)</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-1">
+                    <div className="flex justify-between items-center">
+                      <label htmlFor="inquiry-city" className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gray-300">
+                        City <span className="text-red-400">*</span>
+                      </label>
+                      {touched.city && isCityValid && (
+                        <span className="text-xs text-[#00BFA6] font-bold">✓</span>
+                      )}
+                    </div>
+                    <input
+                      id="inquiry-city"
+                      type="text"
+                      name="city"
+                      required
+                      value={formData.city}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur('city')}
+                      placeholder="e.g. Jaipur, Jodhpur, Kota"
+                      className={`w-full p-3 sm:p-3.5 rounded-xl glass-input text-xs sm:text-sm focus:outline-none ${
+                        touched.city && !isCityValid ? 'border-red-400 bg-red-500/10' : ''
+                      }`}
+                    />
+                    {touched.city && !isCityValid && (
+                      <p className="text-xs text-[#F59E0B] font-semibold">Please enter your city.</p>
                     )}
                   </div>
+                </div>
+
+                {/* Pincode & State (Fixed) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  <div className="space-y-1">
+                    <div className="flex justify-between items-center">
+                      <label htmlFor="inquiry-pincode" className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gray-300">
+                        Pincode (6 Digits) <span className="text-red-400">*</span>
+                      </label>
+                      {touched.pincode && isPincodeValid && (
+                        <span className="text-xs text-[#00BFA6] font-bold">✓</span>
+                      )}
+                    </div>
+                    <input
+                      id="inquiry-pincode"
+                      type="text"
+                      name="pincode"
+                      maxLength={6}
+                      required
+                      value={formData.pincode}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur('pincode')}
+                      placeholder="e.g. 302020"
+                      className={`w-full p-3 sm:p-3.5 rounded-xl glass-input text-xs sm:text-sm focus:outline-none ${
+                        touched.pincode && !isPincodeValid ? 'border-red-400 bg-red-500/10' : ''
+                      }`}
+                    />
+                    {touched.pincode && !isPincodeValid && (
+                      <p className="text-xs text-[#F59E0B] font-semibold">Enter a valid 6-digit pincode.</p>
+                    )}
+                  </div>
+
+                  <div className="space-y-1">
+                    <label htmlFor="inquiry-state" className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gray-300">
+                      State <span className="text-[#00BFA6] text-[10px]">(Fixed)</span>
+                    </label>
+                    <input
+                      id="inquiry-state"
+                      type="text"
+                      name="state"
+                      value="Rajasthan"
+                      readOnly
+                      aria-label="State (Fixed to Rajasthan)"
+                      className="w-full p-3 sm:p-3.5 rounded-xl glass-input text-xs sm:text-sm text-gray-300 cursor-not-allowed font-medium opacity-80"
+                    />
+                  </div>
+                </div>
+
+                {/* Message Field (Optional) */}
+                <div className="space-y-1">
+                  <label htmlFor="inquiry-msg" className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-gray-300">
+                    Additional Message / Requirements <span className="text-gray-400 font-normal text-[10px]">(Optional)</span>
+                  </label>
                   <textarea
                     id="inquiry-msg"
                     name="message"
-                    rows="3"
-                    required
+                    rows="2"
                     value={formData.message}
                     onChange={handleInputChange}
-                    onBlur={() => handleBlur('message')}
-                    placeholder="Tell us your city, monthly electricity bill, or any questions you have..."
-                    className={`w-full p-3 sm:p-3.5 rounded-xl glass-input text-xs sm:text-sm focus:outline-none resize-none ${
-                      touched.message && !isMessageValid ? 'border-red-400 bg-red-500/10' : ''
-                    }`}
+                    placeholder="Tell us any specific details about your roof or questions..."
+                    className="w-full p-3 rounded-xl glass-input text-xs sm:text-sm focus:outline-none resize-none"
                   />
-                  {touched.message && !isMessageValid && (
-                    <p className="text-xs text-[#F59E0B] font-semibold">Please write a short message (at least 5 characters).</p>
-                  )}
                 </div>
 
                 {/* Submit button */}

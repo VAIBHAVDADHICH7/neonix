@@ -4,9 +4,12 @@ export default function Hero({ onOpenConsultation }) {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    location: '',
+    email: '',
+    pincode: '',
+    city: '',
+    state: 'Rajasthan',
     monthly_bill: '4500',
-    property_type: 'Residential',
+    connection_type: 'Residential',
   });
   const [touched, setTouched] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,14 +19,24 @@ export default function Hero({ onOpenConsultation }) {
 
   const isNameValid = formData.name.trim().length >= 2;
   const isPhoneValid = /^[6-9]\d{9}$/.test(formData.phone.trim());
-  const isLocationValid = formData.location.trim().length >= 2;
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim());
+  const isPincodeValid = /^[1-9][0-9]{5}$/.test(formData.pincode.trim());
+  const isCityValid = formData.city.trim().length >= 2;
   const isBillValid = Number(formData.monthly_bill) >= 500;
-  const isQuickFormValid = isNameValid && isPhoneValid && isLocationValid && isBillValid;
+  const isConnectionTypeValid = Boolean(formData.connection_type);
+  const isQuickFormValid =
+    isNameValid &&
+    isPhoneValid &&
+    isEmailValid &&
+    isPincodeValid &&
+    isCityValid &&
+    isBillValid &&
+    isConnectionTypeValid;
 
   // Real-time savings estimation (used in form submission payload)
   const numBill = Math.max(500, Number(formData.monthly_bill) || 4500);
   const estimatedYearlySavings = Math.round(numBill * 0.9 * 12);
-  const estimatedSubsidy = formData.property_type === 'Residential' ? '₹78,000 Domestic' : '40% Tax Benefit';
+  const estimatedSubsidy = formData.connection_type === 'Residential' ? '₹78,000 Domestic' : '40% Tax Benefit';
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,7 +50,15 @@ export default function Hero({ onOpenConsultation }) {
   const handleQuickLeadSubmit = async (e) => {
     e.preventDefault();
     if (!isQuickFormValid) {
-      setTouched({ name: true, phone: true, location: true, monthly_bill: true });
+      setTouched({
+        name: true,
+        phone: true,
+        email: true,
+        pincode: true,
+        city: true,
+        monthly_bill: true,
+        connection_type: true,
+      });
       return;
     }
     setIsSubmitting(true);
@@ -49,6 +70,8 @@ export default function Hero({ onOpenConsultation }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
+          property_type: formData.connection_type,
+          location: `${formData.city}, ${formData.state} - ${formData.pincode}`,
           estimatedYearlySavings,
           estimatedSubsidy,
           source: 'Hero Responsive Interactive Lead Form',
@@ -56,7 +79,16 @@ export default function Hero({ onOpenConsultation }) {
         }),
       });
       setSubmitSuccess(true);
-      setFormData({ name: '', phone: '', location: '', monthly_bill: '4500', property_type: 'Residential' });
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        pincode: '',
+        city: '',
+        state: 'Rajasthan',
+        monthly_bill: '4500',
+        connection_type: 'Residential',
+      });
       setTouched({});
       setTimeout(() => setSubmitSuccess(false), 6000);
     } catch (error) {
@@ -292,19 +324,18 @@ export default function Hero({ onOpenConsultation }) {
                     </div>
                   )}
 
-                  <form onSubmit={handleQuickLeadSubmit} noValidate className="space-y-3">
-
-                    {/* Property type toggle */}
+                  <form onSubmit={handleQuickLeadSubmit} noValidate className="space-y-2.5">
+                    {/* Connection Type toggle */}
                     <div className="grid grid-cols-2 gap-2 p-1 bg-black/30 rounded-xl border border-white/[0.08]">
                       {['Residential', 'Commercial'].map((type) => (
                         <button
                           key={type}
                           type="button"
-                          onClick={() => setFormData((prev) => ({ ...prev, property_type: type }))}
-                          className={`py-2 px-3 rounded-lg text-xs font-bold transition-all cursor-pointer ${formData.property_type === type ? 'bg-[#0B7542] text-white shadow-sm' : 'text-gray-300 hover:text-white'
+                          onClick={() => setFormData((prev) => ({ ...prev, connection_type: type }))}
+                          className={`py-1.5 px-3 rounded-lg text-xs font-bold transition-all cursor-pointer ${formData.connection_type === type ? 'bg-[#0B7542] text-white shadow-sm' : 'text-gray-300 hover:text-white'
                             }`}
                         >
-                          {type === 'Residential' ? '🏡 Home' : '🏢 Business'}
+                          {type === 'Residential' ? '🏡 Residential' : '🏢 Commercial'}
                         </button>
                       ))}
                     </div>
@@ -316,14 +347,14 @@ export default function Hero({ onOpenConsultation }) {
                       value={formData.name}
                       onChange={handleInputChange}
                       onBlur={() => handleBlur('name')}
-                      placeholder="Name (As per electric bill)"
+                      placeholder="Full Name (As per bill) *"
                       aria-label="Full Name"
                       required
                       className={inputClass(touched.name && !isNameValid)}
                     />
 
-                    {/* Phone + Pincode */}
-                    <div className="grid grid-cols-2 gap-2">
+                    {/* Phone + Email */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       <input
                         type="tel"
                         name="phone"
@@ -331,36 +362,75 @@ export default function Hero({ onOpenConsultation }) {
                         value={formData.phone}
                         onChange={handleInputChange}
                         onBlur={() => handleBlur('phone')}
-                        placeholder="Mobile No."
+                        placeholder="Mobile No. (10 Digits) *"
                         aria-label="Mobile Number"
                         required
                         className={inputClass(touched.phone && !isPhoneValid)}
                       />
                       <input
-                        type="text"
-                        name="location"
-                        value={formData.location}
+                        type="email"
+                        name="email"
+                        value={formData.email}
                         onChange={handleInputChange}
-                        onBlur={() => handleBlur('location')}
-                        placeholder="Pin Code"
-                        aria-label="City or Pincode"
+                        onBlur={() => handleBlur('email')}
+                        placeholder="Email Address *"
+                        aria-label="Email Address"
                         required
-                        className={inputClass(touched.location && !isLocationValid)}
+                        className={inputClass(touched.email && !isEmailValid)}
                       />
                     </div>
 
-                    {/* Monthly Bill */}
-                    <input
-                      type="number"
-                      name="monthly_bill"
-                      value={formData.monthly_bill}
-                      onChange={handleInputChange}
-                      onBlur={() => handleBlur('monthly_bill')}
-                      placeholder="Monthly Bill (₹)"
-                      aria-label="Monthly Bill Amount"
-                      required
-                      className={inputClass(touched.monthly_bill && !isBillValid)}
-                    />
+                    {/* City + Pincode */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      <input
+                        type="text"
+                        name="city"
+                        value={formData.city}
+                        onChange={handleInputChange}
+                        onBlur={() => handleBlur('city')}
+                        placeholder="City (e.g. Jaipur) *"
+                        aria-label="City"
+                        required
+                        className={inputClass(touched.city && !isCityValid)}
+                      />
+                      <input
+                        type="text"
+                        name="pincode"
+                        maxLength={6}
+                        value={formData.pincode}
+                        onChange={handleInputChange}
+                        onBlur={() => handleBlur('pincode')}
+                        placeholder="Pincode (6 Digits) *"
+                        aria-label="Pincode"
+                        required
+                        className={inputClass(touched.pincode && !isPincodeValid)}
+                      />
+                    </div>
+
+                    {/* State (Fixed) + Monthly Bill */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      <div className="relative">
+                        <input
+                          type="text"
+                          name="state"
+                          value="Rajasthan"
+                          readOnly
+                          aria-label="State"
+                          className="w-full px-3.5 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-xs sm:text-sm text-gray-300 cursor-not-allowed font-medium focus:outline-none"
+                        />
+                      </div>
+                      <input
+                        type="number"
+                        name="monthly_bill"
+                        value={formData.monthly_bill}
+                        onChange={handleInputChange}
+                        onBlur={() => handleBlur('monthly_bill')}
+                        placeholder="Monthly Bill (₹) *"
+                        aria-label="Monthly Bill Amount"
+                        required
+                        className={inputClass(touched.monthly_bill && !isBillValid)}
+                      />
+                    </div>
 
                     {/* Submit */}
                     <button

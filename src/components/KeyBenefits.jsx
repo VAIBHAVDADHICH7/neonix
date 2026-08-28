@@ -13,8 +13,6 @@ export default function KeyBenefits() {
       description: 'Cut your monthly electricity bills by up to 90% and enjoy free solar power for years to come.',
       accentColor: '#0b7542',
       bgGlow: 'rgba(15, 157, 88, 0.12)',
-      linkAnchor: '#roi-calculator',
-      ariaAction: 'See how much money you can save with our solar calculator',
     },
     {
       icon: (
@@ -27,8 +25,6 @@ export default function KeyBenefits() {
       description: 'Strong, high-quality solar panels built to last for over 30 years with full maintenance support from our team.',
       accentColor: '#0d8070',
       bgGlow: 'rgba(13, 128, 112, 0.12)',
-      linkAnchor: '#solutions',
-      ariaAction: 'Learn about our long-lasting solar panels and maintenance support',
     },
     {
       icon: (
@@ -41,8 +37,6 @@ export default function KeyBenefits() {
       description: 'Get up to ₹78,000 domestic subsidy sent directly to your bank account with complete help on government paperwork.',
       accentColor: '#D97706',
       bgGlow: 'rgba(217, 119, 6, 0.12)',
-      linkAnchor: '#subsidy-info',
-      ariaAction: 'Learn how to get the government solar subsidy',
     },
     {
       icon: (
@@ -55,8 +49,6 @@ export default function KeyBenefits() {
       description: 'See how much electricity you generate and how much money you save each day on your mobile phone.',
       accentColor: '#0b7542',
       bgGlow: 'rgba(15, 157, 88, 0.12)',
-      linkAnchor: '#solutions',
-      ariaAction: 'Learn more about our smart solar solutions',
     },
   ];
 
