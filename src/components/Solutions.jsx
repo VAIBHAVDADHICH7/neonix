@@ -86,10 +86,13 @@ export default function Solutions({ onSelectSolution }) {
             className="relative rounded-2xl overflow-hidden bg-[#0F172A] shadow-lg"
             style={{ minHeight: '200px' }}
           >
-            {/* Background image */}
-            <div
-              className="absolute inset-0 bg-cover bg-center opacity-60"
-              style={{ backgroundImage: `url('${sol.image}')` }}
+            {/* Background image (semantic img for crawler indexing) */}
+            <img
+              src={sol.image}
+              alt={sol.alt}
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 w-full h-full object-cover object-center opacity-60 pointer-events-none"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/95 via-[#0F172A]/55 to-[#0F172A]/20" />
 
@@ -140,11 +143,18 @@ export default function Solutions({ onSelectSolution }) {
               <div
                 key={sol.id}
                 onClick={() => setActiveCard(sol.id)}
-                className={`group relative bg-cover bg-center transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer overflow-hidden border-r border-white/15 last:border-r-0 focus-within:ring-2 focus-within:ring-[#0F9D58] ${
+                className={`group relative transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] cursor-pointer overflow-hidden border-r border-white/15 last:border-r-0 focus-within:ring-2 focus-within:ring-[#0F9D58] ${
                   isExpanded ? 'flex-[2.4]' : 'flex-1 hover:flex-[2.4]'
                 }`}
-                style={{ backgroundImage: `url('${sol.image}')` }}
               >
+                {/* Background image (semantic img for crawler indexing) */}
+                <img
+                  src={sol.image}
+                  alt={sol.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105 pointer-events-none"
+                />
                 <div className={`absolute inset-0 bg-gradient-to-t from-[#0F172A]/95 via-[#0F172A]/60 to-black/30 transition-opacity duration-500 ${isExpanded ? 'via-[#0F172A]/45' : 'group-hover:via-[#0F172A]/45'}`} />
 
                 {/* Top Badge */}

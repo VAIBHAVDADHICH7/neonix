@@ -15,9 +15,12 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  // Lock body scroll when modal is open
+  // Lock body scroll and listen for Escape key when modal is open
   useEffect(() => {
     if (isOpen) {
+      if (window.__lenis) {
+        window.__lenis.stop();
+      }
       const originalOverflow = document.body.style.overflow;
       const originalPaddingRight = document.body.style.paddingRight;
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
@@ -26,12 +29,24 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
       if (scrollbarWidth > 0) {
         document.body.style.paddingRight = `${scrollbarWidth}px`;
       }
+
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') {
+          onClose();
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+
       return () => {
         document.body.style.overflow = originalOverflow;
         document.body.style.paddingRight = originalPaddingRight;
+        window.removeEventListener('keydown', handleKeyDown);
+        if (window.__lenis) {
+          window.__lenis.start();
+        }
       };
     }
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -104,103 +119,105 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
 
   return (
     <div 
-      className="fixed inset-0 z-[300] overflow-y-auto overscroll-contain flex items-center justify-center p-3 sm:p-4"
+      className="fixed inset-0 z-[300] overflow-y-auto overscroll-contain flex justify-center p-2.5 sm:p-4"
+      data-lenis-prevent="true"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-[#0F172A]/80 backdrop-blur-md transition-opacity cursor-pointer"
+        className="fixed inset-0 bg-[#0F172A]/80 backdrop-blur-sm transition-opacity cursor-pointer"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Modal Card */}
+      {/* Modal Card - Single scrollable outer context, perfectly centered with my-auto */}
       <div 
-        className="relative z-10 w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-gray-200 overflow-y-auto max-h-[88vh] overscroll-contain transform transition-all my-auto"
+        className="relative z-10 w-full max-w-lg bg-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 shadow-2xl border border-gray-200 transform transition-all my-auto"
+        data-lenis-prevent="true"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="absolute top-0 right-0 w-36 h-36 bg-[#0b7542]/10 rounded-full blur-2xl pointer-events-none" />
         
         {/* Close Button */}
         <button
+          id="close-consultation-modal"
           type="button"
           onClick={onClose}
-          aria-label="Close modal"
-          className="absolute top-5 right-5 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center font-bold text-sm transition-colors cursor-pointer"
+          aria-label="Close form and continue to home screen"
+          title="Close and continue to home screen"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center font-bold text-xs sm:text-sm transition-colors cursor-pointer"
         >
           ✕
         </button>
 
         {!submitted ? (
           <div>
-            {/* Step & Title */}
-            <div className="mb-5">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md bg-[#0b7542]/10 text-[#0b7542]">
-                  {initialData ? 'Personalized ROI Report' : 'Free Expert Site Consultation'}
+            {/* Header */}
+            <div className="mb-2 sm:mb-3 pr-8">
+              <div className="flex items-center gap-1.5 mb-0.5">
+                <span className="text-[10px] sm:text-xs font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#0b7542]/10 text-[#0b7542]">
+                  {initialData ? 'Personalized ROI Report' : 'Free Expert Site Survey'}
                 </span>
-                <span className="text-xs text-[#4B5563] font-semibold">• 2 Min Form</span>
+                <span className="text-[10px] sm:text-xs text-[#4B5563] font-semibold">• PM Surya Ghar</span>
               </div>
-              <h3 id="modal-title" className="text-2xl font-black text-[#111827] leading-snug">
+              <h3 id="modal-title" className="text-base sm:text-lg font-black text-[#111827] leading-tight">
                 {initialData ? 'Download Your Solar Savings Blueprint' : 'Book Free Expert Site Survey'}
               </h3>
-              <p className="text-xs sm:text-sm text-[#374151] mt-1 font-normal">
-                Our solar engineers will prepare a personalized shadow analysis and exact subsidy breakdown.
+              <p className="text-[11px] sm:text-xs text-[#374151] mt-0.5 font-normal">
+                Personalized shadow analysis &amp; exact government subsidy breakdown.
               </p>
             </div>
 
-            {/* If initialData is present, show summary box */}
+            {/* If initialData is present, show compact summary pill */}
             {initialData && (
-              <div className="bg-[#F8FAFC] border border-gray-200 rounded-2xl p-3 mb-4 text-xs text-[#111827] grid grid-cols-3 gap-2 text-center">
+              <div className="bg-[#F8FAFC] border border-gray-200 rounded-xl p-2 mb-3 text-xs text-[#111827] grid grid-cols-3 gap-2 text-center">
                 <div>
-                  <span className="text-[#4B5563] block font-medium">System Size</span>
-                  <span className="font-black text-[#0b7542] text-sm">{initialData.calculatedSystemSize || '3.5'} kW</span>
+                  <span className="text-[#4B5563] block text-[10px] font-medium">System Size</span>
+                  <span className="font-black text-[#0b7542] text-xs sm:text-sm">{initialData.calculatedSystemSize || '3.5'} kW</span>
                 </div>
                 <div>
-                  <span className="text-[#4B5563] block font-medium">Govt. Benefits</span>
-                  <span className="font-black text-[#0d8070] text-sm">₹{Number(initialData.subsidyAmount || 78000).toLocaleString()}</span>
+                  <span className="text-[#4B5563] block text-[10px] font-medium">Govt. Benefits</span>
+                  <span className="font-black text-[#0d8070] text-xs sm:text-sm">₹{Number(initialData.subsidyAmount || 78000).toLocaleString()}</span>
                 </div>
                 <div>
-                  <span className="text-[#4B5563] block font-medium">Annual Savings</span>
-                  <span className="font-black text-[#111827] text-sm">₹{Number(initialData.annualSavings || 45000).toLocaleString()}</span>
+                  <span className="text-[#4B5563] block text-[10px] font-medium">Annual Savings</span>
+                  <span className="font-black text-[#111827] text-xs sm:text-sm">₹{Number(initialData.annualSavings || 45000).toLocaleString()}</span>
                 </div>
               </div>
             )}
 
-            <form onSubmit={handleSubmit} noValidate className="space-y-3">
-              {/* Full Name */}
-              <div>
-                <div className="flex justify-between items-center mb-1">
-                  <label htmlFor="modal-name" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
-                    Full Name <span className="text-red-500">*</span>
-                  </label>
-                  {touched.name && isNameValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
-                </div>
-                <input
-                  id="modal-name"
-                  type="text"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  onBlur={() => handleBlur('name')}
-                  placeholder="e.g. Rajesh Sharma"
-                  className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
-                    touched.name && !isNameValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
-                  }`}
-                />
-              </div>
-
-              {/* Phone & Email */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <form onSubmit={handleSubmit} noValidate className="space-y-2 sm:space-y-2.5">
+              {/* Row 1: Full Name & Mobile */}
+              <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
                 <div>
-                  <div className="flex justify-between items-center mb-1">
-                    <label htmlFor="modal-phone" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                  <div className="flex justify-between items-center mb-0.5">
+                    <label htmlFor="modal-name" className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#374151]">
+                      Full Name <span className="text-red-500">*</span>
+                    </label>
+                    {touched.name && isNameValid && <span className="text-[10px] text-[#0b7542] font-bold">✓</span>}
+                  </div>
+                  <input
+                    id="modal-name"
+                    type="text"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    onBlur={() => handleBlur('name')}
+                    placeholder="e.g. Rajesh"
+                    className={`w-full h-8.5 sm:h-9.5 px-2.5 bg-gray-50 border rounded-lg text-xs sm:text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                      touched.name && !isNameValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
+                    }`}
+                  />
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-0.5">
+                    <label htmlFor="modal-phone" className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#374151]">
                       Mobile (10 Digits) <span className="text-red-500">*</span>
                     </label>
-                    {touched.phone && isPhoneValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
+                    {touched.phone && isPhoneValid && <span className="text-[10px] text-[#0b7542] font-bold">✓</span>}
                   </div>
                   <input
                     id="modal-phone"
@@ -212,17 +229,21 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
                     onChange={handleChange}
                     onBlur={() => handleBlur('phone')}
                     placeholder="9829012345"
-                    className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                    className={`w-full h-8.5 sm:h-9.5 px-2.5 bg-gray-50 border rounded-lg text-xs sm:text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
                       touched.phone && !isPhoneValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
                     }`}
                   />
                 </div>
+              </div>
+
+              {/* Row 2: Email & Monthly Bill */}
+              <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
                 <div>
-                  <div className="flex justify-between items-center mb-1">
-                    <label htmlFor="modal-email" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                  <div className="flex justify-between items-center mb-0.5">
+                    <label htmlFor="modal-email" className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#374151]">
                       Email Address <span className="text-red-500">*</span>
                     </label>
-                    {touched.email && isEmailValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
+                    {touched.email && isEmailValid && <span className="text-[10px] text-[#0b7542] font-bold">✓</span>}
                   </div>
                   <input
                     id="modal-email"
@@ -233,21 +254,17 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
                     onChange={handleChange}
                     onBlur={() => handleBlur('email')}
                     placeholder="name@example.com"
-                    className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                    className={`w-full h-8.5 sm:h-9.5 px-2.5 bg-gray-50 border rounded-lg text-xs sm:text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
                       touched.email && !isEmailValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
                     }`}
                   />
                 </div>
-              </div>
-
-              {/* Monthly Bill & Connection Type */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <div className="flex justify-between items-center mb-1">
-                    <label htmlFor="modal-bill" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                  <div className="flex justify-between items-center mb-0.5">
+                    <label htmlFor="modal-bill" className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#374151]">
                       Monthly Bill (₹) <span className="text-red-500">*</span>
                     </label>
-                    {touched.monthly_bill && isBillValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
+                    {touched.monthly_bill && isBillValid && <span className="text-[10px] text-[#0b7542] font-bold">✓</span>}
                   </div>
                   <input
                     id="modal-bill"
@@ -258,13 +275,17 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
                     onChange={handleChange}
                     onBlur={() => handleBlur('monthly_bill')}
                     placeholder="e.g. 4500"
-                    className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                    className={`w-full h-8.5 sm:h-9.5 px-2.5 bg-gray-50 border rounded-lg text-xs sm:text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
                       touched.monthly_bill && !isBillValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
                     }`}
                   />
                 </div>
+              </div>
+
+              {/* Row 3: Connection Type & City + Pincode */}
+              <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
                 <div>
-                  <label htmlFor="modal-connection" className="block text-xs font-bold uppercase tracking-wider text-[#374151] mb-1">
+                  <label htmlFor="modal-connection" className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#374151] mb-0.5">
                     Connection Type <span className="text-red-500">*</span>
                   </label>
                   <select
@@ -273,85 +294,68 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
                     required
                     value={formData.connection_type}
                     onChange={handleChange}
-                    className="w-full h-11 px-3.5 bg-gray-50 border border-gray-300 rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] cursor-pointer"
+                    className="w-full h-8.5 sm:h-9.5 px-2 bg-gray-50 border border-gray-300 rounded-lg text-xs sm:text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] cursor-pointer"
                   >
-                    <option value="Residential">Residential (Home)</option>
-                    <option value="Commercial">Commercial (Business / Shop)</option>
-                    <option value="Industrial">Industrial (Factory)</option>
+                    <option value="Residential">Residential</option>
+                    <option value="Commercial">Commercial</option>
+                    <option value="Industrial">Industrial</option>
                   </select>
                 </div>
-              </div>
-
-              {/* City & Pincode */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <div className="flex justify-between items-center mb-1">
-                    <label htmlFor="modal-city" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
-                      City <span className="text-red-500">*</span>
+                  <div className="flex justify-between items-center mb-0.5">
+                    <label className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#374151]">
+                      City &amp; Pincode (RJ) <span className="text-red-500">*</span>
                     </label>
-                    {touched.city && isCityValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
+                    {touched.city && isCityValid && touched.pincode && isPincodeValid && (
+                      <span className="text-[10px] text-[#0b7542] font-bold">✓</span>
+                    )}
                   </div>
-                  <input
-                    id="modal-city"
-                    type="text"
-                    name="city"
-                    required
-                    value={formData.city}
-                    onChange={handleChange}
-                    onBlur={() => handleBlur('city')}
-                    placeholder="e.g. Jaipur, Jodhpur"
-                    className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
-                      touched.city && !isCityValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
-                    }`}
-                  />
-                </div>
-                <div>
-                  <div className="flex justify-between items-center mb-1">
-                    <label htmlFor="modal-pincode" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
-                      Pincode (6 Digits) <span className="text-red-500">*</span>
-                    </label>
-                    {touched.pincode && isPincodeValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
+                  <div className="grid grid-cols-2 gap-1 sm:gap-1.5">
+                    <input
+                      id="modal-city"
+                      type="text"
+                      name="city"
+                      required
+                      value={formData.city}
+                      onChange={handleChange}
+                      onBlur={() => handleBlur('city')}
+                      placeholder="City"
+                      aria-label="City in Rajasthan"
+                      className={`w-full h-8.5 sm:h-9.5 px-2 bg-gray-50 border rounded-lg text-xs sm:text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                        touched.city && !isCityValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
+                      }`}
+                    />
+                    <input
+                      id="modal-pincode"
+                      type="text"
+                      name="pincode"
+                      maxLength={6}
+                      required
+                      value={formData.pincode}
+                      onChange={handleChange}
+                      onBlur={() => handleBlur('pincode')}
+                      placeholder="Pincode"
+                      aria-label="6-digit Pincode"
+                      className={`w-full h-8.5 sm:h-9.5 px-2 bg-gray-50 border rounded-lg text-xs sm:text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
+                        touched.pincode && !isPincodeValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
+                      }`}
+                    />
                   </div>
-                  <input
-                    id="modal-pincode"
-                    type="text"
-                    name="pincode"
-                    maxLength={6}
-                    required
-                    value={formData.pincode}
-                    onChange={handleChange}
-                    onBlur={() => handleBlur('pincode')}
-                    placeholder="e.g. 302001"
-                    className={`w-full h-11 px-3.5 bg-gray-50 border rounded-xl text-sm text-[#111827] focus:outline-none focus:border-[#0F9D58] ${
-                      touched.pincode && !isPincodeValid ? 'border-red-400 bg-red-50' : 'border-gray-300'
-                    }`}
-                  />
                 </div>
               </div>
 
-              {/* State (Fixed) */}
-              <div>
-                <label htmlFor="modal-state" className="block text-xs font-bold uppercase tracking-wider text-[#374151] mb-1">
-                  State <span className="text-[#0b7542] text-[10px]">(Fixed)</span>
-                </label>
-                <input
-                  id="modal-state"
-                  type="text"
-                  name="state"
-                  value="Rajasthan"
-                  readOnly
-                  aria-label="State (Fixed to Rajasthan)"
-                  className="w-full h-11 px-3.5 bg-gray-100 border border-gray-300 rounded-xl text-sm text-gray-600 cursor-not-allowed font-medium"
-                />
-              </div>
-
+              {/* Submit CTA */}
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full mt-3 bg-[#0F9D58] hover:bg-[#0c8248] active:bg-[#096636] text-white font-extrabold text-sm tracking-wide py-3.5 sm:py-4 rounded-xl uppercase transition-all shadow-md hover:shadow-lg disabled:opacity-50 cursor-pointer shimmer-btn min-h-[48px]"
+                className="w-full mt-2 bg-[#0F9D58] hover:bg-[#0c8248] active:bg-[#096636] text-white font-extrabold text-xs sm:text-sm tracking-wide py-2.5 sm:py-3 rounded-xl uppercase transition-all shadow-md hover:shadow-lg disabled:opacity-50 cursor-pointer shimmer-btn min-h-[42px]"
               >
                 {submitting ? 'Preparing Blueprint...' : (initialData ? 'Generate & Send Report' : 'Confirm Free Consultation')}
               </button>
+
+              <p className="text-[10px] text-center text-[#4B5563] pt-0.5">
+                🔒 100% Free • Direct DISCOM Net Metering • No Spam Guarantee
+              </p>
             </form>
           </div>
         ) : (
@@ -389,7 +393,7 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
                 onClick={onClose}
                 className="flex-1 bg-[#0b7542] hover:bg-[#096636] text-white font-bold text-xs uppercase tracking-wider py-3.5 rounded-xl cursor-pointer"
               >
-                Done
+                Explore Home Screen →
               </button>
             </div>
           </div>

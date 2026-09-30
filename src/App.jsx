@@ -1,25 +1,26 @@
-import { useState, useEffect, Suspense, lazy } from 'react';
+import { useState, useEffect } from 'react';
 import Lenis from 'lenis';
 import ScrollProgress from './components/UI/ScrollProgress';
 import CursorGlow from './components/UI/CursorGlow';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-const KeyBenefits = lazy(() => import('./components/KeyBenefits'));
-const RoiCalculator = lazy(() => import('./components/RoiCalculator'));
-const BillComparison = lazy(() => import('./components/BillComparison'));
-const RooftopFeasibilityQuiz = lazy(() => import('./components/RooftopFeasibilityQuiz'));
-const Solutions = lazy(() => import('./components/Solutions'));
-const SubsidyInfo = lazy(() => import('./components/SubsidyInfo'));
-const Testimonials = lazy(() => import('./components/Testimonials'));
-const TrustSignals = lazy(() => import('./components/TrustSignals'));
-const Contact = lazy(() => import('./components/Contact'));
-const ConsultationModal = lazy(() => import('./components/ConsultationModal'));
+import ConsultationModal from './components/ConsultationModal';
+import KeyBenefits from './components/KeyBenefits';
+import CalculatorTeaser from './components/CalculatorTeaser';
+import BillComparison from './components/BillComparison';
+import RooftopFeasibilityQuiz from './components/RooftopFeasibilityQuiz';
+import Solutions from './components/Solutions';
+import SubsidyInfo from './components/SubsidyInfo';
+import Testimonials from './components/Testimonials';
+import TrustSignals from './components/TrustSignals';
+import FAQ from './components/FAQ';
+import Contact from './components/Contact';
 import MobileActionBar from './components/MobileActionBar';
 
 
 function App() {
   const [modalState, setModalState] = useState({
-    isOpen: false,
+    isOpen: true,
     initialData: null,
   });
 
@@ -83,6 +84,12 @@ function App() {
       smoothWheel: true,
       wheelMultiplier: 1,
     });
+    window.__lenis = lenis;
+
+    // If modal is open on initial load, pause Lenis wheel interception immediately
+    if (modalState.isOpen) {
+      lenis.stop();
+    }
 
     function raf(time) {
       lenis.raf(time);
@@ -92,11 +99,23 @@ function App() {
     requestAnimationFrame(raf);
 
     return () => {
+      delete window.__lenis;
       lenis.destroy();
       revealObserver.disconnect();
       mutationObserver.disconnect();
     };
   }, []);
+
+  // Sync Lenis state with modal open/close
+  useEffect(() => {
+    if (window.__lenis) {
+      if (modalState.isOpen) {
+        window.__lenis.stop();
+      } else {
+        window.__lenis.start();
+      }
+    }
+  }, [modalState.isOpen]);
 
   return (
     <div className="font-sans antialiased text-[#111827] bg-[#F8FAFC] selection:bg-[#0F9D58] selection:text-white pb-16 md:pb-0 min-h-screen flex flex-col justify-between">
@@ -110,44 +129,43 @@ function App() {
         {/* 2. Hero Section (with scrollyteller effect) */}
         <Hero onOpenConsultation={() => handleOpenConsultation()} />
         
-        <Suspense fallback={<div className="min-h-screen bg-[#F8FAFC]" />}>
-          {/* 3. Key Benefits (4 Columns) */}
-          <KeyBenefits />
+        {/* 3. Key Benefits (4 Columns) */}
+        <KeyBenefits />
+      
+        {/* 4. ROI Calculator Launch Teaser */}
+        <CalculatorTeaser />
+
+        {/* 5. Before vs After Electricity Bill Transformation Slider */}
+        <BillComparison onGetStarted={() => handleOpenConsultation({ source: 'Bill Comparison' })} />
+
+        {/* 6. Rooftop Feasibility Diagnostic Quiz */}
+        <RooftopFeasibilityQuiz onCompleteQuiz={(quizData) => handleOpenConsultation({ quizData })} />
         
-          {/* 4. ROI Calculator */}
-          <RoiCalculator onDownloadReport={(data) => handleOpenConsultation(data)} />
-
-          {/* 5. Before vs After Electricity Bill Transformation Slider */}
-          <BillComparison onGetStarted={() => handleOpenConsultation({ source: 'Bill Comparison' })} />
-
-          {/* 6. Rooftop Feasibility Diagnostic Quiz */}
-          <RooftopFeasibilityQuiz onCompleteQuiz={(quizData) => handleOpenConsultation({ quizData })} />
-          
-          {/* 7. Solutions Overview (with 4-card expanding accordion including AMC) */}
-          <Solutions onSelectSolution={(sol) => handleOpenConsultation({ connectionType: sol })} />
-          
-          {/* 8. Subsidy Information (PM Surya Ghar) */}
-          <SubsidyInfo onOpenConsultation={() => handleOpenConsultation()} />
-          
-          {/* 9. Testimonials */}
-          <Testimonials />
-          
-          {/* 10. Certifications & Trust Signals */}
-          <TrustSignals />
-          
-          {/* 12. Contact Section & Footer */}
-          <Contact />
-        </Suspense>
+        {/* 7. Solutions Overview (with 4-card expanding accordion including AMC) */}
+        <Solutions onSelectSolution={(sol) => handleOpenConsultation({ connectionType: sol })} />
+        
+        {/* 8. Subsidy Information (PM Surya Ghar) */}
+        <SubsidyInfo onOpenConsultation={() => handleOpenConsultation()} />
+        
+        {/* 9. Testimonials */}
+        <Testimonials />
+        
+        {/* 10. Certifications & Trust Signals */}
+        <TrustSignals />
+        
+        {/* 11. Frequently Asked Questions (FAQ) */}
+        <FAQ onOpenConsultation={() => handleOpenConsultation()} />
+        
+        {/* 12. Contact Section & Footer */}
+        <Contact />
       </main>
 
-      <Suspense fallback={null}>
-        {/* Interactive Consultation & ROI Report Modal */}
-        <ConsultationModal 
-          isOpen={modalState.isOpen}
-          onClose={handleCloseModal}
-          initialData={modalState.initialData}
-        />
-      </Suspense>
+      {/* Interactive Consultation & ROI Report Modal */}
+      <ConsultationModal 
+        isOpen={modalState.isOpen}
+        onClose={handleCloseModal}
+        initialData={modalState.initialData}
+      />
 
       {/* Minimalist Mobile Quick Action Bar */}
       <MobileActionBar onOpenConsultation={() => handleOpenConsultation()} />

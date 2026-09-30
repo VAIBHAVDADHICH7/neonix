@@ -76,7 +76,8 @@ export default function Navbar({ onOpenConsultation }) {
   const navLinks = [
     { name: 'Solutions', href: '#solutions' },
     { name: 'Govt. Subsidy', href: '#subsidy-info' },
-    { name: 'Savings Calculator', href: '#roi-calculator' },
+    { name: 'Savings Calculator', href: '/solar-calculator.html' },
+    { name: 'FAQs', href: '#faq' },
     { name: 'Reviews', href: '#testimonials' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -101,7 +102,7 @@ export default function Navbar({ onOpenConsultation }) {
             {/* Top of drawer: Close button & Logo */}
             <div className="flex justify-between items-center mb-6">
               <div className="flex items-center gap-2.5">
-                <img src="/images/logo.svg" alt="Neonix Logo" className="h-9 w-auto bg-white p-1.5 rounded-full" width="36" height="36" />
+                <img src="/images/logo.svg" alt="Neonix Logo" decoding="async" className="h-9 w-auto bg-white p-1.5 rounded-full" width="36" height="36" />
                 <div>
                   <span className="text-white font-bold text-lg block leading-none">Neonix</span>
                   <span className="text-gray-400 text-[10px] uppercase tracking-wider">Infra Solutions</span>

@@ -3,27 +3,85 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.neonixinfra.in/</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://www.neonixinfra.in/images/1.webp</image:loc>
-      <image:title>Neonix Rooftop Solar Installation in India</image:title>
+      <image:loc>https://www.neonixinfra.in/images/logo.svg</image:loc>
+      <image:title>Neonix Infra Solutions Logo</image:title>
+      <image:caption>Official logo of Neonix Infra Solutions LLP, certified solar EPC company in India</image:caption>
+      <image:geo_location>Jaipur, Rajasthan, India</image:geo_location>
     </image:image>
     <image:image>
       <image:loc>https://www.neonixinfra.in/images/8.webp</image:loc>
       <image:title>Certified Solar Engineers Installing Tier-1 Mono PERC Solar Panels</image:title>
+      <image:caption>High efficiency clean energy solar panel installation on residential rooftop in Jaipur, Rajasthan</image:caption>
+      <image:geo_location>Jaipur, Rajasthan, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neonixinfra.in/images/1.webp</image:loc>
+      <image:title>Neonix Rooftop Solar Installation in India</image:title>
+      <image:caption>Clean and green rooftop solar power plant under PM Surya Ghar Muft Bijli Yojana</image:caption>
+      <image:geo_location>Jaipur, Rajasthan, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neonixinfra.in/images/residential-solar.webp</image:loc>
+      <image:title>Rooftop Solar for Residential Homes and Villas</image:title>
+      <image:caption>Customized grid-tied home solar panels with government subsidy up to ₹78,000</image:caption>
+      <image:geo_location>Jaipur, Rajasthan, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neonixinfra.in/images/commercial-solar.webp</image:loc>
+      <image:title>Commercial Solar Power Solutions for Offices and Schools</image:title>
+      <image:caption>Turnkey commercial solar installations cutting power bills with 40% accelerated tax depreciation</image:caption>
+      <image:geo_location>Jaipur, Rajasthan, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neonixinfra.in/images/industrial-solar.webp</image:loc>
+      <image:title>Industrial Solar Power Plants for Factories and Warehouses</image:title>
+      <image:caption>Heavy-duty solar energy installations with high-load custom engineering</image:caption>
+      <image:geo_location>Jaipur, Rajasthan, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neonixinfra.in/images/amc-solar.webp</image:loc>
+      <image:title>Solar Care and Annual Maintenance Contract (AMC)</image:title>
+      <image:caption>Professional solar panel cleaning, wiring inspection, and preventive maintenance</image:caption>
+      <image:geo_location>Jaipur, Rajasthan, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neonixinfra.in/images/2.webp</image:loc>
+      <image:title>Rooftop Solar Grid Net Metering and Inverter Setup</image:title>
+      <image:caption>Bidirectional net metering and smart inverter installation for surplus power export</image:caption>
+      <image:geo_location>Jaipur, Rajasthan, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.neonixinfra.in/images/9.webp</image:loc>
+      <image:title>High Efficiency Solar Generation Array in India</image:title>
+      <image:caption>Tier-1 bi-facial solar array providing reliable daily green power</image:caption>
+      <image:geo_location>Jaipur, Rajasthan, India</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.neonixinfra.in/solar-calculator.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.neonixinfra.in/images/1.webp</image:loc>
+      <image:title>Neonix Solar ROI and Subsidy Calculator Tool</image:title>
+      <image:caption>Calculate rooftop solar system size, monthly savings, and PM Surya Ghar central subsidy</image:caption>
+      <image:geo_location>Jaipur, Rajasthan, India</image:geo_location>
     </image:image>
   </url>
   <url>
     <loc>https://www.neonixinfra.in/privacy-policy.html</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.neonixinfra.in/terms.html</loc>
-    <lastmod>2026-08-26</lastmod>
+    <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

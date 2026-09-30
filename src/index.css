@@ -62,8 +62,11 @@ html.lenis, html.lenis body {
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
+.lenis.lenis-smooth [data-lenis-prevent],
+[data-lenis-prevent] {
+  overscroll-behavior: contain !important;
+  touch-action: pan-y !important;
+  -webkit-overflow-scrolling: touch !important;
 }
 .lenis.lenis-stopped {
   overflow: hidden;

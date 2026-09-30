@@ -1,0 +1,2585 @@
+{
+  "index": {
+    "tag": "body",
+    "children": [
+      {
+        "comment": "Google Tag Manager (noscript)"
+      },
+      {
+        "tag": "noscript",
+        "children": [
+          {
+            "text": "<iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-MTBCV58T\"\n    height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe>"
+          }
+        ]
+      },
+      {
+        "comment": "End Google Tag Manager (noscript)"
+      },
+      {
+        "tag": "div",
+        "attributes": {
+          "id": "root"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attributes": {
+              "class": "fcp-shell"
+            },
+            "children": [
+              {
+                "tag": "header",
+                "attributes": {
+                  "class": "fcp-nav"
+                },
+                "children": [
+                  {
+                    "tag": "a",
+                    "attributes": {
+                      "href": "/",
+                      "class": "fcp-logo",
+                      "aria-label": "Neonix Solar Home"
+                    },
+                    "children": [
+                      {
+                        "tag": "span",
+                        "attributes": {
+                          "style": "width:10px;height:10px;border-radius:50%;background:#0F9D58;display:inline-block;"
+                        }
+                      },
+                      {
+                        "text": "NEONIX SOLAR"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "main",
+                "attributes": {
+                  "class": "fcp-hero-content"
+                },
+                "children": [
+                  {
+                    "tag": "div",
+                    "attributes": {
+                      "class": "fcp-badge"
+                    },
+                    "children": [
+                      {
+                        "tag": "span",
+                        "attributes": {
+                          "style": "width:6px;height:6px;border-radius:50%;background:#00BFA6;display:inline-block;"
+                        }
+                      },
+                      {
+                        "text": "India's Trusted Solar EPC Partner"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h1",
+                    "attributes": {
+                      "class": "fcp-title"
+                    },
+                    "children": [
+                      {
+                        "text": "Power Your Home & Business With"
+                      },
+                      {
+                        "tag": "span",
+                        "attributes": {
+                          "style": "color:#00BFA6;"
+                        },
+                        "children": [
+                          {
+                            "text": "Clean Solar Energy"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "solar-calculator": {
+    "tag": "body",
+    "children": [
+      {
+        "comment": "Google Tag Manager (noscript)"
+      },
+      {
+        "tag": "noscript",
+        "children": [
+          {
+            "text": "<iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-MTBCV58T\"\n    height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe>"
+          }
+        ]
+      },
+      {
+        "comment": "End Google Tag Manager (noscript)"
+      },
+      {
+        "tag": "div",
+        "attributes": {
+          "id": "root"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attributes": {
+              "class": "calc-shell"
+            },
+            "children": [
+              {
+                "tag": "header",
+                "attributes": {
+                  "class": "calc-nav"
+                },
+                "children": [
+                  {
+                    "tag": "a",
+                    "attributes": {
+                      "href": "/",
+                      "style": "display:flex;align-items:center;gap:8px;color:#FFFFFF;text-decoration:none;font-weight:800;"
+                    },
+                    "children": [
+                      {
+                        "tag": "span",
+                        "attributes": {
+                          "style": "width:10px;height:10px;border-radius:50%;background:#0F9D58;display:inline-block;"
+                        }
+                      },
+                      {
+                        "text": "NEONIX SOLAR"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "a",
+                    "attributes": {
+                      "href": "/",
+                      "style": "color:#00BFA6;font-size:14px;font-weight:600;text-decoration:none;"
+                    },
+                    "children": [
+                      {
+                        "text": "← Back to Home"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "main",
+                "attributes": {
+                  "class": "calc-header-content"
+                },
+                "children": [
+                  {
+                    "tag": "h1",
+                    "attributes": {
+                      "style": "font-size:32px;font-weight:900;color:#111827;margin-bottom:8px;"
+                    },
+                    "children": [
+                      {
+                        "text": "Solar ROI & Subsidy Calculator"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attributes": {
+                      "style": "color:#4B5563;font-size:16px;max-width:600px;margin:0 auto;"
+                    },
+                    "children": [
+                      {
+                        "text": "Loading interactive calculator and government subsidy estimator..."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "privacy-policy": {
+    "tag": "body",
+    "attributes": {
+      "class": "bg-slate-50 text-dark-navy antialiased"
+    },
+    "children": [
+      {
+        "comment": "Google Tag Manager (noscript)"
+      },
+      {
+        "tag": "noscript",
+        "children": [
+          {
+            "text": "<iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-MTBCV58T\"\n    height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe>"
+          }
+        ]
+      },
+      {
+        "comment": "End Google Tag Manager (noscript)"
+      },
+      {
+        "tag": "nav",
+        "attributes": {
+          "class": "bg-dark-navy w-full py-4 px-6 md:px-12 fixed top-0 z-50 shadow-md flex justify-between items-center"
+        },
+        "children": [
+          {
+            "tag": "a",
+            "attributes": {
+              "href": "index.html",
+              "aria-label": "Back to Home",
+              "class": "text-white hover:text-accent-green flex items-center gap-2 transition-colors font-bold tracking-wide p-2 -ml-2"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attributes": {
+                  "aria-hidden": "true"
+                },
+                "children": [
+                  {
+                    "text": "←"
+                  }
+                ]
+              },
+              {
+                "text": "Back to Home"
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "class": "flex items-center gap-4"
+            },
+            "children": [
+              {
+                "comment": "Theme Toggle Button"
+              },
+              {
+                "tag": "button",
+                "attributes": {
+                  "id": "theme-toggle",
+                  "aria-label": "Toggle Theme",
+                  "class": "p-2.5 rounded-full text-white bg-white/10 hover:bg-white/20 transition-all duration-300 outline-none hover:scale-110 active:scale-95"
+                },
+                "children": [
+                  {
+                    "comment": "Sun Icon"
+                  },
+                  {
+                    "tag": "svg",
+                    "attributes": {
+                      "id": "theme-toggle-sun",
+                      "class": "w-5 h-5 block",
+                      "fill": "none",
+                      "stroke": "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round",
+                      "viewBox": "0 0 24 24"
+                    },
+                    "children": [
+                      {
+                        "tag": "circle",
+                        "attributes": {
+                          "cx": "12",
+                          "cy": "12",
+                          "r": "5"
+                        }
+                      },
+                      {
+                        "tag": "line",
+                        "attributes": {
+                          "x1": "12",
+                          "y1": "1",
+                          "x2": "12",
+                          "y2": "3"
+                        }
+                      },
+                      {
+                        "tag": "line",
+                        "attributes": {
+                          "x1": "12",
+                          "y1": "21",
+                          "x2": "12",
+                          "y2": "23"
+                        }
+                      },
+                      {
+                        "tag": "line",
+                        "attributes": {
+                          "x1": "4.22",
+                          "y1": "4.22",
+                          "x2": "5.64",
+                          "y2": "5.64"
+                        }
+                      },
+                      {
+                        "tag": "line",
+                        "attributes": {
+                          "x1": "18.36",
+                          "y1": "18.36",
+                          "x2": "19.78",
+                          "y2": "19.78"
+                        }
+                      },
+                      {
+                        "tag": "line",
+                        "attributes": {
+                          "x1": "1",
+                          "y1": "12",
+                          "x2": "3",
+                          "y2": "12"
+                        }
+                      },
+                      {
+                        "tag": "line",
+                        "attributes": {
+                          "x1": "21",
+                          "y1": "12",
+                          "x2": "23",
+                          "y2": "12"
+                        }
+                      },
+                      {
+                        "tag": "line",
+                        "attributes": {
+                          "x1": "4.22",
+                          "y1": "19.78",
+                          "x2": "5.64",
+                          "y2": "18.36"
+                        }
+                      },
+                      {
+                        "tag": "line",
+                        "attributes": {
+                          "x1": "18.36",
+                          "y1": "5.64",
+                          "x2": "19.78",
+                          "y2": "4.22"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "comment": "Moon Icon"
+                  },
+                  {
+                    "tag": "svg",
+                    "attributes": {
+                      "id": "theme-toggle-moon",
+                      "class": "w-5 h-5 hidden",
+                      "fill": "none",
+                      "stroke": "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round",
+                      "viewBox": "0 0 24 24"
+                    },
+                    "children": [
+                      {
+                        "tag": "path",
+                        "attributes": {
+                          "d": "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "flex items-center gap-3"
+                },
+                "children": [
+                  {
+                    "tag": "img",
+                    "attributes": {
+                      "src": "images/logo.svg",
+                      "alt": "Neonix Infra Solutions Logo",
+                      "width": "140",
+                      "height": "38",
+                      "class": "h-10 w-auto bg-white p-1.5 rounded",
+                      "onerror": "this.style.display='none'; document.getElementById('fallback-logo').classList.remove('hidden'); document.getElementById('fallback-logo').classList.add('flex');"
+                    }
+                  },
+                  {
+                    "tag": "div",
+                    "attributes": {
+                      "class": "hidden items-center gap-3",
+                      "id": "fallback-logo"
+                    },
+                    "children": [
+                      {
+                        "tag": "svg",
+                        "attributes": {
+                          "width": "35",
+                          "height": "35",
+                          "viewBox": "0 0 100 100",
+                          "fill": "none",
+                          "xmlns": "http://www.w3.org/2000/svg"
+                        },
+                        "children": [
+                          {
+                            "tag": "path",
+                            "attributes": {
+                              "d": "M68 25 A 12 12 0 0 1 92 25 M80 8 L80 14 M94 15 L89 19 M66 15 L71 19",
+                              "stroke": "#f4b41a",
+                              "stroke-width": "4",
+                              "stroke-linecap": "round"
+                            }
+                          },
+                          {
+                            "tag": "path",
+                            "attributes": {
+                              "d": "M15 85 L15 30 L35 20 L35 85 M35 85 L35 10 L55 20 L55 85 M55 85 L55 40 L70 50 L70 85",
+                              "stroke": "#ffffff",
+                              "stroke-width": "4",
+                              "stroke-linejoin": "round"
+                            }
+                          },
+                          {
+                            "tag": "path",
+                            "attributes": {
+                              "d": "M5 85 Q 35 95, 60 65 Q 80 35, 70 30 Q 50 45, 40 65 Q 30 80, 5 85",
+                              "fill": "#7bc043",
+                              "opacity": "0.95"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "div",
+                        "attributes": {
+                          "class": "flex flex-col justify-center leading-none text-left"
+                        },
+                        "children": [
+                          {
+                            "tag": "span",
+                            "attributes": {
+                              "class": "text-white font-bold tracking-[0.1em] text-lg mb-1"
+                            },
+                            "children": [
+                              {
+                                "text": "NEONIX"
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "span",
+                            "attributes": {
+                              "class": "text-accent-green font-bold text-[0.5rem] tracking-[0.15em] uppercase text-[#7bc043]"
+                            },
+                            "children": [
+                              {
+                                "text": "Infra Solutions"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "comment": "Main Content"
+      },
+      {
+        "tag": "main",
+        "attributes": {
+          "class": "max-w-4xl mx-auto pt-32 pb-24 px-6"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attributes": {
+              "class": "bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-gray-100"
+            },
+            "children": [
+              {
+                "tag": "h1",
+                "attributes": {
+                  "class": "text-3xl md:text-5xl font-bold mb-4 text-dark-navy leading-tight"
+                },
+                "children": [
+                  {
+                    "text": "Privacy Policy, Refund Policy & Warranty Terms"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attributes": {
+                  "class": "text-gray-500 mb-8 border-b pb-8 text-lg font-medium"
+                },
+                "children": [
+                  {
+                    "text": "Neonix Infra Solutions LLP"
+                  }
+                ]
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "space-y-6 text-gray-600 leading-relaxed"
+                },
+                "children": [
+                  {
+                    "comment": "SECTION 1"
+                  },
+                  {
+                    "tag": "h2",
+                    "attributes": {
+                      "class": "text-2xl font-bold text-dark-navy mt-12 mb-6 bg-slate-50 p-4 rounded-xl border border-gray-100"
+                    },
+                    "children": [
+                      {
+                        "text": "1. PRIVACY POLICY"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "1.1 Introduction"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "This Privacy Policy describes how Neonix Infra Solutions LLP (“Company”) collects, uses, and protects user data when you use our website and services."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "1.2 Information We Collect"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "We may collect:"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Name, phone number, email address"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Installation/property details"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Electricity bill information"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Payment details (via secure third-party gateways)"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "1.3 Purpose of Data Collection"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "Your data is used for:"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Solar consultation and proposal"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Site survey and installation"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Subsidy processing (PM Surya Ghar scheme)"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Customer support and communication"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "1.4 Data Sharing"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "We may share data with:"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1 mb-3"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "DISCOMs / Government portals"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Installation partners"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Payment gateway providers"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attributes": {
+                      "class": "font-medium text-accent-green bg-green-50 p-3 rounded-lg border border-green-100 inline-block"
+                    },
+                    "children": [
+                      {
+                        "text": "👉 We do not sell personal data"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "1.5 Data Security"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "We follow reasonable security practices. However, no online system is 100% secure."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "1.6 User Rights"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "You may request:"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Access or correction"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Deletion (subject to legal requirements)"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "1.7 Cookies"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "Website may use cookies to improve experience."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "1.8 Updates"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "Policy may be updated without prior notice."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "1.9 Contact"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "Email: customercare@neonixinfra.in"
+                      },
+                      {
+                        "tag": "br"
+                      },
+                      {
+                        "text": "Phone: +91 90886 88899"
+                      },
+                      {
+                        "tag": "br"
+                      },
+                      {
+                        "text": "Address: Manyawas, Jaipur 302020"
+                      }
+                    ]
+                  },
+                  {
+                    "comment": "SECTION 2"
+                  },
+                  {
+                    "tag": "h2",
+                    "attributes": {
+                      "class": "text-2xl font-bold text-dark-navy mt-16 mb-6 bg-slate-50 p-4 rounded-xl border border-gray-100"
+                    },
+                    "children": [
+                      {
+                        "text": "2. REFUND & CANCELLATION POLICY"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "2.1 Cancellation Terms"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Cancellation allowed before material dispatch"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Not allowed after dispatch or installation start"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "2.2 Refund Terms"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "Refunds (if applicable) will be processed after deductions:"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Site survey charges"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Design & engineering cost"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Material procurement expenses"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "2.3 Non-Refundable Cases"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "After installation begins"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Custom-built systems"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Government fees/applications"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "2.4 Refund Mode"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "All approved refunds shall be processed only to the original source of payment or the customer’s registered bank account. Neonix Infra Solutions LLP will not transfer refunds to any third-party account."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "2.5 No Cash Refund"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "Neonix Infra Solutions LLP does not provide any refunds in cash under any circumstances. All refunds will be processed strictly through banking channels."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "2.6 Refund Timeline"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "Refunds processed within 10–20 working days"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "2.7 Dispute Window"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "Payment disputes must be raised within 7 days"
+                      }
+                    ]
+                  },
+                  {
+                    "comment": "SECTION 3"
+                  },
+                  {
+                    "tag": "h2",
+                    "attributes": {
+                      "class": "text-2xl font-bold text-dark-navy mt-16 mb-6 bg-slate-50 p-4 rounded-xl border border-gray-100"
+                    },
+                    "children": [
+                      {
+                        "text": "3. WARRANTY POLICY"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "3.1 Product Warranty"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "tag": "strong",
+                            "children": [
+                              {
+                                "text": "Solar Panels:"
+                              }
+                            ]
+                          },
+                          {
+                            "text": "Up to 25 years performance warranty (manufacturer warranty)"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "tag": "strong",
+                            "children": [
+                              {
+                                "text": "Inverter:"
+                              }
+                            ]
+                          },
+                          {
+                            "text": "5–10 years (manufacturer warranty)"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "tag": "strong",
+                            "children": [
+                              {
+                                "text": "Structure:"
+                              }
+                            ]
+                          },
+                          {
+                            "text": "5 years warranty"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "3.2 Performance Disclaimer"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "Solar performance depends on:"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1 mb-3"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Sunlight availability"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Weather conditions"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Dust / shading"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attributes": {
+                      "class": "font-medium text-accent-yellow bg-yellow-50 p-3 rounded-lg border border-yellow-100 inline-block"
+                    },
+                    "children": [
+                      {
+                        "text": "👉 Savings are estimated and not guaranteed"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "3.3 Installation Warranty"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Workmanship: 1–5 years"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Excludes:"
+                          },
+                          {
+                            "tag": "ul",
+                            "attributes": {
+                              "class": "list-[circle] pl-6 space-y-1 mt-1"
+                            },
+                            "children": [
+                              {
+                                "tag": "li",
+                                "children": [
+                                  {
+                                    "text": "Natural disasters"
+                                  }
+                                ]
+                              },
+                              {
+                                "tag": "li",
+                                "children": [
+                                  {
+                                    "text": "External damage"
+                                  }
+                                ]
+                              },
+                              {
+                                "tag": "li",
+                                "children": [
+                                  {
+                                    "text": "Unauthorized modifications"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "3.4 Customer Responsibility"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "Customer must:"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Clean panels regularly"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Maintain system safety"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "3.5 Warranty Claims"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Report via email/phone"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Inspection will be conducted"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Resolution as per policy"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "comment": "SECTION 4"
+                  },
+                  {
+                    "tag": "h2",
+                    "attributes": {
+                      "class": "text-2xl font-bold text-dark-navy mt-16 mb-6 bg-slate-50 p-4 rounded-xl border border-gray-100"
+                    },
+                    "children": [
+                      {
+                        "text": "4. PM SURYA GHAR COMPLIANCE"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "4.1 Subsidy Disclaimer"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Subject to Government approval"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Company does not guarantee subsidy"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "4.2 Company Role"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Vendor / installer"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Documentation support provider"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "4.3 Customer Responsibilities"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "Customer must:"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Provide accurate documents"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Complete registration"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Ensure property ownership"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "4.4 Process Flow"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attributes": {
+                      "class": "font-mono bg-gray-100 p-3 rounded-lg overflow-x-auto whitespace-nowrap"
+                    },
+                    "children": [
+                      {
+                        "text": "Application → Approval → Installation → Inspection → Subsidy"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "attributes": {
+                      "class": "font-medium text-accent-yellow mt-2"
+                    },
+                    "children": [
+                      {
+                        "text": "👉 Timeline depends on government authorities"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "4.5 Net Metering"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Subject to DISCOM rules"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Delays are not company liability"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "4.6 Compliance"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "Company follows:"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "MNRE guidelines"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "State DISCOM regulations"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h3",
+                    "attributes": {
+                      "class": "text-xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "4.7 Limitation of Liability"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "Company is not responsible for:"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-1"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Subsidy rejection/delay"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Policy changes"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Government portal issues"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "comment": "SECTION 5"
+                  },
+                  {
+                    "tag": "h2",
+                    "attributes": {
+                      "class": "text-2xl font-bold text-dark-navy mt-16 mb-6 bg-slate-50 p-4 rounded-xl border border-gray-100"
+                    },
+                    "children": [
+                      {
+                        "text": "5. LEGAL TERMS"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-2"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Governed by Indian Laws"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Jurisdiction Jaipur Courts"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Disputes may be resolved via arbitration"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "comment": "FINAL DETAILS"
+                  },
+                  {
+                    "tag": "div",
+                    "attributes": {
+                      "class": "mt-16 bg-dark-navy text-white p-8 rounded-2xl"
+                    },
+                    "children": [
+                      {
+                        "tag": "h2",
+                        "attributes": {
+                          "class": "text-2xl font-bold mb-6 text-accent-yellow"
+                        },
+                        "children": [
+                          {
+                            "text": "FINAL DETAILS"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "ul",
+                        "attributes": {
+                          "class": "space-y-3 font-medium"
+                        },
+                        "children": [
+                          {
+                            "tag": "li",
+                            "attributes": {
+                              "class": "flex items-start gap-3"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attributes": {
+                                  "class": "text-gray-400"
+                                },
+                                "children": [
+                                  {
+                                    "text": "GST Number:"
+                                  }
+                                ]
+                              },
+                              {
+                                "text": "08AAZFN7491B1ZN"
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "li",
+                            "attributes": {
+                              "class": "flex items-start gap-3 mt-1"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attributes": {
+                                  "class": "text-gray-400 py-2"
+                                },
+                                "children": [
+                                  {
+                                    "text": "Email:"
+                                  }
+                                ]
+                              },
+                              {
+                                "tag": "a",
+                                "attributes": {
+                                  "href": "mailto:customercare@neonixinfra.in",
+                                  "class": "text-accent-green hover:underline inline-block py-2"
+                                },
+                                "children": [
+                                  {
+                                    "text": "customercare@neonixinfra.in"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "li",
+                            "attributes": {
+                              "class": "flex items-start gap-3 mt-1"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attributes": {
+                                  "class": "text-gray-400 py-2"
+                                },
+                                "children": [
+                                  {
+                                    "text": "Phone:"
+                                  }
+                                ]
+                              },
+                              {
+                                "tag": "a",
+                                "attributes": {
+                                  "href": "tel:+919088688899",
+                                  "class": "text-accent-green hover:underline inline-block py-2"
+                                },
+                                "children": [
+                                  {
+                                    "text": "+91 90886 88899"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "li",
+                            "attributes": {
+                              "class": "flex items-start gap-3 mt-1"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attributes": {
+                                  "class": "text-gray-400 py-2"
+                                },
+                                "children": [
+                                  {
+                                    "text": "Address:"
+                                  }
+                                ]
+                              },
+                              {
+                                "tag": "span",
+                                "attributes": {
+                                  "class": "inline-block py-2"
+                                },
+                                "children": [
+                                  {
+                                    "text": "Manyawas, Jaipur 302020"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "terms": {
+    "tag": "body",
+    "attributes": {
+      "class": "bg-slate-50 text-dark-navy antialiased"
+    },
+    "children": [
+      {
+        "comment": "Google Tag Manager (noscript)"
+      },
+      {
+        "tag": "noscript",
+        "children": [
+          {
+            "text": "<iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-MTBCV58T\"\n    height=\"0\" width=\"0\" style=\"display:none;visibility:hidden\"></iframe>"
+          }
+        ]
+      },
+      {
+        "comment": "End Google Tag Manager (noscript)"
+      },
+      {
+        "tag": "nav",
+        "attributes": {
+          "class": "bg-dark-navy w-full py-4 px-6 md:px-12 fixed top-0 z-50 shadow-md flex justify-between items-center"
+        },
+        "children": [
+          {
+            "tag": "a",
+            "attributes": {
+              "href": "index.html",
+              "aria-label": "Back to Home",
+              "class": "text-white hover:text-accent-yellow flex items-center gap-2 transition-colors font-bold tracking-wide p-2 -ml-2"
+            },
+            "children": [
+              {
+                "tag": "span",
+                "attributes": {
+                  "aria-hidden": "true"
+                },
+                "children": [
+                  {
+                    "text": "←"
+                  }
+                ]
+              },
+              {
+                "text": "Back to Home"
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "attributes": {
+              "class": "flex items-center gap-4"
+            },
+            "children": [
+              {
+                "comment": "Theme Toggle Button"
+              },
+              {
+                "tag": "button",
+                "attributes": {
+                  "id": "theme-toggle",
+                  "aria-label": "Toggle Theme",
+                  "class": "p-2.5 rounded-full text-white bg-white/10 hover:bg-white/20 transition-all duration-300 outline-none hover:scale-110 active:scale-95"
+                },
+                "children": [
+                  {
+                    "comment": "Sun Icon"
+                  },
+                  {
+                    "tag": "svg",
+                    "attributes": {
+                      "id": "theme-toggle-sun",
+                      "class": "w-5 h-5 block",
+                      "fill": "none",
+                      "stroke": "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round",
+                      "viewBox": "0 0 24 24"
+                    },
+                    "children": [
+                      {
+                        "tag": "circle",
+                        "attributes": {
+                          "cx": "12",
+                          "cy": "12",
+                          "r": "5"
+                        }
+                      },
+                      {
+                        "tag": "line",
+                        "attributes": {
+                          "x1": "12",
+                          "y1": "1",
+                          "x2": "12",
+                          "y2": "3"
+                        }
+                      },
+                      {
+                        "tag": "line",
+                        "attributes": {
+                          "x1": "12",
+                          "y1": "21",
+                          "x2": "12",
+                          "y2": "23"
+                        }
+                      },
+                      {
+                        "tag": "line",
+                        "attributes": {
+                          "x1": "4.22",
+                          "y1": "4.22",
+                          "x2": "5.64",
+                          "y2": "5.64"
+                        }
+                      },
+                      {
+                        "tag": "line",
+                        "attributes": {
+                          "x1": "18.36",
+                          "y1": "18.36",
+                          "x2": "19.78",
+                          "y2": "19.78"
+                        }
+                      },
+                      {
+                        "tag": "line",
+                        "attributes": {
+                          "x1": "1",
+                          "y1": "12",
+                          "x2": "3",
+                          "y2": "12"
+                        }
+                      },
+                      {
+                        "tag": "line",
+                        "attributes": {
+                          "x1": "21",
+                          "y1": "12",
+                          "x2": "23",
+                          "y2": "12"
+                        }
+                      },
+                      {
+                        "tag": "line",
+                        "attributes": {
+                          "x1": "4.22",
+                          "y1": "19.78",
+                          "x2": "5.64",
+                          "y2": "18.36"
+                        }
+                      },
+                      {
+                        "tag": "line",
+                        "attributes": {
+                          "x1": "18.36",
+                          "y1": "5.64",
+                          "x2": "19.78",
+                          "y2": "4.22"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "comment": "Moon Icon"
+                  },
+                  {
+                    "tag": "svg",
+                    "attributes": {
+                      "id": "theme-toggle-moon",
+                      "class": "w-5 h-5 hidden",
+                      "fill": "none",
+                      "stroke": "currentColor",
+                      "stroke-width": "2",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round",
+                      "viewBox": "0 0 24 24"
+                    },
+                    "children": [
+                      {
+                        "tag": "path",
+                        "attributes": {
+                          "d": "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "flex items-center gap-3"
+                },
+                "children": [
+                  {
+                    "tag": "img",
+                    "attributes": {
+                      "src": "images/logo.svg",
+                      "alt": "Neonix Infra Solutions Logo",
+                      "width": "140",
+                      "height": "38",
+                      "class": "h-10 w-auto bg-white p-1.5 rounded",
+                      "onerror": "this.style.display='none'; document.getElementById('fallback-logo').classList.remove('hidden'); document.getElementById('fallback-logo').classList.add('flex');"
+                    }
+                  },
+                  {
+                    "tag": "div",
+                    "attributes": {
+                      "class": "hidden items-center gap-3",
+                      "id": "fallback-logo"
+                    },
+                    "children": [
+                      {
+                        "tag": "svg",
+                        "attributes": {
+                          "width": "35",
+                          "height": "35",
+                          "viewBox": "0 0 100 100",
+                          "fill": "none",
+                          "xmlns": "http://www.w3.org/2000/svg"
+                        },
+                        "children": [
+                          {
+                            "tag": "path",
+                            "attributes": {
+                              "d": "M68 25 A 12 12 0 0 1 92 25 M80 8 L80 14 M94 15 L89 19 M66 15 L71 19",
+                              "stroke": "#f4b41a",
+                              "stroke-width": "4",
+                              "stroke-linecap": "round"
+                            }
+                          },
+                          {
+                            "tag": "path",
+                            "attributes": {
+                              "d": "M15 85 L15 30 L35 20 L35 85 M35 85 L35 10 L55 20 L55 85 M55 85 L55 40 L70 50 L70 85",
+                              "stroke": "#ffffff",
+                              "stroke-width": "4",
+                              "stroke-linejoin": "round"
+                            }
+                          },
+                          {
+                            "tag": "path",
+                            "attributes": {
+                              "d": "M5 85 Q 35 95, 60 65 Q 80 35, 70 30 Q 50 45, 40 65 Q 30 80, 5 85",
+                              "fill": "#7bc043",
+                              "opacity": "0.95"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "div",
+                        "attributes": {
+                          "class": "flex flex-col justify-center leading-none text-left"
+                        },
+                        "children": [
+                          {
+                            "tag": "span",
+                            "attributes": {
+                              "class": "text-white font-bold tracking-[0.1em] text-lg mb-1"
+                            },
+                            "children": [
+                              {
+                                "text": "NEONIX"
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "span",
+                            "attributes": {
+                              "class": "text-accent-green font-bold text-[0.5rem] tracking-[0.15em] uppercase text-[#7bc043]"
+                            },
+                            "children": [
+                              {
+                                "text": "Infra Solutions"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "comment": "Main Content"
+      },
+      {
+        "tag": "main",
+        "attributes": {
+          "class": "max-w-4xl mx-auto pt-32 pb-24 px-6"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attributes": {
+              "class": "bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-gray-100"
+            },
+            "children": [
+              {
+                "tag": "h1",
+                "attributes": {
+                  "class": "text-4xl md:text-5xl font-bold mb-4"
+                },
+                "children": [
+                  {
+                    "text": "Terms & Conditions"
+                  }
+                ]
+              },
+              {
+                "tag": "p",
+                "attributes": {
+                  "class": "text-gray-500 mb-8 border-b pb-8"
+                },
+                "children": [
+                  {
+                    "text": "Last Updated: October 2023"
+                  }
+                ]
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "space-y-6 text-gray-600 leading-relaxed"
+                },
+                "children": [
+                  {
+                    "tag": "h2",
+                    "attributes": {
+                      "class": "text-2xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "1. Agreement to Terms"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "By accessing our website and utilizing our solar installation services, you agree to be bound by these Terms and Conditions and our Privacy Policy. If you do not agree with any part of these terms, please do not use our services."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h2",
+                    "attributes": {
+                      "class": "text-2xl font-bold text-dark-navy mt-8 mb-6 bg-slate-50 p-4 rounded-xl border border-gray-100"
+                    },
+                    "children": [
+                      {
+                        "text": "📑 TERMS & CONDITIONS"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "ul",
+                    "attributes": {
+                      "class": "list-disc pl-6 space-y-4 text-base"
+                    },
+                    "children": [
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Quotation is valid for 15 days from the date of issue."
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Prices are subject to change without prior notice."
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Installation will be carried out as per site feasibility."
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Subsidy amount is approximate and subject to government norms and approvals."
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Net metering is subject to DISCOM approval."
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "100% payment to be made as per payment schedule."
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Warranty as per manufacturer & company policy."
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "li",
+                        "children": [
+                          {
+                            "text": "Extra work (if any) will be charged separately."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h2",
+                    "attributes": {
+                      "class": "text-2xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "2. Service Description"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "Neonix Infra Solutions provides engineering, procurement, and construction services for solar photovoltaic systems. Quotes and proposals provided through our website are estimated and subject to a final physical site survey."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h2",
+                    "attributes": {
+                      "class": "text-2xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "3. Warranties and Liability"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "We install third-party manufactured equipment (such as solar panels and inverters). Warranties for these products are provided directly by their respective manufacturers. Neonix Infra Solutions guarantees the quality of our installation workmanship for a specific period outlined in your personalized service agreement."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h2",
+                    "attributes": {
+                      "class": "text-2xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "4. Subsidies and Net Metering"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "While we eagerly assist in applying for the PM Surya Ghar Muft Bijli Yojana subsidies and DISCOM net metering, the final approval, disbursement times, and regulatory changes remain at the sole discretion of the government and local electrical authorities. Neonix cannot be held liable for delayed or rejected government subsidies."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h2",
+                    "attributes": {
+                      "class": "text-2xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "5. Modifications to Terms"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "We reserve the right, at our sole discretion, to modify or replace these Terms at any time. We will provide reasonable notice of any material changes."
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "h2",
+                    "attributes": {
+                      "class": "text-2xl font-bold text-dark-navy mt-8"
+                    },
+                    "children": [
+                      {
+                        "text": "6. Contact Information"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "p",
+                    "children": [
+                      {
+                        "text": "If you have any questions about these Terms, please contact us at:"
+                      },
+                      {
+                        "tag": "strong",
+                        "children": [
+                          {
+                            "text": "customercare@neonixinfra.in"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "comment": "COMPANY DETAILS"
+                  },
+                  {
+                    "tag": "div",
+                    "attributes": {
+                      "class": "mt-16 bg-dark-navy text-white p-8 rounded-2xl"
+                    },
+                    "children": [
+                      {
+                        "tag": "h2",
+                        "attributes": {
+                          "class": "text-2xl font-bold mb-6 text-accent-yellow"
+                        },
+                        "children": [
+                          {
+                            "text": "COMPANY DETAILS"
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "ul",
+                        "attributes": {
+                          "class": "space-y-3 font-medium"
+                        },
+                        "children": [
+                          {
+                            "tag": "li",
+                            "attributes": {
+                              "class": "flex items-start gap-3"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attributes": {
+                                  "class": "text-gray-400"
+                                },
+                                "children": [
+                                  {
+                                    "text": "Company Name:"
+                                  }
+                                ]
+                              },
+                              {
+                                "text": "Neonix Infra Solutions"
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "li",
+                            "attributes": {
+                              "class": "flex items-start gap-3"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attributes": {
+                                  "class": "text-gray-400"
+                                },
+                                "children": [
+                                  {
+                                    "text": "Address:"
+                                  }
+                                ]
+                              },
+                              {
+                                "text": "A54, Jyoti Vihar 1st, Mangyawas, Mansarover, Jaipur – 302020 (Raj.)"
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "li",
+                            "attributes": {
+                              "class": "flex items-start gap-3 mt-2"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attributes": {
+                                  "class": "text-gray-400 py-2"
+                                },
+                                "children": [
+                                  {
+                                    "text": "Contact No.:"
+                                  }
+                                ]
+                              },
+                              {
+                                "tag": "a",
+                                "attributes": {
+                                  "href": "tel:+919910000774",
+                                  "class": "text-accent-green hover:underline inline-block py-2"
+                                },
+                                "children": [
+                                  {
+                                    "text": "+91 9910000774"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "li",
+                            "attributes": {
+                              "class": "flex items-start gap-3 mt-1"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attributes": {
+                                  "class": "text-gray-400 py-2"
+                                },
+                                "children": [
+                                  {
+                                    "text": "Email:"
+                                  }
+                                ]
+                              },
+                              {
+                                "tag": "a",
+                                "attributes": {
+                                  "href": "mailto:customercare@neonixinfra.in",
+                                  "class": "text-accent-green hover:underline inline-block py-2"
+                                },
+                                "children": [
+                                  {
+                                    "text": "customercare@neonixinfra.in"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
