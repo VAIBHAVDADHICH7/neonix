@@ -170,8 +170,10 @@ export default function HeroLeadForm({
 
         {/* Name */}
         <input
+          id="hero-name"
           type="text"
           name="name"
+          autoComplete="name"
           value={formData.name}
           onChange={handleInputChange}
           onBlur={() => handleBlur('name')}
@@ -184,8 +186,10 @@ export default function HeroLeadForm({
         {/* Phone + Email */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <input
+            id="hero-phone"
             type="tel"
             name="phone"
+            autoComplete="tel"
             maxLength={10}
             value={formData.phone}
             onChange={handleInputChange}
@@ -196,8 +200,10 @@ export default function HeroLeadForm({
             className={inputClass(touched.phone && !isPhoneValid)}
           />
           <input
+            id="hero-email"
             type="email"
             name="email"
+            autoComplete="email"
             value={formData.email}
             onChange={handleInputChange}
             onBlur={() => handleBlur('email')}
@@ -211,8 +217,10 @@ export default function HeroLeadForm({
         {/* City + Pincode */}
         <div className="grid grid-cols-2 gap-2">
           <input
+            id="hero-city"
             type="text"
             name="city"
+            autoComplete="address-level2"
             value={formData.city}
             onChange={handleInputChange}
             onBlur={() => handleBlur('city')}
@@ -222,8 +230,10 @@ export default function HeroLeadForm({
             className={inputClass(touched.city && !isCityValid)}
           />
           <input
+            id="hero-pincode"
             type="text"
             name="pincode"
+            autoComplete="postal-code"
             maxLength={6}
             value={formData.pincode}
             onChange={handleInputChange}
@@ -238,6 +248,7 @@ export default function HeroLeadForm({
         {/* State (Fixed) + Monthly Bill */}
         <div className="grid grid-cols-2 gap-2">
           <input
+            id="hero-state"
             type="text"
             name="state"
             value="Rajasthan"
@@ -246,6 +257,7 @@ export default function HeroLeadForm({
             className="w-full px-3 py-2.5 sm:px-3.5 sm:py-3 rounded-xl bg-white/[0.04] border border-white/10 text-xs sm:text-sm text-gray-300 cursor-not-allowed font-medium focus:outline-none"
           />
           <input
+            id="hero-monthly-bill"
             type="number"
             name="monthly_bill"
             value={formData.monthly_bill}

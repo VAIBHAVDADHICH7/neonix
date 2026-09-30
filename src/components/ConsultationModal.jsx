@@ -202,6 +202,7 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
                     id="modal-name"
                     type="text"
                     name="name"
+                    autoComplete="name"
                     required
                     value={formData.name}
                     onChange={handleChange}
@@ -223,6 +224,7 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
                     id="modal-phone"
                     type="tel"
                     name="phone"
+                    autoComplete="tel"
                     maxLength={10}
                     required
                     value={formData.phone}
@@ -249,6 +251,7 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
                     id="modal-email"
                     type="email"
                     name="email"
+                    autoComplete="email"
                     required
                     value={formData.email}
                     onChange={handleChange}
@@ -315,6 +318,7 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
                       id="modal-city"
                       type="text"
                       name="city"
+                      autoComplete="address-level2"
                       required
                       value={formData.city}
                       onChange={handleChange}
@@ -329,6 +333,7 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
                       id="modal-pincode"
                       type="text"
                       name="pincode"
+                      autoComplete="postal-code"
                       maxLength={6}
                       required
                       value={formData.pincode}

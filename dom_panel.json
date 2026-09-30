@@ -17,6 +17,17 @@
         "comment": "End Google Tag Manager (noscript)"
       },
       {
+        "comment": "Semantic Crawling & Non-JS Fallback"
+      },
+      {
+        "tag": "noscript",
+        "children": [
+          {
+            "text": "<div style=\"max-width: 900px; margin: 1.5rem auto; padding: 2rem; background: #ffffff; color: #111827; border-radius: 1rem; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; border: 1px solid #e5e7eb;\">\n        <header>\n          <h2>Neonix Infra Solutions — Clean &amp; Green Energy Solutions in India</h2>\n          <p>India's trusted rooftop solar panel installation specialists. We design and install high-efficiency grid-tied solar systems for residential homes, commercial enterprises, and industrial facilities with up to ₹78,000 direct subsidy support under PM Surya Ghar Muft Bijli Yojana.</p>\n        </header>\n\n        <section style=\"margin-top: 1.5rem;\">\n          <h3>Our Solar Services &amp; Solutions</h3>\n          <ul>\n            <li><strong>Residential Rooftop Solar:</strong> Cut household electricity bills by up to 90% with Tier-1 Mono PERC &amp; TopCon solar panels, net metering, and instant government subsidy up to ₹78,000.</li>\n            <li><strong>Commercial Solar Energy:</strong> Reduce operating power overhead for offices, hospitals, schools, and retail establishments with accelerated 40% depreciation tax benefits.</li>\n            <li><strong>Industrial Solar Power:</strong> Turnkey high-capacity solar plants for factories and warehouses with guaranteed continuous generation and custom load design.</li>\n            <li><strong>Solar Care &amp; Annual Maintenance Contracts (AMC):</strong> Scheduled panel cleaning, electrical inspection, generation monitoring, and rapid repair support for 30+ year lifespan.</li>\n          </ul>\n        </section>\n\n        <section style=\"margin-top: 1.5rem;\">\n          <h3>Frequently Asked Questions</h3>\n          <dl>\n            <dt><strong>How much government subsidy is available for rooftop solar panels?</strong></dt>\n            <dd>Under PM Surya Ghar Muft Bijli Yojana, residential consumers receive up to ₹78,000 direct central subsidy (₹30,000 for 1kW, ₹60,000 for 2kW, and ₹78,000 for 3kW+).</dd>\n            <dt style=\"margin-top: 0.75rem;\"><strong>How much can I save on my electricity bill?</strong></dt>\n            <dd>A standard rooftop solar installation can reduce monthly electricity bills by up to 90%. Excess green energy is exported back to the grid via net metering.</dd>\n            <dt style=\"margin-top: 0.75rem;\"><strong>What is the lifespan of Neonix solar panels?</strong></dt>\n            <dd>Neonix installs Tier-1 Mono PERC and TopCon solar panels with a 25-30 year performance warranty.</dd>\n          </dl>\n        </section>\n\n        <section style=\"margin-top: 1.5rem; border-top: 1px solid #e5e7eb; padding-top: 1rem;\">\n          <h3>Solar Tools &amp; Contact</h3>\n          <p>\n            <a href=\"/solar-calculator.html\" style=\"color: #0b7542; font-weight: bold;\">Solar ROI &amp; Subsidy Calculator</a> &bull;\n            <a href=\"/privacy-policy.html\" style=\"color: #0b7542;\">Privacy &amp; Warranty Policy</a> &bull;\n            <a href=\"/terms.html\" style=\"color: #0b7542;\">Terms &amp; Conditions</a>\n          </p>\n          <p style=\"font-size: 0.875rem; color: #4b5563;\">\n            Contact: +91 99100 00774 / +91 90886 88899 | Email: contact@neonixinfra.in | Office: Manyawas, Mansarovar, Jaipur, Rajasthan 302020\n          </p>\n        </section>\n      </div>"
+          }
+        ]
+      },
+      {
         "tag": "div",
         "attributes": {
           "id": "root"
@@ -25,76 +36,439 @@
           {
             "tag": "div",
             "attributes": {
-              "class": "fcp-shell"
+              "class": "fcp-container",
+              "role": "dialog",
+              "aria-modal": "true",
+              "aria-labelledby": "fcp-modal-title",
+              "data-lenis-prevent": "true"
             },
             "children": [
               {
-                "tag": "header",
+                "tag": "div",
                 "attributes": {
-                  "class": "fcp-nav"
-                },
-                "children": [
-                  {
-                    "tag": "a",
-                    "attributes": {
-                      "href": "/",
-                      "class": "fcp-logo",
-                      "aria-label": "Neonix Solar Home"
-                    },
-                    "children": [
-                      {
-                        "tag": "span",
-                        "attributes": {
-                          "style": "width:10px;height:10px;border-radius:50%;background:#0F9D58;display:inline-block;"
-                        }
-                      },
-                      {
-                        "text": "NEONIX SOLAR"
-                      }
-                    ]
-                  }
-                ]
+                  "class": "fcp-backdrop",
+                  "aria-hidden": "true",
+                  "onclick": "var c=this.closest('.fcp-container');if(c)c.style.display='none';"
+                }
               },
               {
-                "tag": "main",
+                "tag": "div",
                 "attributes": {
-                  "class": "fcp-hero-content"
+                  "class": "fcp-modal-card",
+                  "data-lenis-prevent": "true"
                 },
                 "children": [
                   {
-                    "tag": "div",
+                    "tag": "button",
                     "attributes": {
-                      "class": "fcp-badge"
+                      "type": "button",
+                      "class": "fcp-close-btn",
+                      "aria-label": "Close form and continue to home screen",
+                      "onclick": "var c=this.closest('.fcp-container');if(c)c.style.display='none';"
                     },
                     "children": [
                       {
-                        "tag": "span",
-                        "attributes": {
-                          "style": "width:6px;height:6px;border-radius:50%;background:#00BFA6;display:inline-block;"
-                        }
-                      },
-                      {
-                        "text": "India's Trusted Solar EPC Partner"
+                        "text": "✕"
                       }
                     ]
                   },
                   {
-                    "tag": "h1",
-                    "attributes": {
-                      "class": "fcp-title"
-                    },
+                    "tag": "div",
                     "children": [
                       {
-                        "text": "Power Your Home & Business With"
-                      },
-                      {
-                        "tag": "span",
+                        "tag": "div",
                         "attributes": {
-                          "style": "color:#00BFA6;"
+                          "style": "margin-bottom: 0.75rem; padding-right: 2rem;"
                         },
                         "children": [
                           {
-                            "text": "Clean Solar Energy"
+                            "tag": "div",
+                            "attributes": {
+                              "style": "display: flex; align-items: center; gap: 0.375rem; margin-bottom: 0.25rem;"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attributes": {
+                                  "class": "fcp-badge"
+                                },
+                                "children": [
+                                  {
+                                    "text": "Free Expert Site Survey"
+                                  }
+                                ]
+                              },
+                              {
+                                "tag": "span",
+                                "attributes": {
+                                  "class": "fcp-badge-dot"
+                                },
+                                "children": [
+                                  {
+                                    "text": "• PM Surya Ghar"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "h2",
+                            "attributes": {
+                              "id": "fcp-modal-title",
+                              "class": "fcp-title"
+                            },
+                            "children": [
+                              {
+                                "text": "Book Free Expert Site Survey"
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "p",
+                            "attributes": {
+                              "class": "fcp-desc"
+                            },
+                            "children": [
+                              {
+                                "text": "Personalized shadow analysis & exact government subsidy breakdown."
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "tag": "form",
+                        "attributes": {
+                          "class": "fcp-form",
+                          "onsubmit": "return false;"
+                        },
+                        "children": [
+                          {
+                            "comment": "Row 1: Full Name & Mobile"
+                          },
+                          {
+                            "tag": "div",
+                            "attributes": {
+                              "class": "fcp-grid-2"
+                            },
+                            "children": [
+                              {
+                                "tag": "div",
+                                "children": [
+                                  {
+                                    "tag": "label",
+                                    "attributes": {
+                                      "class": "fcp-label",
+                                      "for": "fcp-name"
+                                    },
+                                    "children": [
+                                      {
+                                        "text": "Full Name"
+                                      },
+                                      {
+                                        "tag": "span",
+                                        "attributes": {
+                                          "class": "fcp-req"
+                                        },
+                                        "children": [
+                                          {
+                                            "text": "*"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tag": "input",
+                                    "attributes": {
+                                      "id": "fcp-name",
+                                      "name": "name",
+                                      "type": "text",
+                                      "class": "fcp-input",
+                                      "placeholder": "e.g. Rajesh Sharma",
+                                      "autocomplete": "name",
+                                      "readonly": ""
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "tag": "div",
+                                "children": [
+                                  {
+                                    "tag": "label",
+                                    "attributes": {
+                                      "class": "fcp-label",
+                                      "for": "fcp-mobile"
+                                    },
+                                    "children": [
+                                      {
+                                        "text": "Mobile (10 Digits)"
+                                      },
+                                      {
+                                        "tag": "span",
+                                        "attributes": {
+                                          "class": "fcp-req"
+                                        },
+                                        "children": [
+                                          {
+                                            "text": "*"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tag": "input",
+                                    "attributes": {
+                                      "id": "fcp-mobile",
+                                      "name": "mobile",
+                                      "type": "tel",
+                                      "class": "fcp-input",
+                                      "placeholder": "9829012345",
+                                      "autocomplete": "tel",
+                                      "readonly": ""
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "comment": "Row 2: Email & Monthly Bill"
+                          },
+                          {
+                            "tag": "div",
+                            "attributes": {
+                              "class": "fcp-grid-2"
+                            },
+                            "children": [
+                              {
+                                "tag": "div",
+                                "children": [
+                                  {
+                                    "tag": "label",
+                                    "attributes": {
+                                      "class": "fcp-label",
+                                      "for": "fcp-email"
+                                    },
+                                    "children": [
+                                      {
+                                        "text": "Email Address"
+                                      },
+                                      {
+                                        "tag": "span",
+                                        "attributes": {
+                                          "class": "fcp-req"
+                                        },
+                                        "children": [
+                                          {
+                                            "text": "*"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tag": "input",
+                                    "attributes": {
+                                      "id": "fcp-email",
+                                      "name": "email",
+                                      "type": "email",
+                                      "class": "fcp-input",
+                                      "placeholder": "name@example.com",
+                                      "autocomplete": "email",
+                                      "readonly": ""
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "tag": "div",
+                                "children": [
+                                  {
+                                    "tag": "label",
+                                    "attributes": {
+                                      "class": "fcp-label",
+                                      "for": "fcp-bill"
+                                    },
+                                    "children": [
+                                      {
+                                        "text": "Monthly Bill (₹)"
+                                      },
+                                      {
+                                        "tag": "span",
+                                        "attributes": {
+                                          "class": "fcp-req"
+                                        },
+                                        "children": [
+                                          {
+                                            "text": "*"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tag": "input",
+                                    "attributes": {
+                                      "id": "fcp-bill",
+                                      "name": "monthly_bill",
+                                      "type": "number",
+                                      "class": "fcp-input",
+                                      "placeholder": "e.g. 4500",
+                                      "readonly": ""
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "comment": "Row 3: Connection Type & City + Pincode"
+                          },
+                          {
+                            "tag": "div",
+                            "attributes": {
+                              "class": "fcp-grid-2"
+                            },
+                            "children": [
+                              {
+                                "tag": "div",
+                                "children": [
+                                  {
+                                    "tag": "label",
+                                    "attributes": {
+                                      "class": "fcp-label",
+                                      "for": "fcp-connection"
+                                    },
+                                    "children": [
+                                      {
+                                        "text": "Connection Type"
+                                      },
+                                      {
+                                        "tag": "span",
+                                        "attributes": {
+                                          "class": "fcp-req"
+                                        },
+                                        "children": [
+                                          {
+                                            "text": "*"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tag": "select",
+                                    "attributes": {
+                                      "id": "fcp-connection",
+                                      "name": "connection_type",
+                                      "class": "fcp-input",
+                                      "disabled": "",
+                                      "style": "background:#F9FAFB;"
+                                    },
+                                    "children": [
+                                      {
+                                        "tag": "option",
+                                        "attributes": {
+                                          "selected": ""
+                                        },
+                                        "children": [
+                                          {
+                                            "text": "Residential (Home)"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "tag": "div",
+                                "children": [
+                                  {
+                                    "tag": "label",
+                                    "attributes": {
+                                      "class": "fcp-label"
+                                    },
+                                    "children": [
+                                      {
+                                        "text": "City & Pincode (RJ)"
+                                      },
+                                      {
+                                        "tag": "span",
+                                        "attributes": {
+                                          "class": "fcp-req"
+                                        },
+                                        "children": [
+                                          {
+                                            "text": "*"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "tag": "div",
+                                    "attributes": {
+                                      "style": "display: grid; grid-template-columns: 1fr 1fr; gap: 0.375rem;"
+                                    },
+                                    "children": [
+                                      {
+                                        "tag": "input",
+                                        "attributes": {
+                                          "id": "fcp-city",
+                                          "name": "city",
+                                          "type": "text",
+                                          "class": "fcp-input",
+                                          "placeholder": "Jaipur",
+                                          "autocomplete": "address-level2",
+                                          "aria-label": "City",
+                                          "readonly": ""
+                                        }
+                                      },
+                                      {
+                                        "tag": "input",
+                                        "attributes": {
+                                          "id": "fcp-pincode",
+                                          "name": "pincode",
+                                          "type": "text",
+                                          "class": "fcp-input",
+                                          "placeholder": "302001",
+                                          "autocomplete": "postal-code",
+                                          "aria-label": "Pincode",
+                                          "readonly": ""
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "button",
+                            "attributes": {
+                              "type": "submit",
+                              "class": "fcp-submit-btn"
+                            },
+                            "children": [
+                              {
+                                "text": "Confirm Free Consultation"
+                              }
+                            ]
+                          },
+                          {
+                            "tag": "div",
+                            "attributes": {
+                              "class": "fcp-trust"
+                            },
+                            "children": [
+                              {
+                                "text": "🔒 100% Free • Direct DISCOM Net Metering • No Spam Guarantee"
+                              }
+                            ]
                           }
                         ]
                       }

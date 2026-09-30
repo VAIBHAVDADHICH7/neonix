@@ -470,6 +470,7 @@ Email: ${formData.email}`;
                 <span className="text-xs font-bold text-gray-600">₹</span>
                 <input
                   id={billInputId}
+                  name="monthly_bill"
                   type="number"
                   min="1000"
                   max="50000"
@@ -485,6 +486,7 @@ Email: ${formData.email}`;
             </div>
             <input
               id={billSliderId}
+              name="monthly_bill_slider"
               type="range"
               min="1000"
               max="25000"
@@ -570,6 +572,7 @@ Email: ${formData.email}`;
             </label>
             <select
               id={locationSelectId}
+              name="location"
               value={location}
               onChange={(e) => {
                 const val = e.target.value;
@@ -878,14 +881,16 @@ Email: ${formData.email}`;
                   {/* Full Name */}
                   <div>
                     <div className="flex justify-between items-center mb-1">
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                      <label htmlFor="roi-lead-name" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
                         Full Name <span className="text-red-500">*</span>
                       </label>
                       {formTouched.name && isNameValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
                     </div>
                     <input
+                      id="roi-lead-name"
                       type="text"
                       name="name"
+                      autoComplete="name"
                       required
                       value={formData.name}
                       onChange={handleInputChange}
@@ -904,14 +909,16 @@ Email: ${formData.email}`;
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <div className="flex justify-between items-center mb-1">
-                        <label className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                        <label htmlFor="roi-lead-mobile" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
                           Mobile (10 Digits) <span className="text-red-500">*</span>
                         </label>
                         {formTouched.mobile && isPhoneValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
                       </div>
                       <input
+                        id="roi-lead-mobile"
                         type="tel"
                         name="mobile"
+                        autoComplete="tel"
                         maxLength={10}
                         required
                         value={formData.mobile}
@@ -929,14 +936,16 @@ Email: ${formData.email}`;
 
                     <div>
                       <div className="flex justify-between items-center mb-1">
-                        <label className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                        <label htmlFor="roi-lead-email" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
                           Your Email (Sender ID) <span className="text-red-500">*</span>
                         </label>
                         {formTouched.email && isEmailValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
                       </div>
                       <input
+                        id="roi-lead-email"
                         type="email"
                         name="email"
+                        autoComplete="email"
                         required
                         value={formData.email}
                         onChange={handleInputChange}
@@ -956,12 +965,13 @@ Email: ${formData.email}`;
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <div className="flex justify-between items-center mb-1">
-                        <label className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                        <label htmlFor="roi-lead-bill" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
                           Monthly Bill (₹) <span className="text-red-500">*</span>
                         </label>
                         {formTouched.monthly_bill && isBillValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
                       </div>
                       <input
+                        id="roi-lead-bill"
                         type="number"
                         name="monthly_bill"
                         required
@@ -976,10 +986,11 @@ Email: ${formData.email}`;
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-[#374151] mb-1">
+                      <label htmlFor="roi-lead-connection" className="block text-xs font-bold uppercase tracking-wider text-[#374151] mb-1">
                         Connection Type <span className="text-red-500">*</span>
                       </label>
                       <select
+                        id="roi-lead-connection"
                         name="connection_type"
                         required
                         value={formData.connection_type}
@@ -997,14 +1008,16 @@ Email: ${formData.email}`;
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <div className="flex justify-between items-center mb-1">
-                        <label className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                        <label htmlFor="roi-lead-city" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
                           City <span className="text-red-500">*</span>
                         </label>
                         {formTouched.city && isCityValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
                       </div>
                       <input
+                        id="roi-lead-city"
                         type="text"
                         name="city"
+                        autoComplete="address-level2"
                         required
                         value={formData.city}
                         onChange={handleInputChange}
@@ -1021,14 +1034,16 @@ Email: ${formData.email}`;
 
                     <div>
                       <div className="flex justify-between items-center mb-1">
-                        <label className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
+                        <label htmlFor="roi-lead-pincode" className="block text-xs font-bold uppercase tracking-wider text-[#374151]">
                           Pincode (6 Digits) <span className="text-red-500">*</span>
                         </label>
                         {formTouched.pincode && isPincodeValid && <span className="text-xs text-[#0b7542] font-bold">✓</span>}
                       </div>
                       <input
+                        id="roi-lead-pincode"
                         type="text"
                         name="pincode"
+                        autoComplete="postal-code"
                         maxLength={6}
                         required
                         value={formData.pincode}
@@ -1047,10 +1062,11 @@ Email: ${formData.email}`;
 
                   {/* State (Fixed) */}
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-[#374151] mb-1">
+                    <label htmlFor="roi-lead-state" className="block text-xs font-bold uppercase tracking-wider text-[#374151] mb-1">
                       State <span className="text-[#0b7542] text-[10px]">(Fixed)</span>
                     </label>
                     <input
+                      id="roi-lead-state"
                       type="text"
                       name="state"
                       value="Rajasthan"

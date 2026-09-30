@@ -443,38 +443,38 @@
               <!-- Row 1: Full Name & Mobile -->
               <div class="fcp-grid-2">
                 <div>
-                  <label class="fcp-label">Full Name <span class="fcp-req">*</span></label>
-                  <input type="text" class="fcp-input" placeholder="e.g. Rajesh Sharma" readonly />
+                  <label class="fcp-label" for="fcp-name">Full Name <span class="fcp-req">*</span></label>
+                  <input id="fcp-name" name="name" type="text" class="fcp-input" placeholder="e.g. Rajesh Sharma" autocomplete="name" readonly />
                 </div>
                 <div>
-                  <label class="fcp-label">Mobile (10 Digits) <span class="fcp-req">*</span></label>
-                  <input type="tel" class="fcp-input" placeholder="9829012345" readonly />
+                  <label class="fcp-label" for="fcp-mobile">Mobile (10 Digits) <span class="fcp-req">*</span></label>
+                  <input id="fcp-mobile" name="mobile" type="tel" class="fcp-input" placeholder="9829012345" autocomplete="tel" readonly />
                 </div>
               </div>
               <!-- Row 2: Email & Monthly Bill -->
               <div class="fcp-grid-2">
                 <div>
-                  <label class="fcp-label">Email Address <span class="fcp-req">*</span></label>
-                  <input type="email" class="fcp-input" placeholder="name@example.com" readonly />
+                  <label class="fcp-label" for="fcp-email">Email Address <span class="fcp-req">*</span></label>
+                  <input id="fcp-email" name="email" type="email" class="fcp-input" placeholder="name@example.com" autocomplete="email" readonly />
                 </div>
                 <div>
-                  <label class="fcp-label">Monthly Bill (₹) <span class="fcp-req">*</span></label>
-                  <input type="number" class="fcp-input" placeholder="e.g. 4500" readonly />
+                  <label class="fcp-label" for="fcp-bill">Monthly Bill (₹) <span class="fcp-req">*</span></label>
+                  <input id="fcp-bill" name="monthly_bill" type="number" class="fcp-input" placeholder="e.g. 4500" readonly />
                 </div>
               </div>
               <!-- Row 3: Connection Type & City + Pincode -->
               <div class="fcp-grid-2">
                 <div>
-                  <label class="fcp-label">Connection Type <span class="fcp-req">*</span></label>
-                  <select class="fcp-input" disabled style="background:#F9FAFB;">
+                  <label class="fcp-label" for="fcp-connection">Connection Type <span class="fcp-req">*</span></label>
+                  <select id="fcp-connection" name="connection_type" class="fcp-input" disabled style="background:#F9FAFB;">
                     <option selected>Residential (Home)</option>
                   </select>
                 </div>
                 <div>
                   <label class="fcp-label">City &amp; Pincode (RJ) <span class="fcp-req">*</span></label>
                   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.375rem;">
-                    <input type="text" class="fcp-input" placeholder="Jaipur" readonly />
-                    <input type="text" class="fcp-input" placeholder="302001" readonly />
+                    <input id="fcp-city" name="city" type="text" class="fcp-input" placeholder="Jaipur" autocomplete="address-level2" aria-label="City" readonly />
+                    <input id="fcp-pincode" name="pincode" type="text" class="fcp-input" placeholder="302001" autocomplete="postal-code" aria-label="Pincode" readonly />
                   </div>
                 </div>
               </div>

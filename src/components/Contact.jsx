@@ -544,7 +544,10 @@ export default function Contact() {
               
               <form onSubmit={handleNewsletterSubmit} className="space-y-2 pt-1">
                 <input
+                  id="newsletter-email"
+                  name="email"
                   type="email"
+                  autoComplete="email"
                   required
                   value={newsletterEmail}
                   onChange={(e) => setNewsletterEmail(e.target.value)}

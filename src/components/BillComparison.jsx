@@ -56,6 +56,7 @@ export default function BillComparison({ onGetStarted }) {
 
             <input
               id="bill-compare-slider"
+              name="bill_compare_slider"
               type="range"
               min="2000"
               max="25000"
