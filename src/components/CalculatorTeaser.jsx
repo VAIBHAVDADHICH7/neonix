@@ -41,7 +41,7 @@ export default function CalculatorTeaser() {
             <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-3">
               <a
                 href="/solar-calculator.html"
-                className="inline-flex items-center gap-2.5 bg-[#0F9D58] hover:bg-[#0c8248] text-white text-sm sm:text-base font-bold px-6 sm:px-8 py-3.5 rounded-xl shadow-lg hover:shadow-[0_0_25px_rgba(15,157,88,0.5)] transition-all transform hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2.5 bg-[#0B7542] hover:bg-[#096336] text-white text-sm sm:text-base font-bold px-6 sm:px-8 py-3.5 rounded-xl shadow-lg hover:shadow-[0_0_25px_rgba(11,117,66,0.5)] transition-all transform hover:-translate-y-0.5"
               >
                 <span>Launch Full Solar ROI Calculator</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
