@@ -355,7 +355,7 @@ Email: ${formData.email}`;
       <div className="energy-beam-delay absolute inset-y-0 w-1/4 bg-gradient-to-r from-transparent via-[#0b7542]/8 to-transparent" aria-hidden="true" />
 
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 reveal-up relative z-10">
+      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 relative z-10">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0b7542]/10 border border-[#0b7542]/25 mb-3">
           {/* Live pulsing dot */}
           <span className="ticker-dot w-2 h-2 rounded-full bg-[#0F9D58]" aria-hidden="true" />
@@ -372,7 +372,7 @@ Email: ${formData.email}`;
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch relative z-10">
         
         {/* LEFT COLUMN: Input Controls (5 Cols) */}
-        <div className="lg:col-span-5 bg-white p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-gray-200 shadow-sm space-y-5 sm:space-y-6 reveal-left calc-card-hover flex flex-col justify-between h-full">
+        <div className="lg:col-span-5 bg-white p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-gray-200 shadow-sm space-y-5 sm:space-y-6 calc-card-hover flex flex-col justify-between h-full">
           <div className="border-b border-gray-100 pb-3 flex items-center justify-between">
             <h3 className="text-base sm:text-lg font-bold text-[#111827]">Your Electricity Details</h3>
             <span className="text-[11px] sm:text-xs font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-[#0b7542]/10 text-[#0b7542]">
@@ -599,7 +599,7 @@ Email: ${formData.email}`;
         </div>
 
         {/* RIGHT COLUMN: Results Dashboard (7 Cols) */}
-        <div className="lg:col-span-7 flex flex-col justify-between gap-5 sm:gap-6 reveal-right h-full">
+        <div className="lg:col-span-7 flex flex-col justify-between gap-5 sm:gap-6 h-full">
           
           {/* Main 3 Output Metrics */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">

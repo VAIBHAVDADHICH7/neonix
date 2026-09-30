@@ -14,6 +14,40 @@ export default function CalculatorPage() {
   const [openFaq, setOpenFaq] = useState(null);
 
   useEffect(() => {
+    const REVEAL_SELECTOR = '.reveal-up, .reveal-left, .reveal-right, .reveal-scale';
+
+    const revealObserver = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { root: null, threshold: 0.06, rootMargin: '0px 0px -30px 0px' }
+    );
+
+    const observeNew = (root) => {
+      root.querySelectorAll(REVEAL_SELECTOR).forEach(el => revealObserver.observe(el));
+    };
+    observeNew(document);
+
+    const mutationObserver = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
+        mutation.addedNodes.forEach(node => {
+          if (node.nodeType === 1) {
+            if (node.matches && node.matches(REVEAL_SELECTOR)) {
+              revealObserver.observe(node);
+            }
+            observeNew(node);
+          }
+        });
+      });
+    });
+
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
     const lenis = new Lenis({
       duration: 1.0,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -24,10 +58,6 @@ export default function CalculatorPage() {
       touchMultiplier: 1.5,
     });
     window.__lenis = lenis;
-
-    if (modalState.isOpen) {
-      lenis.stop();
-    }
 
     let rafId;
     function raf(time) {
@@ -40,6 +70,8 @@ export default function CalculatorPage() {
       delete window.__lenis;
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      revealObserver.disconnect();
+      mutationObserver.disconnect();
     };
   }, []);
 
