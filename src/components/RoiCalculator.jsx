@@ -382,9 +382,9 @@ Email: ${formData.email}`;
 
           {/* 1. Property Category Selector */}
           <div>
-            <label className="block text-[11px] sm:text-xs font-bold text-[#374151] uppercase tracking-wider mb-2">
+            <span className="block text-[11px] sm:text-xs font-bold text-[#374151] uppercase tracking-wider mb-2">
               Where will you install solar?
-            </label>
+            </span>
             <div className="grid grid-cols-3 gap-1.5 sm:gap-2" role="group" aria-label="Select property type">
               {[
                 { type: 'Residential', label: 'Home' },
@@ -410,9 +410,9 @@ Email: ${formData.email}`;
           {/* 2. Panel Specification */}
           <div>
             <div className="flex justify-between items-center mb-2">
-              <label className="block text-[11px] sm:text-xs font-bold text-[#374151] uppercase tracking-wider">
+              <span className="block text-[11px] sm:text-xs font-bold text-[#374151] uppercase tracking-wider">
                 Panel Type
-              </label>
+              </span>
               {connectionType === 'Residential' ? (
                 <span className="text-[10px] sm:text-[11px] bg-[#0b7542]/10 text-[#0b7542] font-extrabold px-2 py-0.5 rounded-md flex items-center gap-1">
                   <span>🛡️</span> DCR (Gets Up to ₹78k Subsidy)
@@ -508,9 +508,9 @@ Email: ${formData.email}`;
           {/* Phase Selector */}
           {(recommendedCapacity === 5 || recommendedCapacity === 6) && (
             <div>
-              <label className="block text-[11px] sm:text-xs font-bold text-[#374151] uppercase tracking-wider mb-2">
+              <span className="block text-[11px] sm:text-xs font-bold text-[#374151] uppercase tracking-wider mb-2">
                 Meter Connection Phase
-              </label>
+              </span>
               <div className="flex gap-2 bg-gray-50 p-1 rounded-xl border border-gray-200">
                 <button
                   type="button"
@@ -541,9 +541,9 @@ Email: ${formData.email}`;
           {/* 4. Solar Size Display */}
           <div>
             <div className="flex justify-between items-center mb-2">
-              <label className="block text-[11px] sm:text-xs font-bold text-[#374151] uppercase tracking-wider">
+              <span className="block text-[11px] sm:text-xs font-bold text-[#374151] uppercase tracking-wider">
                 Recommended Solar Plant Size
-              </label>
+              </span>
             </div>
             <div className="px-4 py-3 bg-[#0b7542] text-white rounded-xl shadow-md font-extrabold text-lg sm:text-xl flex justify-between items-center">
               <span>{recommendedCapacity} kW System</span>
@@ -554,9 +554,9 @@ Email: ${formData.email}`;
           {/* 5. Required Area */}
           <div>
             <div className="flex justify-between items-center mb-2">
-              <label className="font-bold text-xs sm:text-sm text-[#111827]">
+              <span className="font-bold text-xs sm:text-sm text-[#111827]">
                 Required Roof Area
-              </label>
+              </span>
             </div>
             <div className="flex items-center gap-2 bg-gray-50 border border-gray-300 rounded-lg px-4 py-3">
               <span className="text-lg sm:text-xl font-extrabold text-[#0b7542]">{recommendedCapacity * 64}</span>

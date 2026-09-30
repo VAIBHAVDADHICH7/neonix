@@ -306,7 +306,7 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
                 </div>
                 <div>
                   <div className="flex justify-between items-center mb-0.5">
-                    <label className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#374151]">
+                    <label htmlFor="modal-city" className="block text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#374151]">
                       City &amp; Pincode (RJ) <span className="text-red-500">*</span>
                     </label>
                     {touched.city && isCityValid && touched.pincode && isPincodeValid && (

@@ -390,7 +390,8 @@
                                   {
                                     "tag": "label",
                                     "attributes": {
-                                      "class": "fcp-label"
+                                      "class": "fcp-label",
+                                      "for": "fcp-city"
                                     },
                                     "children": [
                                       {
