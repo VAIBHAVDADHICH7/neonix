@@ -228,6 +228,7 @@ export default function Contact() {
                       id="inquiry-name"
                       type="text"
                       name="name"
+                      autoComplete="name"
                       required
                       value={formData.name}
                       onChange={handleInputChange}
@@ -255,6 +256,7 @@ export default function Contact() {
                       id="inquiry-phone"
                       type="tel"
                       name="phone"
+                      autoComplete="tel"
                       maxLength={10}
                       required
                       value={formData.phone}
@@ -286,6 +288,7 @@ export default function Contact() {
                       id="inquiry-email"
                       type="email"
                       name="email"
+                      autoComplete="email"
                       required
                       value={formData.email}
                       onChange={handleInputChange}
@@ -362,6 +365,7 @@ export default function Contact() {
                       id="inquiry-city"
                       type="text"
                       name="city"
+                      autoComplete="address-level2"
                       required
                       value={formData.city}
                       onChange={handleInputChange}
@@ -392,6 +396,7 @@ export default function Contact() {
                       id="inquiry-pincode"
                       type="text"
                       name="pincode"
+                      autoComplete="postal-code"
                       maxLength={6}
                       required
                       value={formData.pincode}
@@ -415,6 +420,7 @@ export default function Contact() {
                       id="inquiry-state"
                       type="text"
                       name="state"
+                      autoComplete="address-level1"
                       value="Rajasthan"
                       readOnly
                       aria-label="State (Fixed to Rajasthan)"

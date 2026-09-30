@@ -251,6 +251,7 @@ export default function HeroLeadForm({
             id="hero-state"
             type="text"
             name="state"
+            autoComplete="address-level1"
             value="Rajasthan"
             readOnly
             aria-label="State"
