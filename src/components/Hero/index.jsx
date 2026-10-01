@@ -25,7 +25,7 @@ export default function Hero({
   stats = DEFAULT_HERO_STATS,
   slides = DEFAULT_HERO_SLIDES,
   indicatorLabels = ['Plan', 'About', 'Mission', 'Vision'],
-  bgImage = '/images/8.webp',
+  bgImage = '/images/residential-solar.webp',
   leadFormTitle = 'Get Your Free Proposal',
   webhookUrl = 'https://hook.eu1.make.com/z14ylrq8mwzr9iu1vazvxwjhc3kwqu8r',
   showFormOnMobile = false,
@@ -206,7 +206,7 @@ export default function Hero({
   return (
     <section
       id="scrolly-hero"
-      className={`relative h-[380vh] w-full bg-[#070D1E] ${className}`}
+      className={`relative h-[380vh] w-full bg-[#F8FAFC] ${className}`}
       aria-label="Neonix Rooftop Solar Hero"
     >
       {/* ── STICKY VIEWPORT CONTAINER ── */}
@@ -249,7 +249,7 @@ export default function Hero({
                   <div
                     className={`${
                       showFormOnMobile ? 'flex justify-center' : 'hidden lg:flex justify-end'
-                    } w-full pointer-events-auto scrolly-transition transform translate-y-2 sm:translate-y-4 opacity-90`}
+                    } w-full pointer-events-auto scrolly-transition transform translate-y-2 sm:translate-y-4 opacity-95`}
                   >
                     <HeroLeadForm title={leadFormTitle} webhookUrl={webhookUrl} />
                   </div>

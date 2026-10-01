@@ -2,7 +2,7 @@ export const DEFAULT_HERO_SLIDES = [
   {
     id: 'slide-about',
     sectionTag: 'About Neonix',
-    tagColor: 'text-[#00BFA6]',
+    tagColor: 'text-[#0b7542]',
     title: 'Your Trusted Partner for Clean Solar Power.',
     description:
       'We help Indian families and businesses install high-quality rooftop solar systems with zero hassle, maximum bill savings, and 30+ year lifespan.',
@@ -11,13 +11,13 @@ export const DEFAULT_HERO_SLIDES = [
     personName: 'Neonix Engineers',
     personRole: 'MNRE Partner',
     badgeLabel: 'Tier-1 EPC',
-    badgeStyle: 'bg-[#0F9D58]/20 text-[#00BFA6] border-[#00BFA6]/25',
+    badgeStyle: 'bg-emerald-50 text-[#0b7542] border-emerald-200/90',
     reverse: false,
   },
   {
     id: 'slide-mission',
     sectionTag: 'Our Mission',
-    tagColor: 'text-[#00BFA6]',
+    tagColor: 'text-[#0b7542]',
     title: 'Solar for Every Home with PM Surya Ghar.',
     description:
       'Our goal is to help every family reduce electricity bills by 90%. We handle all government approvals and subsidy paperwork seamlessly.',
@@ -26,13 +26,13 @@ export const DEFAULT_HERO_SLIDES = [
     personName: 'Hemlata Sharma',
     personRole: 'Managing Director',
     badgeLabel: 'Leadership',
-    badgeStyle: 'bg-white/10 text-white border-white/15',
+    badgeStyle: 'bg-slate-100 text-slate-700 border-slate-200/90',
     reverse: true,
   },
   {
     id: 'slide-vision',
     sectionTag: 'Our Vision',
-    tagColor: 'text-[#F59E0B]',
+    tagColor: 'text-[#D97706]',
     title: 'Zero Electricity Bills for Everyone.',
     description:
       'We believe every roof can produce clean energy. With robust solar panels and proactive AMC, we ensure hassle-free power for 30 years.',
@@ -41,7 +41,7 @@ export const DEFAULT_HERO_SLIDES = [
     personName: 'Amit Kumar Sharma',
     personRole: 'Co-Founder & CEO',
     badgeLabel: 'Co-Founder',
-    badgeStyle: 'bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/25',
+    badgeStyle: 'bg-amber-50 text-[#B45309] border-amber-200/90',
     reverse: false,
   },
 ];

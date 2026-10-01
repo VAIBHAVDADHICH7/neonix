@@ -18,10 +18,10 @@ export default function HeroHeadline({
       {badgeText && <HeroBadge text={badgeText} />}
 
       {/* Main Headline */}
-      <h1 className="text-3xl sm:text-4xl lg:text-[3.5rem] font-black tracking-tight text-white leading-[1.1] sm:leading-[1.05]">
+      <h1 className="text-3xl sm:text-4xl lg:text-[3.5rem] font-black tracking-tight text-slate-900 leading-[1.1] sm:leading-[1.05]">
         {title}{' '}
         {highlightText && (
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00BFA6] via-[#22C55E] to-[#0F9D58] block sm:inline">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0b7542] via-[#0F9D58] to-[#0d8070] block sm:inline">
             {highlightText}
           </span>
         )}
@@ -33,7 +33,7 @@ export default function HeroHeadline({
           {trustChips.map((item) => (
             <span
               key={item}
-              className="text-[10px] sm:text-[11px] font-semibold text-white/90 bg-white/[0.08] border border-white/15 px-2.5 sm:px-3 py-1 rounded-full whitespace-nowrap shadow-sm backdrop-blur-sm"
+              className="text-[10px] sm:text-[11px] font-semibold text-slate-700 bg-white/85 border border-slate-200/90 px-2.5 sm:px-3 py-1 rounded-full whitespace-nowrap shadow-xs backdrop-blur-md hover:border-emerald-300 hover:text-emerald-800 transition-colors"
             >
               {item}
             </span>
@@ -43,7 +43,7 @@ export default function HeroHeadline({
 
       {/* Sub-headline */}
       {subtitle && (
-        <p className="text-xs sm:text-sm md:text-base text-gray-300 leading-relaxed max-w-md mx-auto lg:mx-0">
+        <p className="text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed max-w-md mx-auto lg:mx-0 font-normal">
           {subtitle}
         </p>
       )}
@@ -52,3 +52,4 @@ export default function HeroHeadline({
     </div>
   );
 }
+

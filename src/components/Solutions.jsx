@@ -92,6 +92,8 @@ export default function Solutions({ onSelectSolution }) {
               alt={sol.alt}
               loading="lazy"
               decoding="async"
+              width="1158"
+              height="868"
               className="absolute inset-0 w-full h-full object-cover object-center opacity-60 pointer-events-none"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/95 via-[#0F172A]/55 to-[#0F172A]/20" />
@@ -153,6 +155,8 @@ export default function Solutions({ onSelectSolution }) {
                   alt={sol.alt}
                   loading="lazy"
                   decoding="async"
+                  width="1158"
+                  height="868"
                   className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105 pointer-events-none"
                 />
                 <div className={`absolute inset-0 bg-gradient-to-t from-[#0F172A]/95 via-[#0F172A]/60 to-black/30 transition-opacity duration-500 ${isExpanded ? 'via-[#0F172A]/45' : 'group-hover:via-[#0F172A]/45'}`} />

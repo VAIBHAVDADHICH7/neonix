@@ -6,10 +6,10 @@ export default function HeroScrollIndicator({
 }) {
   return (
     <div
-      className={`relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between py-2 sm:py-3 mb-14 md:mb-0 pointer-events-none border-t border-white/[0.08] ${className}`}
+      className={`relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between py-2 sm:py-3 mb-14 md:mb-0 pointer-events-none border-t border-slate-200/80 ${className}`}
     >
       {exploreText && (
-        <span className="text-[10px] font-semibold text-gray-500 tracking-wide hidden sm:block">
+        <span className="text-[10px] font-semibold text-slate-500 tracking-wide hidden sm:block">
           {exploreText}
         </span>
       )}
@@ -17,10 +17,10 @@ export default function HeroScrollIndicator({
         {labels.map((label, idx) => (
           <span
             key={label}
-            className={`px-2 py-0.5 rounded-full transition-all text-[9px] font-bold ${
+            className={`px-2.5 py-0.5 rounded-full transition-all text-[9px] font-bold ${
               currentSlideIndex === idx
-                ? 'bg-[#00BFA6] text-[#070D1E]'
-                : 'bg-white/5 text-gray-500'
+                ? 'bg-[#0F9D58] text-white shadow-xs'
+                : 'bg-slate-200/70 text-slate-600'
             }`}
           >
             {String(idx + 1).padStart(2, '0')} {label}
@@ -30,3 +30,4 @@ export default function HeroScrollIndicator({
     </div>
   );
 }
+

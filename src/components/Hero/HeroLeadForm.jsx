@@ -104,37 +104,37 @@ export default function HeroLeadForm({
   };
 
   const inputClass = (invalid) =>
-    `w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl bg-white/[0.06] border text-xs sm:text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-[#00BFA6] transition-colors ${
-      invalid ? 'border-red-500/60' : 'border-white/10 focus:border-[#00BFA6]'
+    `w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl bg-slate-50/90 hover:bg-white focus:bg-white border text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0F9D58]/20 transition-all ${
+      invalid ? 'border-red-400 bg-red-50/20 focus:border-red-500' : 'border-slate-200 focus:border-[#0F9D58]'
     }`;
 
   return (
     <div
       id="hero-form-group"
-      className={`w-full max-w-md bg-[#0B132B]/85 backdrop-blur-xl border border-white/15 rounded-2xl p-4 sm:p-6 shadow-2xl ${className}`}
+      className={`w-full max-w-md bg-white/95 backdrop-blur-2xl border border-slate-200/90 rounded-2xl p-4 sm:p-6 shadow-[0_20px_50px_-10px_rgba(15,23,42,0.12)] ring-1 ring-slate-900/5 ${className}`}
     >
       <div className="flex items-center justify-between mb-3">
-        <h2 className="text-sm sm:text-lg font-bold text-white flex items-center gap-1.5">
-          <span className="text-[#00BFA6]">⚡</span> {title}
+        <h2 className="text-sm sm:text-lg font-extrabold text-slate-900 flex items-center gap-1.5">
+          <span className="text-[#0F9D58]">⚡</span> {title}
         </h2>
         {badgeText && (
-          <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+          <span className="text-[10px] font-bold text-[#0b7542] bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80 shadow-xs">
             {badgeText}
           </span>
         )}
       </div>
 
       {/* Real-time Estimated Savings Pill */}
-      <div className="flex items-center justify-between p-2 sm:p-2.5 rounded-xl bg-gradient-to-r from-emerald-950/50 to-teal-950/50 border border-emerald-500/30 text-xs mb-3">
-        <span className="text-gray-300 text-[11px] sm:text-xs">Est. Annual Savings:</span>
-        <span className="font-extrabold text-[#00BFA6] text-xs sm:text-sm">
+      <div className="flex items-center justify-between p-2 sm:p-2.5 rounded-xl bg-gradient-to-r from-emerald-50/90 to-teal-50/90 border border-emerald-200/80 text-xs mb-3 shadow-xs">
+        <span className="text-slate-600 font-medium text-[11px] sm:text-xs">Est. Annual Savings:</span>
+        <span className="font-extrabold text-[#0b7542] text-xs sm:text-sm">
           ₹{estimatedYearlySavings.toLocaleString('en-IN')}/yr
         </span>
       </div>
 
       {submitSuccess && (
         <div
-          className="mb-3 p-3 bg-[#0B7542]/25 border border-[#0B7542]/60 text-[#00BFA6] rounded-xl text-xs font-semibold"
+          className="mb-3 p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-xl text-xs font-semibold"
           role="status"
         >
           ✓ Thank you! Our certified solar engineer will call you shortly.
@@ -142,7 +142,7 @@ export default function HeroLeadForm({
       )}
       {submitError && (
         <div
-          className="mb-3 p-3 bg-red-500/15 border border-red-500/40 text-red-300 rounded-xl text-xs"
+          className="mb-3 p-3 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs font-semibold"
           role="alert"
         >
           Something went wrong. Please call +91 99100 00774.
@@ -151,7 +151,7 @@ export default function HeroLeadForm({
 
       <form onSubmit={handleQuickLeadSubmit} noValidate className="space-y-2 sm:space-y-2.5">
         {/* Connection Type Toggle */}
-        <div className="grid grid-cols-2 gap-1.5 p-1 bg-black/40 rounded-xl border border-white/[0.08]">
+        <div className="grid grid-cols-2 gap-1.5 p-1 bg-slate-100 rounded-xl border border-slate-200/70">
           {['Residential', 'Commercial'].map((type) => (
             <button
               key={type}
@@ -159,8 +159,8 @@ export default function HeroLeadForm({
               onClick={() => setFormData((prev) => ({ ...prev, connection_type: type }))}
               className={`py-1.5 px-2.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 formData.connection_type === type
-                  ? 'bg-[#0F9D58] text-white shadow-sm'
-                  : 'text-gray-300 hover:text-white'
+                  ? 'bg-[#0F9D58] text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               {type === 'Residential' ? '🏡 Home / Resi' : '🏢 Business'}
@@ -255,7 +255,7 @@ export default function HeroLeadForm({
             value="Rajasthan"
             readOnly
             aria-label="State"
-            className="w-full px-3 py-2.5 sm:px-3.5 sm:py-3 rounded-xl bg-white/[0.04] border border-white/10 text-xs sm:text-sm text-gray-300 cursor-not-allowed font-medium focus:outline-none"
+            className="w-full px-3 py-2.5 sm:px-3.5 sm:py-3 rounded-xl bg-slate-100 border border-slate-200 text-xs sm:text-sm text-slate-500 cursor-not-allowed font-medium focus:outline-none"
           />
           <input
             id="hero-monthly-bill"
@@ -275,14 +275,15 @@ export default function HeroLeadForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-[#0F9D58] hover:bg-[#0c8248] active:bg-[#096636] text-white font-extrabold text-xs sm:text-sm py-3 sm:py-3.5 rounded-xl uppercase tracking-wider transition-all shadow-md disabled:opacity-50 cursor-pointer min-h-[46px] shimmer-btn"
+          className="w-full bg-[#0F9D58] hover:bg-[#0c8248] active:bg-[#096636] text-white font-extrabold text-xs sm:text-sm py-3.5 rounded-xl uppercase tracking-wider transition-all shadow-[0_6px_20px_-3px_rgba(15,157,88,0.35)] hover:shadow-[0_10px_24px_-3px_rgba(15,157,88,0.45)] disabled:opacity-50 cursor-pointer min-h-[48px] shimmer-btn"
         >
           {isSubmitting ? 'Submitting...' : 'Check My Savings & Subsidy →'}
         </button>
-        <p className="text-[10px] text-center text-gray-400 mt-1">
-          🔒 100% Privacy Protected • Zero Spam
+        <p className="text-[10px] sm:text-[11px] text-center text-slate-500 mt-1 flex items-center justify-center gap-1">
+          <span>🔒</span> 100% Privacy Protected • Zero Spam
         </p>
       </form>
     </div>
   );
 }
+

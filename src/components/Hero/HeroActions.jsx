@@ -21,17 +21,18 @@ export default function HeroActions({
       <button
         type="button"
         onClick={() => onOpenConsultation && onOpenConsultation()}
-        className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-[#0F9D58] hover:bg-[#0c8248] active:bg-[#096636] text-white font-extrabold text-xs sm:text-sm px-5 sm:px-6 py-3 rounded-xl shadow-lg transition-all cursor-pointer min-h-[46px] shimmer-btn"
+        className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-[#0F9D58] hover:bg-[#0c8248] active:bg-[#096636] text-white font-extrabold text-xs sm:text-sm px-5 sm:px-6 py-3.5 rounded-xl shadow-[0_6px_20px_-3px_rgba(15,157,88,0.35)] hover:shadow-[0_10px_24px_-3px_rgba(15,157,88,0.45)] transition-all cursor-pointer min-h-[48px] shimmer-btn transform hover:-translate-y-0.5"
       >
         <span>{primaryText}</span>
       </button>
       <button
         type="button"
         onClick={handleScrollToCalculator}
-        className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-white/[0.08] hover:bg-white/[0.14] active:bg-white/[0.18] border border-white/20 text-white font-semibold text-xs sm:text-sm px-5 sm:px-6 py-3 rounded-xl transition-all cursor-pointer min-h-[46px]"
+        className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-white hover:bg-slate-50 active:bg-slate-100 border border-slate-200/90 text-slate-800 hover:text-emerald-700 font-bold text-xs sm:text-sm px-5 sm:px-6 py-3.5 rounded-xl shadow-xs hover:shadow transition-all cursor-pointer min-h-[48px] transform hover:-translate-y-0.5"
       >
         <span>{secondaryText}</span>
       </button>
     </div>
   );
 }
+
