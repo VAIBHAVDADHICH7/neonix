@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ConsultationModal from './components/ConsultationModal';
 import Solutions from './components/Solutions';
+import WhySolar from './components/WhySolar';
 import SavingsHub from './components/SavingsHub';
 import Testimonials from './components/Testimonials';
 import TrustSignals from './components/TrustSignals';
@@ -15,7 +16,7 @@ import MobileActionBar from './components/MobileActionBar';
 
 function App() {
   const [modalState, setModalState] = useState({
-    isOpen: false,
+    isOpen: true,
     initialData: null,
   });
 
@@ -127,6 +128,9 @@ function App() {
 
         {/* Step 1 of 4: What do you offer? */}
         <Solutions onSelectSolution={(sol) => handleOpenConsultation({ connectionType: sol })} />
+
+        {/* Why Solar: Top 10 High-Impact Benefits */}
+        <WhySolar />
 
         {/* Step 2 of 4: How much can I save? (Consolidated Hub: Bill Slider + Govt Subsidy + Roof Quiz) */}
         <SavingsHub onOpenConsultation={handleOpenConsultation} />
