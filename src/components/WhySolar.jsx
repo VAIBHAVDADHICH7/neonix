@@ -4,66 +4,166 @@ export default function WhySolar() {
   const pillars = [
     {
       id: 'bills',
-      tag: 'Immediate Relief',
-      badgeColor: '#0b7542',
-      metric: 'Up to 90%',
-      metricLabel: 'Monthly Bill Reduction',
-      title: 'Slash Your Electricity Bills to Near Zero',
+      theme: 'emerald',
+      tag: 'Direct Savings',
+      badgeBg: 'bg-emerald-500/10 text-emerald-800 border-emerald-500/25',
+      glowColor: 'rgba(15, 157, 88, 0.16)',
+      accentColor: '#0F9D58',
+      title: 'Slash Your Monthly Bill by Up to 90%',
+      subtitle: 'Free daytime power for ACs, water heaters & heavy home loads.',
       description:
-        'Say goodbye to stinging monthly electricity bills. Run air conditioners, refrigerators, and heavy appliances completely guilt-free during peak daylight hours on your own clean solar power.',
-      highlight: 'Save ₹50,000 to ₹1.8+ Lakhs every year',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
+        'Instead of paying expensive DISCOM grid tariffs that rise every single year, your rooftop captures abundant sunlight and powers your high-consumption appliances for zero running cost.',
+      // Visual mini-component
+      visual: (
+        <div className="mt-5 p-4 rounded-2xl bg-gradient-to-br from-slate-900 via-[#0B132B] to-slate-950 text-white border border-slate-800 shadow-inner">
+          <div className="flex items-center justify-between text-[11px] text-slate-400 mb-2">
+            <span>Monthly Grid Transformation</span>
+            <span className="text-emerald-400 font-bold font-mono">92% Net Reduction</span>
+          </div>
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex-1 p-2.5 rounded-xl bg-white/5 border border-white/10 text-center">
+              <span className="text-[10px] text-rose-300 block uppercase font-mono">Old Grid Bill</span>
+              <span className="text-base sm:text-lg font-black text-rose-400 line-through">₹6,500</span>
+              <span className="text-[9px] text-slate-400 block mt-0.5">Every single month</span>
+            </div>
+            <div className="text-emerald-400 font-black text-lg">➔</div>
+            <div className="flex-1 p-2.5 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-center shadow-[0_0_15px_rgba(15,157,88,0.2)]">
+              <span className="text-[10px] text-emerald-300 block uppercase font-mono font-bold">New Solar Bill</span>
+              <span className="text-base sm:text-lg font-black text-[#00BFA6]">₹250</span>
+              <span className="text-[9px] text-emerald-300/80 block mt-0.5">Fixed DISCOM charge</span>
+            </div>
+          </div>
+          <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-[11px]">
+            <span className="text-slate-300">Annual Cash Kept in Pocket:</span>
+            <span className="font-black text-[#00BFA6] font-mono text-xs">+₹75,000 / Year</span>
+          </div>
+        </div>
       ),
+      takeaway: 'Save ₹50,000 to ₹1.8+ Lakhs year after year',
     },
     {
       id: 'subsidy',
+      theme: 'amber',
       tag: 'Govt. Sponsored',
-      badgeColor: '#D97706',
-      metric: '₹78,000',
-      metricLabel: 'Direct Bank Transfer (DBT)',
-      title: 'Get Up to ₹78,000 Direct Cash Subsidy',
+      badgeBg: 'bg-amber-500/10 text-amber-800 border-amber-500/25',
+      glowColor: 'rgba(217, 119, 6, 0.16)',
+      accentColor: '#D97706',
+      title: 'Get Up to ₹78,000 Direct Bank Subsidy',
+      subtitle: 'PM Surya Ghar DBT transfer straight into your bank account.',
       description:
-        'Under the PM Surya Ghar Muft Bijli Yojana, eligible homes receive direct government cash transfers straight into their bank account. Best of all, Neonix handles 100% of the DISCOM paperwork for you.',
-      highlight: 'Full national portal & net-meter liaison included',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-        </svg>
+        'The Central Government funds a massive portion of your rooftop system. Neonix handles 100% of the DISCOM technical inspection, national portal paperwork, and net-meter approvals.',
+      // Visual mini-component
+      visual: (
+        <div className="mt-5 p-4 rounded-2xl bg-gradient-to-br from-slate-900 via-[#131109] to-slate-950 text-white border border-amber-900/40 shadow-inner">
+          <div className="flex items-center justify-between text-[11px] text-amber-300/80 mb-2">
+            <span className="flex items-center gap-1.5 font-bold">
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+              PM Surya Ghar National Portal
+            </span>
+            <span className="text-[10px] font-mono text-slate-400">Direct DBT Transfer</span>
+          </div>
+          <div className="p-3 rounded-xl bg-amber-950/40 border border-amber-500/30 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-base">
+                🏛️
+              </div>
+              <div>
+                <p className="text-xs font-bold text-white leading-tight">Ministry of New & Renewable Energy</p>
+                <p className="text-[10px] text-slate-400">Direct Benefit Transfer (DBT)</p>
+              </div>
+            </div>
+            <div className="text-right">
+              <span className="text-[10px] uppercase font-mono text-emerald-400 font-bold block">Approved</span>
+              <span className="text-base font-black text-amber-400 font-mono">+₹78,000</span>
+            </div>
+          </div>
+          <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-[11px]">
+            <span className="text-slate-300">Your Paperwork Effort:</span>
+            <span className="font-bold text-emerald-400">Zero (Handled by Neonix)</span>
+          </div>
+        </div>
       ),
+      takeaway: 'Credited directly to your bank within 30 days',
     },
     {
       id: 'returns',
+      theme: 'teal',
       tag: 'High-Yield Asset',
-      badgeColor: '#00BFA6',
-      metric: '28%+ IRR',
-      metricLabel: 'Tax-Free Annual Return',
+      badgeBg: 'bg-teal-500/10 text-teal-800 border-teal-500/25',
+      glowColor: 'rgba(0, 191, 166, 0.16)',
+      accentColor: '#00BFA6',
       title: 'Pay Off in ~3 Years, Enjoy 20+ Years Free',
+      subtitle: '28%+ tax-free return on capital that beats FDs and Mutual Funds.',
       description:
-        'Solar easily outperforms Fixed Deposits (7%) and Mutual Funds (12%) with a 28%+ tax-free return through avoided expenses. Once your system pays for itself in ~3.5 years, electricity is 100% free profit.',
-      highlight: 'Over two decades of pure financial upside',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-        </svg>
+        'Instead of investing money into market-volatile stocks or low-yielding FDs, solar delivers immediate monthly cashflow through power bill avoidance. After year 3, it is 100% free profit.',
+      // Visual mini-component
+      visual: (
+        <div className="mt-5 p-4 rounded-2xl bg-gradient-to-br from-slate-900 via-[#071918] to-slate-950 text-white border border-teal-900/40 shadow-inner">
+          <div className="flex items-center justify-between text-[11px] text-slate-300 mb-2">
+            <span>25-Year Lifecycle Cashflow</span>
+            <span className="text-[#00BFA6] font-bold font-mono">28.5% Annualized IRR</span>
+          </div>
+          {/* Progress bar timeline */}
+          <div className="space-y-1.5">
+            <div className="h-3 rounded-full bg-slate-800 flex overflow-hidden p-0.5 border border-slate-700">
+              <div className="w-[18%] bg-amber-400 rounded-l-full" title="Payback Phase (3.5 Years)" />
+              <div className="w-[82%] bg-gradient-to-r from-[#0F9D58] to-[#00BFA6] rounded-r-full" title="Free Electricity Era (21.5 Years)" />
+            </div>
+            <div className="flex justify-between text-[10px] font-mono text-slate-400">
+              <span className="text-amber-300 font-bold">Years 0–3.5 (Payback)</span>
+              <span className="text-[#00BFA6] font-bold">Years 4–25+ (100% Free Power)</span>
+            </div>
+          </div>
+          <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-[11px]">
+            <span className="text-slate-300">25-Yr Lifetime Wealth Created:</span>
+            <span className="font-black text-amber-400 font-mono text-xs">+₹15,00,000+</span>
+          </div>
+        </div>
       ),
+      takeaway: 'Outperforms Bank FDs (7%) & Nifty Index (12%)',
     },
     {
-      id: 'peace-of-mind',
+      id: 'durability',
+      theme: 'blue',
       tag: 'Zero Daily Hassle',
-      badgeColor: '#0b7542',
-      metric: '30+ Years',
-      metricLabel: 'Engineered Lifespan',
+      badgeBg: 'bg-blue-500/10 text-blue-800 border-blue-500/25',
+      glowColor: 'rgba(59, 130, 246, 0.16)',
+      accentColor: '#3B82F6',
+      title: '30+ Years Lifespan with Total Peace of Mind',
+      subtitle: 'Tier-1 Bifacial panels engineered for intense Indian summers.',
       description:
-        'Crafted with Tier-1 hail-proof tempered glass and rust-proof aluminum structures. No moving parts mean zero daily maintenance—just periodic water rinsing and real-time generation tracking on your phone.',
-      highlight: '25-Year performance warranty & live mobile app',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
+        'With zero moving parts, hail-resistant tempered glass, and rust-proof aluminum structures, your system works quietly year-round. Track daily unit generation live on your phone anytime.',
+      // Visual mini-component
+      visual: (
+        <div className="mt-5 p-4 rounded-2xl bg-gradient-to-br from-slate-900 via-[#0a1426] to-slate-950 text-white border border-blue-900/40 shadow-inner">
+          <div className="flex items-center justify-between text-[11px] text-slate-300 mb-2">
+            <span className="flex items-center gap-1.5 text-blue-300 font-bold">
+              <span className="w-2 h-2 rounded-full bg-blue-400" />
+              Live IoT Mobile Telemetry
+            </span>
+            <span className="text-emerald-400 font-mono text-[10px]">● System Healthy</span>
+          </div>
+          <div className="grid grid-cols-3 gap-2 text-center">
+            <div className="p-2 rounded-xl bg-white/5 border border-white/10">
+              <span className="text-[10px] text-slate-400 block font-mono">Today's Yield</span>
+              <span className="text-sm font-black text-white font-mono">24.8 kWh</span>
+            </div>
+            <div className="p-2 rounded-xl bg-white/5 border border-white/10">
+              <span className="text-[10px] text-slate-400 block font-mono">Peak Power</span>
+              <span className="text-sm font-black text-[#00BFA6] font-mono">5.2 kW</span>
+            </div>
+            <div className="p-2 rounded-xl bg-white/5 border border-white/10">
+              <span className="text-[10px] text-slate-400 block font-mono">Inverter Eff.</span>
+              <span className="text-sm font-black text-amber-400 font-mono">98.6%</span>
+            </div>
+          </div>
+          <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-[11px]">
+            <span className="text-slate-300">Warranty Coverage:</span>
+            <span className="font-bold text-blue-300">25 Years Linear Performance</span>
+          </div>
+        </div>
       ),
+      takeaway: 'Hail-proof glass, IP68 rated, 24/7 mobile sync',
     },
   ];
 
@@ -76,115 +176,109 @@ export default function WhySolar() {
     <section
       id="why-solar"
       className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative bg-[#F8FAFC] border-t border-slate-200/80"
-      aria-label="Why Choose Solar"
+      aria-label="Why Solar Benefits and Advantages"
     >
       {/* ── HEADER ── */}
       <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 reveal-up">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0b7542]/10 border border-[#0b7542]/25 mb-3.5">
-          <span className="w-2 h-2 rounded-full bg-[#0F9D58]" aria-hidden="true" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0b7542]/10 border border-[#0b7542]/25 mb-3.5 shadow-xs">
+          <span className="w-2 h-2 rounded-full bg-[#0F9D58] animate-pulse" aria-hidden="true" />
           <span className="text-xs font-bold uppercase tracking-wider text-[#0b7542]">
-            Why Go Solar
+            The Solar Advantage
           </span>
         </div>
 
         <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
-          Four Powerful Reasons That Make <br className="hidden sm:inline" />
+          Four Clear Reasons Why Solar is <br className="hidden sm:inline" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0b7542] via-[#0F9D58] to-[#00BFA6]">
-            Solar a Complete No-Brainer
+            The Smartest Investment in 2026
           </span>
         </h2>
 
         <p className="text-slate-600 text-xs sm:text-base md:text-lg mt-3.5 font-normal max-w-2xl mx-auto leading-relaxed">
-          Forget complicated jargon. Here is what switching to rooftop solar actually delivers for your home, your family, and your wallet.
+          Tangible monthly savings, guaranteed government support, and 25+ years of worry-free clean power for your roof.
         </p>
       </div>
 
-      {/* ── 4 SATISFYING PILLARS (2x2 Grid) ── */}
+      {/* ── 4 ATTRACTIVE FEATURE PRESENTATION CARDS (2x2 Grid) ── */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-        {pillars.map((p) => (
+        {pillars.map((pillar) => (
           <SpotlightCard
-            key={p.id}
-            className="reveal-up bg-white rounded-3xl p-6 sm:p-8 lg:p-9 border border-slate-200 shadow-sm hover:shadow-xl hover:border-[#0F9D58]/50 transition-all duration-300 flex flex-col justify-between group"
-            spotlightColor="rgba(15, 157, 88, 0.08)"
+            key={pillar.id}
+            className="reveal-up bg-white rounded-3xl p-6 sm:p-8 lg:p-9 border border-slate-200 shadow-md hover:shadow-2xl hover:border-slate-300 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
+            spotlightColor={pillar.glowColor}
           >
             <div>
-              {/* Top Row: Icon + Badge + Metric */}
-              <div className="flex items-center justify-between gap-4 mb-5">
-                <div
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-110 shadow-xs"
-                  style={{ backgroundColor: `${p.badgeColor}15`, color: p.badgeColor }}
-                >
-                  {p.icon}
-                </div>
-
-                <div className="text-right">
-                  <span
-                    className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-white inline-block mb-1"
-                    style={{ backgroundColor: p.badgeColor }}
-                  >
-                    {p.tag}
-                  </span>
-                  <div className="text-base sm:text-xl font-black text-slate-900 leading-none">
-                    {p.metric}
-                  </div>
-                  <span className="text-[10px] text-slate-400 font-medium">
-                    {p.metricLabel}
-                  </span>
-                </div>
+              {/* Badge & Tag */}
+              <div className="flex items-center justify-between mb-4">
+                <span className={`text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border ${pillar.badgeBg}`}>
+                  {pillar.tag}
+                </span>
+                <span className="text-xs font-mono font-bold text-slate-400 group-hover:text-slate-700 transition-colors">
+                  Benefit #{pillars.indexOf(pillar) + 1}
+                </span>
               </div>
 
-              {/* Title */}
-              <h3 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-[#0b7542] transition-colors leading-snug mb-2.5">
-                {p.title}
+              {/* Title & Subtitle */}
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 leading-tight mb-1.5 group-hover:text-[#0b7542] transition-colors">
+                {pillar.title}
               </h3>
+              <p className="text-xs sm:text-sm font-semibold text-slate-500 mb-3">
+                {pillar.subtitle}
+              </p>
 
               {/* Description */}
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-5">
-                {p.description}
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                {pillar.description}
               </p>
+
+              {/* Visual Micro-Demonstration Widget */}
+              {pillar.visual}
             </div>
 
             {/* Bottom Satisfying Takeaway Chip */}
-            <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+            <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
               <span className="flex items-center gap-1.5 font-bold text-slate-800">
-                <span className="text-emerald-600">✓</span> {p.highlight}
+                <span className="text-emerald-600">✓</span> {pillar.takeaway}
               </span>
-              <span className="text-slate-400 group-hover:text-emerald-700 transition-colors font-bold text-xs">
-                Learn how →
-              </span>
+              <button
+                type="button"
+                onClick={handleScrollToSavings}
+                className="text-emerald-700 group-hover:text-emerald-800 font-extrabold hover:underline cursor-pointer flex items-center gap-1"
+              >
+                <span>Calculate</span>
+                <span aria-hidden="true">→</span>
+              </button>
             </div>
           </SpotlightCard>
         ))}
       </div>
 
-      {/* ── SATISFYING SUMMARY STRIP & ACTION ── */}
-      <div className="mt-10 sm:mt-12 bg-slate-900 text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-6">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full lg:w-auto text-center lg:text-left divide-y sm:divide-y-0 sm:divide-x divide-slate-800">
-          <div className="sm:pr-6">
-            <p className="text-2xl sm:text-3xl font-black text-[#00BFA6]">₹78,000</p>
-            <p className="text-xs text-slate-400 mt-1">Direct Govt. Subsidy</p>
-          </div>
-          <div className="pt-4 sm:pt-0 sm:px-6">
-            <p className="text-2xl sm:text-3xl font-black text-[#0F9D58]">90%</p>
-            <p className="text-xs text-slate-400 mt-1">Average Bill Drop</p>
-          </div>
-          <div className="pt-4 sm:pt-0 sm:px-6">
-            <p className="text-2xl sm:text-3xl font-black text-amber-400">3.5 Years</p>
-            <p className="text-xs text-slate-400 mt-1">Full Payback Period</p>
-          </div>
-          <div className="pt-4 sm:pt-0 sm:pl-6">
-            <p className="text-2xl sm:text-3xl font-black text-white">25+ Years</p>
-            <p className="text-xs text-slate-400 mt-1">Free Electricity Era</p>
-          </div>
-        </div>
+      {/* ── ATTRACTIVE BOTTOM CONVERSION BANNER ── */}
+      <div className="mt-10 sm:mt-14 relative rounded-3xl overflow-hidden bg-gradient-to-r from-slate-900 via-[#0B132B] to-slate-900 border border-slate-700/60 p-6 sm:p-9 shadow-2xl text-white">
+        <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#00BFA6]/10 rounded-full blur-3xl pointer-events-none" />
 
-        <button
-          type="button"
-          onClick={handleScrollToSavings}
-          className="w-full lg:w-auto shrink-0 bg-[#0F9D58] hover:bg-[#0c8248] active:bg-[#096636] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider px-6 sm:px-8 py-3.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer shimmer-btn"
-        >
-          See Your Exact Savings Below ↓
-        </button>
+        <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
+          <div className="space-y-2 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 text-xs font-bold text-[#00BFA6] uppercase tracking-wider">
+              <span>⚡</span> Ready to stop paying high electricity bills?
+            </div>
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white leading-tight">
+              See What Your Roof Can Save in 60 Seconds
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
+              Use our interactive bill slider below to calculate your system size, PM Surya Ghar subsidy amount, and 25-year wealth generation.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={handleScrollToSavings}
+            className="w-full lg:w-auto shrink-0 bg-[#0F9D58] hover:bg-[#0c8248] active:bg-[#096636] text-white font-black text-xs sm:text-sm uppercase tracking-wider px-8 py-4 rounded-xl shadow-[0_10px_25px_rgba(15,157,88,0.4)] transition-all transform hover:-translate-y-0.5 cursor-pointer shimmer-btn"
+          >
+            Calculate Your Savings Below ↓
+          </button>
+        </div>
       </div>
     </section>
   );
