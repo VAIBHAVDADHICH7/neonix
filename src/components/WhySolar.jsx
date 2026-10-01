@@ -2,266 +2,356 @@ import { useState } from 'react';
 import SpotlightCard from './UI/SpotlightCard';
 
 export default function WhySolar() {
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [selectedAudience, setSelectedAudience] = useState('residential'); // 'residential' | 'commercial'
+  const [comparisonYear, setComparisonYear] = useState(10); // 5, 10, 20 years
 
-  const categories = [
-    { id: 'all', label: 'All Benefits' },
-    { id: 'financial', label: '💰 Financial & Savings' },
-    { id: 'technology', label: '⚡ Durability & Tech' },
-    { id: 'green', label: '🌱 Green Impact' },
-  ];
-
-  const benefits = [
-    {
-      category: 'financial',
-      badge: 'Up to 90% Off',
-      badgeColor: '#0b7542',
-      title: 'Drastic Electricity Bill Reduction',
-      metric: '90% Drop',
-      metricLabel: 'Monthly Bill',
-      description: 'Neutralize heavy power expenses. Power air conditioners, refrigerators, pumps, and everyday appliances with free solar electricity generated right on your roof.',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
-    },
-    {
-      category: 'financial',
-      badge: 'PM Surya Ghar',
-      badgeColor: '#D97706',
-      title: 'Up to ₹78,000 Direct Govt. Subsidy',
-      metric: '₹78,000',
-      metricLabel: 'Direct Bank Transfer',
-      description: 'Under the Central Government PM Surya Ghar Muft Bijli Yojana, eligible residential rooftop installations receive direct cash subsidies transferred straight to your bank account.',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-        </svg>
-      ),
-    },
-    {
-      category: 'financial',
-      badge: 'Fast Payback',
-      badgeColor: '#0d8070',
-      title: 'Quick 3 to 4-Year Breakeven',
-      metric: '3-4 Yrs',
-      metricLabel: 'Full ROI Period',
-      description: 'Rooftop solar systems in India generate annualized returns of 25% to 30%. Once paid off in 3 to 4 years, all electricity for the next 20+ years is essentially 100% free.',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-        </svg>
-      ),
-    },
-    {
-      category: 'financial',
-      badge: 'Tariff Shield',
-      badgeColor: '#0b7542',
-      title: 'Immunity from Annual Grid Price Hikes',
-      metric: '5-7% Yearly',
-      metricLabel: 'Grid Hike Protection',
-      description: 'DISCOM electricity tariffs rise by 5% to 7% every single year. Solar locks in your energy cost at virtually zero, shielding your family and business for decades.',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
-      ),
-    },
-    {
-      category: 'technology',
-      badge: 'Smart Net Meter',
-      badgeColor: '#00BFA6',
-      title: 'Monetize Surplus Power (Net Metering)',
-      metric: 'Bi-Directional',
-      metricLabel: 'DISCOM Credit Sync',
-      description: 'Generate more power than you use during peak daylight? Your bidirectional net-meter exports surplus units to the power grid, accumulating billing credits for nighttime use.',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-        </svg>
-      ),
-    },
-    {
-      category: 'technology',
-      badge: 'Tier-1 Reliability',
-      badgeColor: '#0b7542',
-      title: '30+ Years Long-Life Technology',
-      metric: '30+ Years',
-      metricLabel: 'Engineered Lifespan',
-      description: 'Manufactured with high-efficiency Mono PERC Bifacial cells, rust-proof anodized aluminum mounts, and tempered hail-resistant glass. Zero moving parts ensure minimal wear.',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-        </svg>
-      ),
-    },
-    {
-      category: 'financial',
-      badge: 'Commercial Tax Perk',
-      badgeColor: '#D97706',
-      title: '40% Accelerated Tax Depreciation',
-      metric: '40% Write-Off',
-      metricLabel: 'Year 1 Tax Relief',
-      description: 'Commercial businesses, offices, and factories can write off 40% of the total solar capital expenditure in the very first year, dramatically lowering income tax liability.',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l4-2 4 2 4-2 4 2z" />
-        </svg>
-      ),
-    },
-    {
-      category: 'technology',
-      badge: 'Live IoT App',
-      badgeColor: '#0b7542',
-      title: 'Real-Time Phone Telemetry & Monitoring',
-      metric: '24/7 Mobile',
-      metricLabel: 'WiFi & App Tracking',
-      description: 'Track daily electricity generated, peak solar production curve, carbon saved, and instant rupee savings directly on your smartphone through our companion app.',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-        </svg>
-      ),
-    },
-    {
-      category: 'green',
-      badge: 'Eco-Champion',
-      badgeColor: '#0b7542',
-      title: 'Cut 100+ Tons of Carbon Emissions',
-      metric: '100+ Tons',
-      metricLabel: 'CO2 Offset / 25 Yrs',
-      description: 'A standard residential solar system offsets the carbon emission equivalent of planting over 1,500 mature trees, creating a healthier planet for your children.',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
-    },
-    {
-      category: 'financial',
-      badge: 'Higher Appraisal',
-      badgeColor: '#0d8070',
-      title: 'Appreciates Property & Resale Value',
-      metric: '+4% to 8%',
-      metricLabel: 'Real Estate Premium',
-      description: 'Homes and commercial buildings equipped with commissioned rooftop solar systems command higher market appraisal, attract premium tenants, and rent faster.',
-      icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-        </svg>
-      ),
-    },
-  ];
-
-  const filteredBenefits = activeCategory === 'all'
-    ? benefits
-    : benefits.filter((b) => b.category === activeCategory);
+  // Tariff inflation model (Grid starts at avg ₹8.50/kWh in India, inflating at 6% annually)
+  // Solar Levelized Cost of Energy (LCOE) is fixed at ~₹1.80/kWh amortized over 25 years
+  const initialTariff = selectedAudience === 'residential' ? 8.5 : 10.5;
+  const gridRateAtYear = (initialTariff * Math.pow(1.06, comparisonYear)).toFixed(2);
+  const solarLcoe = (1.85).toFixed(2);
+  const costSavingsMultiple = (gridRateAtYear / solarLcoe).toFixed(1);
 
   return (
     <section
       id="why-solar"
       className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative bg-[#F8FAFC] border-t border-slate-200/80"
-      aria-label="Why Solar Benefits and Advantages"
+      aria-label="Why Solar Economics and Engineering"
     >
-      {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 reveal-up">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0b7542]/10 border border-[#0b7542]/25 mb-3.5">
-          <span className="w-2 h-2 rounded-full bg-[#0F9D58] animate-pulse" aria-hidden="true" />
-          <span className="text-xs font-bold uppercase tracking-wider text-[#0b7542]">Why Choose Solar</span>
+      {/* ── HEADER ── */}
+      <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 reveal-up">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0b7542]/10 border border-[#0b7542]/25 mb-4 shadow-xs">
+          <span className="w-2 h-2 rounded-full bg-[#0F9D58] animate-ping" aria-hidden="true" />
+          <span className="text-xs font-bold uppercase tracking-wider text-[#0b7542]">
+            Energy Intelligence & Economics
+          </span>
         </div>
-        <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-          The Unmatched <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0b7542] via-[#0F9D58] to-[#00BFA6]">Benefits of Going Solar</span>
+        
+        <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
+          The Engineering & Financial Case for <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0b7542] via-[#0F9D58] to-[#00BFA6]">Going Solar</span>
         </h2>
-        <p className="text-slate-600 text-xs sm:text-base md:text-lg mt-3 font-normal max-w-2xl mx-auto">
-          Investing in rooftop solar isn't just about saving electricity—it is a guaranteed, government-supported financial asset that pays you back for 25+ years.
+        
+        <p className="text-slate-600 text-xs sm:text-base md:text-lg mt-3.5 font-normal max-w-2xl mx-auto leading-relaxed">
+          Rooftop solar isn't an expense—it is a guaranteed, low-risk infrastructure asset that delivers 25%–30% tax-free IRR while immunizing your property from compounding grid tariff hikes.
         </p>
 
-        {/* Category Filters */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              type="button"
-              onClick={() => setActiveCategory(cat.id)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                activeCategory === cat.id
-                  ? 'bg-slate-900 text-white shadow-md'
-                  : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
+        {/* Audience Toggle (Residential vs Commercial) */}
+        <div className="mt-8 inline-flex p-1.5 bg-slate-200/90 backdrop-blur-md rounded-2xl border border-slate-300 shadow-inner">
+          <button
+            type="button"
+            onClick={() => setSelectedAudience('residential')}
+            className={`flex items-center gap-2 px-5 sm:px-7 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
+              selectedAudience === 'residential'
+                ? 'bg-white text-slate-900 shadow-md'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <span>🏡 Residential Homes</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setSelectedAudience('commercial')}
+            className={`flex items-center gap-2 px-5 sm:px-7 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer ${
+              selectedAudience === 'commercial'
+                ? 'bg-white text-slate-900 shadow-md'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <span>🏢 Commercial & Industrial</span>
+          </button>
         </div>
       </div>
 
-      {/* Benefits Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-        {filteredBenefits.map((item) => (
-          <SpotlightCard
-            key={item.title}
-            className="reveal-up bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-[#0F9D58]/60 transition-all duration-300 flex flex-col justify-between group"
-            spotlightColor="rgba(15, 157, 88, 0.08)"
-          >
-            <div>
-              {/* Header: Icon & Badge */}
-              <div className="flex items-center justify-between gap-3 mb-4">
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-xs transition-transform group-hover:scale-110"
-                  style={{ backgroundColor: `${item.badgeColor}15`, color: item.badgeColor }}
-                >
-                  {item.icon}
-                </div>
-                <span
-                  className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full text-white"
-                  style={{ backgroundColor: item.badgeColor }}
-                >
-                  {item.badge}
-                </span>
+      {/* ── BENTO GRID ARCHITECTURE ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6">
+
+        {/* ── CARD 1: THE INFLATION HEDGE (5 or 7 Cols) ── */}
+        <SpotlightCard
+          className="lg:col-span-7 bg-[#0F172A] text-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-white/15 shadow-2xl relative flex flex-col justify-between"
+          spotlightColor="rgba(15, 157, 88, 0.2)"
+        >
+          <div>
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+              <span className="text-[11px] font-black uppercase tracking-wider text-[#00BFA6] bg-[#00BFA6]/15 px-3 py-1 rounded-full border border-[#00BFA6]/30">
+                Pillar 1 • The Tariff Shield
+              </span>
+              <span className="text-xs text-slate-400 font-mono">
+                Levelized Cost vs Grid Tariff
+              </span>
+            </div>
+
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 leading-tight">
+              Rent Power From the Grid Forever, or Own Your Energy at ₹1.85/kWh?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl">
+              DISCOM tariffs compound at 5%–7% annually in India due to coal costs and grid transmission losses. Solar locks your lifetime daytime electricity cost at a fixed amortized ₹1.85/unit.
+            </p>
+
+            {/* Interactive Timeline Selector */}
+            <div className="mt-6 p-4 rounded-2xl bg-white/5 border border-white/10">
+              <div className="flex items-center justify-between text-xs text-slate-300 mb-2">
+                <span>Select Projected Projection Horizon:</span>
+                <span className="font-bold text-[#00BFA6]">Year {comparisonYear}</span>
+              </div>
+              <div className="flex gap-2">
+                {[5, 10, 15, 20, 25].map((yr) => (
+                  <button
+                    key={yr}
+                    type="button"
+                    onClick={() => setComparisonYear(yr)}
+                    className={`flex-1 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                      comparisonYear === yr
+                        ? 'bg-[#0F9D58] text-white shadow-md'
+                        : 'bg-white/10 text-slate-300 hover:bg-white/20'
+                    }`}
+                  >
+                    Yr {yr}
+                  </button>
+                ))}
               </div>
 
-              {/* Title */}
-              <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0b7542] transition-colors leading-snug mb-2">
-                {item.title}
-              </h3>
+              {/* Real-time comparison metrics */}
+              <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-white/10 text-center sm:text-left">
+                <div>
+                  <span className="text-[10px] text-slate-400 uppercase tracking-wider block">Grid Tariff at Year {comparisonYear}</span>
+                  <span className="text-xl sm:text-2xl font-black text-rose-400">₹{gridRateAtYear} <span className="text-xs font-normal text-slate-400">/ kWh</span></span>
+                  <span className="text-[10px] text-rose-300/80 block mt-0.5">Includes compounding hikes</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-slate-400 uppercase tracking-wider block">Neonix Solar Fixed Cost</span>
+                  <span className="text-xl sm:text-2xl font-black text-[#00BFA6]">₹{solarLcoe} <span className="text-xs font-normal text-slate-400">/ kWh</span></span>
+                  <span className="text-[10px] text-emerald-300/80 block mt-0.5">Fixed 25-yr LCOE (Zero Hikes)</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-              {/* Description */}
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                {item.description}
-              </p>
+          <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-300">
+            <span className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#0F9D58]" />
+              <strong>{costSavingsMultiple}x Cheaper</strong> than grid power at Year {comparisonYear}
+            </span>
+            <span className="text-[#00BFA6] font-mono text-[11px]">Formula: LCOE = Capex ÷ 25-Yr Yield</span>
+          </div>
+        </SpotlightCard>
+
+        {/* ── CARD 2: FINANCIAL RETURNS COMPARISON (5 Cols) ── */}
+        <SpotlightCard
+          className="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xl flex flex-col justify-between"
+          spotlightColor="rgba(15, 157, 88, 0.08)"
+        >
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-[11px] font-black uppercase tracking-wider text-[#0b7542] bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                Pillar 2 • Superior Asset Returns
+              </span>
+              <span className="text-xs font-bold text-emerald-700">Tax-Free IRR</span>
             </div>
 
-            {/* Bottom Highlight Metric */}
-            <div className="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
-              <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-                {item.metricLabel}
-              </span>
-              <span className="text-sm font-black text-[#0b7542]">
-                {item.metric}
-              </span>
+            <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2">
+              Solar Crushes Traditional Asset Classes in India
+            </h3>
+            <p className="text-xs text-slate-600 mb-5 leading-relaxed">
+              Unlike mutual funds or gold subject to market swings, rooftop solar provides a direct, predictable reduction in living or operating expenditure.
+            </p>
+
+            {/* Asset Benchmark Chart */}
+            <div className="space-y-3">
+              <div>
+                <div className="flex justify-between text-xs font-bold mb-1">
+                  <span className="text-[#0b7542] flex items-center gap-1.5">
+                    <span>⚡</span> Neonix Rooftop Solar
+                  </span>
+                  <span className="text-[#0b7542] font-black">28.5% IRR (Tax-Free)</span>
+                </div>
+                <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
+                  <div className="bg-gradient-to-r from-[#0b7542] to-[#00BFA6] h-3 rounded-full w-[95%]" />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between text-xs text-slate-600 mb-1">
+                  <span>📈 Nifty 50 Index (Long Term)</span>
+                  <span className="font-semibold text-slate-800">~12.5% (Pre-Tax)</span>
+                </div>
+                <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+                  <div className="bg-slate-400 h-2 rounded-full w-[42%]" />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between text-xs text-slate-600 mb-1">
+                  <span>🏦 Bank Fixed Deposit (FD)</span>
+                  <span className="font-semibold text-slate-800">~7.0% (Taxable)</span>
+                </div>
+                <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+                  <div className="bg-slate-300 h-2 rounded-full w-[24%]" />
+                </div>
+              </div>
             </div>
-          </SpotlightCard>
-        ))}
+          </div>
+
+          <div className="mt-6 pt-4 border-t border-slate-100 bg-emerald-50/60 p-3.5 rounded-xl border border-emerald-100 text-xs text-emerald-900 flex items-center justify-between">
+            <span>Payback Period: <strong>3.2 – 3.8 Years</strong></span>
+            <span>Free Power Era: <strong>21+ Years</strong></span>
+          </div>
+        </SpotlightCard>
+
+        {/* ── CARD 3: BI-DIRECTIONAL NET-METERING PHYSICS (4 Cols) ── */}
+        <SpotlightCard
+          className="lg:col-span-4 bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm flex flex-col justify-between"
+          spotlightColor="rgba(15, 157, 88, 0.08)"
+        >
+          <div>
+            <div className="w-11 h-11 rounded-xl bg-[#00BFA6]/15 text-[#0d8070] flex items-center justify-center font-bold text-xl mb-4">
+              ⇄
+            </div>
+            <span className="text-[10px] font-black uppercase tracking-wider text-[#0d8070] block mb-1">
+              Bi-Directional Net Metering
+            </span>
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2">
+              Turn Your Rooftop into a Micro Power Plant
+            </h3>
+            <p className="text-xs text-slate-600 leading-relaxed mb-4">
+              On sunny afternoons, your solar panels generate more electricity than your home consumes. Your DISCOM-approved net meter automatically spins backward, banking surplus units into your grid account.
+            </p>
+
+            {/* Architecture mini-flow */}
+            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/80 space-y-1.5 text-[11px] text-slate-700 font-mono">
+              <div className="flex items-center justify-between">
+                <span>Rooftop Solar</span>
+                <span className="text-emerald-700">→ Supplies Home</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Surplus Units</span>
+                <span className="text-[#0d8070]">→ Exported to Grid</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>Night Consumption</span>
+                <span className="text-slate-500">→ Offset via Credits</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500 font-semibold flex items-center gap-1.5">
+            <span className="text-emerald-600">✓</span> Zero battery replacements needed for on-grid systems
+          </div>
+        </SpotlightCard>
+
+        {/* ── CARD 4: TOPCON & BIFACIAL HARDWARE ENGINEERING (4 Cols) ── */}
+        <SpotlightCard
+          className="lg:col-span-4 bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm flex flex-col justify-between"
+          spotlightColor="rgba(15, 157, 88, 0.08)"
+        >
+          <div>
+            <div className="w-11 h-11 rounded-xl bg-[#0b7542]/15 text-[#0b7542] flex items-center justify-center font-bold text-xl mb-4">
+              🛡️
+            </div>
+            <span className="text-[10px] font-black uppercase tracking-wider text-[#0b7542] block mb-1">
+              Industrial-Grade Hardware
+            </span>
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2">
+              Tier-1 N-Type TOPCon & Dual-Glass Bifacial Panels
+            </h3>
+            <p className="text-xs text-slate-600 leading-relaxed mb-4">
+              Unlike cheap poly-crystalline panels, we deploy Tier-1 ALMM listed N-Type TOPCon cells. Front glass captures direct sun while the rear glass harvests reflected albedo sunlight for +15% more yield.
+            </p>
+
+            <div className="grid grid-cols-2 gap-2 text-center text-xs">
+              <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+                <span className="text-sm font-black text-slate-900 block">22.8%</span>
+                <span className="text-[10px] text-slate-500">Cell Efficiency</span>
+              </div>
+              <div className="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+                <span className="text-sm font-black text-slate-900 block">30 Years</span>
+                <span className="text-[10px] text-slate-500">Linear Warranty</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500 font-semibold flex items-center gap-1.5">
+            <span className="text-emerald-600">✓</span> Hail-resistant 3.2mm tempered glass (IP68)
+          </div>
+        </SpotlightCard>
+
+        {/* ── CARD 5: AUDIENCE SPECIFIC PERK (4 Cols) ── */}
+        <SpotlightCard
+          className="lg:col-span-4 bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm flex flex-col justify-between"
+          spotlightColor="rgba(217, 119, 6, 0.12)"
+        >
+          <div>
+            <div className="w-11 h-11 rounded-xl bg-amber-500/15 text-amber-600 flex items-center justify-center font-bold text-xl mb-4">
+              {selectedAudience === 'residential' ? '🏛️' : '💼'}
+            </div>
+            
+            <span className="text-[10px] font-black uppercase tracking-wider text-amber-600 block mb-1">
+              {selectedAudience === 'residential' ? 'Govt. Direct Benefit Transfer' : 'Tax Optimization Benefit'}
+            </span>
+
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2">
+              {selectedAudience === 'residential' 
+                ? 'PM Surya Ghar ₹78,000 Direct Bank Credit' 
+                : '40% Accelerated Tax Depreciation (Year 1)'}
+            </h3>
+
+            <p className="text-xs text-slate-600 leading-relaxed mb-4">
+              {selectedAudience === 'residential'
+                ? 'Under the 2026 PM Surya Ghar national scheme, rooftop systems up to 3 kW qualify for a direct government DBT subsidy of ₹78,000 credited to your registered Aadhaar-linked bank account.'
+                : 'Commercial enterprises, offices, hospitals, and industrial warehouses can claim 40% accelerated depreciation on solar capital investment in Year 1, significantly cutting corporate tax outgo.'}
+            </p>
+
+            <div className="p-3 bg-amber-50/70 rounded-xl border border-amber-200/80 text-xs text-amber-900">
+              {selectedAudience === 'residential' ? (
+                <div className="flex justify-between items-center font-bold">
+                  <span>Max Cash Subsidy:</span>
+                  <span className="text-amber-700 text-sm">₹78,000 (Central Govt.)</span>
+                </div>
+              ) : (
+                <div className="flex justify-between items-center font-bold">
+                  <span>Year 1 Tax Write-Off:</span>
+                  <span className="text-amber-700 text-sm">40% Capital Value</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500 font-semibold flex items-center gap-1.5">
+            <span className="text-amber-600">✓</span> Full documentation handled by Neonix liaison team
+          </div>
+        </SpotlightCard>
+
       </div>
 
-      {/* Summary Highlights Strip */}
-      <div className="mt-12 bg-slate-900 text-white rounded-2xl p-6 sm:p-8 border border-slate-800 shadow-xl grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div>
-          <p className="text-2xl sm:text-3xl font-black text-[#00BFA6]">₹78,000</p>
-          <p className="text-xs text-slate-300 mt-1">PM Surya Ghar Subsidy</p>
+      {/* ── MACRO IMPACT & EQUITY BAR ── */}
+      <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-4">
+          <div className="w-12 h-12 rounded-xl bg-emerald-50 text-[#0b7542] flex items-center justify-center text-2xl shrink-0 font-bold">
+            🌱
+          </div>
+          <div>
+            <h4 className="text-sm font-bold text-slate-900">120+ Metric Tons CO₂ Offset</h4>
+            <p className="text-xs text-slate-500 mt-0.5">Equivalent to planting over 1,900 trees over 25 years.</p>
+          </div>
         </div>
-        <div>
-          <p className="text-2xl sm:text-3xl font-black text-[#0F9D58]">90%</p>
-          <p className="text-xs text-slate-300 mt-1">Avg. Bill Reduction</p>
+
+        <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-4">
+          <div className="w-12 h-12 rounded-xl bg-teal-50 text-[#0d8070] flex items-center justify-center text-2xl shrink-0 font-bold">
+            🏡
+          </div>
+          <div>
+            <h4 className="text-sm font-bold text-slate-900">+4% to 7% Property Appraisal</h4>
+            <p className="text-xs text-slate-500 mt-0.5">Zero-electricity buildings command higher resale & rental yields.</p>
+          </div>
         </div>
-        <div>
-          <p className="text-2xl sm:text-3xl font-black text-amber-400">3.5 Years</p>
-          <p className="text-xs text-slate-300 mt-1">Typical Payback Time</p>
-        </div>
-        <div>
-          <p className="text-2xl sm:text-3xl font-black text-white">25+ Years</p>
-          <p className="text-xs text-slate-300 mt-1">Warranty & Free Power</p>
+
+        <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex items-center gap-4">
+          <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-2xl shrink-0 font-bold">
+            📱
+          </div>
+          <div>
+            <h4 className="text-sm font-bold text-slate-900">Real-Time IoT Generation Sync</h4>
+            <p className="text-xs text-slate-500 mt-0.5">24/7 mobile app tracking of units, peak curves & rupee yield.</p>
+          </div>
         </div>
       </div>
     </section>
