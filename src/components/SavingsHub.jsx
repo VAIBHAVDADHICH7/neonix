@@ -5,8 +5,7 @@ export default function SavingsHub({ onOpenConsultation }) {
   const [activeTab, setActiveTab] = useState('slider'); // 'slider' | 'subsidy' | 'quiz'
   const [billAmount, setBillAmount] = useState(6500);
 
-  // Precision bill calculations
-  // Fixed DISCOM minimum connection charge after ~92% solar net-metering
+  // Bill calculations
   const monthlySolarBill = Math.max(250, Math.round(billAmount * 0.08));
   const monthlySavings = Math.max(0, billAmount - monthlySolarBill);
   const annualSavings = monthlySavings * 12;
@@ -17,83 +16,23 @@ export default function SavingsHub({ onOpenConsultation }) {
   const [quizStep, setQuizStep] = useState(1);
   const [quizAnswers, setQuizAnswers] = useState({
     roofType: 'Flat Concrete Terrace',
-    sunlight: 'Unobstructed Full Sunlight (6+ Hours)',
-    load: 'Active Modern Family (~₹4k - ₹9k/mo)',
+    sunlight: 'Full Sunlight (6+ Hours)',
+    load: '2-3 BHK Home (~₹4k - ₹8k/mo)',
   });
   const [quizCompleted, setQuizCompleted] = useState(false);
 
   const subsidyPackages = [
-    {
-      capacity: '3 kW System',
-      title: 'Sunshine Starter',
-      bestFor: 'Perfect for compact homes & 1 AC (Bill ~₹3,000/mo)',
-      price: '₹1,95,000',
-      subsidy: '₹78,000',
-      net: '₹1,17,000',
-      units: '~360 Units / month',
-      popular: false,
-    },
-    {
-      capacity: '5 kW System',
-      title: 'Family Powerhouse',
-      bestFor: 'Engineered for standard 2-3 BHK homes running 2-3 ACs',
-      price: '₹2,80,000',
-      subsidy: '₹78,000',
-      net: '₹2,02,000',
-      units: '~600 Units / month',
-      popular: true,
-    },
-    {
-      capacity: '8 kW System',
-      title: 'Luxury Villa Suite',
-      bestFor: 'Designed for sprawling residences, villas & heavy appliances',
-      price: '₹4,40,000',
-      subsidy: '₹78,000',
-      net: '₹3,62,000',
-      units: '~960 Units / month',
-      popular: false,
-    },
-    {
-      capacity: '10 kW System',
-      title: 'High-Yield Commercial',
-      bestFor: 'Ideal for joint families, clinics, schools & commercial floors',
-      price: '₹5,20,000',
-      subsidy: '₹78,000',
-      net: '₹4,42,000',
-      units: '~1,200 Units / month',
-      popular: false,
-    },
+    { capacity: '3 kW System', bestFor: 'Small Homes (Bill ~₹3,000/mo)', price: '₹1,95,000', subsidy: '₹78,000', net: '₹1,17,000', units: '~360 Units/mo', popular: false },
+    { capacity: '5 kW System', bestFor: 'Standard 2-3 BHK Homes with AC', price: '₹2,80,000', subsidy: '₹78,000', net: '₹2,02,000', units: '~600 Units/mo', popular: true },
+    { capacity: '8 kW System', bestFor: 'Large Villas & Joint Families', price: '₹4,40,000', subsidy: '₹78,000', net: '₹3,62,000', units: '~960 Units/mo', popular: false },
+    { capacity: '10 kW System', bestFor: 'Luxury Homes & Commercial Setups', price: '₹5,20,000', subsidy: '₹78,000', net: '₹4,42,000', units: '~1,200 Units/mo', popular: false },
   ];
 
   const subsidySteps = [
-    {
-      step: '01',
-      title: 'Effortless Roof Audit & Portal Filing',
-      time: 'Day 1 - 2',
-      desc: 'Our certified solar engineers visit your roof, run a high-precision 3D shadow analysis, and file your official PM Surya Ghar National Portal application.',
-      icon: '📐',
-    },
-    {
-      step: '02',
-      title: 'Express DISCOM Technical Sanction',
-      time: 'Day 3 - 7',
-      desc: 'We liaise directly with your local electricity board to secure express net-metering sanctions. Zero government paperwork or queue hassle for you.',
-      icon: '⚡',
-    },
-    {
-      step: '03',
-      title: 'White-Glove Precision Installation',
-      time: 'Day 8 - 12',
-      desc: 'Factory-certified technicians securely mount Tier-1 bifacial panels, German-engineered smart inverters, and bidirectional net-meters in just 24 to 48 hours.',
-      icon: '🛡️',
-    },
-    {
-      step: '04',
-      title: '₹78,000 Deposited in Your Bank',
-      time: 'Within 30 Days',
-      desc: 'Watch your net-meter spin backwards as the central government credits the ₹78,000 subsidy directly into your bank account via Direct Benefit Transfer (DBT).',
-      icon: '💰',
-    },
+    { step: '01', title: 'Free Roof Survey & Application', time: 'Day 1-2', desc: 'Our team inspects your roof and handles your application on the PM Surya Ghar National Portal.' },
+    { step: '02', title: 'DISCOM Feasibility Approval', time: 'Day 3-7', desc: 'Your local electricity board approves your net-metering connection with zero friction.' },
+    { step: '03', title: 'Turnkey Installation', time: 'Day 8-12', desc: 'Certified engineers mount Tier-1 panels, smart inverters, and synchronization meters in 1-2 days.' },
+    { step: '04', title: '₹78,000 DBT in Your Bank', time: 'Within 30 Days', desc: 'Government transfers the ₹78,000 subsidy directly to your registered bank account.' },
   ];
 
   return (
@@ -102,66 +41,55 @@ export default function SavingsHub({ onOpenConsultation }) {
       className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative bg-[#F8FAFC] border-t border-slate-200/80"
       aria-label="Solar Savings and Government Subsidy Hub"
     >
-      <div id="roi-calculator" className="absolute -top-16 left-0 pointer-events-none" />
-      <div id="subsidy-info" className="absolute -top-16 left-0 pointer-events-none" />
-      <div id="savings-calculator" className="absolute -top-16 left-0 pointer-events-none" />
-      <div id="bill-comparison" className="absolute -top-16 left-0 pointer-events-none" />
-      <div id="roof-quiz" className="absolute -top-16 left-0 pointer-events-none" />
-
-      {/* ── STEP INDICATOR & BUTTERY HEADER ── */}
+      {/* Step Indicator & Header */}
       <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 reveal-up">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0b7542]/10 border border-[#0b7542]/25 mb-4 shadow-xs">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#0F9D58] animate-pulse" aria-hidden="true" />
-          <span className="text-xs font-black uppercase tracking-wider text-[#0b7542]">Step 2 of 4 • Effortless Financial Freedom</span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0b7542]/10 border border-[#0b7542]/25 mb-3.5">
+          <span className="w-2 h-2 rounded-full bg-[#0F9D58] animate-pulse" aria-hidden="true" />
+          <span className="text-xs font-bold uppercase tracking-wider text-[#0b7542]">Step 2 of 4 • Financial Transparency</span>
         </div>
-
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.15]">
-          Turn Your Empty Roof Into A{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0b7542] via-[#0F9D58] to-[#00BFA6] block sm:inline">
-            Lifetime Wealth Generator
-          </span>
+        <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
+          How Much Can You <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0b7542] via-[#0F9D58] to-[#00BFA6]">Save With Solar?</span>
         </h2>
-
-        <p className="text-slate-600 text-xs sm:text-base md:text-lg mt-3.5 font-normal max-w-2xl mx-auto leading-relaxed">
-          Experience the pure delight of slashing your electricity bill by up to 90%. Slide the calculator below, explore official PM Surya Ghar subsidy packages, or test your roof in 60 seconds.
+        <p className="text-slate-600 text-xs sm:text-base md:text-lg mt-3 font-normal max-w-2xl mx-auto">
+          Explore your direct bill savings, browse official PM Surya Ghar subsidy packages, or test your rooftop feasibility.
         </p>
 
-        {/* ── INTERACTIVE TAB SELECTOR ── */}
-        <div className="mt-8 inline-flex p-1.5 bg-slate-200/85 backdrop-blur-md rounded-2xl border border-slate-300/80 shadow-inner max-w-full overflow-x-auto no-scrollbar">
+        {/* Tab Controls */}
+        <div className="mt-8 inline-flex p-1.5 bg-slate-200/80 backdrop-blur-md rounded-2xl border border-slate-300/80 shadow-inner max-w-full overflow-x-auto">
           <button
             type="button"
             onClick={() => setActiveTab('slider')}
-            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 cursor-pointer whitespace-nowrap ${
+            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer whitespace-nowrap ${
               activeTab === 'slider'
-                ? 'bg-white text-slate-900 shadow-md ring-1 ring-slate-900/5 scale-[1.02]'
+                ? 'bg-white text-slate-900 shadow-md'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
             }`}
           >
-            <span>⚡ Instant Bill Transformation</span>
+            <span>⚡ Bill Transformation</span>
           </button>
 
           <button
             type="button"
             onClick={() => setActiveTab('subsidy')}
-            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 cursor-pointer whitespace-nowrap ${
+            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer whitespace-nowrap ${
               activeTab === 'subsidy'
-                ? 'bg-white text-slate-900 shadow-md ring-1 ring-slate-900/5 scale-[1.02]'
+                ? 'bg-white text-slate-900 shadow-md'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
             }`}
           >
-            <span>🏛️ PM Surya Ghar Packages (₹78k)</span>
+            <span>🏛️ Govt. Subsidy Packages</span>
           </button>
 
           <button
             type="button"
             onClick={() => setActiveTab('quiz')}
-            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 cursor-pointer whitespace-nowrap ${
+            className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer whitespace-nowrap ${
               activeTab === 'quiz'
-                ? 'bg-white text-slate-900 shadow-md ring-1 ring-slate-900/5 scale-[1.02]'
+                ? 'bg-white text-slate-900 shadow-md'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
             }`}
           >
-            <span>🏠 60-Sec Roof Feasibility</span>
+            <span>🏠 Roof Feasibility Quiz</span>
           </button>
         </div>
       </div>
@@ -170,26 +98,19 @@ export default function SavingsHub({ onOpenConsultation }) {
       {activeTab === 'slider' && (
         <div className="max-w-5xl mx-auto reveal-scale transition-all duration-300">
           <SpotlightCard className="bg-[#0F172A] text-white p-5 sm:p-8 lg:p-10 rounded-3xl border border-white/15 shadow-2xl relative overflow-hidden" spotlightColor="rgba(15, 157, 88, 0.15)">
-            {/* Ambient Background Glow */}
-            <div className="absolute top-0 right-0 w-80 h-80 bg-[#0F9D58]/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#00BFA6]/10 rounded-full blur-3xl pointer-events-none" />
-
             {/* Slider to adjust bill */}
-            <div className="relative z-10 mb-8 pb-6 border-b border-white/15">
+            <div className="mb-8 pb-6 border-b border-white/15">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                 <div>
-                  <label htmlFor="savings-hub-slider" className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-                    <span>Slide Your Current Monthly Electricity Bill</span>
-                    <span className="text-[10px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full">
-                      Real-Time Net Metering Model
-                    </span>
+                  <label htmlFor="savings-hub-slider" className="text-sm sm:text-base font-bold text-white">
+                    Select Your Current Monthly Electricity Bill
                   </label>
-                  <p className="text-xs text-slate-400 mt-0.5">Drag smoothly to watch your power expenses convert into lifelong family savings</p>
+                  <p className="text-xs text-slate-400">Drag the slider to calculate instant solar savings</p>
                 </div>
-                <div className="flex items-center gap-2 self-start sm:self-auto bg-white/10 px-4 py-2.5 rounded-xl border border-white/20 shadow-inner">
+                <div className="flex items-center gap-2 self-start sm:self-auto bg-white/10 px-4 py-2 rounded-xl border border-white/20">
                   <span className="text-sm text-[#00BFA6] font-bold">₹</span>
-                  <span className="text-2xl sm:text-3xl font-black text-white tracking-tight">{billAmount.toLocaleString('en-IN')}</span>
-                  <span className="text-xs text-slate-300 font-medium">/ month</span>
+                  <span className="text-2xl sm:text-3xl font-black text-white">{billAmount.toLocaleString('en-IN')}</span>
+                  <span className="text-xs text-slate-300">/ mo</span>
                 </div>
               </div>
 
@@ -202,114 +123,92 @@ export default function SavingsHub({ onOpenConsultation }) {
                 step="500"
                 value={billAmount}
                 onChange={(e) => setBillAmount(Number(e.target.value))}
-                className="w-full h-3.5 bg-slate-700/80 rounded-lg appearance-none cursor-pointer accent-[#0F9D58] focus:outline-hidden"
+                className="w-full h-3 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#0F9D58] focus:outline-hidden"
               />
               <div className="flex justify-between text-[11px] text-slate-400 mt-2 font-mono">
-                <span>₹2,000 / mo</span>
-                <span>₹10,000 / mo</span>
-                <span>₹25,000+ / mo</span>
+                <span>₹2,000/mo</span>
+                <span>₹10,000/mo</span>
+                <span>₹25,000+/mo</span>
               </div>
             </div>
 
             {/* Before vs After Grid */}
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               {/* Without Solar */}
-              <div className="bg-white/5 rounded-2xl p-5 sm:p-6 border border-red-500/20 backdrop-blur-sm flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-bold uppercase tracking-wider text-red-400 flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-red-400 inline-block" />
-                      The Endless Grid Outflow
-                    </span>
-                    <span className="text-[11px] text-red-300/90 font-medium bg-red-500/10 px-2 py-0.5 rounded-md border border-red-500/20">
-                      Uncontrolled Hikes
-                    </span>
-                  </div>
-                  <p className="text-xs text-slate-400 mb-1">What you currently surrender to the utility board</p>
-                  <div className="text-2xl sm:text-3xl font-black text-white mb-4">
-                    ₹{billAmount.toLocaleString('en-IN')}{' '}
-                    <span className="text-xs text-slate-400 font-normal">/ month forever</span>
-                  </div>
+              <div className="bg-white/5 rounded-2xl p-5 sm:p-6 border border-red-500/20">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-bold uppercase tracking-wider text-red-400">Without Solar (Grid Power)</span>
+                  <span className="text-xs text-red-300">Uncontrolled Hikes</span>
                 </div>
-
-                <div className="space-y-2.5 text-xs text-slate-300 pt-4 border-t border-white/10">
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-400">1-Year Outflow:</span>
-                    <span className="font-bold text-white">₹{(billAmount * 12).toLocaleString('en-IN')} with zero returns</span>
+                <p className="text-xs text-slate-400 mb-1">Estimated Monthly Bill</p>
+                <div className="text-2xl sm:text-3xl font-black text-white mb-4">
+                  ₹{billAmount.toLocaleString('en-IN')} <span className="text-xs text-slate-400 font-normal">/ month</span>
+                </div>
+                <div className="space-y-2 text-xs text-slate-300 pt-3 border-t border-white/10">
+                  <div className="flex justify-between">
+                    <span>1-Year Grid Bill:</span>
+                    <span className="font-bold text-white">₹{(billAmount * 12).toLocaleString('en-IN')}</span>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-400">25-Year Cumulative Loss:</span>
-                    <span className="font-black text-red-300 text-sm">₹{Math.round(billAmount * 12 * 25 * 1.55).toLocaleString('en-IN')}</span>
+                  <div className="flex justify-between">
+                    <span>25-Year Cumulative Paid:</span>
+                    <span className="font-bold text-red-300">₹{Math.round(billAmount * 12 * 25 * 1.55).toLocaleString('en-IN')}</span>
                   </div>
-                  <div className="flex justify-between items-center text-[11px] text-slate-400 pt-1 border-t border-white/5">
-                    <span>DISCOM Tariff Trend:</span>
-                    <span className="text-red-400 font-semibold">Compounding ~5% every year</span>
+                  <div className="flex justify-between text-slate-400 text-[11px]">
+                    <span>Expected Tariff Hike:</span>
+                    <span>5% per annum</span>
                   </div>
                 </div>
               </div>
 
-              {/* With Neonix Solar */}
-              <div className="bg-gradient-to-b from-emerald-950/60 to-slate-900/90 rounded-2xl p-5 sm:p-6 border border-[#0F9D58]/50 shadow-xl relative flex flex-col justify-between">
-                <div className="absolute top-3 right-3">
-                  <span className="text-[10px] font-black uppercase tracking-wider bg-[#0F9D58] text-white px-2.5 py-1 rounded-full shadow-xs">
-                    Up to 90% Vanished
+              {/* With Solar */}
+              <div className="bg-emerald-950/40 rounded-2xl p-5 sm:p-6 border border-[#0F9D58]/40 shadow-inner">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#00BFA6]">With Neonix Solar</span>
+                  <span className="text-[10px] font-bold bg-[#0F9D58]/30 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                    Up to 90% Drop
                   </span>
                 </div>
-
-                <div>
-                  <div className="flex items-center gap-1.5 mb-4">
-                    <span className="w-2 h-2 rounded-full bg-[#00BFA6] inline-block animate-ping" />
-                    <span className="text-xs font-black uppercase tracking-wider text-[#00BFA6]">
-                      Your Clean Energy Powerhouse
-                    </span>
-                  </div>
-
-                  <p className="text-xs text-slate-300 mb-1">Your new minimal DISCOM grid connection charge</p>
-                  <div className="text-2xl sm:text-3xl font-black text-[#00BFA6] mb-4">
-                    ₹{monthlySolarBill.toLocaleString('en-IN')}{' '}
-                    <span className="text-xs text-slate-300 font-normal">/ month (fixed meter fee)</span>
-                  </div>
+                <p className="text-xs text-slate-300 mb-1">New Monthly Electricity Bill</p>
+                <div className="text-2xl sm:text-3xl font-black text-[#00BFA6] mb-4">
+                  ₹{monthlySolarBill.toLocaleString('en-IN')} <span className="text-xs text-slate-300 font-normal">/ month</span>
                 </div>
-
-                <div className="space-y-2.5 text-xs text-slate-200 pt-4 border-t border-white/10">
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-300 font-medium">Direct Monthly Savings:</span>
-                    <span className="font-black text-[#0F9D58] text-base">+₹{monthlySavings.toLocaleString('en-IN')} / mo</span>
+                <div className="space-y-2 text-xs text-slate-200 pt-3 border-t border-white/10">
+                  <div className="flex justify-between">
+                    <span>Monthly Savings:</span>
+                    <span className="font-extrabold text-[#0F9D58] text-sm">+₹{monthlySavings.toLocaleString('en-IN')} / mo</span>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-300 font-medium">Custom Engineered Size:</span>
-                    <span className="font-bold text-white">{recommendedKw} kW High-Yield Bifacial Array</span>
+                  <div className="flex justify-between">
+                    <span>Recommended Capacity:</span>
+                    <span className="font-bold text-white">{recommendedKw} kW System</span>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-300 font-medium">Govt. Direct Cash Subsidy:</span>
-                    <span className="font-bold text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                      ₹78,000 (DBT Bank Credit)
-                    </span>
+                  <div className="flex justify-between">
+                    <span>Govt. Direct Subsidy:</span>
+                    <span className="font-bold text-emerald-300">₹78,000 (DBT Bank Transfer)</span>
                   </div>
-                  <div className="flex justify-between items-center pt-2 border-t border-white/10">
-                    <span className="font-bold text-white">25-Year Wealth Created:</span>
-                    <span className="font-black text-amber-400 text-base sm:text-lg">+₹{twentyFiveYearSavings.toLocaleString('en-IN')}</span>
+                  <div className="flex justify-between pt-1 border-t border-white/10">
+                    <span className="font-semibold text-white">25-Year Wealth Created:</span>
+                    <span className="font-black text-amber-400 text-sm sm:text-base">+₹{twentyFiveYearSavings.toLocaleString('en-IN')}</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Bottom Action Banner */}
-            <div className="relative z-10 bg-white/5 border border-white/15 p-4 sm:p-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+            {/* Bottom Action */}
+            <div className="bg-white/5 border border-white/15 p-4 sm:p-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-center sm:text-left">
-                <h4 className="text-sm sm:text-base font-bold text-white flex items-center justify-center sm:justify-start gap-2">
-                  <span>Keep ₹{(monthlySavings * 12).toLocaleString('en-IN')} In Your Family Every Single Year</span>
+                <h4 className="text-sm sm:text-base font-bold text-white">
+                  Save ₹{(monthlySavings * 12).toLocaleString('en-IN')} Every Single Year
                 </h4>
-                <p className="text-xs text-slate-300 mt-1 max-w-xl leading-relaxed">
-                  We handle 100% of the DISCOM paperwork, net-metering synchronization, and national subsidy portal filing for you. Zero hidden fees.
+                <p className="text-xs text-slate-300 mt-0.5">
+                  Full PM Surya Ghar subsidy processing and DISCOM paperwork handled by our certified engineers.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => onOpenConsultation && onOpenConsultation({ bill: billAmount, systemSize: recommendedKw })}
-                className="w-full sm:w-auto shrink-0 bg-[#0F9D58] hover:bg-[#0c8248] active:bg-[#096636] text-white font-black text-xs sm:text-sm uppercase tracking-wider px-6 sm:px-8 py-3.5 rounded-xl shadow-[0_4px_18px_rgba(15,157,88,0.4)] transition-all transform hover:-translate-y-0.5 cursor-pointer shimmer-btn"
+                className="w-full sm:w-auto shrink-0 bg-[#0F9D58] hover:bg-[#0c8248] active:bg-[#096636] text-white font-black text-xs sm:text-sm uppercase tracking-wider px-6 sm:px-8 py-3.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer shimmer-btn"
               >
-                Lock In My Savings & Free Survey →
+                Claim This Estimate & Survey →
               </button>
             </div>
           </SpotlightCard>
@@ -319,58 +218,49 @@ export default function SavingsHub({ onOpenConsultation }) {
       {/* ── TAB 2: GOVT SUBSIDY PACKAGES ── */}
       {activeTab === 'subsidy' && (
         <div className="max-w-5xl mx-auto reveal-scale transition-all duration-300 space-y-8">
-          {/* Rate Cards Grid */}
+          {/* Rate Cards Table */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {subsidyPackages.map((pkg) => (
               <SpotlightCard
                 key={pkg.capacity}
-                className={`bg-white rounded-2xl p-5 border shadow-sm flex flex-col justify-between relative transition-all duration-300 ${
-                  pkg.popular ? 'border-[#0F9D58] shadow-lg ring-2 ring-[#0F9D58]/20' : 'border-slate-200 hover:border-slate-300'
+                className={`bg-white rounded-2xl p-5 border shadow-sm flex flex-col justify-between relative transition-all ${
+                  pkg.popular ? 'border-[#0F9D58] shadow-md ring-2 ring-[#0F9D58]/20' : 'border-slate-200'
                 }`}
                 spotlightColor="rgba(15, 157, 88, 0.08)"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">{pkg.title}</span>
-                    {pkg.popular && (
-                      <span className="text-[10px] font-black uppercase tracking-wider bg-[#0F9D58] text-white px-2 py-0.5 rounded-full shadow-xs">
-                        Most Loved
-                      </span>
-                    )}
-                  </div>
-                  
-                  <h3 className="text-xl font-black text-slate-900">{pkg.capacity}</h3>
-                  <p className="text-xs text-slate-500 mt-1 mb-3.5 leading-snug">{pkg.bestFor}</p>
+                  {pkg.popular && (
+                    <span className="text-[10px] font-black uppercase tracking-wider bg-[#0F9D58] text-white px-2.5 py-0.5 rounded-full inline-block mb-2">
+                      Most Popular
+                    </span>
+                  )}
+                  <h3 className="text-lg font-bold text-slate-900">{pkg.capacity}</h3>
+                  <p className="text-xs text-slate-500 mb-3">{pkg.bestFor}</p>
 
                   <div className="space-y-2 py-3 border-y border-slate-100 text-xs">
                     <div className="flex justify-between text-slate-500">
-                      <span>Standard Benchmark:</span>
-                      <span className="line-through font-mono">{pkg.price}</span>
+                      <span>Benchmark Price:</span>
+                      <span className="line-through">{pkg.price}</span>
                     </div>
-                    <div className="flex justify-between font-bold text-[#0b7542]">
-                      <span>Central DBT Subsidy:</span>
-                      <span className="bg-[#0b7542]/10 px-1.5 py-0.5 rounded">- {pkg.subsidy}</span>
+                    <div className="flex justify-between font-bold text-emerald-700">
+                      <span>Govt. Subsidy:</span>
+                      <span>- {pkg.subsidy}</span>
                     </div>
                     <div className="flex justify-between pt-1 font-black text-slate-900 text-sm">
-                      <span>Net Effective Outlay:</span>
-                      <span className="text-[#0b7542] text-base">{pkg.net}</span>
+                      <span>Net Investment:</span>
+                      <span className="text-[#0b7542]">{pkg.net}</span>
                     </div>
                   </div>
 
-                  <div className="mt-3 bg-slate-50 p-2.5 rounded-xl border border-slate-100 text-[11px] text-slate-700 flex items-center gap-2">
-                    <span className="text-[#0F9D58] font-bold">⚡</span>
-                    <span>Generates: <strong className="text-slate-900 font-bold">{pkg.units}</strong></span>
-                  </div>
+                  <p className="text-[11px] text-slate-600 mt-2.5 font-medium">
+                    ⚡ Generates: <strong className="text-slate-800">{pkg.units}</strong>
+                  </p>
                 </div>
 
                 <button
                   type="button"
                   onClick={() => onOpenConsultation && onOpenConsultation({ systemSize: pkg.capacity })}
-                  className={`mt-4 w-full font-bold text-xs py-3 rounded-xl transition-all cursor-pointer shadow-xs ${
-                    pkg.popular
-                      ? 'bg-[#0F9D58] hover:bg-[#0c8248] text-white'
-                      : 'bg-slate-900 hover:bg-[#0b7542] text-white'
-                  }`}
+                  className="mt-4 w-full bg-slate-900 hover:bg-[#0b7542] text-white font-bold text-xs py-2.5 rounded-xl transition-colors cursor-pointer"
                 >
                   Choose {pkg.capacity}
                 </button>
@@ -379,35 +269,21 @@ export default function SavingsHub({ onOpenConsultation }) {
           </div>
 
           {/* 4 Steps Roadmap */}
-          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-sm">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-[#0b7542]">Seamless Government Portal Flow</span>
-                <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-0.5">
-                  The Smooth 4-Step Journey to Your ₹78,000 Govt. Subsidy
-                </h3>
-              </div>
-              <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full self-start sm:self-auto">
-                100% Direct Benefit Transfer (DBT)
-              </span>
-            </div>
-
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+              <span>🏛️</span> PM Surya Ghar Subsidy Journey (How You Get Paid)
+            </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {subsidySteps.map((s) => (
-                <div key={s.step} className="p-4 sm:p-5 rounded-xl bg-slate-50/80 border border-slate-200/70 hover:border-emerald-300 transition-all">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-black text-[#0b7542] font-mono bg-white px-2 py-0.5 rounded-md border border-slate-200">
-                      Step {s.step}
-                    </span>
-                    <span className="text-[10px] font-bold text-slate-600 bg-white px-2 py-0.5 rounded-full border border-slate-200">
+                <div key={s.step} className="p-4 rounded-xl bg-slate-50 border border-slate-200/60">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-black text-[#0b7542] font-mono">{s.step}</span>
+                    <span className="text-[10px] font-bold text-slate-500 bg-white px-2 py-0.5 rounded-full border border-slate-200">
                       {s.time}
                     </span>
                   </div>
-                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 mb-1.5 flex items-center gap-1.5">
-                    <span>{s.icon}</span>
-                    <span>{s.title}</span>
-                  </h4>
-                  <p className="text-[11px] text-slate-600 leading-relaxed font-normal">{s.desc}</p>
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 mb-1">{s.title}</h4>
+                  <p className="text-[11px] text-slate-600 leading-relaxed">{s.desc}</p>
                 </div>
               ))}
             </div>
@@ -422,12 +298,9 @@ export default function SavingsHub({ onOpenConsultation }) {
             {!quizCompleted ? (
               <div>
                 <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
-                  <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#0b7542]">
-                      Question {quizStep} of 3 • Rooftop Diagnostic
-                    </span>
-                    <p className="text-[11px] text-slate-500">Takes less than 45 seconds to analyze</p>
-                  </div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#0b7542]">
+                    Question {quizStep} of 3
+                  </span>
                   <div className="flex gap-2">
                     {[1, 2, 3].map((s) => (
                       <div
@@ -442,30 +315,23 @@ export default function SavingsHub({ onOpenConsultation }) {
 
                 {quizStep === 1 && (
                   <div className="space-y-4">
-                    <h3 className="text-lg sm:text-xl font-black text-slate-900">
-                      1. What crowns your property rooftop?
-                    </h3>
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-900">1. What kind of roof do you have?</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                      {[
-                        { name: 'Flat Concrete Terrace', sub: 'Walkable, prime layout for tilt structures' },
-                        { name: 'Slanted Tile / Tin Shed', sub: 'Custom lightweight clamp brackets' },
-                        { name: 'Industrial Metal Sheet', sub: 'High-speed trapezoidal mounting' },
-                      ].map((opt) => (
+                      {['Flat Concrete Terrace', 'Slanted Tile / Tin Shed', 'Industrial Metal Sheet'].map((opt) => (
                         <button
-                          key={opt.name}
+                          key={opt}
                           type="button"
                           onClick={() => {
-                            setQuizAnswers((prev) => ({ ...prev, roofType: opt.name }));
+                            setQuizAnswers((prev) => ({ ...prev, roofType: opt }));
                             setQuizStep(2);
                           }}
-                          className={`p-4 rounded-2xl border text-left transition-all duration-200 cursor-pointer ${
-                            quizAnswers.roofType === opt.name
-                              ? 'border-[#0F9D58] bg-[#0F9D58]/10 ring-2 ring-[#0F9D58]/20'
-                              : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+                          className={`p-4 rounded-xl border text-xs sm:text-sm font-bold text-left transition-all cursor-pointer ${
+                            quizAnswers.roofType === opt
+                              ? 'border-[#0F9D58] bg-[#0F9D58]/10 text-[#0b7542]'
+                              : 'border-slate-200 hover:border-slate-400 text-slate-800'
                           }`}
                         >
-                          <div className="font-bold text-xs sm:text-sm text-slate-900">{opt.name}</div>
-                          <div className="text-[11px] text-slate-500 mt-1 leading-snug">{opt.sub}</div>
+                          {opt}
                         </button>
                       ))}
                     </div>
@@ -474,30 +340,23 @@ export default function SavingsHub({ onOpenConsultation }) {
 
                 {quizStep === 2 && (
                   <div className="space-y-4">
-                    <h3 className="text-lg sm:text-xl font-black text-slate-900">
-                      2. How generously does the sun shine across your roof?
-                    </h3>
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-900">2. How much direct sunlight does your roof get?</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                      {[
-                        { name: 'Unobstructed Full Sunlight (6+ Hours)', sub: 'Maximum peak generation & fastest ROI' },
-                        { name: 'Gentle Partial Afternoon Shade', sub: 'Bifacial panels easily harvest ambient light' },
-                        { name: 'Dappled Shade / Surrounding Trees', sub: 'Optimizers ensure top-tier performance' },
-                      ].map((opt) => (
+                      {['Full Sunlight (6+ Hours)', 'Partial Afternoon Shadow', 'Significant Shade / Trees'].map((opt) => (
                         <button
-                          key={opt.name}
+                          key={opt}
                           type="button"
                           onClick={() => {
-                            setQuizAnswers((prev) => ({ ...prev, sunlight: opt.name }));
+                            setQuizAnswers((prev) => ({ ...prev, sunlight: opt }));
                             setQuizStep(3);
                           }}
-                          className={`p-4 rounded-2xl border text-left transition-all duration-200 cursor-pointer ${
-                            quizAnswers.sunlight === opt.name
-                              ? 'border-[#0F9D58] bg-[#0F9D58]/10 ring-2 ring-[#0F9D58]/20'
-                              : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+                          className={`p-4 rounded-xl border text-xs sm:text-sm font-bold text-left transition-all cursor-pointer ${
+                            quizAnswers.sunlight === opt
+                              ? 'border-[#0F9D58] bg-[#0F9D58]/10 text-[#0b7542]'
+                              : 'border-slate-200 hover:border-slate-400 text-slate-800'
                           }`}
                         >
-                          <div className="font-bold text-xs sm:text-sm text-slate-900">{opt.name}</div>
-                          <div className="text-[11px] text-slate-500 mt-1 leading-snug">{opt.sub}</div>
+                          {opt}
                         </button>
                       ))}
                     </div>
@@ -506,26 +365,19 @@ export default function SavingsHub({ onOpenConsultation }) {
 
                 {quizStep === 3 && (
                   <div className="space-y-4">
-                    <h3 className="text-lg sm:text-xl font-black text-slate-900">
-                      3. What is your family's typical monthly power consumption?
-                    </h3>
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-900">3. What is your typical monthly electricity bill?</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                      {[
-                        { name: 'Cozy Household (~₹2k - ₹4k/mo)', sub: 'Qualifies for 3 kW system with ₹78k subsidy' },
-                        { name: 'Active Modern Family (~₹4k - ₹9k/mo)', sub: 'Best matched with 5 kW high-output array' },
-                        { name: 'High Comfort / Villa (>₹10k/mo)', sub: 'Ideal for 8-10 kW multi-phase plant' },
-                      ].map((opt) => (
+                      {['Small Home (₹2k - ₹4k)', 'Standard Home (₹4k - ₹9k)', 'Large Home / Commercial (₹10k+)'].map((opt) => (
                         <button
-                          key={opt.name}
+                          key={opt}
                           type="button"
                           onClick={() => {
-                            setQuizAnswers((prev) => ({ ...prev, load: opt.name }));
+                            setQuizAnswers((prev) => ({ ...prev, load: opt }));
                             setQuizCompleted(true);
                           }}
-                          className="p-4 rounded-2xl border border-slate-200 hover:border-[#0F9D58] hover:bg-[#0F9D58]/10 text-left transition-all duration-200 cursor-pointer"
+                          className="p-4 rounded-xl border border-slate-200 hover:border-[#0F9D58] hover:bg-[#0F9D58]/10 text-xs sm:text-sm font-bold text-left transition-all cursor-pointer text-slate-800"
                         >
-                          <div className="font-bold text-xs sm:text-sm text-slate-900">{opt.name}</div>
-                          <div className="text-[11px] text-slate-500 mt-1 leading-snug">{opt.sub}</div>
+                          {opt}
                         </button>
                       ))}
                     </div>
@@ -534,27 +386,23 @@ export default function SavingsHub({ onOpenConsultation }) {
               </div>
             ) : (
               <div className="text-center py-4 space-y-4">
-                <div className="w-16 h-16 bg-emerald-100 text-[#0b7542] rounded-full flex items-center justify-center text-3xl mx-auto font-black shadow-inner">
+                <div className="w-14 h-14 bg-emerald-100 text-[#0b7542] rounded-full flex items-center justify-center text-2xl mx-auto font-black">
                   ✓
                 </div>
-                <div className="inline-block px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-800">
-                  98% High Feasibility Match
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-black text-slate-900">
-                  Exceptional Solar Rooftop Potential!
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto leading-relaxed">
-                  Your <strong className="text-slate-900 font-semibold">{quizAnswers.roofType}</strong> paired with{' '}
-                  <strong className="text-slate-900 font-semibold">{quizAnswers.sunlight}</strong> is prime for peak solar conversion. You are fully eligible for up to ₹78,000 in direct government subsidies under PM Surya Ghar.
+                <h3 className="text-xl sm:text-2xl font-black text-slate-900">98% High Feasibility Match!</h3>
+                <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto">
+                  Based on your <strong className="text-slate-800">{quizAnswers.roofType}</strong> and{' '}
+                  <strong className="text-slate-800">{quizAnswers.sunlight}</strong>, your rooftop is eligible for immediate 
+                  PM Surya Ghar solar installation with up to ₹78,000 in government subsidies.
                 </p>
 
-                <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <button
                     type="button"
                     onClick={() => onOpenConsultation && onOpenConsultation({ quizData: quizAnswers })}
-                    className="w-full sm:w-auto bg-[#0F9D58] hover:bg-[#0c8248] text-white font-black text-xs uppercase px-7 py-3.5 rounded-xl shadow-lg cursor-pointer transition-all transform hover:-translate-y-0.5"
+                    className="w-full sm:w-auto bg-[#0F9D58] hover:bg-[#0c8248] text-white font-bold text-xs uppercase px-6 py-3.5 rounded-xl shadow-md cursor-pointer transition-all"
                   >
-                    Reserve Free 3D Roof Design & Site Survey →
+                    Confirm With Free Site Survey →
                   </button>
                   <button
                     type="button"
@@ -562,9 +410,9 @@ export default function SavingsHub({ onOpenConsultation }) {
                       setQuizStep(1);
                       setQuizCompleted(false);
                     }}
-                    className="text-xs font-semibold text-slate-500 hover:text-slate-800 underline cursor-pointer px-4 py-2"
+                    className="text-xs font-semibold text-slate-500 hover:text-slate-800 underline cursor-pointer"
                   >
-                    Test Another Scenario
+                    Retake Check
                   </button>
                 </div>
               </div>
@@ -573,24 +421,24 @@ export default function SavingsHub({ onOpenConsultation }) {
         </div>
       )}
 
-      {/* ── DEEP DIVE FINANCIAL MODELING GATEWAY CARD ── */}
+      {/* ── DEEP DIVE GATEWAY CARD ── */}
       <div className="mt-10 sm:mt-14 max-w-5xl mx-auto">
         <div className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-slate-900 via-[#0B132B] to-slate-900 border border-slate-700/60 p-5 sm:p-7 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-5 text-white">
           <div className="space-y-1.5 text-center sm:text-left">
             <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#00BFA6] uppercase tracking-wider">
-              <span>📊</span> Executive Financial Modeling Suite
+              <span>📊</span> Dedicated Financial Modeling Tool
             </div>
             <h4 className="text-base sm:text-lg font-bold text-white">
-              Need a Comprehensive 25-Year Cashflow Model With Commercial Tax Shields & Loan EMIs?
+              Want a Full 25-Year Cashflow Model With Tax Depreciation & Loan EMIs?
             </h4>
-            <p className="text-xs text-slate-300 max-w-xl leading-relaxed">
-              Step into our dedicated financial modeling engine — calculate accelerated tax depreciation (40%), compare DCR vs Non-DCR panel ROI, and generate an executive PDF feasibility report in 1 click.
+            <p className="text-xs text-slate-300 max-w-xl">
+              Access our dedicated calculator page for detailed DCR/Non-DCR comparisons, commercial accelerated depreciation (40%), and instant PDF feasibility downloads.
             </p>
           </div>
 
           <a
             href="/solar-calculator.html"
-            className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 bg-[#00BFA6] hover:bg-[#00a892] active:bg-[#008f7c] text-slate-950 font-black text-xs sm:text-sm px-6 sm:px-8 py-3.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 whitespace-nowrap cursor-pointer"
+            className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 bg-[#00BFA6] hover:bg-[#00a892] active:bg-[#008f7c] text-slate-950 font-black text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 whitespace-nowrap cursor-pointer"
           >
             <span>Launch Full Solar ROI Calculator</span>
             <span aria-hidden="true">→</span>

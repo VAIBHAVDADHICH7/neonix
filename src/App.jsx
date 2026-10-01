@@ -116,20 +116,26 @@ function App() {
       <Navbar onOpenConsultation={() => handleOpenConsultation()} />
 
       <main id="main-content" className="flex-grow">
-        {/* Hero Section & Landing Proposal Form (Untouched) */}
-        <Hero onOpenConsultation={() => handleOpenConsultation()} />
+        {/* Hero Section & Landing Proposal Form (100% UNTOUCHED) */}
+        <Hero 
+          onOpenConsultation={() => handleOpenConsultation()} 
+          onScrollToCalculator={() => {
+            const el = document.getElementById('savings-hub') || document.getElementById('roi-calculator');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+        />
 
-        {/* Step 1: What do you offer? */}
+        {/* Step 1 of 4: What do you offer? */}
         <Solutions onSelectSolution={(sol) => handleOpenConsultation({ connectionType: sol })} />
 
-        {/* Step 2: How much can I save? */}
+        {/* Step 2 of 4: How much can I save? (Consolidated Hub: Bill Slider + Govt Subsidy + Roof Quiz) */}
         <SavingsHub onOpenConsultation={handleOpenConsultation} />
 
-        {/* Step 3: Can I trust you? */}
+        {/* Step 3 of 4: Can I trust you? */}
         <TrustSignals />
         <Testimonials />
 
-        {/* Step 4: How do I contact you? */}
+        {/* Step 4 of 4: How do I contact you? */}
         <FAQ onOpenConsultation={() => handleOpenConsultation()} />
         <Contact />
       </main>
