@@ -28,6 +28,7 @@ export default function TrustSignals() {
 
   return (
     <section
+      id="trust-signals"
       className="py-14 sm:py-16 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto relative bg-[#F8FAFC] border-t border-gray-200/70"
       aria-label="Certifications, Compliance and Trust Signals"
     >

@@ -55,6 +55,15 @@
   }
 }
 
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* --- LENIS SMOOTH SCROLLING --- */
 html.lenis, html.lenis body {
   height: auto;

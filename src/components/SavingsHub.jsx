@@ -103,6 +103,10 @@ export default function SavingsHub({ onOpenConsultation }) {
       aria-label="Solar Savings and Government Subsidy Hub"
     >
       <div id="roi-calculator" className="absolute -top-16 left-0 pointer-events-none" />
+      <div id="subsidy-info" className="absolute -top-16 left-0 pointer-events-none" />
+      <div id="savings-calculator" className="absolute -top-16 left-0 pointer-events-none" />
+      <div id="bill-comparison" className="absolute -top-16 left-0 pointer-events-none" />
+      <div id="roof-quiz" className="absolute -top-16 left-0 pointer-events-none" />
 
       {/* ── STEP INDICATOR & BUTTERY HEADER ── */}
       <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 reveal-up">
@@ -123,7 +127,7 @@ export default function SavingsHub({ onOpenConsultation }) {
         </p>
 
         {/* ── INTERACTIVE TAB SELECTOR ── */}
-        <div className="mt-8 inline-flex p-1.5 bg-slate-200/85 backdrop-blur-md rounded-2xl border border-slate-300/80 shadow-inner max-w-full overflow-x-auto">
+        <div className="mt-8 inline-flex p-1.5 bg-slate-200/85 backdrop-blur-md rounded-2xl border border-slate-300/80 shadow-inner max-w-full overflow-x-auto no-scrollbar">
           <button
             type="button"
             onClick={() => setActiveTab('slider')}

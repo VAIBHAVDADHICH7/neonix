@@ -8,8 +8,10 @@ export default function HeroActions({
   const handleScrollToCalculator = () => {
     if (onScrollToCalculator) {
       onScrollToCalculator();
+    } else if (window.__lenis) {
+      window.__lenis.scrollTo('#savings-hub', { offset: -40, duration: 1.2 });
     } else {
-      const el = document.getElementById('roi-calculator');
+      const el = document.getElementById('savings-hub') || document.getElementById('roi-calculator');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
