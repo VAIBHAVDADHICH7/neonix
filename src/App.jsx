@@ -111,36 +111,31 @@ function App() {
     <div className="font-sans antialiased text-[#111827] bg-[#F8FAFC] selection:bg-[#0F9D58] selection:text-white pb-16 md:pb-0 min-h-screen flex flex-col justify-between">
       <ScrollProgress />
       <CursorGlow />
-      
+
       {/* 1. Header (Sticky Minimalist Navigation) */}
       <Navbar onOpenConsultation={() => handleOpenConsultation()} />
-      
+
       <main id="main-content" className="flex-grow">
-        {/* Step 1 of 4: What do you offer? */}
-        <Hero 
-          scrolly={false}
-          onOpenConsultation={() => handleOpenConsultation()} 
-          onScrollToSavings={() => {
-            const el = document.getElementById('savings-hub');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
-        />
+        {/* Hero Section & Landing Proposal Form (Untouched) */}
+        <Hero onOpenConsultation={() => handleOpenConsultation()} />
+
+        {/* Step 1: What do you offer? */}
         <Solutions onSelectSolution={(sol) => handleOpenConsultation({ connectionType: sol })} />
 
-        {/* Step 2 of 4: How much can I save? */}
+        {/* Step 2: How much can I save? */}
         <SavingsHub onOpenConsultation={handleOpenConsultation} />
 
-        {/* Step 3 of 4: Can I trust you? */}
+        {/* Step 3: Can I trust you? */}
         <TrustSignals />
         <Testimonials />
 
-        {/* Step 4 of 4: How do I contact you? */}
+        {/* Step 4: How do I contact you? */}
         <FAQ onOpenConsultation={() => handleOpenConsultation()} />
         <Contact />
       </main>
 
       {/* Interactive Consultation & ROI Report Modal */}
-      <ConsultationModal 
+      <ConsultationModal
         isOpen={modalState.isOpen}
         onClose={handleCloseModal}
         initialData={modalState.initialData}

@@ -27,8 +27,7 @@ export default function TrustSignals() {
   ];
 
   return (
-    <section 
-      id="trust-signals"
+    <section
       className="py-14 sm:py-16 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto relative bg-[#F8FAFC] border-t border-gray-200/70"
       aria-label="Certifications, Compliance and Trust Signals"
     >
@@ -38,7 +37,7 @@ export default function TrustSignals() {
           <span className="w-2 h-2 rounded-full bg-[#0F9D58]" aria-hidden="true" />
           <span className="text-xs font-bold uppercase tracking-wider text-[#0b7542]">Certifications & Compliance</span>
         </div>
-        
+
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#111827] tracking-tight">
           Certified installers, trusted by 500+ customers
         </h2>
@@ -55,7 +54,7 @@ export default function TrustSignals() {
             className="reveal-up bg-white rounded-2xl p-4 sm:p-5 border border-gray-200 shadow-sm hover:shadow-md transition-all flex items-center gap-3.5 sm:gap-4"
             spotlightColor="rgba(15, 157, 88, 0.08)"
           >
-            <div 
+            <div
               className="w-11 h-11 sm:w-13 sm:h-13 rounded-xl flex items-center justify-center text-xl sm:text-2xl shrink-0 shadow-xs"
               style={{ backgroundColor: `${cert.color}15` }}
               role="img"

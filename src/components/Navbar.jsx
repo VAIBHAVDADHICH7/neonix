@@ -14,9 +14,9 @@ const MagneticElement = ({ children, className, onClick, as: Tag = 'button', ...
       const hy = rect.top + rect.height / 2;
       const dx = e.clientX - hx;
       const dy = e.clientY - hy;
-      
+
       const distance = Math.sqrt(dx * dx + dy * dy);
-      
+
       if (distance < 90) {
         element.style.transform = `translate(${dx * 0.15}px, ${dy * 0.15}px)`;
       } else {
@@ -38,9 +38,9 @@ const MagneticElement = ({ children, className, onClick, as: Tag = 'button', ...
   }, []);
 
   return (
-    <Tag 
-      ref={ref} 
-      className={`transition-transform duration-300 ease-out will-change-transform ${className}`} 
+    <Tag
+      ref={ref}
+      className={`transition-transform duration-300 ease-out will-change-transform ${className}`}
       onClick={onClick}
       {...props}
     >
@@ -75,27 +75,27 @@ export default function Navbar({ onOpenConsultation }) {
 
   const navLinks = [
     { name: 'Solutions', href: '#solutions' },
-    { name: 'Savings & Subsidy', href: '#savings-hub' },
-    { name: 'Trust & Reviews', href: '#trust-signals' },
+    { name: 'Govt. Subsidy', href: '#subsidy-info' },
+    { name: 'Savings Calculator', href: '/solar-calculator.html' },
     { name: 'FAQs', href: '#faq' },
+    { name: 'Reviews', href: '#testimonials' },
     { name: 'Contact', href: '#contact' },
-    { name: 'ROI Calculator ↗', href: '/solar-calculator.html' },
   ];
 
   return (
     <>
       {/* MOBILE FULL-SCREEN DRAWER */}
-      <div 
+      <div
         className={`fixed inset-0 z-[200] transition-opacity duration-500 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
       >
-        <div 
-          className={`absolute inset-0 bg-[#0B132B]/85 cursor-pointer transition-all duration-500 ${isMenuOpen ? 'backdrop-blur-md' : 'backdrop-blur-none'}`} 
+        <div
+          className={`absolute inset-0 bg-[#0B132B]/85 cursor-pointer transition-all duration-500 ${isMenuOpen ? 'backdrop-blur-md' : 'backdrop-blur-none'}`}
           onClick={() => setIsMenuOpen(false)}
         />
 
-        <div 
-          id="mobile-menu-drawer" 
-          aria-hidden={!isMenuOpen} 
+        <div
+          id="mobile-menu-drawer"
+          aria-hidden={!isMenuOpen}
           className={`relative z-10 h-full w-[85%] max-w-sm bg-[#0B132B] border-r border-white/10 p-6 flex flex-col justify-between transform transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} overflow-y-auto`}
         >
           <div>
@@ -108,9 +108,9 @@ export default function Navbar({ onOpenConsultation }) {
                   <span className="text-gray-400 text-[10px] uppercase tracking-wider">Infra Solutions</span>
                 </div>
               </div>
-              <button 
-                aria-label="Close Navigation Menu" 
-                className="p-2 text-white bg-white/10 rounded-full hover:bg-white/20 transition-colors" 
+              <button
+                aria-label="Close Navigation Menu"
+                className="p-2 text-white bg-white/10 rounded-full hover:bg-white/20 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -121,7 +121,7 @@ export default function Navbar({ onOpenConsultation }) {
 
             {/* Primary CTA */}
             <div className="mb-6">
-              <button 
+              <button
                 onClick={() => {
                   setIsMenuOpen(false);
                   if (onOpenConsultation) {
@@ -145,7 +145,7 @@ export default function Navbar({ onOpenConsultation }) {
               <ul className="space-y-3">
                 {navLinks.map((item) => (
                   <li key={item.name}>
-                    <a 
+                    <a
                       href={item.href}
                       onClick={() => setIsMenuOpen(false)}
                       className="block text-gray-200 text-base font-medium hover:text-[#00BFA6] transition-colors py-2 border-b border-white/5"
@@ -170,12 +170,12 @@ export default function Navbar({ onOpenConsultation }) {
       {/* STICKY HEADER NAVIGATION (Minimalist, Clean & Fast) */}
       <header className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${scrolled ? 'bg-[#0B132B]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.25)] py-2.5' : 'bg-[#0B132B]/75 backdrop-blur-sm py-3.5'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-12">
-          
+
           {/* Logo (Top Left) */}
-          <MagneticElement 
-            as="a" 
-            href="#scrolly-hero" 
-            className="flex items-center gap-2.5 group cursor-pointer min-h-[48px]" 
+          <MagneticElement
+            as="a"
+            href="#scrolly-hero"
+            className="flex items-center gap-2.5 group cursor-pointer min-h-[48px]"
             aria-label="Neonix INFRA SOLUTIONS"
           >
             <div className="bg-white rounded-full p-1 h-9 w-9 sm:h-10 sm:w-10 flex items-center justify-center shadow-md transition-transform duration-500 group-hover:scale-105">
@@ -190,8 +190,8 @@ export default function Navbar({ onOpenConsultation }) {
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center space-x-7">
             {navLinks.map((link) => (
-              <a 
-                key={link.name} 
+              <a
+                key={link.name}
                 href={link.href}
                 className="text-gray-200 text-sm font-semibold hover:text-[#00BFA6] transition-colors relative py-1 group"
               >
@@ -203,7 +203,7 @@ export default function Navbar({ onOpenConsultation }) {
 
           {/* Right Action: CTA Button + Mobile Menu Trigger */}
           <div className="flex items-center gap-2.5">
-            <button 
+            <button
               onClick={() => {
                 if (onOpenConsultation) {
                   onOpenConsultation();
@@ -221,7 +221,7 @@ export default function Navbar({ onOpenConsultation }) {
             </button>
 
             {/* Mobile Hamburger Toggle */}
-            <button 
+            <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle navigation menu"
               aria-expanded={isMenuOpen}
