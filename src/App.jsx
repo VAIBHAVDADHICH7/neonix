@@ -5,22 +5,17 @@ import CursorGlow from './components/UI/CursorGlow';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ConsultationModal from './components/ConsultationModal';
-import KeyBenefits from './components/KeyBenefits';
-import CalculatorTeaser from './components/CalculatorTeaser';
-import BillComparison from './components/BillComparison';
-import RooftopFeasibilityQuiz from './components/RooftopFeasibilityQuiz';
 import Solutions from './components/Solutions';
-import SubsidyInfo from './components/SubsidyInfo';
+import SavingsHub from './components/SavingsHub';
 import Testimonials from './components/Testimonials';
 import TrustSignals from './components/TrustSignals';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import MobileActionBar from './components/MobileActionBar';
 
-
 function App() {
   const [modalState, setModalState] = useState({
-    isOpen: true,
+    isOpen: false,
     initialData: null,
   });
 
@@ -86,11 +81,6 @@ function App() {
     });
     window.__lenis = lenis;
 
-    // If modal is open on initial load, pause Lenis wheel interception immediately
-    if (modalState.isOpen) {
-      lenis.stop();
-    }
-
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -126,37 +116,26 @@ function App() {
       <Navbar onOpenConsultation={() => handleOpenConsultation()} />
       
       <main id="main-content" className="flex-grow">
-        {/* 2. Hero Section (with scrollyteller effect) */}
-        <Hero onOpenConsultation={() => handleOpenConsultation()} />
-        
-        {/* 3. Key Benefits (4 Columns) */}
-        <KeyBenefits />
-      
-        {/* 4. ROI Calculator Launch Teaser */}
-        <CalculatorTeaser />
-
-        {/* 5. Before vs After Electricity Bill Transformation Slider */}
-        <BillComparison onGetStarted={() => handleOpenConsultation({ source: 'Bill Comparison' })} />
-
-        {/* 6. Rooftop Feasibility Diagnostic Quiz */}
-        <RooftopFeasibilityQuiz onCompleteQuiz={(quizData) => handleOpenConsultation({ quizData })} />
-        
-        {/* 7. Solutions Overview (with 4-card expanding accordion including AMC) */}
+        {/* Step 1 of 4: What do you offer? */}
+        <Hero 
+          scrolly={false}
+          onOpenConsultation={() => handleOpenConsultation()} 
+          onScrollToSavings={() => {
+            const el = document.getElementById('savings-hub');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+        />
         <Solutions onSelectSolution={(sol) => handleOpenConsultation({ connectionType: sol })} />
-        
-        {/* 8. Subsidy Information (PM Surya Ghar) */}
-        <SubsidyInfo onOpenConsultation={() => handleOpenConsultation()} />
-        
-        {/* 9. Testimonials */}
-        <Testimonials />
-        
-        {/* 10. Certifications & Trust Signals */}
+
+        {/* Step 2 of 4: How much can I save? */}
+        <SavingsHub onOpenConsultation={handleOpenConsultation} />
+
+        {/* Step 3 of 4: Can I trust you? */}
         <TrustSignals />
-        
-        {/* 11. Frequently Asked Questions (FAQ) */}
+        <Testimonials />
+
+        {/* Step 4 of 4: How do I contact you? */}
         <FAQ onOpenConsultation={() => handleOpenConsultation()} />
-        
-        {/* 12. Contact Section & Footer */}
         <Contact />
       </main>
 

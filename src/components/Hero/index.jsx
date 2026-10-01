@@ -15,7 +15,9 @@ import {
 } from './heroData';
 
 export default function Hero({
+  scrolly = false,
   onOpenConsultation,
+  onScrollToSavings,
   onScrollToCalculator,
   badgeText = 'PM Surya Ghar Subsidy ₹78,000',
   title = 'Rooftop Solar',
@@ -37,6 +39,8 @@ export default function Hero({
 
   // Scrollytelling scroll listener
   useEffect(() => {
+    if (!scrolly) return;
+
     function throttle(func, limit) {
       let inThrottle;
       return function () {
@@ -201,7 +205,53 @@ export default function Hero({
     window.addEventListener('scroll', throttledHandler, { passive: true });
     scrollytellerScrollHandler();
     return () => window.removeEventListener('scroll', throttledHandler);
-  }, []);
+  }, [scrolly]);
+
+  if (!scrolly) {
+    return (
+      <section
+        id="hero"
+        className={`relative min-h-[90vh] lg:min-h-screen w-full bg-[#F8FAFC] flex flex-col justify-between overflow-hidden ${className}`}
+        aria-label="Neonix Rooftop Solar Hero"
+      >
+        <HeroBackground bgImage={bgImage} />
+        <div className="h-14 sm:h-16 w-full shrink-0" />
+        <div className="relative z-10 flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-center my-auto py-8 sm:py-12">
+          {children || (
+            <div className="w-full">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center w-full">
+                <div className="space-y-4 sm:space-y-6 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
+                  <HeroHeadline
+                    badgeText={badgeText}
+                    title={title}
+                    highlightText={highlightText}
+                    subtitle={subtitle}
+                    trustChips={trustChips}
+                  />
+
+                  <HeroActions
+                    onOpenConsultation={onOpenConsultation}
+                    onScrollToSavings={onScrollToSavings}
+                    onScrollToCalculator={onScrollToCalculator}
+                  />
+
+                  <HeroStats stats={stats} />
+                </div>
+
+                <div
+                  className={`${
+                    showFormOnMobile ? 'flex justify-center' : 'hidden lg:flex justify-end'
+                  } w-full pointer-events-auto`}
+                >
+                  <HeroLeadForm title={leadFormTitle} webhookUrl={webhookUrl} />
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section

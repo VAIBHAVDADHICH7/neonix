@@ -1,15 +1,18 @@
 export default function HeroActions({
   onOpenConsultation,
   onScrollToCalculator,
+  onScrollToSavings,
   primaryText = '⚡ Get Free Quote',
-  secondaryText = 'Calculate Savings →',
+  secondaryText = 'Calculate Savings ↓',
   className = '',
 }) {
-  const handleScrollToCalculator = () => {
-    if (onScrollToCalculator) {
+  const handleScrollToSavings = () => {
+    if (onScrollToSavings) {
+      onScrollToSavings();
+    } else if (onScrollToCalculator) {
       onScrollToCalculator();
     } else {
-      const el = document.getElementById('roi-calculator');
+      const el = document.getElementById('savings-hub') || document.getElementById('roi-calculator');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
@@ -27,7 +30,7 @@ export default function HeroActions({
       </button>
       <button
         type="button"
-        onClick={handleScrollToCalculator}
+        onClick={handleScrollToSavings}
         className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-white hover:bg-slate-50 active:bg-slate-100 border border-slate-200/90 text-slate-800 hover:text-emerald-700 font-bold text-xs sm:text-sm px-5 sm:px-6 py-3.5 rounded-xl shadow-xs hover:shadow transition-all cursor-pointer min-h-[48px] transform hover:-translate-y-0.5"
       >
         <span>{secondaryText}</span>

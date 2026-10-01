@@ -75,11 +75,11 @@ export default function Navbar({ onOpenConsultation }) {
 
   const navLinks = [
     { name: 'Solutions', href: '#solutions' },
-    { name: 'Govt. Subsidy', href: '#subsidy-info' },
-    { name: 'Savings Calculator', href: '/solar-calculator.html' },
+    { name: 'Savings & Subsidy', href: '#savings-hub' },
+    { name: 'Trust & Reviews', href: '#trust-signals' },
     { name: 'FAQs', href: '#faq' },
-    { name: 'Reviews', href: '#testimonials' },
     { name: 'Contact', href: '#contact' },
+    { name: 'ROI Calculator ↗', href: '/solar-calculator.html' },
   ];
 
   return (
