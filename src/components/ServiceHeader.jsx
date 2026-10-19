@@ -184,9 +184,14 @@ export default function ServiceHeader({ currentService, onOpenConsultation }) {
 
           <div className="pt-4 mt-6 border-t border-white/10 text-xs text-gray-400">
             <p className="font-semibold text-white">Direct Helpline</p>
-            <a href="tel:+919910000774" className="text-[#00BFA6] font-bold block mt-0.5">
-              +91 99100 00774
-            </a>
+            <div className="space-y-0.5 mt-0.5">
+              <a href="tel:+919910000774" className="text-[#00BFA6] font-bold block">
+                +91 99100 00774
+              </a>
+              <a href="tel:+919088688899" className="text-gray-300 hover:text-white block font-medium">
+                +91 90886 88899
+              </a>
+            </div>
             <p className="text-[10px] text-gray-400 mt-1">Jaipur, Rajasthan • Mon–Sat 9am–7pm</p>
           </div>
         </div>

@@ -1524,7 +1524,7 @@
                         "tag": "br"
                       },
                       {
-                        "text": "Phone: +91 90886 88899"
+                        "text": "Phone: +91 90886 88899 / +91 99100 00774"
                       },
                       {
                         "tag": "br"
@@ -2499,6 +2499,21 @@
                                     "text": "+91 90886 88899"
                                   }
                                 ]
+                              },
+                              {
+                                "text": "/"
+                              },
+                              {
+                                "tag": "a",
+                                "attributes": {
+                                  "href": "tel:+919910000774",
+                                  "class": "text-accent-green hover:underline inline-block py-2"
+                                },
+                                "children": [
+                                  {
+                                    "text": "+91 9910000774"
+                                  }
+                                ]
                               }
                             ]
                           },
@@ -3179,6 +3194,21 @@
                                 "children": [
                                   {
                                     "text": "+91 9910000774"
+                                  }
+                                ]
+                              },
+                              {
+                                "text": "/"
+                              },
+                              {
+                                "tag": "a",
+                                "attributes": {
+                                  "href": "tel:+919088688899",
+                                  "class": "text-accent-green hover:underline inline-block py-2"
+                                },
+                                "children": [
+                                  {
+                                    "text": "+91 90886 88899"
                                   }
                                 ]
                               }

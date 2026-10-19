@@ -1132,9 +1132,15 @@ export default function ResidentialSolarPage() {
               </button>
               <a
                 href="tel:+919910000774"
-                className="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-7 py-4 rounded-xl border border-white/20 transition-all flex items-center gap-2"
+                className="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-5 py-4 rounded-xl border border-white/20 transition-all flex items-center gap-2"
               >
-                <span>📞 Call: +91 99100 00774</span>
+                <span>📞 +91 99100 00774</span>
+              </a>
+              <a
+                href="tel:+919088688899"
+                className="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-5 py-4 rounded-xl border border-white/20 transition-all flex items-center gap-2"
+              >
+                <span>📞 +91 90886 88899</span>
               </a>
             </div>
           </div>

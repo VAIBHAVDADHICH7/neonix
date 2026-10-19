@@ -406,9 +406,15 @@ export default function CalculatorPage() {
               </button>
               <a
                 href="tel:+919910000774"
-                className="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-6 py-3.5 rounded-xl border border-white/20 transition-all"
+                className="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-5 py-3.5 rounded-xl border border-white/20 transition-all"
               >
                 Call: +91 99100 00774
+              </a>
+              <a
+                href="tel:+919088688899"
+                className="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-5 py-3.5 rounded-xl border border-white/20 transition-all"
+              >
+                Call: +91 90886 88899
               </a>
             </div>
           </div>
