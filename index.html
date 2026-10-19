@@ -46,29 +46,8 @@
     <!-- Preload Critical LCP Hero Image -->
     <link rel="preload" href="/images/residential-solar.webp" as="image" type="image/webp" fetchpriority="high" />
 
-    <!-- Google Tag Manager (Deferred for Main-Thread Performance) -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function initGTM() {
-        if (window._gtmDidInit) return;
-        window._gtmDidInit = true;
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-MTBCV58T');
-      }
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(initGTM, { timeout: 2500 });
-      } else {
-        window.addEventListener('load', function() {
-          setTimeout(initGTM, 1500);
-        });
-      }
-      ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'].forEach(function(e) {
-        window.addEventListener(e, initGTM, { once: true, passive: true });
-      });
-    </script>
+    <!-- Google Tag Manager (Deferred for Main-Thread Performance & Clean Server Parsing) -->
+    <script defer src="/gtm.js"></script>
     <!-- End Google Tag Manager -->
 
     <!-- Optimized Non-Blocking Font Loading (Inter) -->
@@ -428,9 +407,9 @@
 
     <div id="root">
       <div class="fcp-container" role="dialog" aria-modal="true" aria-labelledby="fcp-modal-title" data-lenis-prevent="true">
-        <div class="fcp-backdrop" aria-hidden="true" onclick="var c=this.closest('.fcp-container');if(c)c.style.display='none';"></div>
+        <div class="fcp-backdrop" aria-hidden="true" onclick="closeFcp(this)"></div>
         <div class="fcp-modal-card" data-lenis-prevent="true">
-          <button type="button" class="fcp-close-btn" aria-label="Close form and continue to home screen" onclick="var c=this.closest('.fcp-container');if(c)c.style.display='none';">✕</button>
+          <button type="button" class="fcp-close-btn" aria-label="Close form and continue to home screen" onclick="closeFcp(this)">✕</button>
           <div>
             <div style="margin-bottom: 0.75rem; padding-right: 2rem;">
               <div style="display: flex; align-items: center; gap: 0.375rem; margin-bottom: 0.25rem;">

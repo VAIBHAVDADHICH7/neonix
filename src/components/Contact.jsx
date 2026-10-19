@@ -92,13 +92,33 @@ export default function Contact() {
     }
   };
 
-  const handleNewsletterSubmit = (e) => {
+  const handleNewsletterSubmit = async (e) => {
     e.preventDefault();
     if (!newsletterEmail) return;
+    const emailToSubmit = newsletterEmail;
     setNewsletterSubscribed(true);
     setNewsletterEmail('');
     setTimeout(() => setNewsletterSubscribed(false), 5000);
+
+    try {
+      await fetch('https://hook.eu1.make.com/z14ylrq8mwzr9iu1vazvxwjhc3kwqu8r', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: 'Newsletter Subscriber',
+          email: emailToSubmit,
+          phone: '',
+          mobile: '',
+          source: 'Website Footer Newsletter Subscription',
+          type: 'Newsletter Subscriber',
+          timestamp: new Date().toISOString(),
+        }),
+      });
+    } catch (err) {
+      console.error('Newsletter webhook error:', err);
+    }
   };
+
 
   return (
     <>
@@ -538,6 +558,7 @@ export default function Contact() {
                 <li><a href="/terms.html" className="hover:text-[#00BFA6] transition-colors">Terms of Service</a></li>
                 <li><a href="#subsidy-info" className="hover:text-[#00BFA6] transition-colors">Govt. Subsidy Guide</a></li>
                 <li><a href="#roi-calculator" className="hover:text-[#00BFA6] transition-colors">Price List</a></li>
+                <li><a href="/sitemap.xml" className="hover:text-[#00BFA6] transition-colors">Sitemap</a></li>
               </ul>
             </div>
 

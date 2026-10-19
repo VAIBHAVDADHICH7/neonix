@@ -19,6 +19,11 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         calculator: resolve(__dirname, 'solar-calculator.html'),
+        residential: resolve(__dirname, 'residential-solar.html'),
+        commercial: resolve(__dirname, 'commercial-solar.html'),
+        industrial: resolve(__dirname, 'industrial-solar.html'),
+        amc: resolve(__dirname, 'solar-amc.html'),
+        pmsuryaghar: resolve(__dirname, 'pm-surya-ghar-yojana.html'),
         privacy: resolve(__dirname, 'privacy-policy.html'),
         terms: resolve(__dirname, 'terms.html'),
       },

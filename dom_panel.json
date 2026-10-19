@@ -48,7 +48,7 @@
                 "attributes": {
                   "class": "fcp-backdrop",
                   "aria-hidden": "true",
-                  "onclick": "var c=this.closest('.fcp-container');if(c)c.style.display='none';"
+                  "onclick": "closeFcp(this)"
                 }
               },
               {
@@ -64,7 +64,7 @@
                       "type": "button",
                       "class": "fcp-close-btn",
                       "aria-label": "Close form and continue to home screen",
-                      "onclick": "var c=this.closest('.fcp-container');if(c)c.style.display='none';"
+                      "onclick": "closeFcp(this)"
                     },
                     "children": [
                       {
@@ -579,6 +579,276 @@
                     ]
                   }
                 ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "residential-solar": {
+    "tag": "body",
+    "children": [
+      {
+        "tag": "div",
+        "attributes": {
+          "id": "root"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0F172A;color:white;font-family:sans-serif;"
+            },
+            "children": [
+              {
+                "tag": "div",
+                "attributes": {
+                  "style": "text-align:center;"
+                },
+                "children": [
+                  {
+                    "tag": "div",
+                    "attributes": {
+                      "style": "width:40px;height:40px;border:3px solid #0F9D58;border-top-color:transparent;border-radius:50%;margin:0 auto 16px;animation:spin 1s linear infinite;"
+                    }
+                  },
+                  {
+                    "tag": "h1",
+                    "attributes": {
+                      "style": "font-size:20px;font-weight:700;"
+                    },
+                    "children": [
+                      {
+                        "text": "Loading Residential Solar Solutions..."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "style",
+            "children": [
+              {
+                "text": "@keyframes spin{to{transform:rotate(360deg)}}"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "commercial-solar": {
+    "tag": "body",
+    "children": [
+      {
+        "tag": "div",
+        "attributes": {
+          "id": "root"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0B132B;color:white;font-family:sans-serif;"
+            },
+            "children": [
+              {
+                "tag": "div",
+                "attributes": {
+                  "style": "text-align:center;"
+                },
+                "children": [
+                  {
+                    "tag": "div",
+                    "attributes": {
+                      "style": "width:40px;height:40px;border:3px solid #00BFA6;border-top-color:transparent;border-radius:50%;margin:0 auto 16px;animation:spin 1s linear infinite;"
+                    }
+                  },
+                  {
+                    "tag": "h1",
+                    "attributes": {
+                      "style": "font-size:20px;font-weight:700;"
+                    },
+                    "children": [
+                      {
+                        "text": "Loading Commercial Solar Solutions..."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "style",
+            "children": [
+              {
+                "text": "@keyframes spin{to{transform:rotate(360deg)}}"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "industrial-solar": {
+    "tag": "body",
+    "children": [
+      {
+        "tag": "div",
+        "attributes": {
+          "id": "root"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0F172A;color:white;font-family:sans-serif;"
+            },
+            "children": [
+              {
+                "tag": "div",
+                "attributes": {
+                  "style": "text-align:center;"
+                },
+                "children": [
+                  {
+                    "tag": "div",
+                    "attributes": {
+                      "style": "width:40px;height:40px;border:3px solid #F59E0B;border-top-color:transparent;border-radius:50%;margin:0 auto 16px;animation:spin 1s linear infinite;"
+                    }
+                  },
+                  {
+                    "tag": "h1",
+                    "attributes": {
+                      "style": "font-size:20px;font-weight:700;"
+                    },
+                    "children": [
+                      {
+                        "text": "Loading Industrial Solar Solutions..."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "style",
+            "children": [
+              {
+                "text": "@keyframes spin{to{transform:rotate(360deg)}}"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "pm-surya-ghar-yojana": {
+    "tag": "body",
+    "children": [
+      {
+        "tag": "div",
+        "attributes": {
+          "id": "root"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0F172A;color:white;font-family:sans-serif;"
+            },
+            "children": [
+              {
+                "tag": "div",
+                "attributes": {
+                  "style": "text-align:center;"
+                },
+                "children": [
+                  {
+                    "tag": "div",
+                    "attributes": {
+                      "style": "width:40px;height:40px;border:3px solid #0F9D58;border-top-color:transparent;border-radius:50%;margin:0 auto 16px;animation:spin 1s linear infinite;"
+                    }
+                  },
+                  {
+                    "tag": "h1",
+                    "attributes": {
+                      "style": "font-size:20px;font-weight:700;color:white;"
+                    },
+                    "children": [
+                      {
+                        "text": "Loading PM Surya Ghar Scheme Details..."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "style",
+            "children": [
+              {
+                "text": "@keyframes spin{to{transform:rotate(360deg)}}"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "solar-amc": {
+    "tag": "body",
+    "children": [
+      {
+        "tag": "div",
+        "attributes": {
+          "id": "root"
+        },
+        "children": [
+          {
+            "tag": "div",
+            "attributes": {
+              "style": "min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0F172A;color:white;font-family:sans-serif;"
+            },
+            "children": [
+              {
+                "tag": "div",
+                "attributes": {
+                  "style": "text-align:center;"
+                },
+                "children": [
+                  {
+                    "tag": "div",
+                    "attributes": {
+                      "style": "width:40px;height:40px;border:3px solid #3B82F6;border-top-color:transparent;border-radius:50%;margin:0 auto 16px;animation:spin 1s linear infinite;"
+                    }
+                  },
+                  {
+                    "tag": "h1",
+                    "attributes": {
+                      "style": "font-size:20px;font-weight:700;"
+                    },
+                    "children": [
+                      {
+                        "text": "Loading Solar Care & AMC Services..."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "style",
+            "children": [
+              {
+                "text": "@keyframes spin{to{transform:rotate(360deg)}}"
               }
             ]
           }

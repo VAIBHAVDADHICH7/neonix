@@ -16,9 +16,13 @@ Neonix provides end-to-end clean energy solutions including MNRE-approved Tier-1
 - **Mounting Structures**: Hot-dip galvanized steel engineered to withstand wind speeds up to 150 km/h
 
 ## Main Services & Interactive Tools
-- [Rooftop Solar Solutions](https://www.neonixinfra.in/): Comprehensive overview of grid-tied, hybrid, and off-grid rooftop solar plants for residential, commercial, and industrial properties.
-- [Solar ROI & Savings Calculator](https://www.neonixinfra.in/#roi-calculator): Interactive tool to calculate monthly electricity bill savings, payback period, net savings over 25 years, and PM Surya Ghar subsidy amounts.
-- [PM Surya Ghar Subsidy Guide](https://www.neonixinfra.in/#subsidy-info): Official subsidy guidelines, eligibility rules, and 4-step subsidy application process.
+- [Neonix Solar Homepage](https://www.neonixinfra.in/): Comprehensive overview of grid-tied, hybrid, and off-grid rooftop solar plants for residential, commercial, and industrial properties.
+- [Residential Solar](https://www.neonixinfra.in/residential-solar.html): Turnkey residential rooftop solar systems with up to ₹78,000 PM Surya Ghar direct bank subsidy and net-metering.
+- [PM Surya Ghar Yojana Guide](https://www.neonixinfra.in/pm-surya-ghar-yojana.html): Complete 2026 scheme breakdown, ₹78,000 central DBT subsidy slabs, 7% bank loan details, and step-by-step registration guide.
+- [Commercial Solar](https://www.neonixinfra.in/commercial-solar.html): Commercial solar power plants for offices, schools, and hospitals with 40% accelerated tax depreciation and 3-year payback.
+- [Industrial Solar](https://www.neonixinfra.in/industrial-solar.html): MW-scale industrial solar power plants for factories and warehouses with non-penetrating shed clamps and HT net-metering.
+- [Solar Care & AMC](https://www.neonixinfra.in/solar-amc.html): Preventive solar maintenance, RO demineralized panel washing, thermal imaging, and generation protection.
+- [Solar ROI & Savings Calculator](https://www.neonixinfra.in/solar-calculator.html): Interactive tool to calculate system capacity, monthly bill savings, payback period, and PM Surya Ghar subsidy amounts.
 - [Rooftop Feasibility Diagnostic](https://www.neonixinfra.in/#feasibility-checker): 3-step diagnostic questionnaire evaluating rooftop area, shadow-free space, connection sanction load, and recommended kW capacity.
 - [Trust Signals & Certifications](https://www.neonixinfra.in/#certifications): Tier-1 ALMM accreditation, MNRE channel partnership details, and ISO/BIS standards.
 

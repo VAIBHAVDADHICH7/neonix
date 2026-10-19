@@ -52,6 +52,7 @@ const MagneticElement = ({ children, className, onClick, as: Tag = 'button', ...
 export default function Navbar({ onOpenConsultation }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [servicesDropdown, setServicesDropdown] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,8 +74,16 @@ export default function Navbar({ onOpenConsultation }) {
     };
   }, [isMenuOpen]);
 
+  const servicesList = [
+    { name: 'Solar for Homes', href: '/residential-solar.html', badge: '₹78k Subsidy', icon: '🏠', desc: 'Cut bill by 90% with central PM Surya Ghar DBT' },
+    { name: 'PM Surya Ghar Scheme', href: '/pm-surya-ghar-yojana.html', badge: 'Govt Subsidy', icon: '🏛️', desc: 'Official 2026 subsidy guide, 7% loan & portal roadmap' },
+    { name: 'Solar for Businesses', href: '/commercial-solar.html', badge: '40% Tax AD', icon: '🏢', desc: 'Offices, hospitals, schools with 3-year payback' },
+    { name: 'Solar for Factories', href: '/industrial-solar.html', badge: 'MW Scale', icon: '🏭', desc: 'Heavy-duty plants with non-penetrating shed clamps' },
+    { name: 'Solar Care & AMC', href: '/solar-amc.html', badge: 'Maintenance', icon: '🛠️', desc: 'RO water cleaning, thermal scans & generation guarantee' },
+  ];
+
   const navLinks = [
-    { name: 'Solutions', href: '#solutions' },
+    { name: 'PM Surya Ghar (₹78k)', href: '/pm-surya-ghar-yojana.html', isSpecial: true },
     { name: 'Why Solar', href: '#why-solar' },
     { name: 'Savings & Subsidy', href: '#savings-hub' },
     { name: 'Trust & Reviews', href: '#trust-signals' },
@@ -121,7 +130,7 @@ export default function Navbar({ onOpenConsultation }) {
             </div>
 
             {/* Primary CTA */}
-            <div className="mb-6">
+            <div className="mb-5">
               <button
                 onClick={() => {
                   setIsMenuOpen(false);
@@ -141,15 +150,38 @@ export default function Navbar({ onOpenConsultation }) {
               </button>
             </div>
 
+            {/* Services Section in Mobile Drawer */}
+            <div className="mb-5">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#00BFA6] block mb-2">Our Services</span>
+              <div className="space-y-1.5">
+                {servicesList.map((srv) => (
+                  <a
+                    key={srv.name}
+                    href={srv.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white transition-colors"
+                  >
+                    <div className="flex items-center gap-2 text-xs font-semibold">
+                      <span>{srv.icon}</span>
+                      <span>{srv.name}</span>
+                    </div>
+                    <span className="text-[9px] font-bold text-[#0F9D58] bg-[#0F9D58]/15 px-2 py-0.5 rounded">
+                      {srv.badge}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
             {/* Navigation Links */}
             <nav>
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 {navLinks.map((item) => (
                   <li key={item.name}>
                     <a
                       href={item.href}
                       onClick={() => setIsMenuOpen(false)}
-                      className="block text-gray-200 text-base font-medium hover:text-[#00BFA6] transition-colors py-2 border-b border-white/5"
+                      className="block text-gray-200 text-sm font-medium hover:text-[#00BFA6] transition-colors py-1.5 border-b border-white/5"
                     >
                       {item.name}
                     </a>
@@ -189,15 +221,73 @@ export default function Navbar({ onOpenConsultation }) {
           </MagneticElement>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-7">
+          <nav className="hidden lg:flex items-center space-x-6">
+            {/* Services Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setServicesDropdown(true)}
+              onMouseLeave={() => setServicesDropdown(false)}
+            >
+              <button
+                className="flex items-center gap-1 text-gray-200 text-sm font-semibold hover:text-[#00BFA6] transition-colors py-2"
+                aria-expanded={servicesDropdown}
+              >
+                <span>Services</span>
+                <svg
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${servicesDropdown ? 'rotate-180 text-[#00BFA6]' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {servicesDropdown && (
+                <div className="absolute top-full left-0 w-72 pt-2 z-50">
+                  <div className="bg-[#0F172A] border border-white/15 rounded-2xl p-3 shadow-2xl backdrop-blur-xl">
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-[#00BFA6] px-3 py-1.5">
+                      Our Solar Services
+                    </div>
+                    {servicesList.map((srv) => (
+                      <a
+                        key={srv.name}
+                        href={srv.href}
+                        className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-white/10 text-white transition-colors"
+                      >
+                        <span className="text-base mt-0.5">{srv.icon}</span>
+                        <div>
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-xs font-bold">{srv.name}</span>
+                            <span className="text-[9px] font-semibold text-[#0F9D58] bg-[#0F9D58]/15 px-1.5 py-0.2 rounded">
+                              {srv.badge}
+                            </span>
+                          </div>
+                          <p className="text-[10px] text-gray-400 mt-0.5">{srv.desc}</p>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-gray-200 text-sm font-semibold hover:text-[#00BFA6] transition-colors relative py-1 group"
+                className={`${
+                  link.isSpecial
+                    ? 'text-amber-400 font-bold hover:text-amber-300'
+                    : 'text-gray-200 font-semibold hover:text-[#00BFA6]'
+                } text-sm transition-colors relative py-1 group`}
               >
                 {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#00BFA6] rounded-full transition-all duration-200 group-hover:w-full" />
+                <span
+                  className={`absolute bottom-0 left-0 w-0 h-0.5 ${
+                    link.isSpecial ? 'bg-amber-400' : 'bg-[#00BFA6]'
+                  } rounded-full transition-all duration-200 group-hover:w-full`}
+                />
               </a>
             ))}
           </nav>

@@ -7,6 +7,7 @@ export default function Solutions({ onSelectSolution }) {
     {
       id: 'residential',
       title: 'Solar for Homes',
+      href: '/residential-solar.html',
       tag: '₹78,000 Domestic Govt. Benefits',
       badgeColor: '#0F9D58',
       image: '/images/residential-solar.webp',
@@ -18,6 +19,7 @@ export default function Solutions({ onSelectSolution }) {
     {
       id: 'commercial',
       title: 'Solar for Businesses',
+      href: '/commercial-solar.html',
       tag: 'Save On Running Costs',
       badgeColor: '#00BFA6',
       image: '/images/commercial-solar.webp',
@@ -29,6 +31,7 @@ export default function Solutions({ onSelectSolution }) {
     {
       id: 'industrial',
       title: 'Solar for Factories',
+      href: '/industrial-solar.html',
       tag: 'High Capacity Power',
       badgeColor: '#F59E0B',
       image: '/images/industrial-solar.webp',
@@ -40,6 +43,7 @@ export default function Solutions({ onSelectSolution }) {
     {
       id: 'amc',
       title: 'Solar Care & AMC',
+      href: '/solar-amc.html',
       tag: 'Yearly Maintenance',
       badgeColor: '#3B82F6',
       image: '/images/amc-solar.webp',
@@ -113,12 +117,11 @@ export default function Solutions({ onSelectSolution }) {
               {/* Bottom content */}
               <div className="mt-4">
                 <a
-                  href="#contact"
+                  href={sol.href}
                   aria-label={sol.ariaLabel}
-                  onClick={(e) => { if (onSelectSolution) { e.preventDefault(); onSelectSolution(sol.title); } }}
-                  className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-widest text-[#00BFA6] mb-2"
+                  className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-widest text-[#00BFA6] hover:text-white transition-colors mb-2"
                 >
-                  <span>Learn More</span>
+                  <span>Explore Service Page</span>
                   <span aria-hidden="true">→</span>
                 </a>
                 <h3 className="text-lg sm:text-xl font-extrabold text-white mb-1.5">{sol.title}</h3>
@@ -172,16 +175,23 @@ export default function Solutions({ onSelectSolution }) {
                 </div>
 
                 <div className="absolute bottom-0 left-0 p-8 w-full z-10 text-white flex flex-col justify-end h-full">
-                  <div className={`transform transition-all duration-500 delay-75 mb-3 ${isExpanded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'}`}>
+                  <div className={`flex items-center gap-3 transform transition-all duration-500 delay-75 mb-3 ${isExpanded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'}`}>
                     <a
-                      href="#contact"
+                      href={sol.href}
                       aria-label={sol.ariaLabel}
-                      onClick={(e) => { if (onSelectSolution) { e.preventDefault(); onSelectSolution(sol.title); } }}
                       className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#00BFA6] hover:text-white transition-colors border-b border-[#00BFA6]/40 pb-1"
                     >
-                      <span>Learn More</span>
+                      <span>Explore Dedicated Service Page</span>
                       <span aria-hidden="true">→</span>
                     </a>
+                    {onSelectSolution && (
+                      <button
+                        onClick={(e) => { e.stopPropagation(); onSelectSolution(sol.title); }}
+                        className="text-[11px] font-bold text-white/80 hover:text-white bg-white/10 hover:bg-white/20 px-2.5 py-0.5 rounded-md border border-white/15 transition-colors"
+                      >
+                        Quick Quote
+                      </button>
+                    )}
                   </div>
 
                   <h3 className="text-2xl lg:text-3xl font-extrabold mb-2.5 transition-colors group-hover:text-[#00BFA6] text-white">{sol.title}</h3>
