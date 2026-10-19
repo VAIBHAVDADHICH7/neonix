@@ -7,6 +7,7 @@ import Hero from './components/Hero';
 import ConsultationModal from './components/ConsultationModal';
 import Solutions from './components/Solutions';
 import WhySolar from './components/WhySolar';
+import CalculatorTeaser from './components/CalculatorTeaser';
 import SavingsHub from './components/SavingsHub';
 import Testimonials from './components/Testimonials';
 import TrustSignals from './components/TrustSignals';
@@ -131,6 +132,9 @@ function App() {
 
         {/* Why Solar: Top 10 High-Impact Benefits */}
         <WhySolar />
+
+        {/* Interactive Solar ROI Teaser Widget Linking to /solar-calculator */}
+        <CalculatorTeaser />
 
         {/* Step 2 of 4: How much can I save? (Consolidated Hub: Bill Slider + Govt Subsidy + Roof Quiz) */}
         <SavingsHub onOpenConsultation={handleOpenConsultation} />

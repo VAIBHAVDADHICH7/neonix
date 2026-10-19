@@ -40,7 +40,7 @@ export default function CalculatorTeaser() {
 
             <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-3">
               <a
-                href="/solar-calculator.html"
+                href="/solar-calculator"
                 className="inline-flex items-center gap-2.5 bg-[#0B7542] hover:bg-[#096336] text-white text-sm sm:text-base font-bold px-6 sm:px-8 py-3.5 rounded-xl shadow-lg hover:shadow-[0_0_25px_rgba(11,117,66,0.5)] transition-all transform hover:-translate-y-0.5"
               >
                 <span>Launch Full Solar ROI Calculator</span>
@@ -54,7 +54,7 @@ export default function CalculatorTeaser() {
           {/* Right Column: Visual Teaser Card */}
           <div className="lg:col-span-5">
             <a
-              href="/solar-calculator.html"
+              href="/solar-calculator"
               className="block bg-white/[0.07] backdrop-blur-xl border border-white/15 rounded-2xl p-5 sm:p-6 hover:bg-white/[0.1] transition-all duration-300 group hover:border-[#00BFA6]/40 shadow-xl"
             >
               <div className="flex items-center justify-between mb-4">

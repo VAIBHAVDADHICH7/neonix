@@ -544,7 +544,7 @@ export default function Contact() {
               <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-gray-300">
                 <li><a href="#solutions" className="hover:text-[#00BFA6] transition-colors">Our Solar Systems</a></li>
                 <li><a href="#subsidy-info" className="hover:text-[#00BFA6] transition-colors">Govt. Subsidy (PM Surya Ghar)</a></li>
-                <li><a href="#roi-calculator" className="hover:text-[#00BFA6] transition-colors">Savings Calculator</a></li>
+                <li><a href="/solar-calculator" className="hover:text-[#00BFA6] transition-colors">Solar ROI &amp; Subsidy Calculator</a></li>
                 <li><a href="#testimonials" className="hover:text-[#00BFA6] transition-colors">Customer Reviews</a></li>
                 <li><a href="#contact" className="hover:text-[#00BFA6] transition-colors">Book Free Roof Check</a></li>
               </ul>

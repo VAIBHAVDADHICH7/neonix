@@ -1117,13 +1117,13 @@ export default function PmSuryaGharPage() {
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <span className="font-bold text-sm text-gray-900">{loan.bank}</span>
+                      <h3 className="font-bold text-sm text-gray-900">{loan.bank}</h3>
                       <span className="text-[10px] font-bold text-[#0F9D58] bg-[#0F9D58]/10 px-2 py-0.5 rounded">
                         7% Special
                       </span>
                     </div>
 
-                    <h4 className="text-xs font-semibold text-gray-500 mb-3">{loan.scheme}</h4>
+                    <p className="text-xs font-semibold text-gray-500 mb-3">{loan.scheme}</p>
 
                     <div className="space-y-2.5 text-xs text-gray-600 mb-6 border-t border-b border-gray-100 py-4">
                       <div>
@@ -1312,7 +1312,7 @@ export default function PmSuryaGharPage() {
                       </div>
                     </div>
 
-                    <h4 className="text-lg font-bold text-white mb-0.5">{proof.name}</h4>
+                    <h3 className="text-lg font-bold text-white mb-0.5">{proof.name}</h3>
                     <div className="text-xs text-gray-400 mb-3">
                       {proof.location} • <span className="text-[#00BFA6]">{proof.plant}</span>
                     </div>

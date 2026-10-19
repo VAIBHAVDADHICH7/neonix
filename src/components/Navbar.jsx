@@ -89,7 +89,7 @@ export default function Navbar({ onOpenConsultation }) {
     { name: 'Trust & Reviews', href: '#trust-signals' },
     { name: 'FAQs', href: '#faq' },
     { name: 'Contact', href: '#contact' },
-    { name: 'ROI Calculator ↗', href: '/solar-calculator.html' },
+    { name: 'ROI Calculator ↗', href: '/solar-calculator' },
   ];
 
   return (

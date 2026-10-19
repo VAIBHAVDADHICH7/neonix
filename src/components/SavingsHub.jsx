@@ -196,9 +196,9 @@ export default function SavingsHub({ onOpenConsultation }) {
             {/* Bottom Action */}
             <div className="bg-white/5 border border-white/15 p-4 sm:p-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="text-center sm:text-left">
-                <h4 className="text-sm sm:text-base font-bold text-white">
+                <h3 className="text-sm sm:text-base font-bold text-white">
                   Save ₹{(monthlySavings * 12).toLocaleString('en-IN')} Every Single Year
-                </h4>
+                </h3>
                 <p className="text-xs text-slate-300 mt-0.5">
                   Full PM Surya Ghar subsidy processing and DISCOM paperwork handled by our certified engineers.
                 </p>
@@ -428,16 +428,16 @@ export default function SavingsHub({ onOpenConsultation }) {
             <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#00BFA6] uppercase tracking-wider">
               <span>📊</span> Dedicated Financial Modeling Tool
             </div>
-            <h4 className="text-base sm:text-lg font-bold text-white">
+            <h3 className="text-base sm:text-lg font-bold text-white">
               Want a Full 25-Year Cashflow Model With Tax Depreciation & Loan EMIs?
-            </h4>
+            </h3>
             <p className="text-xs text-slate-300 max-w-xl">
               Access our dedicated calculator page for detailed DCR/Non-DCR comparisons, commercial accelerated depreciation (40%), and instant PDF feasibility downloads.
             </p>
           </div>
 
           <a
-            href="/solar-calculator.html"
+            href="/solar-calculator"
             className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 bg-[#00BFA6] hover:bg-[#00a892] active:bg-[#008f7c] text-slate-950 font-black text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 whitespace-nowrap cursor-pointer"
           >
             <span>Launch Full Solar ROI Calculator</span>

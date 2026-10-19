@@ -50,7 +50,7 @@ export default function ServiceFooter() {
                 </a>
               </li>
               <li>
-                <a href="/solar-calculator.html" className="hover:text-[#00BFA6] transition-colors flex items-center gap-1.5 text-white font-semibold">
+                <a href="/solar-calculator" className="hover:text-[#00BFA6] transition-colors flex items-center gap-1.5 text-white font-semibold">
                   <span className="text-[#0F9D58]">★</span> Solar ROI & Subsidy Calculator
                 </a>
               </li>
@@ -62,7 +62,7 @@ export default function ServiceFooter() {
             <h4 className="text-white font-bold text-sm mb-4 uppercase tracking-wider">Tools & Guides</h4>
             <ul className="space-y-2.5">
               <li>
-                <a href="/solar-calculator.html" className="hover:text-white transition-colors">
+                <a href="/solar-calculator" className="hover:text-white transition-colors">
                   Subsidy Calculator 2026
                 </a>
               </li>

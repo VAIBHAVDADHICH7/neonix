@@ -167,7 +167,7 @@ export default function ServiceHeader({ currentService, onOpenConsultation }) {
                 <span>🏛️ PM Surya Ghar (₹78k)</span>
                 <span className="text-[10px] bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded">Active</span>
               </a>
-              <a href="/solar-calculator.html" className="block py-2 px-3 rounded-lg hover:bg-white/5 text-[#00BFA6] font-semibold">
+              <a href="/solar-calculator" className="block py-2 px-3 rounded-lg hover:bg-white/5 text-[#00BFA6] font-semibold">
                 ⚡ Solar ROI Calculator
               </a>
               <a href="/#savings-hub" className="block py-2 px-3 rounded-lg hover:bg-white/5 hover:text-white">
@@ -306,7 +306,7 @@ export default function ServiceHeader({ currentService, onOpenConsultation }) {
             </a>
 
             <a
-              href="/solar-calculator.html"
+              href="/solar-calculator"
               className="text-[#00BFA6] hover:text-white text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-1"
             >
               <span>ROI Calculator</span>

@@ -22,7 +22,7 @@ Neonix provides end-to-end clean energy solutions including MNRE-approved Tier-1
 - [Commercial Solar](https://www.neonixinfra.in/commercial-solar.html): Commercial solar power plants for offices, schools, and hospitals with 40% accelerated tax depreciation and 3-year payback.
 - [Industrial Solar](https://www.neonixinfra.in/industrial-solar.html): MW-scale industrial solar power plants for factories and warehouses with non-penetrating shed clamps and HT net-metering.
 - [Solar Care & AMC](https://www.neonixinfra.in/solar-amc.html): Preventive solar maintenance, RO demineralized panel washing, thermal imaging, and generation protection.
-- [Solar ROI & Savings Calculator](https://www.neonixinfra.in/solar-calculator.html): Interactive tool to calculate system capacity, monthly bill savings, payback period, and PM Surya Ghar subsidy amounts.
+- [Solar ROI & Savings Calculator](https://www.neonixinfra.in/solar-calculator): Interactive tool to calculate system capacity, monthly bill savings, payback period, and PM Surya Ghar subsidy amounts.
 - [Rooftop Feasibility Diagnostic](https://www.neonixinfra.in/#feasibility-checker): 3-step diagnostic questionnaire evaluating rooftop area, shadow-free space, connection sanction load, and recommended kW capacity.
 - [Trust Signals & Certifications](https://www.neonixinfra.in/#certifications): Tier-1 ALMM accreditation, MNRE channel partnership details, and ISO/BIS standards.
 
