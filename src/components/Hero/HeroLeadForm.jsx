@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SITE_CONFIG } from '../../data';
 
 export default function HeroLeadForm({
   title = 'Get Your Free Proposal',
@@ -145,7 +146,7 @@ export default function HeroLeadForm({
           className="mb-3 p-3 bg-red-50 border border-red-200 text-red-700 rounded-xl text-xs font-semibold"
           role="alert"
         >
-          Something went wrong. Please call +91 99100 00774.
+          Something went wrong. Please call {SITE_CONFIG.contact.primaryPhone}.
         </div>
       )}
 

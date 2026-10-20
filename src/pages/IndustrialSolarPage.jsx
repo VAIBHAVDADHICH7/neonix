@@ -5,6 +5,7 @@ import ServiceFooter from '../components/ServiceFooter';
 import ConsultationModal from '../components/ConsultationModal';
 import ScrollProgress from '../components/UI/ScrollProgress';
 import CursorGlow from '../components/UI/CursorGlow';
+import { SITE_CONFIG } from '../data';
 
 export default function IndustrialSolarPage() {
   const [modalState, setModalState] = useState({
@@ -271,10 +272,10 @@ export default function IndustrialSolarPage() {
                   </a>
 
                   <a
-                    href="tel:+919910000774"
+                    href={`tel:${SITE_CONFIG.contact.primaryPhoneRaw}`}
                     className="bg-white/10 hover:bg-white/20 text-white text-sm font-bold px-6 py-4 rounded-xl border border-white/15 transition-all flex items-center gap-2"
                   >
-                    <span>📞 Head of Projects: +91 99100 00774</span>
+                    <span>📞 Head of Projects: {SITE_CONFIG.contact.primaryPhone}</span>
                   </a>
                 </div>
               </div>
@@ -628,7 +629,7 @@ export default function IndustrialSolarPage() {
                   </a>
 
                   <a
-                    href="tel:+919910000774"
+                    href={`tel:${SITE_CONFIG.contact.primaryPhoneRaw}`}
                     className="bg-[#0F172A] hover:bg-[#1E293B] text-white font-bold py-3.5 px-6 rounded-xl text-sm transition-all flex items-center justify-center gap-2 border border-white/10"
                   >
                     <span>📞 Call Industrial Solar Desk</span>
@@ -849,16 +850,16 @@ export default function IndustrialSolarPage() {
                 Schedule Factory Structural & Energy Audit
               </button>
               <a
-                href="tel:+919910000774"
+                href={`tel:${SITE_CONFIG.contact.primaryPhoneRaw}`}
                 className="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-5 py-4 rounded-xl border border-white/20 transition-all flex items-center gap-2"
               >
-                <span>📞 +91 99100 00774</span>
+                <span>📞 {SITE_CONFIG.contact.primaryPhone}</span>
               </a>
               <a
-                href="tel:+919088688899"
+                href={`tel:${SITE_CONFIG.contact.secondaryPhoneRaw}`}
                 className="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-5 py-4 rounded-xl border border-white/20 transition-all flex items-center gap-2"
               >
-                <span>📞 +91 90886 88899</span>
+                <span>📞 {SITE_CONFIG.contact.secondaryPhone}</span>
               </a>
             </div>
           </div>

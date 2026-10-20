@@ -1,58 +1,15 @@
 import { useState } from 'react';
+import { SERVICES } from '../data';
 
 export default function Solutions({ onSelectSolution }) {
   const [activeCard, setActiveCard] = useState('residential');
 
-  const solutions = [
-    {
-      id: 'residential',
-      title: 'Solar for Homes',
-      href: '/residential-solar.html',
-      tag: '₹78,000 Domestic Govt. Benefits',
-      badgeColor: '#0F9D58',
-      image: '/images/residential-solar.webp',
-      alt: 'Rooftop solar panels installed on a residential home',
-      description: 'Cut your home electricity bill by 90% with customized rooftop solar for individual houses, villas, and apartments.',
-      highlights: ['Get up to ₹78,000 Domestic Govt. Benefits', 'Smart Net-Meter Included', '30-Year Long Life'],
-      ariaLabel: 'Learn more about Solar for Homes and the government subsidy',
-    },
-    {
-      id: 'commercial',
-      title: 'Solar for Businesses',
-      href: '/commercial-solar.html',
-      tag: 'Save On Running Costs',
-      badgeColor: '#00BFA6',
-      image: '/images/commercial-solar.webp',
-      alt: 'Solar panels installed on an office and commercial building',
-      description: 'Lower your monthly electricity bills for offices, hospitals, schools, and shops with clean solar energy.',
-      highlights: ['40% Tax Benefit', 'Fast 3-Year Payback', 'Reliable Daily Power'],
-      ariaLabel: 'Learn more about Solar for Businesses and tax benefits',
-    },
-    {
-      id: 'industrial',
-      title: 'Solar for Factories',
-      href: '/industrial-solar.html',
-      tag: 'High Capacity Power',
-      badgeColor: '#F59E0B',
-      image: '/images/industrial-solar.webp',
-      alt: 'Large industrial solar power plant on a manufacturing factory warehouse',
-      description: 'Heavy-duty solar systems built for factories, warehouses, and industrial plants with heavy electricity usage.',
-      highlights: ['Custom High-Load Design', 'Continuous Power Supply', 'Full Maintenance Support'],
-      ariaLabel: 'Learn more about Solar for Factories and heavy industries',
-    },
-    {
-      id: 'amc',
-      title: 'Solar Care & AMC',
-      href: '/solar-amc.html',
-      tag: 'Yearly Maintenance',
-      badgeColor: '#3B82F6',
-      image: '/images/amc-solar.webp',
-      alt: 'Solar panel cleaning and professional maintenance service technician on roof',
-      description: 'Complete yearly maintenance, regular panel cleaning, health checks, and fast repairs to keep your solar generating peak power.',
-      highlights: ['Scheduled Panel Cleaning', 'Inverter & Wiring Checks', '24-Hour Quick Support'],
-      ariaLabel: 'Learn more about Solar Care and Annual Maintenance Contracts (AMC)',
-    },
-  ];
+  // Core solutions for interactive slider cards
+  const solutions = SERVICES.filter((s) => ['residential', 'commercial', 'industrial', 'amc'].includes(s.id)).map((s) => ({
+    ...s,
+    title: s.name,
+    tag: s.tagline,
+  }));
 
   return (
     <section

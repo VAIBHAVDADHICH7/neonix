@@ -1,39 +1,6 @@
 import { useState, useId, useEffect, useRef } from 'react';
 import SpotlightCard from './UI/SpotlightCard';
-
-// Exact Master Pricing & Subsidy Lookup Tables
-const DCR_PRICING_TABLE = {
-  '3KW_1PH': { capacity: 3, name: '3 kW System', price: 195000, subsidy: 78000, net: 117000, phase: '1PH' },
-  '4KW_1PH': { capacity: 4, name: '4 kW System', price: 235000, subsidy: 78000, net: 157000, phase: '1PH' },
-  '5KW_1PH': { capacity: 5, name: '5 kW System (Single Phase)', price: 280000, subsidy: 78000, net: 202000, phase: '1PH' },
-  '5KW_3PH': { capacity: 5, name: '5 kW System (3-Phase)', price: 315000, subsidy: 78000, net: 237000, phase: '3PH' },
-  '6KW_1PH': { capacity: 6, name: '6 kW System (Single Phase)', price: 330000, subsidy: 78000, net: 252000, phase: '1PH' },
-  '6KW_3PH': { capacity: 6, name: '6 kW System (3-Phase)', price: 355000, subsidy: 78000, net: 277000, phase: '3PH' },
-  '8KW_3PH': { capacity: 8, name: '8 kW System (3-Phase)', price: 440000, subsidy: 78000, net: 362000, phase: '3PH' },
-  '10KW_3PH': { capacity: 10, name: '10 kW System (3-Phase)', price: 520000, subsidy: 78000, net: 442000, phase: '3PH' },
-  '12KW_3PH': { capacity: 12, name: '12 kW System (3-Phase)', price: 620000, subsidy: 78000, net: 542000, phase: '3PH' },
-  '15KW_3PH': { capacity: 15, name: '15 kW System (3-Phase)', price: 765000, subsidy: 78000, net: 687000, phase: '3PH' },
-  '18KW_3PH': { capacity: 18, name: '18 kW System (3-Phase)', price: 910000, subsidy: 78000, net: 832000, phase: '3PH' },
-};
-
-const NDCR_PRICING_TABLE = {
-  '3KW_1PH': { capacity: 3, name: '3 kW System', price: 160000, subsidy: 0, net: 160000, phase: '1PH' },
-  '4KW_1PH': { capacity: 4, name: '4 kW System', price: 200000, subsidy: 0, net: 200000, phase: '1PH' },
-  '5KW_1PH': { capacity: 5, name: '5 kW System (Single Phase)', price: 235000, subsidy: 0, net: 235000, phase: '1PH' },
-  '5KW_3PH': { capacity: 5, name: '5 kW System (3-Phase)', price: 260000, subsidy: 0, net: 260000, phase: '3PH' },
-  '6KW_1PH': { capacity: 6, name: '6 kW System (Single Phase)', price: 270000, subsidy: 0, net: 270000, phase: '1PH' },
-  '6KW_3PH': { capacity: 6, name: '6 kW System (3-Phase)', price: 305000, subsidy: 0, net: 305000, phase: '3PH' },
-  '8KW_3PH': { capacity: 8, name: '8 kW System (3-Phase)', price: 340000, subsidy: 0, net: 340000, phase: '3PH' },
-  '10KW_3PH': { capacity: 10, name: '10 kW System (3-Phase)', price: 380000, subsidy: 0, net: 380000, phase: '3PH' },
-  '12KW_3PH': { capacity: 12, name: '12 kW System (3-Phase)', price: 450000, subsidy: 0, net: 450000, phase: '3PH' },
-  '15KW_3PH': { capacity: 15, name: '15 kW System (3-Phase)', price: 555000, subsidy: 0, net: 555000, phase: '3PH' },
-  '18KW_3PH': { capacity: 18, name: '18 kW System (3-Phase)', price: 660000, subsidy: 0, net: 660000, phase: '3PH' },
-};
-
-// Exact Mapping: Required load -> Recommended System Size
-const KW_TO_SYSTEM_MAP = {
-  1: 3, 2: 3, 3: 3, 4: 4, 5: 5, 6: 6, 7: 8, 8: 8, 9: 10, 10: 10, 11: 12, 12: 12, 13: 15, 14: 15, 15: 15, 16: 18, 17: 18, 18: 18,
-};
+import { DCR_PRICING_TABLE, NDCR_PRICING_TABLE, KW_TO_SYSTEM_MAP } from '../data';
 
 // Animated counter hook — counts from prev to target value
 function useAnimatedCount(target, duration = 650) {

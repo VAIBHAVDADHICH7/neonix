@@ -4,6 +4,7 @@ import RoiCalculator from '../components/RoiCalculator';
 import ConsultationModal from '../components/ConsultationModal';
 import ScrollProgress from '../components/UI/ScrollProgress';
 import CursorGlow from '../components/UI/CursorGlow';
+import { SITE_CONFIG, FOOTER_SECTIONS, FAQS } from '../data';
 
 export default function CalculatorPage() {
   const [modalState, setModalState] = useState({
@@ -99,32 +100,7 @@ export default function CalculatorPage() {
     });
   };
 
-  const faqs = [
-    {
-      q: 'How is my recommended solar system capacity calculated?',
-      a: 'The calculator estimates your monthly electricity consumption in kWh (units) by dividing your average monthly electricity bill by standard grid tariff rates. In high-sunlight regions like Rajasthan, 1 kW of rooftop solar generates approximately 120–135 units per month. We then match your monthly consumption to the exact kW system needed to eliminate up to 90% of your grid bill.',
-    },
-    {
-      q: 'What is the PM Surya Ghar subsidy amount for residential solar?',
-      a: 'Under the PM Surya Ghar Muft Bijli Yojana (2026), residential consumers in India receive: ₹30,000 subsidy for 1 kW systems, ₹60,000 subsidy for 2 kW systems, and a maximum flat subsidy of ₹78,000 for 3 kW and larger systems. The subsidy is credited directly to your bank account via Direct Benefit Transfer (DBT) within 30 days after net meter installation.',
-    },
-    {
-      q: 'What is the difference between DCR and Non-DCR solar panels?',
-      a: 'DCR (Domestic Content Requirement) panels are manufactured entirely in India using domestically produced solar cells and modules. DCR panels are strictly mandatory to qualify for the central government PM Surya Ghar subsidy. Non-DCR panels use high-efficiency imported cells (e.g. N-Type TOPCon) and offer lower upfront pricing for commercial, industrial, or institutional installations where accelerated depreciation benefits apply instead of residential subsidies.',
-    },
-    {
-      q: 'When should I choose Single-Phase (1PH) vs Three-Phase (3PH)?',
-      a: 'Single-phase connections are standard for smaller residential homes with sanctioned loads up to 4 kW – 5 kW running standard home appliances. Three-phase connections are required for systems larger than 5 kW, commercial buildings, agricultural connections, or homes operating multiple heavy appliances (central ACs, commercial machinery, heat pumps).',
-    },
-    {
-      q: 'How does Net Metering work in Rajasthan?',
-      a: 'Net metering is a billing mechanism that credits solar energy system owners for the electricity they add to the grid. During daytime peak hours, your solar panels power your home and export surplus power to your DISCOM (JVVNL, AVVNL, JdVVNL). At night, you draw power from the grid. At the end of the billing cycle, you are only billed for the "net" difference.',
-    },
-    {
-      q: 'How much shadow-free roof area is required for installation?',
-      a: 'Each 1 kW of rooftop solar requires approximately 64 to 70 sq. ft. of clean, shadow-free rooftop space. For example, a 3 kW system (consisting of 6 high-efficiency 550W panels) needs about 192 to 210 sq. ft. of unshaded roof area.',
-    },
-  ];
+  const faqs = FAQS.calculator;
 
   return (
     <div className="font-sans antialiased text-[#111827] bg-[#F8FAFC] selection:bg-[#0F9D58] selection:text-white min-h-screen flex flex-col justify-between">
@@ -156,13 +132,13 @@ export default function CalculatorPage() {
             </a>
 
             <a
-              href="tel:+919910000774"
+              href={`tel:${SITE_CONFIG.contact.primaryPhoneRaw}`}
               className="hidden md:inline-flex items-center gap-2 text-xs font-bold text-white/90 bg-white/10 hover:bg-white/20 px-3.5 py-2.5 rounded-xl border border-white/15 transition-all"
             >
               <svg className="w-4 h-4 text-[#00BFA6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              <span>+91 99100 00774</span>
+              <span>{SITE_CONFIG.contact.primaryPhone}</span>
             </a>
 
             <button
@@ -405,16 +381,16 @@ export default function CalculatorPage() {
                 Book Free Rooftop Site Inspection
               </button>
               <a
-                href="tel:+919910000774"
+                href={`tel:${SITE_CONFIG.contact.primaryPhoneRaw}`}
                 className="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-5 py-3.5 rounded-xl border border-white/20 transition-all"
               >
-                Call: +91 99100 00774
+                Call: {SITE_CONFIG.contact.primaryPhone}
               </a>
               <a
-                href="tel:+919088688899"
+                href={`tel:${SITE_CONFIG.contact.secondaryPhoneRaw}`}
                 className="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-5 py-3.5 rounded-xl border border-white/20 transition-all"
               >
-                Call: +91 90886 88899
+                Call: {SITE_CONFIG.contact.secondaryPhone}
               </a>
             </div>
           </div>
@@ -425,19 +401,22 @@ export default function CalculatorPage() {
       <footer className="bg-[#070D1E] text-gray-400 py-10 px-4 sm:px-6 lg:px-8 border-t border-white/10 text-xs">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
           <div className="flex items-center gap-2">
-            <img src="/images/logo.svg" alt="Neonix Logo" className="h-6 w-auto" width="24" height="24" />
-            <span className="text-white font-bold">Neonix Infra Solutions LLP</span>
-            <span className="text-gray-500">| Jaipur, Rajasthan, India</span>
+            <img src={SITE_CONFIG.logo} alt={`${SITE_CONFIG.name} Logo`} className="h-6 w-auto" width="24" height="24" />
+            <span className="text-white font-bold">{SITE_CONFIG.legalName}</span>
+            <span className="text-gray-500">| {SITE_CONFIG.address.city}, {SITE_CONFIG.address.state}, {SITE_CONFIG.address.country}</span>
           </div>
 
           <div className="flex items-center gap-6">
             <a href="/" className="hover:text-white transition-colors">Home</a>
-            <a href="/privacy-policy.html" className="hover:text-white transition-colors">Privacy & Warranty Policy</a>
-            <a href="/terms.html" className="hover:text-white transition-colors">Terms & Conditions</a>
+            {FOOTER_SECTIONS.legal.links.map((link) => (
+              <a key={link.name} href={link.href} className="hover:text-white transition-colors">
+                {link.name}
+              </a>
+            ))}
           </div>
 
           <p className="text-gray-500">
-            &copy; {new Date().getFullYear()} Neonix Infra Solutions. All rights reserved.
+            &copy; {new Date().getFullYear()} {SITE_CONFIG.name} Infra Solutions. All rights reserved.
           </p>
         </div>
       </footer>

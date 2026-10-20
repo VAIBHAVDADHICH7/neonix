@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import SpotlightCard from './UI/SpotlightCard';
+import { SOLAR_DATA } from '../data';
 
 export default function SavingsHub({ onOpenConsultation }) {
   const [activeTab, setActiveTab] = useState('slider'); // 'slider' | 'subsidy' | 'quiz'
@@ -21,19 +22,8 @@ export default function SavingsHub({ onOpenConsultation }) {
   });
   const [quizCompleted, setQuizCompleted] = useState(false);
 
-  const subsidyPackages = [
-    { capacity: '3 kW System', bestFor: 'Small Homes (Bill ~₹3,000/mo)', price: '₹1,95,000', subsidy: '₹78,000', net: '₹1,17,000', units: '~360 Units/mo', popular: false },
-    { capacity: '5 kW System', bestFor: 'Standard 2-3 BHK Homes with AC', price: '₹2,80,000', subsidy: '₹78,000', net: '₹2,02,000', units: '~600 Units/mo', popular: true },
-    { capacity: '8 kW System', bestFor: 'Large Villas & Joint Families', price: '₹4,40,000', subsidy: '₹78,000', net: '₹3,62,000', units: '~960 Units/mo', popular: false },
-    { capacity: '10 kW System', bestFor: 'Luxury Homes & Commercial Setups', price: '₹5,20,000', subsidy: '₹78,000', net: '₹4,42,000', units: '~1,200 Units/mo', popular: false },
-  ];
-
-  const subsidySteps = [
-    { step: '01', title: 'Free Roof Survey & Application', time: 'Day 1-2', desc: 'Our team inspects your roof and handles your application on the PM Surya Ghar National Portal.' },
-    { step: '02', title: 'DISCOM Feasibility Approval', time: 'Day 3-7', desc: 'Your local electricity board approves your net-metering connection with zero friction.' },
-    { step: '03', title: 'Turnkey Installation', time: 'Day 8-12', desc: 'Certified engineers mount Tier-1 panels, smart inverters, and synchronization meters in 1-2 days.' },
-    { step: '04', title: '₹78,000 DBT in Your Bank', time: 'Within 30 Days', desc: 'Government transfers the ₹78,000 subsidy directly to your registered bank account.' },
-  ];
+  const subsidyPackages = SOLAR_DATA.packages;
+  const subsidySteps = SOLAR_DATA.subsidySteps;
 
   return (
     <section 

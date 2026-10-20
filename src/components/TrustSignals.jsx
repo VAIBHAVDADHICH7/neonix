@@ -1,31 +1,7 @@
 import SpotlightCard from './UI/SpotlightCard';
+import { CERTIFICATIONS, TRUST_METRICS } from '../data';
 
 export default function TrustSignals() {
-  const certifications = [
-    {
-      title: 'MNRE Approved',
-      subtitle: 'Ministry of New & Renewable Energy',
-      code: 'Channel Partner Reg. #RJ-NEO-2024',
-      icon: '🏛️',
-      color: '#0b7542',
-    },
-
-    {
-      title: 'Govt. Subsidy Approval',
-      subtitle: 'PM Surya Ghar National Portal',
-      code: 'Direct Benefit Transfer (DBT)',
-      icon: '⚡',
-      color: '#D97706',
-    },
-    {
-      title: 'Tier-1 ALMM Panels',
-      subtitle: 'Domestic Content Requirement (DCR)',
-      code: 'Mono PERC Bifacial Grade A',
-      icon: '🛡️',
-      color: '#111827',
-    },
-  ];
-
   return (
     <section
       className="py-14 sm:py-16 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto relative bg-[#F8FAFC] border-t border-gray-200/70"
@@ -48,7 +24,7 @@ export default function TrustSignals() {
 
       {/* Badges Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 mb-6 sm:mb-10">
-        {certifications.map((cert) => (
+        {CERTIFICATIONS.map((cert) => (
           <SpotlightCard
             key={cert.title}
             className="reveal-up bg-white rounded-2xl p-4 sm:p-5 border border-gray-200 shadow-sm hover:shadow-md transition-all flex items-center gap-3.5 sm:gap-4"
@@ -73,25 +49,17 @@ export default function TrustSignals() {
 
       {/* Trust metric summary bar */}
       <div className="bg-white rounded-2xl p-4 sm:p-6 border border-gray-200 shadow-sm grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center sm:justify-around gap-4 text-center reveal-up">
-        <div>
-          <p className="text-2xl sm:text-3xl font-black text-[#0b7542]">500+</p>
-          <p className="text-[11px] sm:text-xs text-[#374151] font-bold mt-0.5">Rooftops Installed</p>
-        </div>
-        <div className="h-8 w-px bg-gray-200 hidden sm:block" aria-hidden="true" />
-        <div>
-          <p className="text-2xl sm:text-3xl font-black text-[#0d8070]">4.9 ★</p>
-          <p className="text-[11px] sm:text-xs text-[#374151] font-bold mt-0.5">Google Review Rating</p>
-        </div>
-        <div className="h-8 w-px bg-gray-200 hidden sm:block" aria-hidden="true" />
-        <div>
-          <p className="text-2xl sm:text-3xl font-black text-[#D97706]">₹3.5 Cr+</p>
-          <p className="text-[11px] sm:text-xs text-[#374151] font-bold mt-0.5">Customer Bill Savings</p>
-        </div>
-        <div className="h-8 w-px bg-gray-200 hidden sm:block" aria-hidden="true" />
-        <div>
-          <p className="text-2xl sm:text-3xl font-black text-[#111827]">100%</p>
-          <p className="text-[11px] sm:text-xs text-[#374151] font-bold mt-0.5">Subsidy Claim Success</p>
-        </div>
+        {TRUST_METRICS.map((metric, index) => (
+          <div key={metric.label} className="contents sm:block">
+            {index > 0 && <div className="h-8 w-px bg-gray-200 hidden sm:block" aria-hidden="true" />}
+            <div>
+              <p className="text-2xl sm:text-3xl font-black" style={{ color: metric.color }}>
+                {metric.value}
+              </p>
+              <p className="text-[11px] sm:text-xs text-[#374151] font-bold mt-0.5">{metric.label}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

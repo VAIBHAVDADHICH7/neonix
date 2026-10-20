@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { SERVICES_DROPDOWN_LIST, SITE_CONFIG } from '../data';
 
 export default function ServiceHeader({ currentService, onOpenConsultation }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,48 +25,7 @@ export default function ServiceHeader({ currentService, onOpenConsultation }) {
     };
   }, [isMenuOpen]);
 
-  const serviceList = [
-    {
-      id: 'residential',
-      name: 'Solar for Homes',
-      badge: 'Up to ₹78,000 Subsidy',
-      href: '/residential-solar.html',
-      desc: 'Residential rooftop solar with PM Surya Ghar DBT subsidy',
-      icon: '🏠',
-    },
-    {
-      id: 'commercial',
-      name: 'Solar for Businesses',
-      badge: '40% Tax Benefit',
-      href: '/commercial-solar.html',
-      desc: 'Commercial rooftop solar for offices, hospitals & schools',
-      icon: '🏢',
-    },
-    {
-      id: 'industrial',
-      name: 'Solar for Factories',
-      badge: 'MW-Scale EPC',
-      href: '/industrial-solar.html',
-      desc: 'Heavy-duty industrial solar for factories & warehouses',
-      icon: '🏭',
-    },
-    {
-      id: 'amc',
-      name: 'Solar Care & AMC',
-      badge: 'Peak Generation',
-      href: '/solar-amc.html',
-      desc: 'Professional cleaning, thermal audit & guaranteed uptime',
-      icon: '🛠️',
-    },
-    {
-      id: 'pmsuryaghar',
-      name: 'PM Surya Ghar Scheme',
-      badge: '₹78,000 DBT',
-      href: '/pm-surya-ghar-yojana.html',
-      desc: 'Official 2026 subsidy guide, 7% loan & portal roadmap',
-      icon: '🏛️',
-    },
-  ];
+  const serviceList = SERVICES_DROPDOWN_LIST.filter((s) => s.id !== 'calculator');
 
   return (
     <>
@@ -185,14 +145,14 @@ export default function ServiceHeader({ currentService, onOpenConsultation }) {
           <div className="pt-4 mt-6 border-t border-white/10 text-xs text-gray-400">
             <p className="font-semibold text-white">Direct Helpline</p>
             <div className="space-y-0.5 mt-0.5">
-              <a href="tel:+919910000774" className="text-[#00BFA6] font-bold block">
-                +91 99100 00774
+              <a href={`tel:${SITE_CONFIG.contact.primaryPhoneRaw}`} className="text-[#00BFA6] font-bold block">
+                {SITE_CONFIG.contact.primaryPhone}
               </a>
-              <a href="tel:+919088688899" className="text-gray-300 hover:text-white block font-medium">
-                +91 90886 88899
+              <a href={`tel:${SITE_CONFIG.contact.secondaryPhoneRaw}`} className="text-gray-300 hover:text-white block font-medium">
+                {SITE_CONFIG.contact.secondaryPhone}
               </a>
             </div>
-            <p className="text-[10px] text-gray-400 mt-1">Jaipur, Rajasthan • Mon–Sat 9am–7pm</p>
+            <p className="text-[10px] text-gray-400 mt-1">{SITE_CONFIG.address.locality}, {SITE_CONFIG.address.state} • {SITE_CONFIG.contact.workingHours}</p>
           </div>
         </div>
       </div>
@@ -331,13 +291,13 @@ export default function ServiceHeader({ currentService, onOpenConsultation }) {
           {/* Right Action */}
           <div className="flex items-center gap-3">
             <a
-              href="tel:+919910000774"
+              href={`tel:${SITE_CONFIG.contact.primaryPhoneRaw}`}
               className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-white/90 hover:text-[#00BFA6] transition-colors bg-white/10 hover:bg-white/15 px-3 py-2 rounded-xl border border-white/10"
             >
               <svg className="w-3.5 h-3.5 text-[#0F9D58]" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
               </svg>
-              <span>+91 99100 00774</span>
+              <span>{SITE_CONFIG.contact.primaryPhone}</span>
             </a>
 
             <button

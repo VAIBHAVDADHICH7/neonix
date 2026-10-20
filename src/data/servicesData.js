@@ -1,0 +1,133 @@
+/**
+ * Solar Services Catalog & Metadata
+ * Data-Driven Architecture for Neonix EPC offerings
+ */
+
+export const SERVICES = [
+  {
+    id: 'residential',
+    name: 'Solar for Homes',
+    shortName: 'Residential',
+    href: '/residential-solar.html',
+    badge: '₹78,000 Subsidy',
+    badgeColor: '#0F9D58',
+    icon: '🏠',
+    image: '/images/residential-solar.webp',
+    alt: 'Rooftop solar panels installed on a residential home in India',
+    desc: 'Residential rooftop solar with PM Surya Ghar DBT subsidy.',
+    tagline: '₹78,000 Domestic Govt. Benefits',
+    description:
+      'Cut your home electricity bill by 90% with customized rooftop solar for individual houses, villas, and apartments.',
+    highlights: [
+      'Get up to ₹78,000 Direct DBT Subsidy',
+      'Smart Net-Meter Included',
+      '30-Year Performance Life',
+    ],
+    ariaLabel: 'Learn more about Solar for Homes and the PM Surya Ghar subsidy',
+  },
+  {
+    id: 'pmsuryaghar',
+    name: 'PM Surya Ghar Scheme',
+    shortName: 'PM Surya Ghar',
+    href: '/pm-surya-ghar-yojana.html',
+    badge: 'Govt Subsidy',
+    badgeColor: '#D97706',
+    icon: '🏛️',
+    image: '/images/1.webp',
+    alt: 'PM Surya Ghar Muft Bijli Yojana rooftop solar scheme India',
+    desc: 'Official 2026 subsidy guide, 7% loan & portal roadmap.',
+    tagline: 'Official 2026 MNRE Subsidy Portal',
+    description:
+      'Everything you need to claim up to ₹78,000 direct bank transfer under PM Surya Ghar Muft Bijli Yojana.',
+    highlights: [
+      '₹78,000 Direct Bank Credit',
+      'Collateral-Free Loans @ 7%',
+      'National Portal Feasibility & Net Metering',
+    ],
+    ariaLabel: 'Official PM Surya Ghar Muft Bijli Yojana subsidy roadmap',
+  },
+  {
+    id: 'commercial',
+    name: 'Solar for Businesses',
+    shortName: 'Commercial',
+    href: '/commercial-solar.html',
+    badge: '40% Tax AD',
+    badgeColor: '#00BFA6',
+    icon: '🏢',
+    image: '/images/commercial-solar.webp',
+    alt: 'Solar panels installed on commercial office buildings and hospitals',
+    desc: 'Commercial rooftop solar for offices, hospitals & schools.',
+    tagline: '40% Accelerated Tax Depreciation',
+    description:
+      'Lower your monthly electricity bills for offices, hospitals, schools, and retail establishments with high ROI solar.',
+    highlights: [
+      '40% Accelerated Depreciation Benefit',
+      'Rapid 2.5–3 Year Payback',
+      'Zero Disruption Weekend Installation',
+    ],
+    ariaLabel: 'Learn more about Solar for Businesses and commercial tax benefits',
+  },
+  {
+    id: 'industrial',
+    name: 'Solar for Factories',
+    shortName: 'Industrial',
+    href: '/industrial-solar.html',
+    badge: 'MW-Scale EPC',
+    badgeColor: '#F59E0B',
+    icon: '🏭',
+    image: '/images/industrial-solar.webp',
+    alt: 'Large industrial solar power plant on a manufacturing factory warehouse',
+    desc: 'Heavy-duty industrial solar for factories & warehouses.',
+    tagline: 'MW-Scale Engineering & High Voltage Net-Metering',
+    description:
+      'Heavy-duty solar systems built for factories, warehouses, and industrial plants with heavy electricity usage.',
+    highlights: [
+      'Non-Penetrating Klip-Lok Clamps',
+      'HT Net-Metering & 33kV Synchronization',
+      'Guaranteed Generation Performance Ratio',
+    ],
+    ariaLabel: 'Learn more about Solar for Factories and heavy industrial EPC',
+  },
+  {
+    id: 'amc',
+    name: 'Solar Care & AMC',
+    shortName: 'Solar AMC',
+    href: '/solar-amc.html',
+    badge: 'Maintenance',
+    badgeColor: '#3B82F6',
+    icon: '🛠️',
+    image: '/images/amc-solar.webp',
+    alt: 'Solar panel cleaning and professional maintenance service technician on roof',
+    desc: 'RO water cleaning, thermal scans & generation guarantee.',
+    tagline: 'Scheduled Care & Generation Protection',
+    description:
+      'Complete yearly maintenance, regular demineralized panel washing, health audits, and fast repairs to keep peak solar generation.',
+    highlights: [
+      'Demineralized RO Panel Washing',
+      'Thermal Imaging & Hotspot Detection',
+      'Cash Compensation Generation Guarantee',
+    ],
+    ariaLabel: 'Learn more about Solar Care and Annual Maintenance Contracts (AMC)',
+  },
+  {
+    id: 'calculator',
+    name: 'Solar ROI Calculator',
+    shortName: 'Calculator',
+    href: '/solar-calculator',
+    badge: 'Interactive Tool',
+    badgeColor: '#00BFA6',
+    icon: '⚡',
+    image: '/images/1.webp',
+    alt: 'Neonix Solar ROI and Subsidy Calculator Tool',
+    desc: 'Calculate solar system capacity, subsidy, and 25-yr returns.',
+    tagline: 'Instant 25-Year Financial & Subsidy Modeling',
+    description:
+      'Calculate rooftop capacity, central PM Surya Ghar subsidy (up to ₹78,000), monthly savings, and payback period in 30 seconds.',
+    highlights: [
+      'Instant kW Sizing from Electricity Bill',
+      'DCR vs Non-DCR Cost Models',
+      'Downloadable Engineering Feasibility PDF',
+    ],
+    ariaLabel: 'Launch Interactive Solar ROI and Subsidy Calculator',
+  },
+];

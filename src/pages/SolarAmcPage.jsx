@@ -5,6 +5,7 @@ import ServiceFooter from '../components/ServiceFooter';
 import ConsultationModal from '../components/ConsultationModal';
 import ScrollProgress from '../components/UI/ScrollProgress';
 import CursorGlow from '../components/UI/CursorGlow';
+import { SITE_CONFIG } from '../data';
 
 export default function SolarAmcPage() {
   const [modalState, setModalState] = useState({
@@ -685,7 +686,7 @@ export default function SolarAmcPage() {
                   </a>
 
                   <a
-                    href="tel:+919910000774"
+                    href={`tel:${SITE_CONFIG.contact.primaryPhoneRaw}`}
                     className="bg-[#0F172A] hover:bg-[#1E293B] text-white font-bold py-3.5 px-6 rounded-xl text-sm transition-all flex items-center justify-center gap-2 border border-white/10"
                   >
                     <span>📞 Call Solar Care Desk</span>
@@ -948,16 +949,16 @@ export default function SolarAmcPage() {
                 Claim ₹999 Trial Clean (100% Refundable)
               </button>
               <a
-                href="tel:+919910000774"
+                href={`tel:${SITE_CONFIG.contact.primaryPhoneRaw}`}
                 className="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-5 py-4 rounded-xl border border-white/20 transition-all flex items-center gap-2"
               >
-                <span>📞 +91 99100 00774</span>
+                <span>📞 {SITE_CONFIG.contact.primaryPhone}</span>
               </a>
               <a
-                href="tel:+919088688899"
+                href={`tel:${SITE_CONFIG.contact.secondaryPhoneRaw}`}
                 className="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-5 py-4 rounded-xl border border-white/20 transition-all flex items-center gap-2"
               >
-                <span>📞 +91 90886 88899</span>
+                <span>📞 {SITE_CONFIG.contact.secondaryPhone}</span>
               </a>
             </div>
           </div>

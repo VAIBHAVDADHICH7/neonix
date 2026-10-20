@@ -1,3 +1,5 @@
+import { SITE_CONFIG } from '../data';
+
 export default function MobileActionBar({ onOpenConsultation }) {
   const scrollToCalculator = () => {
     const el = document.getElementById('roi-calculator');
@@ -12,8 +14,8 @@ export default function MobileActionBar({ onOpenConsultation }) {
       <div className="flex items-center justify-between gap-2 max-w-md mx-auto">
         {/* Direct Call Button */}
         <a
-          href="tel:+919910000774"
-          aria-label="Call Us: Neonix Solar Consultant at +91 99100 00774"
+          href={`tel:${SITE_CONFIG.contact.primaryPhoneRaw}`}
+          aria-label={`Call Us: ${SITE_CONFIG.name} Solar Consultant at ${SITE_CONFIG.contact.primaryPhone}`}
           className="flex-1 flex items-center justify-center gap-1.5 bg-white/10 hover:bg-white/20 active:bg-white/25 text-white text-xs font-bold py-2.5 px-2 rounded-xl border border-white/20 transition-all text-center min-h-[44px]"
         >
           <span className="text-sm" aria-hidden="true">📞</span>

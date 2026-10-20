@@ -5,6 +5,7 @@ import ServiceFooter from '../components/ServiceFooter';
 import ConsultationModal from '../components/ConsultationModal';
 import ScrollProgress from '../components/UI/ScrollProgress';
 import CursorGlow from '../components/UI/CursorGlow';
+import { SITE_CONFIG } from '../data';
 
 export default function ResidentialSolarPage() {
   const [modalState, setModalState] = useState({
@@ -368,12 +369,12 @@ export default function ResidentialSolarPage() {
                     href="#quick-funnel"
                     className="bg-[#0F9D58] hover:bg-[#0c8248] text-white text-sm font-bold px-7 py-4 rounded-xl shadow-[0_0_25px_rgba(15,157,88,0.4)] transition-all transform hover:-translate-y-0.5 flex items-center gap-2"
                   >
-                    <span>Reserve ₹78,000 Subsidy Slot</span>
+                    <span>Reserve {SITE_CONFIG.stats.maxSubsidyAmount} Subsidy Slot</span>
                     <span aria-hidden="true">→</span>
                   </a>
 
                   <a
-                    href="tel:+919910000774"
+                    href={`tel:${SITE_CONFIG.contact.primaryPhoneRaw}`}
                     className="bg-white/10 hover:bg-white/20 text-white text-sm font-bold px-6 py-4 rounded-xl border border-white/15 transition-all flex items-center gap-2"
                   >
                     <span>📞 Talk to Solar Engineer</span>
@@ -1131,16 +1132,16 @@ export default function ResidentialSolarPage() {
                 Schedule Free 3D Rooftop Survey (Worth ₹2,500)
               </button>
               <a
-                href="tel:+919910000774"
+                href={`tel:${SITE_CONFIG.contact.primaryPhoneRaw}`}
                 className="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-5 py-4 rounded-xl border border-white/20 transition-all flex items-center gap-2"
               >
-                <span>📞 +91 99100 00774</span>
+                <span>📞 {SITE_CONFIG.contact.primaryPhone}</span>
               </a>
               <a
-                href="tel:+919088688899"
+                href={`tel:${SITE_CONFIG.contact.secondaryPhoneRaw}`}
                 className="bg-white/10 hover:bg-white/20 text-white text-xs sm:text-sm font-bold px-5 py-4 rounded-xl border border-white/20 transition-all flex items-center gap-2"
               >
-                <span>📞 +91 90886 88899</span>
+                <span>📞 {SITE_CONFIG.contact.secondaryPhone}</span>
               </a>
             </div>
           </div>

@@ -5,129 +5,10 @@ import ServiceFooter from '../components/ServiceFooter.jsx';
 import ScrollProgress from '../components/UI/ScrollProgress.jsx';
 import CursorGlow from '../components/UI/CursorGlow.jsx';
 import ConsultationModal from '../components/ConsultationModal.jsx';
+import { PM_SURYA_GHAR_SUBSIDY_OPTIONS, SITE_CONFIG } from '../data';
 
 // 2026 PM Surya Ghar Subsidy Matrix
-const subsidyOptions = [
-  {
-    kw: 1,
-    name: '1 kW Compact Solar',
-    label: '1 kW Home Solar',
-    idealFor: '1-2 Rooms, 1-2 Fans, LED Lights, TV (Bill < ₹1,500)',
-    roofArea: '80 - 100 Sq.Ft.',
-    unitsPerMonth: '120 - 140 Units',
-    grossCost: 62000,
-    subsidy: 30000,
-    netCost: 32000,
-    monthlySavings: 1250,
-    loanEmi: 620,
-    netMonthlyGain: 630,
-    payback: '2.1 Years',
-    tag: 'Basic Starter',
-    isPopular: false,
-  },
-  {
-    kw: 2,
-    name: '2 kW Essential Solar',
-    label: '2 kW Home Solar',
-    idealFor: '2-3 BHK Home, Refrigerator, Washing Machine, 1 Inverter AC',
-    roofArea: '160 - 200 Sq.Ft.',
-    unitsPerMonth: '240 - 280 Units',
-    grossCost: 122000,
-    subsidy: 60000,
-    netCost: 62000,
-    monthlySavings: 2600,
-    loanEmi: 1250,
-    netMonthlyGain: 1350,
-    payback: '2.0 Years',
-    tag: 'High Value',
-    isPopular: false,
-  },
-  {
-    kw: 3,
-    name: '3 kW Optimum Solar (Most Popular)',
-    label: '3 kW Home Solar',
-    idealFor: '3-4 BHK Independent Villa, 2 Inverter ACs, Geyser, Water Pump',
-    roofArea: '240 - 300 Sq.Ft.',
-    unitsPerMonth: '360 - 420 Units',
-    grossCost: 178000,
-    subsidy: 78000,
-    netCost: 100000,
-    monthlySavings: 4200,
-    loanEmi: 1850,
-    netMonthlyGain: 2350,
-    payback: '2.0 Years',
-    tag: '🔥 82% Choose This (Max Subsidy Cap)',
-    isPopular: true,
-  },
-  {
-    kw: 4,
-    name: '4 kW Comfort Solar',
-    label: '4 kW Home Solar',
-    idealFor: 'Large 4 BHK Home, 2-3 ACs, EV 2-Wheeler / 4-Wheeler Charging',
-    roofArea: '320 - 400 Sq.Ft.',
-    unitsPerMonth: '480 - 550 Units',
-    grossCost: 232000,
-    subsidy: 78000,
-    netCost: 154000,
-    monthlySavings: 5600,
-    loanEmi: 2850,
-    netMonthlyGain: 2750,
-    payback: '2.3 Years',
-    tag: 'Extended Load',
-    isPopular: false,
-  },
-  {
-    kw: 5,
-    name: '5 kW Executive Solar',
-    label: '5 kW Home Solar',
-    idealFor: 'Large Villa / Kothi, 3-4 ACs, Heavy Summer Power Consumption',
-    roofArea: '400 - 500 Sq.Ft.',
-    unitsPerMonth: '600 - 700 Units',
-    grossCost: 282000,
-    subsidy: 78000,
-    netCost: 204000,
-    monthlySavings: 7200,
-    loanEmi: 3750,
-    netMonthlyGain: 3450,
-    payback: '2.4 Years',
-    tag: 'Zero Summer Bill',
-    isPopular: false,
-  },
-  {
-    kw: 10,
-    name: '10 kW Luxury / Joint Family',
-    label: '10 kW Solar Villa',
-    idealFor: 'Joint Family Bungalow, 5+ ACs, Lift, Multiple EV Charging',
-    roofArea: '800 - 1,000 Sq.Ft.',
-    unitsPerMonth: '1,200 - 1,400 Units',
-    grossCost: 520000,
-    subsidy: 78000,
-    netCost: 442000,
-    monthlySavings: 15500,
-    loanEmi: 8100,
-    netMonthlyGain: 7400,
-    payback: '2.4 Years',
-    tag: 'Maximum Capacity',
-    isPopular: false,
-  },
-  {
-    kw: 25,
-    name: '25 kW Society / RWA Common Meter',
-    label: '25 kW RWA / GHS',
-    idealFor: 'Apartment Common Area: Lifts, Water Pumps, Common Lighting & EV',
-    roofArea: '2,000 - 2,500 Sq.Ft.',
-    unitsPerMonth: '3,000 - 3,500 Units',
-    grossCost: 1250000,
-    subsidy: 450000, // ₹18,000 per kW
-    netCost: 800000,
-    monthlySavings: 38000,
-    loanEmi: 15200,
-    netMonthlyGain: 22800,
-    payback: '1.8 Years',
-    tag: 'RWA / GHS Subsidy (₹18k/kW)',
-    isPopular: false,
-  },
-];
+const subsidyOptions = PM_SURYA_GHAR_SUBSIDY_OPTIONS;
 
 export default function PmSuryaGharPage() {
   const [modalState, setModalState] = useState({ isOpen: false, initialData: null });
@@ -1397,16 +1278,16 @@ export default function PmSuryaGharPage() {
               </button>
 
               <a
-                href="tel:+919910000774"
+                href={`tel:${SITE_CONFIG.contact.primaryPhoneRaw}`}
                 className="bg-white/10 hover:bg-white/20 text-white text-sm font-bold px-5 py-4 rounded-xl border border-white/15 transition-all flex items-center gap-2"
               >
-                <span>📞 +91 99100 00774</span>
+                <span>📞 {SITE_CONFIG.contact.primaryPhone}</span>
               </a>
               <a
-                href="tel:+919088688899"
+                href={`tel:${SITE_CONFIG.contact.secondaryPhoneRaw}`}
                 className="bg-white/10 hover:bg-white/20 text-white text-sm font-bold px-5 py-4 rounded-xl border border-white/15 transition-all flex items-center gap-2"
               >
-                <span>📞 +91 90886 88899</span>
+                <span>📞 {SITE_CONFIG.contact.secondaryPhone}</span>
               </a>
             </div>
           </div>
@@ -1419,13 +1300,13 @@ export default function PmSuryaGharPage() {
       <div className="fixed bottom-0 left-0 w-full z-40 bg-[#0B132B]/95 backdrop-blur-md border-t border-white/10 p-3 flex items-center justify-between sm:hidden">
         <div className="leading-tight">
           <div className="text-[10px] text-gray-400">PM Surya Ghar</div>
-          <div className="text-xs font-black text-[#00BFA6]">₹78,000 Subsidy</div>
+          <div className="text-xs font-black text-[#00BFA6]">{SITE_CONFIG.stats.maxSubsidyAmount} Subsidy</div>
         </div>
         <div className="flex items-center gap-2">
           <a
-            href="tel:+919910000774"
+            href={`tel:${SITE_CONFIG.contact.primaryPhoneRaw}`}
             className="p-2.5 bg-white/10 rounded-xl text-white text-xs border border-white/10"
-            aria-label="Call Neonix"
+            aria-label={`Call ${SITE_CONFIG.name}`}
           >
             📞
           </a>

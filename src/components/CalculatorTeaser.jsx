@@ -1,4 +1,8 @@
+import { SITE_CONFIG, SOLAR_DATA } from '../data';
+
 export default function CalculatorTeaser() {
+  const maxSubsidy = SITE_CONFIG.stats.maxSubsidyAmount;
+
   return (
     <section id="roi-calculator" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#0B132B] via-[#0F172A] to-[#1E293B] border border-white/15 shadow-2xl p-6 sm:p-10 lg:p-14 text-white">
@@ -19,13 +23,13 @@ export default function CalculatorTeaser() {
             </h2>
 
             <p className="text-sm sm:text-base text-gray-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Find out your exact solar system capacity (kW), direct government subsidy (up to ₹78,000), monthly savings, and payback period on our dedicated calculator page.
+              Find out your exact solar system capacity (kW), direct government subsidy (up to {maxSubsidy}), monthly savings, and payback period on our dedicated calculator page.
             </p>
 
             {/* Quick feature checklist */}
             <div className="grid grid-cols-2 gap-2.5 pt-2 max-w-md mx-auto lg:mx-0 text-left">
               <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-200">
-                <span className="text-[#0F9D58] font-bold">✓</span> Up to ₹78,000 Direct Subsidy
+                <span className="text-[#0F9D58] font-bold">✓</span> Up to {maxSubsidy} Direct Subsidy
               </div>
               <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-200">
                 <span className="text-[#0F9D58] font-bold">✓</span> 25-Year Lifetime Returns
@@ -80,7 +84,7 @@ export default function CalculatorTeaser() {
                 </div>
                 <div className="flex justify-between items-center text-xs">
                   <span className="text-gray-400">Govt. Direct Subsidy:</span>
-                  <span className="text-[#0F9D58] font-bold">₹78,000 (Direct Transfer)</span>
+                  <span className="text-[#0F9D58] font-bold">{maxSubsidy} (Direct Transfer)</span>
                 </div>
                 <div className="flex justify-between items-center text-xs pt-2 border-t border-white/10">
                   <span className="text-gray-300 font-semibold">Estimated 25-Yr Savings:</span>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { HEADER_NAV_LINKS, SERVICES_DROPDOWN_LIST, SITE_CONFIG } from '../data';
 
 // Advanced Magnetic Button Component
 const MagneticElement = ({ children, className, onClick, as: Tag = 'button', ...props }) => {
@@ -74,23 +75,8 @@ export default function Navbar({ onOpenConsultation }) {
     };
   }, [isMenuOpen]);
 
-  const servicesList = [
-    { name: 'Solar for Homes', href: '/residential-solar.html', badge: '₹78k Subsidy', icon: '🏠', desc: 'Cut bill by 90% with central PM Surya Ghar DBT' },
-    { name: 'PM Surya Ghar Scheme', href: '/pm-surya-ghar-yojana.html', badge: 'Govt Subsidy', icon: '🏛️', desc: 'Official 2026 subsidy guide, 7% loan & portal roadmap' },
-    { name: 'Solar for Businesses', href: '/commercial-solar.html', badge: '40% Tax AD', icon: '🏢', desc: 'Offices, hospitals, schools with 3-year payback' },
-    { name: 'Solar for Factories', href: '/industrial-solar.html', badge: 'MW Scale', icon: '🏭', desc: 'Heavy-duty plants with non-penetrating shed clamps' },
-    { name: 'Solar Care & AMC', href: '/solar-amc.html', badge: 'Maintenance', icon: '🛠️', desc: 'RO water cleaning, thermal scans & generation guarantee' },
-  ];
-
-  const navLinks = [
-    { name: 'PM Surya Ghar (₹78k)', href: '/pm-surya-ghar-yojana.html', isSpecial: true },
-    { name: 'Why Solar', href: '#why-solar' },
-    { name: 'Savings & Subsidy', href: '#savings-hub' },
-    { name: 'Trust & Reviews', href: '#trust-signals' },
-    { name: 'FAQs', href: '#faq' },
-    { name: 'Contact', href: '#contact' },
-    { name: 'ROI Calculator ↗', href: '/solar-calculator' },
-  ];
+  const servicesList = SERVICES_DROPDOWN_LIST.filter((s) => s.id !== 'calculator');
+  const navLinks = HEADER_NAV_LINKS;
 
   return (
     <>
@@ -194,8 +180,8 @@ export default function Navbar({ onOpenConsultation }) {
           {/* Contact quick info */}
           <div className="pt-4 border-t border-white/10 text-xs text-gray-400">
             <p className="font-semibold text-white mb-1">Customer Support</p>
-            <p>📞 +91 99100 00774 / +91 90886 88899</p>
-            <p className="mt-0.5">📍 Jaipur, Rajasthan 302020</p>
+            <p>📞 {SITE_CONFIG.contact.primaryPhone} / {SITE_CONFIG.contact.secondaryPhone}</p>
+            <p className="mt-0.5">📍 {SITE_CONFIG.address.city}, {SITE_CONFIG.address.state} {SITE_CONFIG.address.pincode}</p>
           </div>
         </div>
       </div>

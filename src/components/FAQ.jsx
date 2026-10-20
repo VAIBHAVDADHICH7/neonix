@@ -1,37 +1,7 @@
 import { useState } from 'react';
+import { FAQS } from '../data';
 
-const FAQ_ITEMS = [
-  {
-    id: 'subsidy',
-    question: 'How much government subsidy is available for rooftop solar panels?',
-    answer:
-      'Under the PM Surya Ghar Muft Bijli Yojana, residential consumers in India can receive up to ₹78,000 direct central subsidy (₹30,000 for 1kW, ₹60,000 for 2kW, and ₹78,000 for 3kW and above). Neonix handles the complete paperwork and Discom liaison to credit the subsidy directly to your bank account.',
-  },
-  {
-    id: 'savings',
-    question: 'How much can I save on my electricity bill by installing solar panels?',
-    answer:
-      'A standard rooftop solar installation can reduce monthly electricity bills by up to 90%. Any excess green energy produced during sunny daytime hours is automatically exported back to the grid via bidirectional net metering, earning you billing credits against your nighttime consumption.',
-  },
-  {
-    id: 'lifespan',
-    question: 'What is the lifespan of Neonix clean energy solar panels?',
-    answer:
-      'Neonix installs Tier-1 Mono PERC and TopCon bi-facial solar panels that come with a 25 to 30-year linear performance warranty. Our installations include galvanized anti-corrosive structures and comprehensive Annual Maintenance Contracts (AMC) for worry-free longevity.',
-  },
-  {
-    id: 'roof',
-    question: 'What type of roof is suitable for solar panel installation?',
-    answer:
-      'RCC flat roofs, metal sheds, and tiled roofs are all suitable for solar installation. We require approximately 80-100 sq. ft. of shadow-free rooftop space per 1 kW of solar capacity. Our engineers conduct a 3D shadow analysis before every installation to guarantee optimal angle and maximum daily generation.',
-  },
-  {
-    id: 'timeline',
-    question: 'How long does the installation and net metering approval process take?',
-    answer:
-      'Physical rooftop installation typically completes within 3 to 5 days. State electricity board (DISCOM) net-meter inspection and grid synchronization generally takes 2 to 4 weeks depending on your local circle. Neonix end-to-end manages all inspections and documentation.',
-  },
-];
+const FAQ_ITEMS = FAQS.home;
 
 export default function FAQ({ onOpenConsultation }) {
   const [openIndex, setOpenIndex] = useState(0);
