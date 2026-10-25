@@ -123,7 +123,7 @@ export default function ServiceHeader({ currentService, onOpenConsultation }) {
               <a href="/" className="block py-2 px-3 rounded-lg hover:bg-white/5 hover:text-[#00BFA6]">
                 ← Back to Homepage
               </a>
-              <a href="/pm-surya-ghar-yojana.html" className="block py-2 px-3 rounded-lg hover:bg-white/5 text-amber-400 font-bold flex items-center justify-between">
+              <a href="/pm-surya-ghar-yojana" className="block py-2 px-3 rounded-lg hover:bg-white/5 text-amber-400 font-bold flex items-center justify-between">
                 <span>🏛️ PM Surya Ghar (₹78k)</span>
                 <span className="text-[10px] bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded">Active</span>
               </a>
@@ -258,7 +258,7 @@ export default function ServiceHeader({ currentService, onOpenConsultation }) {
             </div>
 
             <a
-              href="/pm-surya-ghar-yojana.html"
+              href="/pm-surya-ghar-yojana"
               className="text-amber-400 hover:text-white text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-1.5"
             >
               <span>PM Surya Ghar</span>

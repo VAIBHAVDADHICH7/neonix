@@ -5,9 +5,59 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/index.html",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
       "source": "/solar-calculator.html",
       "destination": "/solar-calculator",
-      "permanent": true
+      "statusCode": 301
+    },
+    {
+      "source": "/residential-solar.html",
+      "destination": "/residential-solar",
+      "statusCode": 301
+    },
+    {
+      "source": "/commercial-solar.html",
+      "destination": "/commercial-solar",
+      "statusCode": 301
+    },
+    {
+      "source": "/industrial-solar.html",
+      "destination": "/industrial-solar",
+      "statusCode": 301
+    },
+    {
+      "source": "/pm-surya-ghar-yojana.html",
+      "destination": "/pm-surya-ghar-yojana",
+      "statusCode": 301
+    },
+    {
+      "source": "/solar-amc.html",
+      "destination": "/solar-amc",
+      "statusCode": 301
+    },
+    {
+      "source": "/privacy-policy.html",
+      "destination": "/privacy-policy",
+      "statusCode": 301
+    },
+    {
+      "source": "/terms.html",
+      "destination": "/terms",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*.html",
+      "destination": "/:path*",
+      "statusCode": 301
     }
   ],
   "headers": [

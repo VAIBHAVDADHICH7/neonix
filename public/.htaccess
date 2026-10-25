@@ -1,0 +1,18 @@
+# Apache configuration for clean URLs and strict 301 redirects
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1. Enforce strict 301 redirect for /index.html and /index -> /
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index(\.html)?(\?[^\ ]*)?\ HTTP/ [NC]
+  RewriteRule ^index(\.html)?$ / [R=301,L]
+
+  # 2. Enforce strict 301 redirect for all other *.html requests -> clean path
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.html(\?[^\ ]*)?\ HTTP/ [NC]
+  RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+
+  # 3. Serve .html internally if clean path requested
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+</IfModule>

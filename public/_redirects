@@ -1,0 +1,12 @@
+# Strict 301 redirects from .html to clean canonical paths
+/index.html   /   301
+/index   /   301
+/solar-calculator.html   /solar-calculator   301
+/residential-solar.html   /residential-solar   301
+/commercial-solar.html   /commercial-solar   301
+/industrial-solar.html   /industrial-solar   301
+/pm-surya-ghar-yojana.html   /pm-surya-ghar-yojana   301
+/solar-amc.html   /solar-amc   301
+/privacy-policy.html   /privacy-policy   301
+/terms.html   /terms   301
+/*.html   /:splat   301

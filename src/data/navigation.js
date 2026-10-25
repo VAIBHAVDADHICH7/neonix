@@ -7,7 +7,7 @@ import { SERVICES } from './servicesData';
 import { SITE_CONFIG } from './siteConfig';
 
 export const HEADER_NAV_LINKS = [
-  { name: 'PM Surya Ghar (₹78k)', href: '/pm-surya-ghar-yojana.html', isSpecial: true },
+  { name: 'PM Surya Ghar (₹78k)', href: '/pm-surya-ghar-yojana', isSpecial: true },
   { name: 'Why Solar', href: '#why-solar' },
   { name: 'Savings & Subsidy', href: '#savings-hub' },
   { name: 'Trust & Reviews', href: '#trust-signals' },
@@ -29,11 +29,11 @@ export const FOOTER_SECTIONS = {
   services: {
     title: 'Our Solar Solutions',
     links: [
-      { name: 'Solar for Homes (₹78k Subsidy)', href: '/residential-solar.html' },
-      { name: 'PM Surya Ghar Muft Bijli Yojana', href: '/pm-surya-ghar-yojana.html' },
-      { name: 'Commercial Rooftop Solar', href: '/commercial-solar.html' },
-      { name: 'Industrial MW-Scale Solar Plants', href: '/industrial-solar.html' },
-      { name: 'Solar Care & AMC Maintenance', href: '/solar-amc.html' },
+      { name: 'Solar for Homes (₹78k Subsidy)', href: '/residential-solar' },
+      { name: 'PM Surya Ghar Muft Bijli Yojana', href: '/pm-surya-ghar-yojana' },
+      { name: 'Commercial Rooftop Solar', href: '/commercial-solar' },
+      { name: 'Industrial MW-Scale Solar Plants', href: '/industrial-solar' },
+      { name: 'Solar Care & AMC Maintenance', href: '/solar-amc' },
       { name: '★ Solar ROI & Subsidy Calculator', href: '/solar-calculator', highlight: true },
     ],
   },
@@ -41,7 +41,7 @@ export const FOOTER_SECTIONS = {
     title: 'Tools & Guides',
     links: [
       { name: 'Subsidy Calculator 2026', href: '/solar-calculator' },
-      { name: 'PM Surya Ghar Guide (₹78k)', href: '/pm-surya-ghar-yojana.html' },
+      { name: 'PM Surya Ghar Guide (₹78k)', href: '/pm-surya-ghar-yojana' },
       { name: 'Our Solar Systems', href: '#solutions' },
       { name: 'Customer Reviews', href: '#testimonials' },
       { name: 'Book Free Roof Check', href: '#contact' },
@@ -50,9 +50,9 @@ export const FOOTER_SECTIONS = {
   legal: {
     title: 'Helpful Info & Policies',
     links: [
-      { name: 'Privacy Policy', href: '/privacy-policy.html' },
-      { name: 'Terms & Conditions', href: '/terms.html' },
-      { name: 'Warranty & Cancellation Terms', href: '/privacy-policy.html#warranty' },
+      { name: 'Privacy Policy', href: '/privacy-policy' },
+      { name: 'Terms & Conditions', href: '/terms' },
+      { name: 'Warranty & Cancellation Terms', href: '/privacy-policy#warranty' },
       { name: 'Sitemap', href: '/sitemap.xml' },
     ],
   },

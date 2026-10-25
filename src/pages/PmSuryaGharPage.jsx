@@ -308,7 +308,7 @@ export default function PmSuryaGharPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-gray-400">
             <a href="/" className="hover:text-white transition-colors">Home</a>
             <span className="text-gray-600">/</span>
-            <a href="/residential-solar.html" className="hover:text-white transition-colors">Residential Solar</a>
+            <a href="/residential-solar" className="hover:text-white transition-colors">Residential Solar</a>
             <span className="text-gray-600">/</span>
             <span className="text-[#00BFA6] font-semibold">PM Surya Ghar Muft Bijli Yojana (2026)</span>
           </div>

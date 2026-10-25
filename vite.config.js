@@ -3,11 +3,58 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { resolve } from 'path'
 
+function cleanUrlsPlugin() {
+  const handler = (req, res, next) => {
+    const rawUrl = req.url || '/';
+    const [pathname, search] = rawUrl.split('?');
+    const query = search ? '?' + search : '';
+
+    if (pathname === '/index.html' || pathname === '/index') {
+      res.writeHead(301, { Location: '/' + query });
+      return res.end();
+    }
+
+    if (pathname.endsWith('.html')) {
+      const cleanPath = pathname.replace(/\.html$/, '');
+      res.writeHead(301, { Location: cleanPath + query });
+      return res.end();
+    }
+
+    const cleanPages = [
+      'solar-calculator',
+      'residential-solar',
+      'commercial-solar',
+      'industrial-solar',
+      'pm-surya-ghar-yojana',
+      'solar-amc',
+      'privacy-policy',
+      'terms'
+    ];
+    const slug = pathname.replace(/^\//, '');
+    if (cleanPages.includes(slug)) {
+      req.url = `/${slug}.html${query}`;
+    }
+
+    next();
+  };
+
+  return {
+    name: 'vite-clean-urls-redirects',
+    configureServer(server) {
+      server.middlewares.use(handler);
+    },
+    configurePreviewServer(server) {
+      server.middlewares.use(handler);
+    }
+  };
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     tailwindcss(),
-    react()
+    react(),
+    cleanUrlsPlugin()
   ],
   build: {
     outDir: 'dist',
