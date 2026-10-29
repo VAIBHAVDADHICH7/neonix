@@ -28,39 +28,32 @@ export default function Hero({
   bgImage = '/images/residential-solar.webp',
   leadFormTitle = 'Get Your Free Proposal',
   webhookUrl = 'https://hook.eu1.make.com/z14ylrq8mwzr9iu1vazvxwjhc3kwqu8r',
-  showFormOnMobile = false,
-  showScrollIndicator = false,
+  showFormOnMobile = true,
+  showScrollIndicator = true,
   className = '',
   children,
 }) {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
-  // Scrollytelling scroll listener
+  // Smooth scrollytelling scroll listener with requestAnimationFrame
   useEffect(() => {
-    function throttle(func, limit) {
-      let inThrottle;
-      return function () {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-          func.apply(context, args);
-          inThrottle = true;
-          setTimeout(() => (inThrottle = false), limit);
-        }
-      };
-    }
+    let rafId = null;
+    let isTicking = false;
 
-    const scrollyHero = document.getElementById('scrolly-hero');
-    const heroMainLayer = document.getElementById('hero-main-layer');
-    const heroCarousel = document.getElementById('hero-carousel');
-    const formGroup = document.getElementById('hero-form-group');
-    const slideAbout = document.getElementById('slide-about');
-    const slideMission = document.getElementById('slide-mission');
-    const slideVision = document.getElementById('slide-vision');
-    const heroBgLayer = document.getElementById('hero-bg-layer');
-
-    const scrollytellerScrollHandler = () => {
+    const updateScrollyteller = () => {
+      isTicking = false;
+      const scrollyHero = document.getElementById('scrolly-hero');
       if (!scrollyHero) return;
+
+      const heroMainLayer = document.getElementById('hero-main-layer');
+      const heroHeadlineCol = document.getElementById('hero-headline-col');
+      const heroFormCol = document.getElementById('hero-form-col');
+      const heroCarousel = document.getElementById('hero-carousel');
+      const slideAbout = document.getElementById('slide-about');
+      const slideMission = document.getElementById('slide-mission');
+      const slideVision = document.getElementById('slide-vision');
+      const heroBgLayer = document.getElementById('hero-bg-layer');
+
       const rect = scrollyHero.getBoundingClientRect();
       const scrollDistance = rect.height - window.innerHeight;
       let progress = 0;
@@ -69,53 +62,77 @@ export default function Hero({
         progress = Math.max(0, Math.min(1, progress));
       }
 
-      if (heroBgLayer) heroBgLayer.style.transform = `scale(${1 + progress * 0.12})`;
+      if (heroBgLayer) {
+        heroBgLayer.style.transform = `scale(${1 + progress * 0.1})`;
+      }
 
-      const T0 = 0.15,
-        T1 = 0.38,
-        T2 = 0.62,
-        T3 = 0.82;
+      const isMobile = window.innerWidth < 768;
+      const T_FORM = 0.15;
+      const T1 = 0.38;
+      const T2 = 0.62;
+      const T3 = 0.82;
 
-      if (progress < T0) {
+      if (progress < T1) {
+        // Stage 0 & 1: Hero Main (Headline & Proposal Form)
         setCurrentSlideIndex(0);
+
         if (heroMainLayer) {
           heroMainLayer.style.opacity = '1';
           heroMainLayer.style.visibility = 'visible';
+          heroMainLayer.style.pointerEvents = 'auto';
         }
         if (heroCarousel) {
           heroCarousel.style.opacity = '0';
           heroCarousel.style.visibility = 'hidden';
+          heroCarousel.style.pointerEvents = 'none';
         }
-        if (formGroup) {
-          formGroup.style.opacity = '0.9';
-          formGroup.style.transform = 'translateY(16px)';
+
+        if (isMobile) {
+          if (progress < T_FORM) {
+            // Mobile Stage 0: Headline prominent
+            if (heroHeadlineCol) {
+              heroHeadlineCol.style.opacity = '1';
+              heroHeadlineCol.style.transform = 'translateY(0)';
+              heroHeadlineCol.style.pointerEvents = 'auto';
+              heroHeadlineCol.style.visibility = 'visible';
+            }
+            if (heroFormCol) {
+              heroFormCol.style.opacity = '0';
+              heroFormCol.style.transform = 'translateY(24px)';
+              heroFormCol.style.pointerEvents = 'none';
+              heroFormCol.style.visibility = 'hidden';
+            }
+          } else {
+            // Mobile Stage 1: Form prominent
+            if (heroHeadlineCol) {
+              heroHeadlineCol.style.opacity = '0';
+              heroHeadlineCol.style.transform = 'translateY(-20px)';
+              heroHeadlineCol.style.pointerEvents = 'none';
+              heroHeadlineCol.style.visibility = 'hidden';
+            }
+            if (heroFormCol) {
+              heroFormCol.style.opacity = '1';
+              heroFormCol.style.transform = 'translateY(0)';
+              heroFormCol.style.pointerEvents = 'auto';
+              heroFormCol.style.visibility = 'visible';
+            }
+          }
+        } else {
+          // Desktop: both Headline and Form are visible side-by-side
+          if (heroHeadlineCol) {
+            heroHeadlineCol.style.opacity = '1';
+            heroHeadlineCol.style.transform = 'none';
+            heroHeadlineCol.style.pointerEvents = 'auto';
+            heroHeadlineCol.style.visibility = 'visible';
+          }
+          if (heroFormCol) {
+            heroFormCol.style.opacity = '1';
+            heroFormCol.style.transform = 'none';
+            heroFormCol.style.pointerEvents = 'auto';
+            heroFormCol.style.visibility = 'visible';
+          }
         }
-        if (slideAbout) {
-          slideAbout.style.opacity = '0';
-          slideAbout.style.transform = 'translateX(40px)';
-        }
-        if (slideMission) {
-          slideMission.style.opacity = '0';
-          slideMission.style.transform = 'translateX(40px)';
-        }
-        if (slideVision) {
-          slideVision.style.opacity = '0';
-          slideVision.style.transform = 'translateX(40px)';
-        }
-      } else if (progress >= T0 && progress < T1) {
-        setCurrentSlideIndex(0);
-        if (heroMainLayer) {
-          heroMainLayer.style.opacity = '1';
-          heroMainLayer.style.visibility = 'visible';
-        }
-        if (heroCarousel) {
-          heroCarousel.style.opacity = '0';
-          heroCarousel.style.visibility = 'hidden';
-        }
-        if (formGroup) {
-          formGroup.style.opacity = '1';
-          formGroup.style.transform = 'translateY(0)';
-        }
+
         if (slideAbout) {
           slideAbout.style.opacity = '0';
           slideAbout.style.transform = 'translateX(40px)';
@@ -129,14 +146,17 @@ export default function Hero({
           slideVision.style.transform = 'translateX(40px)';
         }
       } else if (progress >= T1 && progress < T2) {
+        // Stage 2: Slide 1 (About)
         setCurrentSlideIndex(1);
         if (heroMainLayer) {
           heroMainLayer.style.opacity = '0';
           heroMainLayer.style.visibility = 'hidden';
+          heroMainLayer.style.pointerEvents = 'none';
         }
         if (heroCarousel) {
           heroCarousel.style.opacity = '1';
           heroCarousel.style.visibility = 'visible';
+          heroCarousel.style.pointerEvents = 'auto';
         }
         if (slideAbout) {
           slideAbout.style.opacity = '1';
@@ -151,14 +171,17 @@ export default function Hero({
           slideVision.style.transform = 'translateX(40px)';
         }
       } else if (progress >= T2 && progress < T3) {
+        // Stage 3: Slide 2 (Mission)
         setCurrentSlideIndex(2);
         if (heroMainLayer) {
           heroMainLayer.style.opacity = '0';
           heroMainLayer.style.visibility = 'hidden';
+          heroMainLayer.style.pointerEvents = 'none';
         }
         if (heroCarousel) {
           heroCarousel.style.opacity = '1';
           heroCarousel.style.visibility = 'visible';
+          heroCarousel.style.pointerEvents = 'auto';
         }
         if (slideAbout) {
           slideAbout.style.opacity = '0';
@@ -173,14 +196,17 @@ export default function Hero({
           slideVision.style.transform = 'translateX(40px)';
         }
       } else {
+        // Stage 4: Slide 3 (Vision)
         setCurrentSlideIndex(3);
         if (heroMainLayer) {
           heroMainLayer.style.opacity = '0';
           heroMainLayer.style.visibility = 'hidden';
+          heroMainLayer.style.pointerEvents = 'none';
         }
         if (heroCarousel) {
           heroCarousel.style.opacity = '1';
           heroCarousel.style.visibility = 'visible';
+          heroCarousel.style.pointerEvents = 'auto';
         }
         if (slideAbout) {
           slideAbout.style.opacity = '0';
@@ -197,16 +223,36 @@ export default function Hero({
       }
     };
 
-    const throttledHandler = throttle(scrollytellerScrollHandler, 35);
-    window.addEventListener('scroll', throttledHandler, { passive: true });
-    scrollytellerScrollHandler();
-    return () => window.removeEventListener('scroll', throttledHandler);
+    const onScroll = () => {
+      if (!isTicking) {
+        rafId = requestAnimationFrame(updateScrollyteller);
+        isTicking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateScrollyteller();
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
+
+  const scrollToHeroForm = () => {
+    const scrollyHero = document.getElementById('scrolly-hero');
+    if (scrollyHero) {
+      const rect = scrollyHero.getBoundingClientRect();
+      const scrollDistance = rect.height - window.innerHeight;
+      const targetY = window.scrollY + rect.top + scrollDistance * 0.22;
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+    }
+  };
 
   return (
     <section
       id="scrolly-hero"
-      className={`relative h-[380vh] w-full bg-[#F8FAFC] ${className}`}
+      className={`relative h-[340vh] sm:h-[380vh] w-full bg-[#F8FAFC] ${className}`}
       aria-label="Neonix Rooftop Solar Hero"
     >
       {/* ── STICKY VIEWPORT CONTAINER ── */}
@@ -225,10 +271,13 @@ export default function Hero({
           {children || (
             <>
               {/* Layer 1 — Main Hero Grid */}
-              <div id="hero-main-layer" className="scrolly-transition w-full">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-14 items-center w-full">
+              <div id="hero-main-layer" className="scrolly-transition w-full relative">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-14 items-center w-full relative">
                   {/* Left Column: Headline, Actions & Stats */}
-                  <div className="space-y-4 sm:space-y-6 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
+                  <div
+                    id="hero-headline-col"
+                    className="scrolly-transition space-y-3.5 sm:space-y-6 text-center md:text-left max-w-xl mx-auto md:mx-0 w-full"
+                  >
                     <HeroHeadline
                       badgeText={badgeText}
                       title={title}
@@ -238,18 +287,27 @@ export default function Hero({
                     />
 
                     <HeroActions
-                      onOpenConsultation={onOpenConsultation}
+                      onOpenConsultation={() => {
+                        if (typeof window !== 'undefined' && window.innerWidth < 768) {
+                          scrollToHeroForm();
+                        } else if (onOpenConsultation) {
+                          onOpenConsultation();
+                        }
+                      }}
                       onScrollToCalculator={onScrollToCalculator}
                     />
 
                     <HeroStats stats={stats} />
                   </div>
 
-                  {/* Right Column: Lead Proposal Form (Hidden on mobile by default for clean UX) */}
+                  {/* Right Column: Lead Proposal Form (Mobile center stage, tablet & desktop right-aligned) */}
                   <div
+                    id="hero-form-col"
                     className={`${
-                      showFormOnMobile ? 'flex justify-center' : 'hidden lg:flex justify-end'
-                    } w-full pointer-events-auto scrolly-transition transform translate-y-2 sm:translate-y-4 opacity-95`}
+                      showFormOnMobile
+                        ? 'flex justify-center absolute md:relative inset-0 md:inset-auto items-center md:items-start md:justify-end'
+                        : 'hidden md:flex justify-end'
+                    } w-full pointer-events-auto scrolly-transition`}
                   >
                     <HeroLeadForm title={leadFormTitle} webhookUrl={webhookUrl} />
                   </div>
@@ -262,7 +320,7 @@ export default function Hero({
           )}
         </div>
 
-        {/* Optional Bottom Scroll Indicator (disabled by default) */}
+        {/* Bottom Scroll Indicator */}
         {showScrollIndicator && (
           <HeroScrollIndicator
             currentSlideIndex={currentSlideIndex}
@@ -285,7 +343,6 @@ Hero.Carousel = HeroCarousel;
 Hero.Slide = HeroSlide;
 Hero.ScrollIndicator = HeroScrollIndicator;
 
-// Export individual subcomponents as named exports
 export {
   HeroBackground,
   HeroBadge,

@@ -1,47 +1,49 @@
-import { useState, useEffect, useRef } from 'react';
-import { HEADER_NAV_LINKS, SERVICES_DROPDOWN_LIST, SITE_CONFIG } from '../data';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import { SERVICES, SITE_CONFIG } from '../data';
 
-// Advanced Magnetic Button Component
-const MagneticElement = ({ children, className, onClick, as: Tag = 'button', ...props }) => {
+// ── 1. MAGNETIC BUTTON WRAPPER (SUBTLE & SMOOTH) ───────────────────────────────
+const MagneticElement = ({ children, className = '', onClick, as: Tag = 'button', strength = 0.15, ...props }) => {
   const ref = useRef(null);
 
   useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
+    const el = ref.current;
+    if (!el) return;
+
+    const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+    if (!isFinePointer) return;
 
     const handleMouseMove = (e) => {
-      const rect = element.getBoundingClientRect();
-      const hx = rect.left + rect.width / 2;
-      const hy = rect.top + rect.height / 2;
-      const dx = e.clientX - hx;
-      const dy = e.clientY - hy;
+      const rect = el.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const dx = e.clientX - centerX;
+      const dy = e.clientY - centerY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
 
-      const distance = Math.sqrt(dx * dx + dy * dy);
-
-      if (distance < 90) {
-        element.style.transform = `translate(${dx * 0.15}px, ${dy * 0.15}px)`;
+      if (dist < 70) {
+        el.style.transform = `translate3d(${dx * strength}px, ${dy * strength}px, 0)`;
       } else {
-        element.style.transform = 'translate(0px, 0px)';
+        el.style.transform = 'translate3d(0, 0, 0)';
       }
     };
 
     const handleMouseLeave = () => {
-      element.style.transform = 'translate(0px, 0px)';
+      el.style.transform = 'translate3d(0, 0, 0)';
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    element.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    el.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      if (element) element.removeEventListener('mouseleave', handleMouseLeave);
+      if (el) el.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, []);
+  }, [strength]);
 
   return (
     <Tag
       ref={ref}
-      className={`transition-transform duration-300 ease-out will-change-transform ${className}`}
+      className={`transition-transform duration-200 ease-out will-change-transform ${className}`}
       onClick={onClick}
       {...props}
     >
@@ -50,22 +52,138 @@ const MagneticElement = ({ children, className, onClick, as: Tag = 'button', ...
   );
 };
 
-export default function Navbar({ onOpenConsultation }) {
+// ── 2. SEARCH & COMMAND PALETTE DATA ───────────────────────────────────────────
+const SEARCH_DATABASE = [
+  {
+    id: 'res-solar',
+    title: 'Solar for Homes (Residential)',
+    category: 'Solutions',
+    desc: 'PM Surya Ghar rooftop solar with up to ₹78,000 direct DBT subsidy.',
+    href: '/residential-solar',
+    icon: '🏠',
+  },
+  {
+    id: 'pm-surya',
+    title: 'PM Surya Ghar Muft Bijli Yojana',
+    category: 'Govt Scheme',
+    desc: 'Official 2026 MNRE portal roadmap, 7% bank loan & subsidy claiming guide.',
+    href: '/pm-surya-ghar-yojana',
+    icon: '🏛️',
+  },
+  {
+    id: 'comm-solar',
+    title: 'Solar for Businesses (Commercial)',
+    category: 'Solutions',
+    desc: 'Offices, hospitals & institutions with 40% accelerated tax depreciation.',
+    href: '/commercial-solar',
+    icon: '🏢',
+  },
+  {
+    id: 'ind-solar',
+    title: 'Solar for Factories (Industrial)',
+    category: 'Solutions',
+    desc: 'Heavy-duty MW-scale solar EPC, 33kV HT net-metering & Klip-Lok clamps.',
+    href: '/industrial-solar',
+    icon: '🏭',
+  },
+  {
+    id: 'amc-solar',
+    title: 'Solar Care & AMC Maintenance',
+    category: 'Services',
+    desc: 'Demineralized RO water wash, drone thermal scans & generation guarantee.',
+    href: '/solar-amc',
+    icon: '🛠️',
+  },
+  {
+    id: 'roi-tool',
+    title: 'Solar ROI & Subsidy Calculator',
+    category: 'Tools',
+    desc: 'Instant kW sizing, monthly power bill savings & 25-yr financial returns.',
+    href: '/solar-calculator',
+    icon: '⚡',
+  },
+  {
+    id: 'why-solar',
+    title: 'Why Solar: Key Benefits',
+    category: 'Overview',
+    desc: 'Tier-1 DCR bifacial panels, 30-year warranty, and environmental impact.',
+    href: '/#why-solar',
+    icon: '☀️',
+  },
+  {
+    id: 'faq-section',
+    title: 'Frequently Asked Questions (FAQs)',
+    category: 'Help',
+    desc: 'Common questions on net-metering timeline, cloudy days, and subsidies.',
+    href: '/#faq',
+    icon: '❓',
+  },
+  {
+    id: 'contact-section',
+    title: 'Contact Engineering & Office',
+    category: 'Contact',
+    desc: 'Jaipur HQ address, direct helpline, and consultations.',
+    href: '/#contact',
+    icon: '📍',
+  },
+  {
+    id: 'action-consult',
+    title: 'Book Free Roof Survey (₹0)',
+    category: 'Action',
+    desc: 'Schedule an on-site inspection with a certified solar engineer.',
+    isAction: 'consult',
+    icon: '📋',
+  },
+  {
+    id: 'action-call',
+    title: `Call Helpline: ${SITE_CONFIG.contact.primaryPhone}`,
+    category: 'Action',
+    desc: 'Direct phone line for quick tariff and rooftop assistance.',
+    isAction: 'call',
+    icon: '📞',
+  },
+];
+
+// Minimal, curated desktop navigation links
+const MINIMAL_NAV_LINKS = [
+  { name: 'PM Surya Ghar', href: '/pm-surya-ghar-yojana', badge: '₹78k' },
+  { name: 'Calculator', href: '/solar-calculator' },
+  { name: 'Why Solar', href: '#why-solar' },
+  { name: 'Contact', href: '#contact' },
+];
+
+// ── 3. MINIMALIST NAVBAR COMPONENT ─────────────────────────────────────────────
+export default function Navbar({ onOpenConsultation, currentService, isServicePage = false }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [servicesDropdown, setServicesDropdown] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedSearchIndex, setSelectedSearchIndex] = useState(0);
 
+  const dropdownTimerRef = useRef(null);
+  const searchInputRef = useRef(null);
+
+  // Track scroll state
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent background scroll when mobile menu is open
+  // Lock body scroll when mobile menu or search modal is open
   useEffect(() => {
-    if (isMenuOpen) {
+    if (isMenuOpen || searchModalOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -73,40 +191,219 @@ export default function Navbar({ onOpenConsultation }) {
     return () => {
       document.body.style.overflow = '';
     };
-  }, [isMenuOpen]);
+  }, [isMenuOpen, searchModalOpen]);
 
-  const servicesList = SERVICES_DROPDOWN_LIST.filter((s) => s.id !== 'calculator');
-  const navLinks = HEADER_NAV_LINKS;
+  // Global Keyboard Shortcuts (Cmd+K / Ctrl+K / '/' for search)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      const tag = e.target.tagName.toLowerCase();
+      const isInput = tag === 'input' || tag === 'textarea' || e.target.isContentEditable;
+
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setSearchModalOpen((prev) => !prev);
+      } else if (e.key === '/' && !isInput) {
+        e.preventDefault();
+        setSearchModalOpen(true);
+      } else if (e.key === 'Escape') {
+        setSearchModalOpen(false);
+        setServicesOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Focus search input on open
+  useEffect(() => {
+    if (searchModalOpen) {
+      setTimeout(() => searchInputRef.current?.focus(), 40);
+      setSelectedSearchIndex(0);
+    } else {
+      setSearchQuery('');
+    }
+  }, [searchModalOpen]);
+
+  // Filter search database
+  const searchResults = useMemo(() => {
+    if (!searchQuery.trim()) {
+      return SEARCH_DATABASE.slice(0, 6);
+    }
+    const q = searchQuery.toLowerCase().trim();
+    return SEARCH_DATABASE.filter(
+      (item) =>
+        item.title.toLowerCase().includes(q) ||
+        item.desc.toLowerCase().includes(q) ||
+        item.category.toLowerCase().includes(q)
+    );
+  }, [searchQuery]);
+
+  useEffect(() => {
+    setSelectedSearchIndex(0);
+  }, [searchResults]);
+
+  // Handle Search Selection
+  const handleSelectSearchItem = useCallback(
+    (item) => {
+      setSearchModalOpen(false);
+
+      if (item.isAction === 'consult') {
+        if (onOpenConsultation) {
+          onOpenConsultation();
+        } else {
+          const el = document.getElementById('contact');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else if (item.isAction === 'call') {
+        window.location.href = `tel:${SITE_CONFIG.contact.primaryPhoneRaw}`;
+      } else if (item.href) {
+        if (item.href.startsWith('/#') && !isServicePage) {
+          const targetId = item.href.replace('/#', '');
+          const el = document.getElementById(targetId);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            window.location.href = item.href;
+          }
+        } else {
+          window.location.href = item.href;
+        }
+      }
+    },
+    [onOpenConsultation, isServicePage]
+  );
+
+  const handleSearchKeyDown = (e) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setSelectedSearchIndex((prev) => (prev + 1) % searchResults.length);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setSelectedSearchIndex((prev) => (prev - 1 + searchResults.length) % searchResults.length);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (searchResults[selectedSearchIndex]) {
+        handleSelectSearchItem(searchResults[selectedSearchIndex]);
+      }
+    }
+  };
+
+  const handleDropdownEnter = () => {
+    if (dropdownTimerRef.current) clearTimeout(dropdownTimerRef.current);
+    setServicesOpen(true);
+  };
+
+  const handleDropdownLeave = () => {
+    dropdownTimerRef.current = setTimeout(() => {
+      setServicesOpen(false);
+    }, 150);
+  };
+
+  const servicesList = SERVICES.filter((s) => s.id !== 'calculator');
+
+  const getNavHref = (targetHref) => {
+    if (targetHref.startsWith('#') && isServicePage) {
+      return `/${targetHref}`;
+    }
+    return targetHref;
+  };
 
   return (
     <>
-      {/* MOBILE FULL-SCREEN DRAWER */}
+      {/* ── SEARCH MODAL (SPOTLIGHT COMMAND PALETTE) ────────────────────────── */}
+      {searchModalOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Quick Search"
+          className="fixed inset-0 z-[300] flex items-start justify-center pt-20 sm:pt-28 px-4"
+        >
+          <div
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity"
+            onClick={() => setSearchModalOpen(false)}
+          />
+
+          <div className="relative w-full max-w-xl bg-[#0B132B] border border-white/15 rounded-2xl shadow-2xl overflow-hidden spotlight-modal-animate z-10 flex flex-col max-h-[75vh]">
+            <div className="flex items-center gap-3 px-4 py-3.5 border-b border-white/10 bg-white/[0.02]">
+              <svg className="w-4 h-4 text-[#00BFA6] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input
+                ref={searchInputRef}
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleSearchKeyDown}
+                placeholder="Search services, subsidy, calculator, FAQs..."
+                className="w-full bg-transparent text-white placeholder-gray-400 text-sm font-medium focus:outline-none"
+              />
+              <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] text-gray-400 bg-white/10 rounded">
+                ESC
+              </kbd>
+            </div>
+
+            <div className="overflow-y-auto p-2 space-y-1">
+              {searchResults.length > 0 ? (
+                searchResults.map((item, index) => {
+                  const isSelected = index === selectedSearchIndex;
+                  return (
+                    <div
+                      key={item.id}
+                      onClick={() => handleSelectSearchItem(item)}
+                      onMouseEnter={() => setSelectedSearchIndex(index)}
+                      className={`flex items-center justify-between p-2.5 rounded-xl cursor-pointer transition-colors ${
+                        isSelected ? 'bg-white/10 text-white' : 'hover:bg-white/5 text-gray-300'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-base">{item.icon}</span>
+                        <div>
+                          <span className="text-xs font-semibold text-white block">{item.title}</span>
+                          <span className="text-[11px] text-gray-400 line-clamp-1">{item.desc}</span>
+                        </div>
+                      </div>
+                      <span className="text-[10px] text-gray-500 uppercase tracking-wider">{item.category}</span>
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="py-8 text-center text-xs text-gray-400">
+                  No results found for &ldquo;{searchQuery}&rdquo;
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── MOBILE MENU DRAWER ──────────────────────────────────────────────── */}
       <div
-        className={`fixed inset-0 z-[200] transition-opacity duration-500 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        className={`fixed inset-0 z-[250] transition-opacity duration-300 lg:hidden ${
+          isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
       >
         <div
-          className={`absolute inset-0 bg-[#0B132B]/85 cursor-pointer transition-all duration-500 ${isMenuOpen ? 'backdrop-blur-md' : 'backdrop-blur-none'}`}
+          className="absolute inset-0 bg-[#070D1E]/75 backdrop-blur-sm"
           onClick={() => setIsMenuOpen(false)}
         />
 
         <div
-          id="mobile-menu-drawer"
-          aria-hidden={!isMenuOpen}
-          className={`relative z-10 h-full w-[85%] max-w-sm bg-[#0B132B] border-r border-white/10 p-6 flex flex-col justify-between transform transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} overflow-y-auto`}
+          className={`relative z-10 h-full w-[85%] max-w-sm bg-[#0B132B] border-r border-white/10 p-5 flex flex-col justify-between transform transition-transform duration-300 ease-out ${
+            isMenuOpen ? 'translate-x-0' : '-translate-x-full'
+          } overflow-y-auto`}
         >
           <div>
-            {/* Top of drawer: Close button & Logo */}
-            <div className="flex justify-between items-center mb-6">
-              <div className="flex items-center gap-2.5">
-                <img src="/images/logo.svg" alt="Neonix Logo" decoding="async" className="h-9 w-auto bg-white p-1.5 rounded-full" width="36" height="36" />
-                <div>
-                  <span className="text-white font-bold text-lg block leading-none">Neonix</span>
-                  <span className="text-gray-400 text-[10px] uppercase tracking-wider">Infra Solutions</span>
+            <div className="flex justify-between items-center pb-4 mb-4 border-b border-white/10">
+              <a href="/" className="flex items-center gap-2">
+                <div className="bg-white rounded-full p-1 h-8 w-8 flex items-center justify-center">
+                  <img src="/images/logo.svg" alt="Neonix Logo" className="h-full w-auto" width="32" height="32" />
                 </div>
-              </div>
+                <span className="text-white font-extrabold text-base tracking-tight">Neonix</span>
+              </a>
               <button
                 aria-label="Close Navigation Menu"
-                className="p-2 text-white bg-white/10 rounded-full hover:bg-white/20 transition-colors"
+                className="p-1.5 text-gray-400 hover:text-white rounded-lg transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -115,61 +412,57 @@ export default function Navbar({ onOpenConsultation }) {
               </button>
             </div>
 
-            {/* Primary CTA */}
-            <div className="mb-5">
-              <button
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  if (onOpenConsultation) {
-                    onOpenConsultation();
-                  } else {
-                    const el = document.getElementById('contact');
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-                className="w-full bg-[#0F9D58] hover:bg-[#0c8248] text-white font-bold py-3.5 px-5 rounded-xl text-xs tracking-wide transition-all shadow-[0_4px_14px_rgba(15,157,88,0.35)] flex items-center justify-center gap-2"
-              >
-                <span>Get Free Roof Consultation</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            {/* Quick Search inside Drawer */}
+            <button
+              onClick={() => {
+                setIsMenuOpen(false);
+                setSearchModalOpen(true);
+              }}
+              className="w-full mb-4 flex items-center justify-between px-3 py-2 rounded-xl bg-white/5 border border-white/10 text-gray-300 text-xs"
+            >
+              <span className="flex items-center gap-2 text-gray-400">
+                <svg className="w-3.5 h-3.5 text-[#00BFA6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
-              </button>
-            </div>
+                Search...
+              </span>
+              <kbd className="text-[10px] text-gray-400 bg-white/10 px-1.5 py-0.2 rounded">⌘K</kbd>
+            </button>
 
-            {/* Services Section in Mobile Drawer */}
-            <div className="mb-5">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-[#00BFA6] block mb-2">Our Services</span>
-              <div className="space-y-1.5">
+            {/* Solutions List */}
+            <div className="mb-4">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#00BFA6] block mb-2">
+                Solar Solutions
+              </span>
+              <div className="space-y-1">
                 {servicesList.map((srv) => (
                   <a
-                    key={srv.name}
+                    key={srv.id}
                     href={srv.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className="flex items-center justify-between p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white transition-colors"
+                    className="flex items-center justify-between p-2 rounded-xl hover:bg-white/5 text-white transition-colors text-xs"
                   >
-                    <div className="flex items-center gap-2 text-xs font-semibold">
+                    <div className="flex items-center gap-2">
                       <span>{srv.icon}</span>
-                      <span>{srv.name}</span>
+                      <span className="font-medium">{srv.name}</span>
                     </div>
-                    <span className="text-[9px] font-bold text-[#0F9D58] bg-[#0F9D58]/15 px-2 py-0.5 rounded">
-                      {srv.badge}
-                    </span>
+                    <span className="text-[9px] text-emerald-400 font-semibold">{srv.badge}</span>
                   </a>
                 ))}
               </div>
             </div>
 
             {/* Navigation Links */}
-            <nav>
-              <ul className="space-y-2">
-                {navLinks.map((item) => (
-                  <li key={item.name}>
+            <nav className="mb-4 pt-2 border-t border-white/5">
+              <ul className="space-y-1 text-xs font-medium text-gray-200">
+                {MINIMAL_NAV_LINKS.map((link) => (
+                  <li key={link.name}>
                     <a
-                      href={item.href}
+                      href={getNavHref(link.href)}
                       onClick={() => setIsMenuOpen(false)}
-                      className="block text-gray-200 text-sm font-medium hover:text-[#00BFA6] transition-colors py-1.5 border-b border-white/5"
+                      className="block py-2 px-2.5 rounded-lg hover:bg-white/5 hover:text-[#00BFA6] transition-colors"
                     >
-                      {item.name}
+                      {link.name}
                     </a>
                   </li>
                 ))}
@@ -177,111 +470,11 @@ export default function Navbar({ onOpenConsultation }) {
             </nav>
           </div>
 
-          {/* Contact quick info */}
-          <div className="pt-4 border-t border-white/10 text-xs text-gray-400">
-            <p className="font-semibold text-white mb-1">Customer Support</p>
-            <p>📞 {SITE_CONFIG.contact.primaryPhone} / {SITE_CONFIG.contact.secondaryPhone}</p>
-            <p className="mt-0.5">📍 {SITE_CONFIG.address.city}, {SITE_CONFIG.address.state} {SITE_CONFIG.address.pincode}</p>
-          </div>
-        </div>
-      </div>
-
-      {/* STICKY HEADER NAVIGATION (Minimalist, Clean & Fast) */}
-      <header className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${scrolled ? 'bg-[#0B132B]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.25)] py-2.5' : 'bg-[#0B132B]/75 backdrop-blur-sm py-3.5'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-12">
-
-          {/* Logo (Top Left) */}
-          <MagneticElement
-            as="a"
-            href="#scrolly-hero"
-            className="flex items-center gap-2.5 group cursor-pointer min-h-[48px]"
-            aria-label="Neonix INFRA SOLUTIONS"
-          >
-            <div className="bg-white rounded-full p-1 h-9 w-9 sm:h-10 sm:w-10 flex items-center justify-center shadow-md transition-transform duration-500 group-hover:scale-105">
-              <img src="/images/logo.svg" alt="Neonix Logo" className="h-full w-auto object-contain" width="40" height="40" />
-            </div>
-            <div className="flex flex-col justify-center leading-none text-left">
-              <span className="text-white font-extrabold text-lg sm:text-xl tracking-tight transition-colors group-hover:text-[#00BFA6]">Neonix</span>
-              <span className="text-gray-300 font-semibold text-[8px] sm:text-[9px] tracking-widest uppercase">Infra Solutions</span>
-            </div>
-          </MagneticElement>
-
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-6">
-            {/* Services Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setServicesDropdown(true)}
-              onMouseLeave={() => setServicesDropdown(false)}
-            >
-              <button
-                className="flex items-center gap-1 text-gray-200 text-sm font-semibold hover:text-[#00BFA6] transition-colors py-2"
-                aria-expanded={servicesDropdown}
-              >
-                <span>Services</span>
-                <svg
-                  className={`w-3.5 h-3.5 transition-transform duration-200 ${servicesDropdown ? 'rotate-180 text-[#00BFA6]' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-
-              {servicesDropdown && (
-                <div className="absolute top-full left-0 w-72 pt-2 z-50">
-                  <div className="bg-[#0F172A] border border-white/15 rounded-2xl p-3 shadow-2xl backdrop-blur-xl">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-[#00BFA6] px-3 py-1.5">
-                      Our Solar Services
-                    </div>
-                    {servicesList.map((srv) => (
-                      <a
-                        key={srv.name}
-                        href={srv.href}
-                        className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-white/10 text-white transition-colors"
-                      >
-                        <span className="text-base mt-0.5">{srv.icon}</span>
-                        <div>
-                          <div className="flex items-center gap-1.5">
-                            <span className="text-xs font-bold">{srv.name}</span>
-                            <span className="text-[9px] font-semibold text-[#0F9D58] bg-[#0F9D58]/15 px-1.5 py-0.2 rounded">
-                              {srv.badge}
-                            </span>
-                          </div>
-                          <p className="text-[10px] text-gray-400 mt-0.5">{srv.desc}</p>
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className={`${
-                  link.isSpecial
-                    ? 'text-amber-400 font-bold hover:text-amber-300'
-                    : 'text-gray-200 font-semibold hover:text-[#00BFA6]'
-                } text-sm transition-colors relative py-1 group`}
-              >
-                {link.name}
-                <span
-                  className={`absolute bottom-0 left-0 w-0 h-0.5 ${
-                    link.isSpecial ? 'bg-amber-400' : 'bg-[#00BFA6]'
-                  } rounded-full transition-all duration-200 group-hover:w-full`}
-                />
-              </a>
-            ))}
-          </nav>
-
-          {/* Right Action: CTA Button + Mobile Menu Trigger */}
-          <div className="flex items-center gap-2.5">
+          {/* Action CTA & Direct Call */}
+          <div className="pt-3 border-t border-white/10 space-y-2">
             <button
               onClick={() => {
+                setIsMenuOpen(false);
                 if (onOpenConsultation) {
                   onOpenConsultation();
                 } else {
@@ -289,27 +482,189 @@ export default function Navbar({ onOpenConsultation }) {
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="hidden sm:inline-flex items-center gap-2 bg-[#0F9D58] hover:bg-[#0c8248] text-white text-xs font-bold px-4 sm:px-5 py-2.5 rounded-xl shadow-sm hover:shadow-[0_0_16px_rgba(15,157,88,0.4)] transition-all duration-200 transform hover:-translate-y-0.5 shimmer-btn"
+              className="w-full bg-[#0F9D58] hover:bg-[#0c8248] text-white font-bold py-2.5 px-4 rounded-xl text-xs uppercase tracking-wider shadow-md transition-all text-center block"
             >
-              <span>Get Free Consultation</span>
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
+              Free Roof Survey
             </button>
-
-            {/* Mobile Hamburger Toggle */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle navigation menu"
-              aria-expanded={isMenuOpen}
-              className="lg:hidden p-2 min-h-[48px] min-w-[48px] flex items-center justify-center rounded-xl text-white bg-white/10 hover:bg-white/20 transition-colors focus:outline-none"
+            <a
+              href={`tel:${SITE_CONFIG.contact.primaryPhoneRaw}`}
+              className="block text-center text-[11px] text-gray-400 hover:text-white transition-colors"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
+              📞 {SITE_CONFIG.contact.primaryPhone}
+            </a>
           </div>
+        </div>
+      </div>
 
+      {/* ── FULL CANVAS EDGE-TO-EDGE BLUR BAND (Stretches across entire screen from left to right) ── */}
+      <div className="nav-full-canvas-blur" aria-hidden="true" />
+
+      {/* ── MINIMALIST FLOATING ISLAND HEADER ───────────────────────────────── */}
+      <header className="fixed top-3 sm:top-4 left-0 right-0 z-[100] px-3 sm:px-6 pointer-events-none">
+        <div className="max-w-4xl mx-auto pointer-events-auto relative">
+          <nav
+            aria-label="Main Navigation"
+            className={`transition-all duration-300 flex items-center justify-between px-3.5 sm:px-5 py-2 rounded-full border border-white/15 shadow-[0_12px_40px_rgba(0,0,0,0.45)] relative ${
+              scrolled
+                ? 'bg-[#0B132B]/90 backdrop-blur-2xl border-white/20'
+                : 'bg-[#0B132B]/80 backdrop-blur-xl'
+            }`}
+          >
+            {/* 1. Brand Logo */}
+            <a
+              href="/"
+              className="flex items-center gap-2 group shrink-0"
+              aria-label="Neonix Infra Solutions"
+            >
+              <div className="bg-white rounded-full p-1 h-7 w-7 sm:h-8 sm:w-8 flex items-center justify-center shadow transition-transform duration-300 group-hover:scale-105">
+                <img src="/images/logo.svg" alt="Neonix Logo" className="h-full w-auto object-contain" width="32" height="32" />
+              </div>
+              <span className="text-white font-black text-base sm:text-lg tracking-tight group-hover:text-[#00BFA6] transition-colors">
+                Neonix
+              </span>
+            </a>
+
+            {/* 2. Desktop Curated Navigation Links */}
+            <div className="hidden md:flex items-center space-x-1 lg:space-x-1.5 text-xs font-semibold">
+
+              {/* Solutions Dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={handleDropdownEnter}
+                onMouseLeave={handleDropdownLeave}
+              >
+                <button
+                  onClick={() => setServicesOpen(!servicesOpen)}
+                  aria-expanded={servicesOpen}
+                  className={`flex items-center gap-1 px-3 py-1.5 rounded-full transition-colors ${
+                    servicesOpen || currentService
+                      ? 'text-white bg-white/10'
+                      : 'text-gray-300 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  <span>Solutions</span>
+                  <svg
+                    className={`w-3 h-3 text-gray-400 transition-transform duration-200 ${
+                      servicesOpen ? 'rotate-180 text-[#00BFA6]' : ''
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {/* Minimalist Solutions Dropdown Card */}
+                {servicesOpen && (
+                  <div
+                    className="absolute top-full left-0 pt-2 z-50 nav-dropdown-animate"
+                    onMouseEnter={handleDropdownEnter}
+                    onMouseLeave={handleDropdownLeave}
+                  >
+                    <div className="w-72 bg-[#0F172A]/95 border border-white/15 rounded-2xl p-2 shadow-2xl backdrop-blur-xl space-y-1">
+                      {servicesList.map((srv) => {
+                        const isActive = currentService === srv.id;
+                        return (
+                          <a
+                            key={srv.id}
+                            href={srv.href}
+                            onClick={() => setServicesOpen(false)}
+                            className={`flex items-center justify-between p-2 rounded-xl transition-colors ${
+                              isActive
+                                ? 'bg-emerald-500/15 text-white'
+                                : 'hover:bg-white/5 text-gray-200'
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5">
+                              <span className="text-base">{srv.icon}</span>
+                              <div className="leading-tight">
+                                <span className="text-xs font-bold block">{srv.name}</span>
+                                <span className="text-[10px] text-gray-400 line-clamp-1">{srv.desc}</span>
+                              </div>
+                            </div>
+                            <span className="text-[9px] text-emerald-400 font-semibold shrink-0 ml-1">
+                              {srv.badge}
+                            </span>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Minimal Nav Links */}
+              {MINIMAL_NAV_LINKS.map((link) => (
+                <a
+                  key={link.name}
+                  href={getNavHref(link.href)}
+                  className={`px-3 py-1.5 rounded-full transition-colors flex items-center gap-1.5 ${
+                    link.badge
+                      ? 'text-amber-300 hover:text-amber-200 hover:bg-amber-400/10'
+                      : 'text-gray-300 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  <span>{link.name}</span>
+                  {link.badge && (
+                    <span className="text-[9px] font-bold text-amber-300 bg-amber-400/20 px-1.5 py-0.2 rounded-full">
+                      {link.badge}
+                    </span>
+                  )}
+                </a>
+              ))}
+            </div>
+
+            {/* 3. Right Action Group (Search Icon + Minimal CTA + Hamburger) */}
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+
+              {/* Minimalist Search Icon Button */}
+              <button
+                onClick={() => setSearchModalOpen(true)}
+                aria-label="Search site (⌘K)"
+                className="p-2 rounded-full text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+                title="Search (⌘K)"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+
+              {/* Minimal Clean Consultation CTA */}
+              <MagneticElement
+                onClick={() => {
+                  if (onOpenConsultation) {
+                    onOpenConsultation();
+                  } else {
+                    const el = document.getElementById('contact');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="hidden sm:inline-flex items-center bg-[#0F9D58] hover:bg-[#0c8248] text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-sm hover:shadow-[0_0_15px_rgba(15,157,88,0.4)] transition-all transform hover:-translate-y-0.5"
+              >
+                <span>Free Survey</span>
+              </MagneticElement>
+
+              {/* Mobile Hamburger Toggle */}
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle navigation menu"
+                aria-expanded={isMenuOpen}
+                className="md:hidden p-2 text-white hover:bg-white/10 rounded-full transition-colors focus:outline-none"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d={isMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 7h16M4 17h16'}
+                  />
+                </svg>
+              </button>
+
+            </div>
+
+          </nav>
         </div>
       </header>
     </>

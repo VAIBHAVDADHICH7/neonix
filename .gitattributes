@@ -1,0 +1,11 @@
+# GitHub Export Restrictions
+# Exclude developer tooling and local scripts from GitHub releases/archives
+
+scripts/ export-ignore
+dom_panel.json export-ignore
+STYLE_GUIDE.md export-ignore
+.oxlintrc.json export-ignore
+.vscode/ export-ignore
+.vercelignore export-ignore
+.gitattributes export-ignore
+

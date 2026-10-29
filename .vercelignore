@@ -1,0 +1,17 @@
+# Vercel Deployment Restrictions
+# These files are kept for local dev/reference but never uploaded to the production server
+
+# Local scripts and data dumps
+scripts/
+dom_panel.json
+STYLE_GUIDE.md
+
+# Development configurations
+.oxlintrc.json
+.vscode/
+
+# Git and documentation
+.git/
+.github/
+README.md
+

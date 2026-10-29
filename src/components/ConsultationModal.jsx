@@ -119,6 +119,7 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
 
   return (
     <div 
+      id="consultation-modal"
       className="fixed inset-0 z-[300] overflow-y-auto overscroll-contain flex justify-center p-2.5 sm:p-4"
       data-lenis-prevent="true"
       role="dialog"
@@ -127,7 +128,7 @@ export default function ConsultationModal({ isOpen, onClose, initialData = null 
     >
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-[#0F172A]/80 backdrop-blur-sm transition-opacity cursor-pointer"
+        className="fixed inset-0 bg-[#0F172A]/85 transition-opacity cursor-pointer"
         onClick={onClose}
         aria-hidden="true"
       />

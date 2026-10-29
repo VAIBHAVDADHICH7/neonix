@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local tools, data dumps, and test artifacts
+dom_panel.json
+scripts/test_*.mjs
+scripts/debug_*.mjs
+.vercel
+.cache
+coverage

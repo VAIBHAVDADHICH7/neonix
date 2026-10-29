@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Lenis from 'lenis';
+import ServiceHeader from '../components/ServiceHeader';
 import RoiCalculator from '../components/RoiCalculator';
 import ConsultationModal from '../components/ConsultationModal';
 import ScrollProgress from '../components/UI/ScrollProgress';
@@ -108,54 +109,10 @@ export default function CalculatorPage() {
       <CursorGlow />
 
       {/* ── HEADER / NAVIGATION ── */}
-      <header className="sticky top-0 z-50 bg-[#0B132B]/95 backdrop-blur-md border-b border-white/10 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-3 group" aria-label="Neonix Solar Home">
-            <div className="bg-white rounded-full p-1.5 h-10 w-10 flex items-center justify-center shadow-md transition-transform duration-300 group-hover:scale-105">
-              <img src="/images/logo.svg" alt="Neonix Logo" className="h-full w-auto object-contain" width="40" height="40" />
-            </div>
-            <div>
-              <span className="text-white font-extrabold text-lg sm:text-xl tracking-tight block leading-none">Neonix</span>
-              <span className="text-gray-300 font-semibold text-[9px] tracking-widest uppercase">Infra Solutions</span>
-            </div>
-          </a>
-
-          <div className="flex items-center gap-3 sm:gap-4">
-            <a
-              href="/"
-              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-gray-200 hover:text-[#00BFA6] transition-colors py-2 px-3 rounded-lg hover:bg-white/5"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-              <span>Back to Home</span>
-            </a>
-
-            <a
-              href={`tel:${SITE_CONFIG.contact.primaryPhoneRaw}`}
-              className="hidden md:inline-flex items-center gap-2 text-xs font-bold text-white/90 bg-white/10 hover:bg-white/20 px-3.5 py-2.5 rounded-xl border border-white/15 transition-all"
-            >
-              <svg className="w-4 h-4 text-[#00BFA6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-              <span>{SITE_CONFIG.contact.primaryPhone}</span>
-            </a>
-
-            <button
-              onClick={() => handleOpenConsultation({ source: 'Calculator Page Header' })}
-              className="inline-flex items-center gap-2 bg-[#0F9D58] hover:bg-[#0c8248] text-white text-xs font-bold px-4 sm:px-5 py-2.5 rounded-xl shadow-md hover:shadow-[0_0_20px_rgba(15,157,88,0.4)] transition-all transform hover:-translate-y-0.5"
-            >
-              <span>Get Free Quotation</span>
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </header>
+      <ServiceHeader currentService="calculator" onOpenConsultation={() => handleOpenConsultation({ source: 'Calculator Page Header' })} />
 
       {/* ── MAIN CONTENT ── */}
-      <main id="main-content" className="flex-grow">
+      <main id="main-content" className="flex-grow pt-20 sm:pt-24">
         {/* HERO TITLE SECTION */}
         <section className="bg-gradient-to-b from-[#0B132B] via-[#0F172A] to-[#F8FAFC] pt-12 pb-8 sm:pt-16 sm:pb-12 px-4 sm:px-6 lg:px-8 text-center text-white relative overflow-hidden">
           <div className="max-w-4xl mx-auto relative z-10">

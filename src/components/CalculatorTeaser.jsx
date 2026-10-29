@@ -1,4 +1,4 @@
-import { SITE_CONFIG, SOLAR_DATA } from '../data';
+import { SITE_CONFIG } from '../data';
 
 export default function CalculatorTeaser() {
   const maxSubsidy = SITE_CONFIG.stats.maxSubsidyAmount;

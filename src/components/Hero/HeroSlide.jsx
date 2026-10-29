@@ -24,14 +24,16 @@ export default function HeroSlide({
       <div className="w-full md:w-5/12 flex justify-center">
         <div className="w-full max-w-[160px] sm:max-w-[220px] md:max-w-[320px] rounded-2xl overflow-hidden border border-slate-200/90 shadow-2xl bg-white/95 backdrop-blur-xl p-2 sm:p-3 ring-1 ring-slate-900/5">
           <div className="aspect-[4/3] sm:aspect-[3/4] rounded-xl overflow-hidden bg-slate-100 relative">
-            <img
-              src={image}
-              alt={imageAlt}
-              fetchPriority="high"
-              width="400"
-              height="533"
-              className="w-full h-full object-cover object-top"
-            />
+            {image ? (
+              <img
+                src={image}
+                alt={imageAlt}
+                fetchPriority="high"
+                width="400"
+                height="533"
+                className="w-full h-full object-cover object-top"
+              />
+            ) : null}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
           </div>
           <div className="pt-2 sm:pt-3 pb-0.5 px-1 flex items-center justify-between">
