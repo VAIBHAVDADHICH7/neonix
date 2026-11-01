@@ -120,15 +120,15 @@ export default function CalculatorPage() {
           <div className="max-w-4xl mx-auto relative z-10">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0F9D58]/20 border border-[#00BFA6]/30 text-[#00BFA6] text-xs font-bold uppercase tracking-wider mb-4">
               <span className="w-2 h-2 rounded-full bg-[#00BFA6] animate-pulse" />
-              PM Surya Ghar Muft Bijli Yojana (2026 Compliant)
+              2026 Solar Sizing & Pricing Engine
             </div>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white mb-4 leading-tight">
-              Solar ROI & Government Subsidy Calculator
+              Solar Panel Cost & ROI Calculator India (2026 kW Sizing Tool)
             </h1>
 
             <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              Calculate your recommended system capacity (kW), direct government subsidies (up to ₹78,000), monthly savings, and lifetime financial returns in 30 seconds.
+              Estimate your recommended system capacity (kW), turnkey project costs, monthly electricity bill savings, and ROI payback period in 30 seconds.
             </p>
           </div>
         </section>
@@ -225,14 +225,14 @@ export default function CalculatorPage() {
         <section className="py-12 sm:py-16 bg-white border-y border-gray-200 px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-8">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#00BFA6] bg-[#00BFA6]/10 px-3 py-1 rounded-full">
-                Government Policy Guide
+              <span className="text-xs font-bold uppercase tracking-widest text-[#0F9D58] bg-[#0F9D58]/10 px-3 py-1 rounded-full">
+                System Sizing & Pricing Matrix
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111827] mt-3">
-                PM Surya Ghar Muft Bijli Yojana Subsidy Breakdown (2026)
+                Solar System Sizing, Estimated Cost & Financial ROI Matrix
               </h2>
               <p className="text-xs sm:text-sm text-gray-500 mt-1">
-                Official Ministry of New and Renewable Energy (MNRE) Direct Benefit Transfer (DBT) rates.
+                Typical turnkey installation cost, monthly energy production, and estimated payback period across system sizes.
               </p>
             </div>
 
@@ -240,46 +240,66 @@ export default function CalculatorPage() {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-[#0B132B] text-white text-xs sm:text-sm">
-                    <th className="py-3.5 px-4 font-bold">System Capacity</th>
-                    <th className="py-3.5 px-4 font-bold">Monthly Bill Range</th>
-                    <th className="py-3.5 px-4 font-bold">Roof Space</th>
-                    <th className="py-3.5 px-4 font-bold text-right">Central Subsidy</th>
+                    <th className="py-3.5 px-4 font-bold">System Size (kW)</th>
+                    <th className="py-3.5 px-4 font-bold">Monthly Units (kWh)</th>
+                    <th className="py-3.5 px-4 font-bold">Est. Turnkey Cost</th>
+                    <th className="py-3.5 px-4 font-bold">Net Cost (After Subsidy)</th>
+                    <th className="py-3.5 px-4 font-bold text-right">Est. Payback & ROI</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100 text-xs sm:text-sm text-gray-700">
                   <tr className="hover:bg-gray-50/80 transition-colors">
                     <td className="py-3 px-4 font-semibold text-[#111827]">1 kW System</td>
-                    <td className="py-3 px-4">₹1,500 – ₹2,500 / month</td>
-                    <td className="py-3 px-4">~64 sq. ft.</td>
-                    <td className="py-3 px-4 text-right font-bold text-[#0F9D58]">₹30,000</td>
+                    <td className="py-3 px-4">~120 – 140 Units/mo</td>
+                    <td className="py-3 px-4">₹65,000 – ₹75,000</td>
+                    <td className="py-3 px-4 font-bold text-[#0F9D58]">₹35,000 – ₹45,000</td>
+                    <td className="py-3 px-4 text-right font-semibold text-slate-700">~2.5 Yrs (~₹14k/yr)</td>
                   </tr>
                   <tr className="hover:bg-gray-50/80 transition-colors bg-green-50/30">
                     <td className="py-3 px-4 font-semibold text-[#111827]">2 kW System</td>
-                    <td className="py-3 px-4">₹2,500 – ₹4,500 / month</td>
-                    <td className="py-3 px-4">~128 sq. ft.</td>
-                    <td className="py-3 px-4 text-right font-bold text-[#0F9D58]">₹60,000</td>
+                    <td className="py-3 px-4">~240 – 280 Units/mo</td>
+                    <td className="py-3 px-4">₹1,25,000 – ₹1,40,000</td>
+                    <td className="py-3 px-4 font-bold text-[#0F9D58]">₹65,000 – ₹80,000</td>
+                    <td className="py-3 px-4 text-right font-semibold text-slate-700">~2.3 Yrs (~₹28k/yr)</td>
                   </tr>
                   <tr className="hover:bg-gray-50/80 transition-colors bg-emerald-50/40">
-                    <td className="py-3 px-4 font-semibold text-[#111827]">3 kW System (Most Popular)</td>
-                    <td className="py-3 px-4">₹4,500 – ₹7,000 / month</td>
-                    <td className="py-3 px-4">~192 sq. ft.</td>
-                    <td className="py-3 px-4 text-right font-bold text-[#0F9D58]">₹78,000 (Max Flat)</td>
+                    <td className="py-3 px-4 font-semibold text-[#111827]">3 kW System (Sweet Spot)</td>
+                    <td className="py-3 px-4">~360 – 420 Units/mo</td>
+                    <td className="py-3 px-4">₹1,80,000 – ₹1,95,000</td>
+                    <td className="py-3 px-4 font-bold text-[#0F9D58]">₹1,02,000 – ₹1,17,000</td>
+                    <td className="py-3 px-4 text-right font-semibold text-slate-700">~2.2 Yrs (~₹45k/yr)</td>
                   </tr>
                   <tr className="hover:bg-gray-50/80 transition-colors">
-                    <td className="py-3 px-4 font-semibold text-[#111827]">4 kW – 10 kW Residential</td>
-                    <td className="py-3 px-4">₹7,000 – ₹20,000+ / month</td>
-                    <td className="py-3 px-4">256 – 640 sq. ft.</td>
-                    <td className="py-3 px-4 text-right font-bold text-[#0F9D58]">₹78,000 (Flat)</td>
+                    <td className="py-3 px-4 font-semibold text-[#111827]">5 kW System (Standard Home)</td>
+                    <td className="py-3 px-4">~600 – 700 Units/mo</td>
+                    <td className="py-3 px-4">₹2,75,000 – ₹2,95,000</td>
+                    <td className="py-3 px-4 font-bold text-[#0F9D58]">₹1,97,000 – ₹2,17,000</td>
+                    <td className="py-3 px-4 text-right font-semibold text-slate-700">~2.6 Yrs (~₹72k/yr)</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50/80 transition-colors">
+                    <td className="py-3 px-4 font-semibold text-[#111827]">10 kW System (Large Villa)</td>
+                    <td className="py-3 px-4">~1,200 – 1,400 Units/mo</td>
+                    <td className="py-3 px-4">₹5,10,000 – ₹5,40,000</td>
+                    <td className="py-3 px-4 font-bold text-[#0F9D58]">₹4,32,000 – ₹4,62,000</td>
+                    <td className="py-3 px-4 text-right font-semibold text-slate-700">~2.8 Yrs (~₹1.4L/yr)</td>
                   </tr>
                   <tr className="hover:bg-gray-50/80 transition-colors bg-blue-50/30">
-                    <td className="py-3 px-4 font-semibold text-[#111827]">Commercial & Industrial (C&I)</td>
-                    <td className="py-3 px-4">₹25,000 – ₹5,00,000+ / month</td>
-                    <td className="py-3 px-4">Custom Factory Roof</td>
-                    <td className="py-3 px-4 text-right font-bold text-blue-600">40% Tax Depreciation</td>
+                    <td className="py-3 px-4 font-semibold text-[#111827]">Commercial & Industrial (25kW+)</td>
+                    <td className="py-3 px-4">3,000+ Units/mo</td>
+                    <td className="py-3 px-4">Custom Turnkey Quote</td>
+                    <td className="py-3 px-4 font-bold text-blue-600">40% Tax Depreciation</td>
+                    <td className="py-3 px-4 text-right font-semibold text-slate-700">~3.0 Yrs (Accelerated ROI)</td>
                   </tr>
                 </tbody>
               </table>
             </div>
+
+            <p className="text-xs sm:text-sm text-gray-500 text-center mt-4">
+              Looking for official central government scheme rules, eligibility documents, and JVVNL portal guidelines? Visit our{' '}
+              <a href="/pm-surya-ghar-yojana" className="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">
+                PM Surya Ghar Muft Bijli Yojana Rajasthan Guide
+              </a>.
+            </p>
           </div>
         </section>
 

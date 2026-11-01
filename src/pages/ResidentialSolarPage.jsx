@@ -264,8 +264,8 @@ export default function ResidentialSolarPage() {
 
   const homeFaqs = [
     {
-      q: 'How does the PM Surya Ghar ₹78,000 subsidy reach my account?',
-      a: 'The central government subsidy under PM Surya Ghar Muft Bijli Yojana is a Direct Benefit Transfer (DBT). Once Neonix completes installation, tests the bidirectional net-meter with your local DISCOM (e.g. JVVNL/AVVNL/JdVVNL), and uploads the commissioning certificate to the national portal, the ₹78,000 subsidy is credited directly to your bank account within 30 days. Neonix handles 100% of the portal paperwork for you.',
+      q: 'Which system capacity (1kW to 10kW) is right for my home in Jaipur?',
+      a: 'System sizing depends on your monthly power consumption and roof area: a 1kW–2kW system suits smaller homes with monthly bills up to ₹2,500; a 3kW–5kW system is standard for 3-4 BHK homes running 1-2 air conditioners (bills ₹3,500–₹7,000/mo); and 6kW–10kW three-phase systems power large luxury villas with multiple ACs or EV charging. Neonix conducts a free 3D rooftop survey in Jaipur to determine your exact capacity.',
     },
     {
       q: 'What is Neonix’s Generation Guarantee with Cash Compensation?',
@@ -280,8 +280,8 @@ export default function ResidentialSolarPage() {
       a: 'Yes! With our 0% processing fee green bank loans (SBI, Canara, HDFC), your monthly EMI is typically lower than your current electricity bill! For example, on a 3 kW system, your monthly bill savings are ~₹3,950, while your solar EMI is only ~₹2,850. You save an extra ₹1,100 in cash every month from Day 1!',
     },
     {
-      q: 'Why should I apply for Net-Metering immediately before quota closes?',
-      a: 'DISCOM regulations cap residential solar installations at 50% to 75% of your local distribution transformer capacity. If your neighbours install solar before you, your local transformer quota can get saturated, causing future net-metering applications to be placed on a long waiting list. Booking today reserves your feeder slot.',
+      q: 'How does the JVVNL net-metering application work for Jaipur homeowners?',
+      a: 'Under JVVNL rules, your residential rooftop solar plant connects through an approved bi-directional net meter that credits surplus daytime solar units back to your account. Neonix handles 100% of the DISCOM paperwork, feeder transformer quota reservation, and on-site inspection. To review central government subsidy eligibility under PM Surya Ghar, visit our <a href="/pm-surya-ghar-yojana" class="text-[#00BFA6] font-bold underline hover:text-white">PM Surya Ghar Rajasthan Scheme Guide</a>.',
     },
   ];
 
@@ -333,15 +333,15 @@ export default function ResidentialSolarPage() {
                 </div>
 
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] mb-5 text-white">
-                  Stop Paying Power Bills.{' '}
+                  Residential Rooftop Solar Panel Installation in Jaipur{' '}
                   <span className="bg-gradient-to-r from-[#00BFA6] via-[#0F9D58] to-[#10B981] bg-clip-text text-transparent">
-                    Save Up to ₹1.4 Lakh
-                  </span>{' '}
-                  Every Year.
+                    (1kW–10kW)
+                  </span>
+
                 </h1>
 
                 <p className="text-gray-200 text-sm sm:text-lg leading-relaxed mb-8 max-w-2xl">
-                  Get up to <strong className="text-white font-bold">₹78,000 direct bank subsidy</strong> with India's most trusted solar engineering company. If your system does not generate the promised electricity, <strong className="text-[#00BFA6] font-bold">Neonix pays you the cash difference</strong>!
+                  Cut household electricity bills by up to 90% with custom-engineered 1kW–10kW rooftop solar setups for Jaipur villas and residences. Featuring Tier-1 TopCon panels, elevated terrace pergolas, fast JVVNL net metering, and a cash-backed generation guarantee!
                 </p>
 
                 {/* 4 Value Pills */}

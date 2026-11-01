@@ -162,6 +162,11 @@ function App() {
       <main id="main-content" className="flex-grow">
         {/* Hero Section & Landing Proposal Form */}
         <Hero 
+          badgeText="Tier-1 Solar EPC Contractor • Jaipur & Rajasthan"
+          title="Solar Company in Jaipur & Rajasthan |"
+          highlightText="Rooftop Solar EPC - Neonix"
+          subtitle="Leading rooftop solar company in Jaipur & Rajasthan delivering turnkey EPC engineering, procurement, and installation for residential homes, commercial complexes, and factories."
+          trustChips={['✓ Tier-1 EPC Engineering', '✓ JVVNL Net Metering', '✓ 25-Yr Performance Guarantee', '✓ 100% In-House Team']}
           onOpenConsultation={() => handleOpenConsultation()} 
           onScrollToCalculator={() => {
             const el = document.getElementById('savings-hub') || document.getElementById('roi-calculator');

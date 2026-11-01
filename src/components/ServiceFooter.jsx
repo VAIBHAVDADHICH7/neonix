@@ -134,7 +134,7 @@ export default function ServiceFooter() {
               <li className="flex items-start gap-2">
                 <span className="text-[#00BFA6]">📍</span>
                 <a 
-                  href="https://maps.google.com/?q=Manyawas+Mansarovar+Jaipur+Rajasthan+302020" 
+                  href="https://maps.google.com/?q=54A,+Jyoti+Vihar,+Manyawas,+Mansarovar,+Jaipur,+Rajasthan+302020" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="text-gray-400 hover:text-white leading-snug"

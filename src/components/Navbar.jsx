@@ -378,21 +378,18 @@ export default function Navbar({ onOpenConsultation, currentService, isServicePa
       )}
 
       {/* ── MOBILE MENU DRAWER ──────────────────────────────────────────────── */}
-      <div
-        className={`fixed inset-0 z-[250] transition-opacity duration-300 lg:hidden ${
-          isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-      >
+      {isMenuOpen && (
         <div
-          className="absolute inset-0 bg-[#070D1E]/75 backdrop-blur-sm"
-          onClick={() => setIsMenuOpen(false)}
-        />
-
-        <div
-          className={`relative z-10 h-full w-[85%] max-w-sm bg-[#0B132B] border-r border-white/10 p-5 flex flex-col justify-between transform transition-transform duration-300 ease-out ${
-            isMenuOpen ? 'translate-x-0' : '-translate-x-full'
-          } overflow-y-auto`}
+          className="fixed inset-0 z-[250] transition-opacity duration-300 lg:hidden"
         >
+          <div
+            className="absolute inset-0 bg-[#070D1E]/75 backdrop-blur-sm"
+            onClick={() => setIsMenuOpen(false)}
+          />
+
+          <div
+            className="relative z-10 h-full w-[85%] max-w-sm bg-[#0B132B] border-r border-white/10 p-5 flex flex-col justify-between transform transition-transform duration-300 ease-out translate-x-0 overflow-y-auto"
+          >
           <div>
             <div className="flex justify-between items-center pb-4 mb-4 border-b border-white/10">
               <a href="/" className="flex items-center gap-2">
@@ -495,6 +492,7 @@ export default function Navbar({ onOpenConsultation, currentService, isServicePa
           </div>
         </div>
       </div>
+      )}
 
       {/* ── FULL CANVAS EDGE-TO-EDGE BLUR BAND (Stretches across entire screen from left to right) ── */}
       <div className="nav-full-canvas-blur" aria-hidden="true" />

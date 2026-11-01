@@ -29,19 +29,19 @@ export const FOOTER_SECTIONS = {
   services: {
     title: 'Our Solar Solutions',
     links: [
-      { name: 'Solar for Homes (₹78k Subsidy)', href: '/residential-solar' },
-      { name: 'PM Surya Ghar Muft Bijli Yojana', href: '/pm-surya-ghar-yojana' },
+      { name: 'Residential Solar (1kW–10kW)', href: '/residential-solar' },
+      { name: 'PM Surya Ghar Rajasthan Guide', href: '/pm-surya-ghar-yojana' },
       { name: 'Commercial Rooftop Solar', href: '/commercial-solar' },
       { name: 'Industrial MW-Scale Solar Plants', href: '/industrial-solar' },
       { name: 'Solar Care & AMC Maintenance', href: '/solar-amc' },
-      { name: '★ Solar ROI & Subsidy Calculator', href: '/solar-calculator', highlight: true },
+      { name: '★ Solar Cost & ROI Calculator', href: '/solar-calculator', highlight: true },
     ],
   },
   toolsAndGuides: {
     title: 'Tools & Navigation',
     links: [
-      { name: 'Subsidy Calculator 2026', href: '/solar-calculator' },
-      { name: 'PM Surya Ghar Guide (₹78k)', href: '/pm-surya-ghar-yojana' },
+      { name: 'Solar Cost & ROI Calculator', href: '/solar-calculator' },
+      { name: 'PM Surya Ghar Rajasthan Guide', href: '/pm-surya-ghar-yojana' },
       { name: 'Our Solar Systems', href: '/#solutions' },
       { name: 'Why Solar (10 Key Benefits)', href: '/#why-solar' },
       { name: 'Customer Reviews & Projects', href: '/#testimonials' },
@@ -58,7 +58,7 @@ export const FOOTER_SECTIONS = {
       { name: 'JVVNL Net Metering Portal ↗', href: 'https://energy.rajasthan.gov.in/jvvnl', external: true },
       { name: 'Bureau of Energy Efficiency (BEE) ↗', href: 'https://beeindia.gov.in/', external: true },
       { name: 'Income Tax 40% Solar Depreciation ↗', href: 'https://incometaxindia.gov.in/', external: true },
-      { name: 'Find Us on Google Maps ↗', href: 'https://maps.google.com/?q=Manyawas+Mansarovar+Jaipur+Rajasthan+302020', external: true },
+      { name: 'Find Us on Google Maps ↗', href: 'https://maps.google.com/?q=54A,+Jyoti+Vihar,+Manyawas,+Mansarovar,+Jaipur,+Rajasthan+302020', external: true },
     ],
   },
   legal: {

@@ -169,28 +169,4 @@
       <image:geo_location>Jaipur, Rajasthan, India</image:geo_location>
     </image:image>
   </url>
-  <url>
-    <loc>https://www.neonixinfra.in/privacy-policy</loc>
-    <lastmod>2026-10-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.50</priority>
-    <image:image>
-      <image:loc>https://www.neonixinfra.in/images/logo.svg</image:loc>
-      <image:title>Neonix Infra Solutions Privacy Policy</image:title>
-      <image:caption>Customer data protection, privacy terms, and solar installation warranty policies</image:caption>
-      <image:geo_location>Jaipur, Rajasthan, India</image:geo_location>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.neonixinfra.in/terms</loc>
-    <lastmod>2026-10-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.50</priority>
-    <image:image>
-      <image:loc>https://www.neonixinfra.in/images/logo.svg</image:loc>
-      <image:title>Neonix Infra Solutions Terms of Service</image:title>
-      <image:caption>Terms and conditions for solar EPC engineering, rooftop surveys, and contracts</image:caption>
-      <image:geo_location>Jaipur, Rajasthan, India</image:geo_location>
-    </image:image>
-  </url>
 </urlset>

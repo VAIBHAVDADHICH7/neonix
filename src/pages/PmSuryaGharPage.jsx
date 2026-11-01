@@ -348,15 +348,15 @@ export default function PmSuryaGharPage() {
                 </div>
 
                 <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] mb-5 text-white">
-                  PM Surya Ghar:{' '}
+                  PM Surya Ghar Muft Bijli Yojana Rajasthan:{' '}
                   <span className="bg-gradient-to-r from-[#00BFA6] via-[#0F9D58] to-[#10B981] bg-clip-text text-transparent">
-                    Muft Bijli Yojana
-                  </span>{' '}
-                  Subsidy Guide (2026)
+                    Eligibility, JVVNL Net Metering & Subsidy Guide
+                  </span>
+
                 </h1>
 
                 <p className="text-gray-200 text-sm sm:text-lg leading-relaxed mb-8 max-w-2xl">
-                  Get up to <strong className="text-white font-bold">₹78,000 direct bank subsidy</strong> from the central government and slash your home electricity bill to <strong className="text-[#00BFA6] font-bold">₹0 every month</strong>. Neonix is an empanelled A-grade solar EPC providing 100% portal paperwork handling, IIT-tested structure mounting, and guaranteed 30-day DBT bank disbursement.
+                  Official guide to claiming up to <strong className="text-white font-bold">₹78,000 direct bank DBT subsidy</strong> under PM Surya Ghar Muft Bijli Yojana in Rajasthan. Complete JVVNL net metering rules, feeder quota verification, and turnkey empanelled vendor execution by Neonix.
                 </p>
 
                 {/* 4 Instant Scheme Metric Cards */}

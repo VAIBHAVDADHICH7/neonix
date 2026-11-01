@@ -25,25 +25,24 @@ export const SITE_CONFIG = {
     secondaryPhone: '+91 90886 88899',
     secondaryPhoneRaw: '+919088688899',
     emails: [
-      { address: 'contact@neonixinfra.in', label: 'Inquiries' },
-      { address: 'customercare@neonixinfra.in', label: 'Customer Care' },
+      { address: 'contact@neonixinfra.in', label: 'Primary Inquiries & Support' },
     ],
     primaryEmail: 'contact@neonixinfra.in',
-    supportEmail: 'customercare@neonixinfra.in',
+    supportEmail: 'contact@neonixinfra.in',
     workingHours: 'Mon–Sat: 9:00 AM – 7:00 PM IST',
   },
 
   // Physical Location & Geo
   address: {
-    street: 'A54, Jyoti Vihar 1st, Manyawas, Mansarovar',
-    locality: 'Mansarovar',
+    street: '54A, Jyoti Vihar, Manyawas, Mansarovar',
+    locality: 'Manyawas, Mansarovar',
     city: 'Jaipur',
     state: 'Rajasthan',
     stateCode: 'RJ',
     pincode: '302020',
     country: 'India',
     countryCode: 'IN',
-    fullFormatted: 'Manyawas, Mansarovar, Jaipur, Rajasthan 302020',
+    fullFormatted: '54A, Jyoti Vihar, Manyawas, Mansarovar, Jaipur, Rajasthan 302020',
     geo: {
       latitude: '26.8520',
       longitude: '75.7600',

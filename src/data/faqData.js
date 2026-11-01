@@ -1,54 +1,55 @@
 /**
  * Frequently Asked Questions
  * Categorized FAQ database for Homepage, Calculator, and Service Pages
+ * Differentiated by search intent: Local Brand + EPC Authority for Home, Tool/Pricing for Calculator
  */
 
 export const FAQS = {
   home: [
     {
-      id: 'subsidy',
-      question: 'How much government subsidy is available for rooftop solar panels?',
+      id: 'why-neonix',
+      question: 'Why choose Neonix as your rooftop solar EPC company in Jaipur & Rajasthan?',
       answer:
-        'Under the <a href="/pm-surya-ghar-yojana" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">PM Surya Ghar Muft Bijli Yojana</a>, residential consumers in India can receive up to ₹78,000 direct central subsidy (₹30,000 for 1kW, ₹60,000 for 2kW, and ₹78,000 for 3kW and above). Registration and DBT subsidy transfer is managed directly on the official <a href="https://pmsuryaghar.gov.in/" target="_blank" rel="noopener noreferrer" class="text-[#0284c7] font-bold underline hover:text-[#0369a1]">PM Surya Ghar National Portal ↗</a>. Neonix handles the complete portal paperwork and DISCOM liaison to credit the subsidy directly to your bank account.',
+        'Neonix Infra Solutions is a premier rooftop solar EPC contractor headquartered in Jaipur. We deliver end-to-end solar engineering—from precision 3D shadow analysis and IIT-grade elevated structural engineering to complete JVVNL net metering approvals and 25-year performance warranties. Our in-house certified engineering team guarantees zero roof leakage and top-tier power generation across Jaipur, Kota, Jodhpur, Udaipur, and all of Rajasthan.',
     },
     {
-      id: 'savings',
-      question: 'How much can I save on my electricity bill by installing solar panels?',
+      id: 'services',
+      question: 'What solar EPC services does Neonix provide across Rajasthan?',
       answer:
-        'A standard rooftop solar installation can reduce monthly electricity bills by up to 90%. Any excess green energy produced during sunny daytime hours is automatically exported back to the grid via bidirectional net metering, earning you billing credits against nighttime consumption. You can estimate your exact savings with our <a href="/solar-calculator" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Free Solar ROI Calculator</a>.',
+        'We engineer turnkey solar solutions across all scales: <a href="/residential-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Residential Rooftop Solar (1kW–10kW)</a> for villas and homes, <a href="/commercial-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Commercial Rooftop Solar</a> with 40% accelerated tax depreciation, <a href="/industrial-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Industrial MW-Scale Solar Plants</a> for factories, and <a href="/solar-amc" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Solar Care &amp; AMC Maintenance Contracts</a>.',
     },
     {
-      id: 'lifespan',
-      question: 'What is the lifespan of Neonix clean energy solar panels?',
+      id: 'jvvnl-net-metering',
+      question: 'How does Neonix manage the JVVNL net metering process in Jaipur?',
       answer:
-        'Neonix installs Tier-1 Mono PERC and TopCon bi-facial solar panels that come with a 25 to 30-year linear performance warranty backed by <a href="https://mnre.gov.in/" target="_blank" rel="noopener noreferrer" class="text-[#0284c7] font-bold underline hover:text-[#0369a1]">MNRE ALMM guidelines ↗</a>. Our installations include galvanized anti-corrosive structures and comprehensive <a href="/solar-amc" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Solar Care &amp; AMC Maintenance Contracts</a> for worry-free longevity.',
+        'As an empanelled solar EPC in Rajasthan, Neonix handles 100% of the DISCOM workflow with <a href="https://energy.rajasthan.gov.in/jvvnl" target="_blank" rel="noopener noreferrer" class="text-[#0284c7] font-bold underline hover:text-[#0369a1]">JVVNL (Jaipur Vidyut Vitran Nigam Ltd) ↗</a>. We conduct distribution transformer feasibility checks, submit official sanction applications, supervise bi-directional net-meter installation, and ensure timely grid synchronization without customer hassles.',
     },
     {
-      id: 'roof',
-      question: 'What type of roof is suitable for solar panel installation?',
+      id: 'warranty',
+      question: 'What warranties and performance guarantees does Neonix offer?',
       answer:
-        'RCC flat roofs, metal sheds, and tiled roofs are all suitable for solar installation. We require approximately 65–80 sq. ft. of shadow-free rooftop space per 1 kW of solar capacity. We offer specialized mounting for <a href="/residential-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Residential Homes</a> and non-penetrating clamps for <a href="/industrial-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Industrial Factory Sheds</a>.',
+        'All Neonix rooftop installations feature Tier-1 TopCon and Mono PERC solar panels backed by a 25 to 30-year linear performance warranty under <a href="https://mnre.gov.in/" target="_blank" rel="noopener noreferrer" class="text-[#0284c7] font-bold underline hover:text-[#0369a1]">MNRE ALMM guidelines ↗</a>, 5 to 10-year smart inverter warranties, a 5-year water-tight roof guarantee, and our exclusive generation guarantee with cash deficit compensation.',
     },
     {
-      id: 'timeline',
-      question: 'How long does the installation and net metering approval process take?',
+      id: 'subsidy-support',
+      question: 'Does Neonix assist residential homeowners with PM Surya Ghar subsidies?',
       answer:
-        'Physical rooftop installation typically completes within 3 to 5 days. State electricity board net-meter inspection and grid synchronization (via <a href="https://energy.rajasthan.gov.in/jvvnl" target="_blank" rel="noopener noreferrer" class="text-[#0284c7] font-bold underline hover:text-[#0369a1]">JVVNL / DISCOM ↗</a>) generally takes 2 to 4 weeks depending on your circle. Neonix end-to-end manages all inspections and documentation.',
+        'Yes. For residential customers, Neonix manages complete documentation and portal liaison to secure direct DBT subsidies of up to ₹78,000 deposited straight into your bank account. For an in-depth breakdown of eligibility, subsidy slabs, and Discom paperwork, read our dedicated <a href="/pm-surya-ghar-yojana" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">PM Surya Ghar Rajasthan Scheme Guide</a>.',
     },
   ],
 
   calculator: [
     {
-      q: 'How is my recommended solar system capacity calculated?',
-      a: 'The calculator estimates your monthly electricity consumption in kWh (units) by dividing your average monthly bill by standard grid tariff rates. In high-sunlight states like Rajasthan, 1 kW of rooftop solar generates approximately 120–135 units per month. We then match your consumption to the exact kW system needed to eliminate up to 90% of your bill. Explore our <a href="/residential-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Residential Solar Solutions</a> or <a href="/commercial-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Commercial Solar Packages</a>.',
+      q: 'How is my recommended solar system capacity (kW) calculated?',
+      a: 'The calculator estimates your monthly electricity consumption in kWh (units) by dividing your average monthly bill by standard DISCOM tariff slab rates. In high-sunlight regions like Rajasthan, 1 kW of rooftop solar generates approximately 120–135 units per month. We size the exact kW system needed to eliminate up to 90% of your bill. Explore our <a href="/residential-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Residential Solar Solutions (1kW–10kW)</a> or <a href="/commercial-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Commercial Solar Packages</a>.',
     },
     {
-      q: 'What is the PM Surya Ghar subsidy amount for residential solar?',
-      a: 'Under the PM Surya Ghar Muft Bijli Yojana, residential consumers receive: ₹30,000 for 1 kW, ₹60,000 for 2 kW, and a maximum flat subsidy of ₹78,000 for 3 kW and larger systems. The subsidy is credited directly via DBT within 30 days. Read our comprehensive <a href="/pm-surya-ghar-yojana" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">PM Surya Ghar Scheme Guide</a> or visit the official <a href="https://pmsuryaghar.gov.in/" target="_blank" rel="noopener noreferrer" class="text-[#0284c7] font-bold underline hover:text-[#0369a1]">National Portal ↗</a>.',
+      q: 'How does the calculator determine system costs, net savings, and ROI payback?',
+      a: 'The tool uses current market turnkey installation rates (Tier-1 TopCon / Mono PERC modules, on-grid smart inverters, and galvanized structures) minus applicable central DBT subsidies (up to ₹78,000 under PM Surya Ghar). Payback period is computed by dividing net investment by your annual power bill savings. For official government scheme rules, see our <a href="/pm-surya-ghar-yojana" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">PM Surya Ghar Rajasthan Guide</a>.',
     },
     {
       q: 'What is the difference between DCR and Non-DCR solar panels?',
-      a: 'DCR (Domestic Content Requirement) panels are manufactured entirely in India using domestically produced solar cells and modules, mandated by <a href="https://mnre.gov.in/" target="_blank" rel="noopener noreferrer" class="text-[#0284c7] font-bold underline hover:text-[#0369a1]">MNRE ↗</a> to qualify for the PM Surya Ghar subsidy. Non-DCR panels use high-efficiency imported cells (e.g. N-Type TOPCon) offering lower upfront capital cost for <a href="/commercial-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Commercial</a> and <a href="/industrial-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Industrial</a> plants claiming 40% accelerated depreciation tax savings.',
+      a: 'DCR (Domestic Content Requirement) panels are manufactured entirely in India using domestically produced solar cells and modules, mandated by <a href="https://mnre.gov.in/" target="_blank" rel="noopener noreferrer" class="text-[#0284c7] font-bold underline hover:text-[#0369a1]">MNRE ↗</a> to qualify for residential PM Surya Ghar subsidies. Non-DCR panels use high-efficiency imported cells (e.g. N-Type TOPCon) offering lower upfront capital cost for <a href="/commercial-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Commercial</a> and <a href="/industrial-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Industrial</a> plants claiming 40% accelerated depreciation tax savings.',
     },
     {
       q: 'When should I choose Single-Phase (1PH) vs Three-Phase (3PH)?',
@@ -60,7 +61,7 @@ export const FAQS = {
     },
     {
       q: 'How much shadow-free roof area is required for installation?',
-      a: 'Each 1 kW of rooftop solar requires approximately 64 to 70 sq. ft. of clean, shadow-free rooftop space. For example, a 3 kW system needs about 192 to 210 sq. ft. of unshaded roof area. Check our <a href="/solar-amc" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Solar AMC &amp; Maintenance</a> services to keep your panels at maximum output.',
+      a: 'Each 1 kW of rooftop solar requires approximately 64 to 70 sq. ft. of clean, shadow-free rooftop space. For example, a 3 kW system needs about 192 to 210 sq. ft. of unshaded roof area. Check our <a href="/solar-amc" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Solar Care &amp; AMC Maintenance</a> services to keep your panels at maximum output.',
     },
   ],
 };
