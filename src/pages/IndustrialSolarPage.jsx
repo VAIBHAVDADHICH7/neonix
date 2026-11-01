@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Lenis from 'lenis';
 import ServiceHeader from '../components/ServiceHeader';
 import ServiceFooter from '../components/ServiceFooter';
+import RelatedLinksNetwork from '../components/RelatedLinksNetwork';
 import ConsultationModal from '../components/ConsultationModal';
 import ScrollProgress from '../components/UI/ScrollProgress';
 import CursorGlow from '../components/UI/CursorGlow';
@@ -865,6 +866,8 @@ export default function IndustrialSolarPage() {
           </div>
         </section>
       </main>
+
+      <RelatedLinksNetwork currentSlug="industrial" />
 
       <ServiceFooter />
 

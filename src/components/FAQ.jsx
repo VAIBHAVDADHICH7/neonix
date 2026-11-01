@@ -71,9 +71,8 @@ export default function FAQ({ onOpenConsultation }) {
                     id={`faq-answer-${item.id}`}
                     role="region"
                     className="px-5 pb-5 sm:px-6 sm:pb-6 text-sm sm:text-base text-[#374151] leading-relaxed border-t border-gray-100 pt-3"
-                  >
-                    {item.answer}
-                  </div>
+                    dangerouslySetInnerHTML={{ __html: item.answer }}
+                  />
                 )}
               </div>
             );

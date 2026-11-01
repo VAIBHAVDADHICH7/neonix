@@ -495,10 +495,10 @@ export default function Contact() {
       <footer className="bg-[#0B132B] text-white pt-12 sm:pt-16 pb-20 md:pb-12 border-t border-white/10 relative overflow-hidden" aria-label="Neonix Site Footer">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-10 sm:pb-12 border-b border-white/10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 pb-10 sm:pb-12 border-b border-white/10">
             
             {/* Brand & Mission */}
-            <div className="sm:col-span-2 lg:col-span-4 space-y-3 sm:space-y-4">
+            <div className="sm:col-span-2 lg:col-span-3 space-y-3 sm:space-y-4">
               <div className="flex items-center gap-3">
                 <img src="/images/logo.svg" alt="Neonix Infra Solutions Logo" className="h-9 sm:h-10 w-auto bg-white p-1.5 rounded-full" width="40" height="40" />
                 <div>
@@ -510,7 +510,7 @@ export default function Contact() {
                 Your trusted partner for rooftop solar power in India. Cut electricity bills by 90% with government subsidy and complete installation support.
               </p>
               
-              {/* Social Media Icons */}
+              {/* Social Media & Maps Icons */}
               <div className="pt-1 sm:pt-2">
                 <p className="text-[11px] sm:text-xs uppercase tracking-wider text-gray-300 font-bold mb-2 sm:mb-3">Connect With Us</p>
                 <div className="flex gap-2.5 sm:gap-3">
@@ -541,18 +541,60 @@ export default function Contact() {
                   >
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
                   </a>
+                  <a 
+                    href="https://maps.google.com/?q=Manyawas+Mansarovar+Jaipur+Rajasthan+302020" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    aria-label={`Find ${SITE_CONFIG.name} on Google Maps`} 
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center text-white hover:bg-[#0F9D58] hover:border-[#0F9D58] transition-colors text-xs font-bold"
+                  >
+                    📍
+                  </a>
                 </div>
               </div>
             </div>
 
-            {/* Quick Links */}
-            <div className="lg:col-span-3 space-y-2.5 sm:space-y-3">
+            {/* Solar Solutions (Internal Links) */}
+            <div className="lg:col-span-2 space-y-2.5 sm:space-y-3">
+              <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-white mb-2 sm:mb-4">{FOOTER_SECTIONS.services.title}</h4>
+              <ul className="space-y-2 text-xs text-gray-300">
+                {FOOTER_SECTIONS.services.links.map((link) => (
+                  <li key={link.name}>
+                    <a href={link.href} className="hover:text-[#00BFA6] transition-colors flex items-center gap-1.5">
+                      <span className="text-[#0F9D58]">›</span> {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Quick Links & Tools (Internal Links) */}
+            <div className="lg:col-span-2 space-y-2.5 sm:space-y-3">
               <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-white mb-2 sm:mb-4">{FOOTER_SECTIONS.toolsAndGuides.title}</h4>
-              <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-gray-300">
+              <ul className="space-y-2 text-xs text-gray-300">
                 {FOOTER_SECTIONS.toolsAndGuides.links.map((link) => (
                   <li key={link.name}>
-                    <a href={link.href} className="hover:text-[#00BFA6] transition-colors">
-                      {link.name}
+                    <a href={link.href} className="hover:text-[#00BFA6] transition-colors flex items-center gap-1.5">
+                      <span className="text-gray-500">›</span> {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Govt. & Official Portals (External Links) */}
+            <div className="lg:col-span-3 space-y-2.5 sm:space-y-3">
+              <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-white mb-2 sm:mb-4">{FOOTER_SECTIONS.governmentPortals.title}</h4>
+              <ul className="space-y-2 text-xs text-gray-300">
+                {FOOTER_SECTIONS.governmentPortals.links.map((link) => (
+                  <li key={link.name}>
+                    <a 
+                      href={link.href} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="hover:text-[#00BFA6] transition-colors flex items-center gap-1.5"
+                    >
+                      <span className="text-[#0F9D58]">↗</span> {link.name}
                     </a>
                   </li>
                 ))}
@@ -562,11 +604,11 @@ export default function Contact() {
             {/* Legal & Policies */}
             <div className="lg:col-span-2 space-y-2.5 sm:space-y-3">
               <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-white mb-2 sm:mb-4">{FOOTER_SECTIONS.legal.title}</h4>
-              <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm text-gray-300">
+              <ul className="space-y-2 text-xs text-gray-300">
                 {FOOTER_SECTIONS.legal.links.map((link) => (
                   <li key={link.name}>
-                    <a href={link.href} className="hover:text-[#00BFA6] transition-colors">
-                      {link.name}
+                    <a href={link.href} className="hover:text-[#00BFA6] transition-colors flex items-center gap-1.5">
+                      <span className="text-gray-500">›</span> {link.name}
                     </a>
                   </li>
                 ))}

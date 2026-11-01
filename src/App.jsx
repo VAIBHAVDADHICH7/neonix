@@ -13,6 +13,7 @@ const Testimonials = lazy(() => import('./components/Testimonials'));
 const TrustSignals = lazy(() => import('./components/TrustSignals'));
 const FAQ = lazy(() => import('./components/FAQ'));
 const Contact = lazy(() => import('./components/Contact'));
+const RelatedLinksNetwork = lazy(() => import('./components/RelatedLinksNetwork'));
 
 // Desktop & Tablet visual enhancements (never loaded on mobile)
 const ScrollProgress = lazy(() => import('./components/UI/ScrollProgress'));
@@ -189,6 +190,7 @@ function App() {
 
             {/* Step 4 of 4: How do I contact you? */}
             <FAQ onOpenConsultation={() => handleOpenConsultation()} />
+            <RelatedLinksNetwork currentSlug="home" />
             <Contact />
           </Suspense>
         )}

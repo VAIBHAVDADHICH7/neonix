@@ -38,13 +38,27 @@ export const FOOTER_SECTIONS = {
     ],
   },
   toolsAndGuides: {
-    title: 'Tools & Guides',
+    title: 'Tools & Navigation',
     links: [
       { name: 'Subsidy Calculator 2026', href: '/solar-calculator' },
       { name: 'PM Surya Ghar Guide (₹78k)', href: '/pm-surya-ghar-yojana' },
-      { name: 'Our Solar Systems', href: '#solutions' },
-      { name: 'Customer Reviews', href: '#testimonials' },
-      { name: 'Book Free Roof Check', href: '#contact' },
+      { name: 'Our Solar Systems', href: '/#solutions' },
+      { name: 'Why Solar (10 Key Benefits)', href: '/#why-solar' },
+      { name: 'Customer Reviews & Projects', href: '/#testimonials' },
+      { name: 'Solar FAQs & Net Metering', href: '/#faq' },
+      { name: 'Book Free Roof Check', href: '/#contact' },
+    ],
+  },
+  governmentPortals: {
+    title: 'Govt. & Official Resources',
+    links: [
+      { name: 'PM Surya Ghar National Portal ↗', href: 'https://pmsuryaghar.gov.in/', external: true },
+      { name: 'Ministry of New & Renewable Energy (MNRE) ↗', href: 'https://mnre.gov.in/', external: true },
+      { name: 'Jan Samarth 7% Solar Loans ↗', href: 'https://www.jansamarth.in/', external: true },
+      { name: 'JVVNL Net Metering Portal ↗', href: 'https://energy.rajasthan.gov.in/jvvnl', external: true },
+      { name: 'Bureau of Energy Efficiency (BEE) ↗', href: 'https://beeindia.gov.in/', external: true },
+      { name: 'Income Tax 40% Solar Depreciation ↗', href: 'https://incometaxindia.gov.in/', external: true },
+      { name: 'Find Us on Google Maps ↗', href: 'https://maps.google.com/?q=Manyawas+Mansarovar+Jaipur+Rajasthan+302020', external: true },
     ],
   },
   legal: {

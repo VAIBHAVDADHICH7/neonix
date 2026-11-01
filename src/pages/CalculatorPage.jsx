@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import Lenis from 'lenis';
 import ServiceHeader from '../components/ServiceHeader';
+import ServiceFooter from '../components/ServiceFooter';
+import RelatedLinksNetwork from '../components/RelatedLinksNetwork';
 import RoiCalculator from '../components/RoiCalculator';
 import ConsultationModal from '../components/ConsultationModal';
 import ScrollProgress from '../components/UI/ScrollProgress';
@@ -311,9 +313,7 @@ export default function CalculatorPage() {
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 pb-5 text-xs sm:text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
-                      {faq.a}
-                    </div>
+                    <div className="px-5 pb-5 text-xs sm:text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3" dangerouslySetInnerHTML={{ __html: faq.a }} />
                   )}
                 </div>
               );
@@ -354,29 +354,10 @@ export default function CalculatorPage() {
         </section>
       </main>
 
-      {/* ── FOOTER ── */}
-      <footer className="bg-[#070D1E] text-gray-400 py-10 px-4 sm:px-6 lg:px-8 border-t border-white/10 text-xs">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-          <div className="flex items-center gap-2">
-            <img src={SITE_CONFIG.logo} alt={`${SITE_CONFIG.name} Logo`} className="h-6 w-auto" width="24" height="24" />
-            <span className="text-white font-bold">{SITE_CONFIG.legalName}</span>
-            <span className="text-gray-500">| {SITE_CONFIG.address.city}, {SITE_CONFIG.address.state}, {SITE_CONFIG.address.country}</span>
-          </div>
+      {/* ── RELATED SOLUTIONS & GOVT PORTALS ── */}
+      <RelatedLinksNetwork currentSlug="calculator" />
 
-          <div className="flex items-center gap-6">
-            <a href="/" className="hover:text-white transition-colors">Home</a>
-            {FOOTER_SECTIONS.legal.links.map((link) => (
-              <a key={link.name} href={link.href} className="hover:text-white transition-colors">
-                {link.name}
-              </a>
-            ))}
-          </div>
-
-          <p className="text-gray-500">
-            &copy; {new Date().getFullYear()} {SITE_CONFIG.name} Infra Solutions. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <ServiceFooter />
 
       {/* ── CONSULTATION MODAL ── */}
       <ConsultationModal

@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import Lenis from 'lenis';
 import ServiceHeader from '../components/ServiceHeader.jsx';
 import ServiceFooter from '../components/ServiceFooter.jsx';
+import RelatedLinksNetwork from '../components/RelatedLinksNetwork.jsx';
 import ScrollProgress from '../components/UI/ScrollProgress.jsx';
 import CursorGlow from '../components/UI/CursorGlow.jsx';
 import ConsultationModal from '../components/ConsultationModal.jsx';
@@ -1293,6 +1294,8 @@ export default function PmSuryaGharPage() {
           </div>
         </section>
       </main>
+
+      <RelatedLinksNetwork currentSlug="pmsuryaghar" />
 
       <ServiceFooter />
 
