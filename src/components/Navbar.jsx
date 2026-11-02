@@ -512,7 +512,7 @@ export default function Navbar({ onOpenConsultation, currentService, isServicePa
             <a
               href="/"
               className="flex items-center gap-2 group shrink-0"
-              aria-label="Neonix Infra Solutions"
+              aria-label="Neonix Infra Solutions LLP"
             >
               <div className="bg-white rounded-full p-1 h-7 w-7 sm:h-8 sm:w-8 flex items-center justify-center shadow transition-transform duration-300 group-hover:scale-105">
                 <img src="/images/logo.svg" alt="Neonix Logo" className="h-full w-auto object-contain" width="32" height="32" />

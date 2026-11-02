@@ -21,6 +21,14 @@ export default function ServiceFooter() {
             <p className="text-gray-400 text-xs leading-relaxed mb-4">
               Government-registered Solar EPC company based in {SITE_CONFIG.address.city}, {SITE_CONFIG.address.state}. Delivering turnkey residential, commercial, and industrial rooftop solar plants with PM Surya Ghar subsidy liaisoning, net-metering, and lifetime care.
             </p>
+            <div className="flex flex-wrap gap-1.5 text-[10px] text-gray-300 mb-3">
+              <span className="bg-emerald-500/15 text-emerald-400 font-semibold px-2 py-0.5 rounded border border-emerald-500/30">
+                LLPIN: {SITE_CONFIG.llpin}
+              </span>
+              <span className="bg-emerald-500/15 text-emerald-400 font-semibold px-2 py-0.5 rounded border border-emerald-500/30">
+                GSTIN: {SITE_CONFIG.gstin}
+              </span>
+            </div>
             <div className="flex flex-wrap gap-1.5 text-[10px] text-gray-300 mb-4">
               <span className="bg-white/10 px-2 py-0.5 rounded border border-white/10">✓ MNRE Partner</span>
               <span className="bg-white/10 px-2 py-0.5 rounded border border-white/10">✓ DISCOM Empanelled</span>
@@ -153,9 +161,15 @@ export default function ServiceFooter() {
 
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left text-gray-500 text-[11px]">
-          <p>
-            &copy; {currentYear} {SITE_CONFIG.legalName}. All Rights Reserved.
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3">
+            <p>
+              &copy; {currentYear} {SITE_CONFIG.legalName}. All Rights Reserved.
+            </p>
+            <span className="hidden sm:inline text-gray-600">|</span>
+            <p className="text-gray-400 font-semibold">
+              LLPIN: {SITE_CONFIG.llpin} &bull; GSTIN: {SITE_CONFIG.gstin}
+            </p>
+          </div>
           <div className="flex flex-wrap items-center justify-center gap-6">
             {FOOTER_SECTIONS.legal.links.map((link) => (
               <a key={link.name} href={link.href} className="hover:text-gray-300 transition-colors">

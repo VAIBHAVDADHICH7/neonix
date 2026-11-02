@@ -6,6 +6,8 @@
 export const SITE_CONFIG = {
   name: 'Neonix',
   legalName: 'Neonix Infra Solutions LLP',
+  llpin: 'ACW-6405',
+  gstin: '08AAZFN7491B1ZN',
   tagline: 'Clean & Green Energy Solutions in India',
   description:
     'Certified rooftop solar installation company in India specializing in residential, commercial, and industrial clean green energy systems under PM Surya Ghar Muft Bijli Yojana.',

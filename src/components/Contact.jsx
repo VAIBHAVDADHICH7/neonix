@@ -503,12 +503,20 @@ export default function Contact() {
                 <img src="/images/logo.svg" alt="Neonix Infra Solutions Logo" className="h-9 sm:h-10 w-auto bg-white p-1.5 rounded-full" width="40" height="40" />
                 <div>
                   <span className="text-white font-extrabold text-lg sm:text-xl block leading-none">Neonix</span>
-                  <span className="text-gray-400 text-[9px] sm:text-[10px] tracking-widest uppercase font-semibold">Infra Solutions</span>
+                  <span className="text-gray-400 text-[9px] sm:text-[10px] tracking-widest uppercase font-semibold">Infra Solutions LLP</span>
                 </div>
               </div>
               <p className="text-gray-300 text-xs sm:text-sm leading-relaxed max-w-sm font-normal">
                 Your trusted partner for rooftop solar power in India. Cut electricity bills by 90% with government subsidy and complete installation support.
               </p>
+              <div className="flex flex-wrap gap-1.5 text-[10px] text-gray-300 font-semibold pt-0.5">
+                <span className="bg-emerald-500/15 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/30">
+                  LLPIN: {SITE_CONFIG.llpin}
+                </span>
+                <span className="bg-emerald-500/15 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/30">
+                  GSTIN: {SITE_CONFIG.gstin}
+                </span>
+              </div>
               
               {/* Social Media & Maps Icons */}
               <div className="pt-1 sm:pt-2">
@@ -651,7 +659,13 @@ export default function Contact() {
 
           {/* Bottom Copyright */}
           <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs text-gray-400 gap-3 sm:gap-4 text-center sm:text-left">
-            <p>© {new Date().getFullYear()} Neonix Infra Solutions LLP. All rights reserved.</p>
+            <div className="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3">
+              <p>© {new Date().getFullYear()} {SITE_CONFIG.legalName}. All rights reserved.</p>
+              <span className="hidden sm:inline text-gray-600">|</span>
+              <p className="text-gray-300 font-semibold">
+                LLPIN: {SITE_CONFIG.llpin} &bull; GSTIN: {SITE_CONFIG.gstin}
+              </p>
+            </div>
             <p className="text-gray-300">Govt. Approved PM Surya Ghar Partner in India</p>
           </div>
 
