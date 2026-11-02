@@ -7,7 +7,7 @@ import RoiCalculator from '../components/RoiCalculator';
 import ConsultationModal from '../components/ConsultationModal';
 import ScrollProgress from '../components/UI/ScrollProgress';
 import CursorGlow from '../components/UI/CursorGlow';
-import { SITE_CONFIG, FOOTER_SECTIONS, FAQS } from '../data';
+import { SITE_CONFIG, FAQS } from '../data';
 
 export default function CalculatorPage() {
   const [modalState, setModalState] = useState({
