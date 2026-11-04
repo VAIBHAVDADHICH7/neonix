@@ -52,13 +52,13 @@ export const FOOTER_SECTIONS = {
   governmentPortals: {
     title: 'Govt. & Official Resources',
     links: [
-      { name: 'PM Surya Ghar National Portal ↗', href: 'https://pmsuryaghar.gov.in/', external: true },
-      { name: 'Ministry of New & Renewable Energy (MNRE) ↗', href: 'https://mnre.gov.in/', external: true },
-      { name: 'Jan Samarth 7% Solar Loans ↗', href: 'https://www.jansamarth.in/', external: true },
-      { name: 'JVVNL Net Metering Portal ↗', href: 'https://energy.rajasthan.gov.in/jvvnl', external: true },
-      { name: 'Bureau of Energy Efficiency (BEE) ↗', href: 'https://beeindia.gov.in/', external: true },
-      { name: 'Income Tax 40% Solar Depreciation ↗', href: 'https://incometaxindia.gov.in/', external: true },
-      { name: 'Find Us on Google Maps ↗', href: 'https://maps.google.com/?q=54A,+Jyoti+Vihar,+Manyawas,+Mansarovar,+Jaipur,+Rajasthan+302020', external: true },
+      { name: 'PM Surya Ghar National Portal ↗', href: 'https://pmsuryaghar.gov.in/', external: true, rel: 'nofollow noopener noreferrer' },
+      { name: 'Ministry of New & Renewable Energy (MNRE) ↗', href: 'https://mnre.gov.in/', external: true, rel: 'nofollow noopener noreferrer' },
+      { name: 'Jan Samarth 7% Solar Loans ↗', href: 'https://www.jansamarth.in/', external: true, rel: 'nofollow noopener noreferrer' },
+      { name: 'JVVNL Net Metering Portal ↗', href: 'https://energy.rajasthan.gov.in/jvvnl', external: true, rel: 'nofollow noopener noreferrer' },
+      { name: 'Bureau of Energy Efficiency (BEE) ↗', href: 'https://beeindia.gov.in/', external: true, rel: 'nofollow noopener noreferrer' },
+      { name: 'Income Tax 40% Solar Depreciation ↗', href: 'https://incometaxindia.gov.in/', external: true, rel: 'nofollow noopener noreferrer' },
+      { name: 'Find Us on Google Maps ↗', href: 'https://maps.google.com/?q=54A,+Jyoti+Vihar,+Manyawas,+Mansarovar,+Jaipur,+Rajasthan+302020', external: true, rel: 'nofollow noopener noreferrer' },
     ],
   },
   legal: {

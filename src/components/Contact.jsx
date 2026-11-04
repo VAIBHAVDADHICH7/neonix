@@ -590,7 +590,7 @@ export default function Contact() {
               </ul>
             </div>
 
-            {/* Govt. & Official Portals (External Links) */}
+            {/* Govt. & Official Portals (External Links - nofollow preserves domain authority) */}
             <div className="lg:col-span-3 space-y-2.5 sm:space-y-3">
               <h4 className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-white mb-2 sm:mb-4">{FOOTER_SECTIONS.governmentPortals.title}</h4>
               <ul className="space-y-2 text-xs text-gray-300">
@@ -599,7 +599,7 @@ export default function Contact() {
                     <a 
                       href={link.href} 
                       target="_blank" 
-                      rel="noopener noreferrer" 
+                      rel="nofollow noopener noreferrer" 
                       className="hover:text-[#00BFA6] transition-colors flex items-center gap-1.5"
                     >
                       <span className="text-[#0F9D58]">↗</span> {link.name}

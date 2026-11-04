@@ -91,7 +91,7 @@ export default function WhySolar() {
             <a
               href="https://pmsuryaghar.gov.in/"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow noopener noreferrer"
               className="text-[#0284c7] font-bold underline hover:text-[#0369a1]"
             >
               National Portal ↗

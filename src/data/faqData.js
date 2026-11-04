@@ -22,13 +22,13 @@ export const FAQS = {
       id: 'jvvnl-net-metering',
       question: 'How does Neonix manage the JVVNL net metering process in Jaipur?',
       answer:
-        'As an empanelled solar EPC in Rajasthan, Neonix handles 100% of the DISCOM workflow with <a href="https://energy.rajasthan.gov.in/jvvnl" target="_blank" rel="noopener noreferrer" class="text-[#0284c7] font-bold underline hover:text-[#0369a1]">JVVNL (Jaipur Vidyut Vitran Nigam Ltd) ↗</a>. We conduct distribution transformer feasibility checks, submit official sanction applications, supervise bi-directional net-meter installation, and ensure timely grid synchronization without customer hassles.',
+        'As an empanelled solar EPC in Rajasthan, Neonix handles 100% of the DISCOM workflow with <a href="https://energy.rajasthan.gov.in/jvvnl" target="_blank" rel="nofollow noopener noreferrer" class="text-[#0284c7] font-bold underline hover:text-[#0369a1]">JVVNL (Jaipur Vidyut Vitran Nigam Ltd) ↗</a>. We conduct distribution transformer feasibility checks, submit official sanction applications, supervise bi-directional net-meter installation, and ensure timely grid synchronization without customer hassles.',
     },
     {
       id: 'warranty',
       question: 'What warranties and performance guarantees does Neonix offer?',
       answer:
-        'All Neonix rooftop installations feature Tier-1 TopCon and Mono PERC solar panels backed by a 25 to 30-year linear performance warranty under <a href="https://mnre.gov.in/" target="_blank" rel="noopener noreferrer" class="text-[#0284c7] font-bold underline hover:text-[#0369a1]">MNRE ALMM guidelines ↗</a>, 5 to 10-year smart inverter warranties, a 5-year water-tight roof guarantee, and our exclusive generation guarantee with cash deficit compensation.',
+        'All Neonix rooftop installations feature Tier-1 TopCon and Mono PERC solar panels backed by a 25 to 30-year linear performance warranty under <a href="https://mnre.gov.in/" target="_blank" rel="nofollow noopener noreferrer" class="text-[#0284c7] font-bold underline hover:text-[#0369a1]">MNRE ALMM guidelines ↗</a>, 5 to 10-year smart inverter warranties, a 5-year water-tight roof guarantee, and our exclusive generation guarantee with cash deficit compensation.',
     },
     {
       id: 'subsidy-support',
@@ -49,7 +49,7 @@ export const FAQS = {
     },
     {
       q: 'What is the difference between DCR and Non-DCR solar panels?',
-      a: 'DCR (Domestic Content Requirement) panels are manufactured entirely in India using domestically produced solar cells and modules, mandated by <a href="https://mnre.gov.in/" target="_blank" rel="noopener noreferrer" class="text-[#0284c7] font-bold underline hover:text-[#0369a1]">MNRE ↗</a> to qualify for residential PM Surya Ghar subsidies. Non-DCR panels use high-efficiency imported cells (e.g. N-Type TOPCon) offering lower upfront capital cost for <a href="/commercial-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Commercial</a> and <a href="/industrial-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Industrial</a> plants claiming 40% accelerated depreciation tax savings.',
+      a: 'DCR (Domestic Content Requirement) panels are manufactured entirely in India using domestically produced solar cells and modules, mandated by <a href="https://mnre.gov.in/" target="_blank" rel="nofollow noopener noreferrer" class="text-[#0284c7] font-bold underline hover:text-[#0369a1]">MNRE ↗</a> to qualify for residential PM Surya Ghar subsidies. Non-DCR panels use high-efficiency imported cells (e.g. N-Type TOPCon) offering lower upfront capital cost for <a href="/commercial-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Commercial</a> and <a href="/industrial-solar" class="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">Industrial</a> plants claiming 40% accelerated depreciation tax savings.',
     },
     {
       q: 'When should I choose Single-Phase (1PH) vs Three-Phase (3PH)?',
@@ -57,7 +57,7 @@ export const FAQS = {
     },
     {
       q: 'How does Net Metering work in Rajasthan?',
-      a: 'Net metering is a billing mechanism governed by <a href="https://energy.rajasthan.gov.in/jvvnl" target="_blank" rel="noopener noreferrer" class="text-[#0284c7] font-bold underline hover:text-[#0369a1]">JVVNL / State DISCOMs ↗</a> that credits solar energy system owners for surplus electricity added to the grid. During daytime peak hours, your solar panels export excess power to the grid. At night, you draw power back. You only pay for the net difference.',
+      a: 'Net metering is a billing mechanism governed by <a href="https://energy.rajasthan.gov.in/jvvnl" target="_blank" rel="nofollow noopener noreferrer" class="text-[#0284c7] font-bold underline hover:text-[#0369a1]">JVVNL / State DISCOMs ↗</a> that credits solar energy system owners for surplus electricity added to the grid. During daytime peak hours, your solar panels export excess power to the grid. At night, you draw power back. You only pay for the net difference.',
     },
     {
       q: 'How much shadow-free roof area is required for installation?',

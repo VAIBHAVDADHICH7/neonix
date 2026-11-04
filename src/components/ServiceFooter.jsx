@@ -99,7 +99,7 @@ export default function ServiceFooter() {
             </ul>
           </div>
 
-          {/* Col 4: Official Government & Regulatory Resources (External Links) */}
+          {/* Col 4: Official Government & Regulatory Resources (External Links - nofollow preserves crawl equity) */}
           <div>
             <h4 className="text-white font-bold text-sm mb-4 uppercase tracking-wider">{FOOTER_SECTIONS.governmentPortals.title}</h4>
             <ul className="space-y-2.5">
@@ -108,7 +108,7 @@ export default function ServiceFooter() {
                   <a 
                     href={link.href} 
                     target="_blank" 
-                    rel="noopener noreferrer" 
+                    rel="nofollow noopener noreferrer" 
                     className="hover:text-[#00BFA6] transition-colors flex items-center gap-1 text-gray-400"
                   >
                     <span className="text-[#0F9D58]">↗</span> {link.name}

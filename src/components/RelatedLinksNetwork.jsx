@@ -1,4 +1,4 @@
-export default function RelatedLinksNetwork({ currentSlug = '' }) {
+export default function RelatedLinksNetwork({ currentSlug = '', showExternal = false }) {
   const internalSolutions = [
     {
       slug: 'residential',
@@ -127,11 +127,13 @@ export default function RelatedLinksNetwork({ currentSlug = '' }) {
 
   // Filter out the current page from internal cards so other services are highlighted
   const displaySolutions = internalSolutions.filter(s => s.slug !== currentSlug);
+  // Authoritative external .gov.in links are retained only on /pm-surya-ghar-yojana to avoid PageRank leakage on commercial pages
+  const shouldShowExternal = showExternal || currentSlug === 'pmsuryaghar';
 
   return (
     <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-gray-200/80">
       {/* ── Internal Solutions Navigation ── */}
-      <div className="mb-14">
+      <div className={shouldShowExternal ? "mb-14" : ""}>
         <div className="max-w-3xl mb-8">
           <span className="text-xs font-bold uppercase tracking-widest text-[#0F9D58] bg-[#0F9D58]/10 px-3 py-1 rounded-full">
             Internal Solar Directory &amp; Tools
@@ -179,56 +181,58 @@ export default function RelatedLinksNetwork({ currentSlug = '' }) {
         </div>
       </div>
 
-      {/* ── External Government & Statutory Energy Resources ── */}
-      <div className="bg-gradient-to-br from-[#0B132B] via-[#0F172A] to-[#070D1E] rounded-3xl p-6 sm:p-10 text-white shadow-xl">
-        <div className="max-w-3xl mb-8">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#00BFA6] bg-[#00BFA6]/10 px-3 py-1 rounded-full border border-[#00BFA6]/30">
-            Authoritative External References
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-3">
-            Official Government &amp; Regulatory Energy Portals
-          </h2>
-          <p className="text-xs sm:text-sm text-gray-300 mt-2">
-            Verify official solar subsidy notifications, net-metering regulations, low-interest bank loans, and statutory standards directly on Govt. of India portals.
-          </p>
-        </div>
+      {/* ── External Government & Statutory Energy Resources (Displayed only on PM Surya Ghar Guide) ── */}
+      {shouldShowExternal && (
+        <div className="bg-gradient-to-br from-[#0B132B] via-[#0F172A] to-[#070D1E] rounded-3xl p-6 sm:p-10 text-white shadow-xl">
+          <div className="max-w-3xl mb-8">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#00BFA6] bg-[#00BFA6]/10 px-3 py-1 rounded-full border border-[#00BFA6]/30">
+              Authoritative External References
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-3">
+              Official Government &amp; Regulatory Energy Portals
+            </h2>
+            <p className="text-xs sm:text-sm text-gray-300 mt-2">
+              Verify official solar subsidy notifications, net-metering regulations, low-interest bank loans, and statutory standards directly on Govt. of India portals.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {externalAuthorities.map((auth) => (
-            <a
-              key={auth.href}
-              href={auth.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#00BFA6]/50 rounded-2xl p-4 transition-all flex flex-col justify-between group"
-            >
-              <div>
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#00BFA6] bg-[#00BFA6]/10 px-2 py-0.5 rounded">
-                    Official Portal
-                  </span>
-                  <span className="text-gray-400 group-hover:text-[#00BFA6] transition-colors text-xs font-bold">
-                    ↗
-                  </span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {externalAuthorities.map((auth) => (
+              <a
+                key={auth.href}
+                href={auth.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#00BFA6]/50 rounded-2xl p-4 transition-all flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#00BFA6] bg-[#00BFA6]/10 px-2 py-0.5 rounded">
+                      Official Portal
+                    </span>
+                    <span className="text-gray-400 group-hover:text-[#00BFA6] transition-colors text-xs font-bold">
+                      ↗
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-white text-sm group-hover:text-[#00BFA6] transition-colors mb-1">
+                    {auth.name}
+                  </h3>
+                  <p className="text-[11px] text-gray-400 font-medium mb-2">
+                    {auth.authority}
+                  </p>
+                  <p className="text-xs text-gray-300 leading-relaxed">
+                    {auth.desc}
+                  </p>
                 </div>
-                <h3 className="font-bold text-white text-sm group-hover:text-[#00BFA6] transition-colors mb-1">
-                  {auth.name}
-                </h3>
-                <p className="text-[11px] text-gray-400 font-medium mb-2">
-                  {auth.authority}
-                </p>
-                <p className="text-xs text-gray-300 leading-relaxed">
-                  {auth.desc}
-                </p>
-              </div>
-              <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-[11px] text-[#00BFA6] font-semibold">
-                <span>{auth.domain}</span>
-                <span className="group-hover:translate-x-0.5 transition-transform">Visit Portal ↗</span>
-              </div>
-            </a>
-          ))}
+                <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-[11px] text-[#00BFA6] font-semibold">
+                  <span>{auth.domain}</span>
+                  <span className="group-hover:translate-x-0.5 transition-transform">Visit Portal ↗</span>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
