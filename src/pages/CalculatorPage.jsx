@@ -249,21 +249,21 @@ export default function CalculatorPage() {
                 </thead>
                 <tbody className="divide-y divide-gray-100 text-xs sm:text-sm text-gray-700">
                   <tr className="hover:bg-gray-50/80 transition-colors">
-                    <td className="py-3 px-4 font-semibold text-[#111827]">1 kW System</td>
+                    <td className="py-3 px-4 font-semibold text-[#111827]"><span>1kW System</span></td>
                     <td className="py-3 px-4">~120 – 140 Units/mo</td>
                     <td className="py-3 px-4">₹65,000 – ₹75,000</td>
                     <td className="py-3 px-4 font-bold text-[#0F9D58]">₹35,000 – ₹45,000</td>
                     <td className="py-3 px-4 text-right font-semibold text-slate-700">~2.5 Yrs (~₹14k/yr)</td>
                   </tr>
                   <tr className="hover:bg-gray-50/80 transition-colors bg-green-50/30">
-                    <td className="py-3 px-4 font-semibold text-[#111827]">2 kW System</td>
+                    <td className="py-3 px-4 font-semibold text-[#111827]"><span>2kW System</span></td>
                     <td className="py-3 px-4">~240 – 280 Units/mo</td>
                     <td className="py-3 px-4">₹1,25,000 – ₹1,40,000</td>
                     <td className="py-3 px-4 font-bold text-[#0F9D58]">₹65,000 – ₹80,000</td>
                     <td className="py-3 px-4 text-right font-semibold text-slate-700">~2.3 Yrs (~₹28k/yr)</td>
                   </tr>
                   <tr className="hover:bg-gray-50/80 transition-colors bg-emerald-50/40">
-                    <td className="py-3 px-4 font-semibold text-[#111827]">3 kW System (Sweet Spot)</td>
+                    <td className="py-3 px-4 font-semibold text-[#111827]"><span>3kW System (Sweet Spot)</span></td>
                     <td className="py-3 px-4">~360 – 420 Units/mo</td>
                     <td className="py-3 px-4">₹1,80,000 – ₹1,95,000</td>
                     <td className="py-3 px-4 font-bold text-[#0F9D58]">₹1,02,000 – ₹1,17,000</td>

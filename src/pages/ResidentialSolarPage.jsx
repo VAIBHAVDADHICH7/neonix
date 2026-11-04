@@ -825,7 +825,7 @@ export default function ResidentialSolarPage() {
                       : 'bg-white text-gray-700 border border-gray-200 hover:border-[#0F9D58]/50 hover:bg-gray-50'
                   }`}
                 >
-                  <span>{opt.kw} kW System</span>
+                  <span>{opt.kw}kW System</span>
                   <span className={`text-[10px] font-normal mt-0.5 ${isSelected ? 'text-white/80' : 'text-gray-500'}`}>
                     {opt.kw <= 2 ? `₹${(opt.subsidy / 1000)}k Subsidy` : '₹78k Max Subsidy'}
                   </span>

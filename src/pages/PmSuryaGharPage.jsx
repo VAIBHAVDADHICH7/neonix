@@ -615,14 +615,14 @@ export default function PmSuryaGharPage() {
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white text-gray-700">
                   <tr className="hover:bg-gray-50 transition-colors">
-                    <td className="py-3.5 px-4 sm:px-6 font-bold text-gray-900">1 kW System</td>
+                    <td className="py-3.5 px-4 sm:px-6 font-bold text-gray-900"><span>1kW System</span></td>
                     <td className="py-3.5 px-4 font-black text-[#0F9D58]">₹30,000</td>
                     <td className="py-3.5 px-4 text-gray-500">₹30,000 / kW</td>
                     <td className="py-3.5 px-4 font-semibold text-gray-900">120 - 140 Units</td>
                     <td className="py-3.5 px-4 text-xs text-gray-600">Single Phase Meter</td>
                   </tr>
                   <tr className="hover:bg-gray-50 transition-colors">
-                    <td className="py-3.5 px-4 sm:px-6 font-bold text-gray-900">2 kW System</td>
+                    <td className="py-3.5 px-4 sm:px-6 font-bold text-gray-900"><span>2kW System</span></td>
                     <td className="py-3.5 px-4 font-black text-[#0F9D58]">₹60,000</td>
                     <td className="py-3.5 px-4 text-gray-500">₹30,000 / kW × 2</td>
                     <td className="py-3.5 px-4 font-semibold text-gray-900">240 - 280 Units</td>
@@ -630,7 +630,7 @@ export default function PmSuryaGharPage() {
                   </tr>
                   <tr className="bg-emerald-50/50 hover:bg-emerald-50 transition-colors">
                     <td className="py-3.5 px-4 sm:px-6 font-black text-gray-900 flex items-center gap-2">
-                      <span>3 kW System</span>
+                      <span>3kW System</span>
                       <span className="bg-[#0F9D58] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
                         Sweet Spot
                       </span>

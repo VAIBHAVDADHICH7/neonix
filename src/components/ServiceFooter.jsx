@@ -39,7 +39,7 @@ export default function ServiceFooter() {
               <a 
                 href={SITE_CONFIG.social.instagram} 
                 target="_blank" 
-                rel="noopener noreferrer" 
+                rel="nofollow noopener noreferrer" 
                 aria-label={`Visit ${SITE_CONFIG.name} on Instagram`}
                 className="w-7 h-7 rounded-md bg-white/10 border border-white/15 flex items-center justify-center text-white hover:bg-[#E1306C] transition-colors"
               >
@@ -48,7 +48,7 @@ export default function ServiceFooter() {
               <a 
                 href={SITE_CONFIG.social.linkedin} 
                 target="_blank" 
-                rel="noopener noreferrer" 
+                rel="nofollow noopener noreferrer" 
                 aria-label={`Visit ${SITE_CONFIG.name} on LinkedIn`}
                 className="w-7 h-7 rounded-md bg-white/10 border border-white/15 flex items-center justify-center text-white hover:bg-[#0077B5] transition-colors"
               >
@@ -57,7 +57,7 @@ export default function ServiceFooter() {
               <a 
                 href={SITE_CONFIG.social.facebook} 
                 target="_blank" 
-                rel="noopener noreferrer" 
+                rel="nofollow noopener noreferrer" 
                 aria-label={`Visit ${SITE_CONFIG.name} on Facebook`}
                 className="w-7 h-7 rounded-md bg-white/10 border border-white/15 flex items-center justify-center text-white hover:bg-[#1877F2] transition-colors"
               >
@@ -144,7 +144,7 @@ export default function ServiceFooter() {
                 <a 
                   href="https://maps.google.com/?q=54A,+Jyoti+Vihar,+Manyawas,+Mansarovar,+Jaipur,+Rajasthan+302020" 
                   target="_blank" 
-                  rel="noopener noreferrer" 
+                  rel="nofollow noopener noreferrer" 
                   className="text-gray-400 hover:text-white leading-snug"
                 >
                   {SITE_CONFIG.address.fullFormatted} <span className="text-[#00BFA6] text-[10px]">↗ (Map)</span>
