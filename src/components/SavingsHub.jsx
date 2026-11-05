@@ -430,7 +430,7 @@ export default function SavingsHub({ onOpenConsultation }) {
             href="/solar-calculator"
             className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 bg-[#00BFA6] hover:bg-[#00a892] active:bg-[#008f7c] text-slate-950 font-black text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 whitespace-nowrap cursor-pointer"
           >
-            <span>Launch Full Solar ROI Calculator</span>
+            <span>Calculate 25-Year Solar ROI &amp; Subsidy</span>
             <span aria-hidden="true">→</span>
           </a>
         </div>

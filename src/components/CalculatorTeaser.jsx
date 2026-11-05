@@ -94,7 +94,7 @@ export default function CalculatorTeaser() {
 
               <div className="mt-4 text-center">
                 <span className="text-xs font-bold text-[#00BFA6] group-hover:underline inline-flex items-center gap-1">
-                  Click here to customize for your rooftop & bill →
+                  Calculate custom rooftop solar capacity &amp; subsidy savings →
                 </span>
               </div>
             </a>

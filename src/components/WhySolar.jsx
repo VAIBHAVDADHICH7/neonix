@@ -81,11 +81,11 @@ export default function WhySolar() {
           <p className="text-xs sm:text-sm text-gray-600">
             Check your return on investment with our{' '}
             <a href="/solar-calculator" className="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">
-              Free Solar ROI Calculator
+              Solar Subsidy &amp; ROI Calculator
             </a>{' '}
             or explore our{' '}
             <a href="/pm-surya-ghar-yojana" className="text-[#0F9D58] font-bold underline hover:text-[#0b7542]">
-              PM Surya Ghar Scheme Guide
+              PM Surya Ghar Rajasthan Subsidy Guide
             </a>
             . Official details on the{' '}
             <a
@@ -104,13 +104,13 @@ export default function WhySolar() {
             href="/solar-calculator"
             className="bg-[#0F9D58] hover:bg-[#0c8248] text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-xs transition-colors"
           >
-            Open Calculator →
+            Calculate Solar Savings &amp; ROI →
           </a>
           <a
             href="/residential-solar"
             className="bg-gray-100 hover:bg-gray-200 text-[#111827] text-xs font-bold px-4 py-2.5 rounded-xl transition-colors"
           >
-            Residential Solar
+            View Jaipur Residential Solar (1kW–10kW)
           </a>
         </div>
       </div>

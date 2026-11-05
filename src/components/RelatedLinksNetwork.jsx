@@ -7,6 +7,7 @@ export default function RelatedLinksNetwork({ currentSlug = '', showExternal = f
       badgeColor: '#0F9D58',
       desc: 'Turnkey residential rooftop solar installations in Jaipur with Tier-1 bifacial panels, JVVNL net metering, and 90% bill reduction.',
       href: '/residential-solar',
+      actionLabel: 'View Jaipur Residential Solar Packages (1kW–10kW)',
     },
     {
       slug: 'pmsuryaghar',
@@ -15,6 +16,7 @@ export default function RelatedLinksNetwork({ currentSlug = '', showExternal = f
       badgeColor: '#00BFA6',
       desc: 'Official 2026 handbook for ₹78,000 direct bank subsidy, JVVNL net-metering eligibility, and 7% solar loans.',
       href: '/pm-surya-ghar-yojana',
+      actionLabel: 'Read PM Surya Ghar ₹78k Subsidy & JVVNL Guide',
     },
     {
       slug: 'calculator',
@@ -23,6 +25,7 @@ export default function RelatedLinksNetwork({ currentSlug = '', showExternal = f
       badgeColor: '#F59E0B',
       desc: 'Interactive 2026 tool to calculate solar capacity (kW), equipment investment, payback period, and monthly net savings.',
       href: '/solar-calculator',
+      actionLabel: 'Calculate Rooftop Solar Capacity & Subsidy ROI',
     },
     {
       slug: 'commercial',
@@ -31,6 +34,7 @@ export default function RelatedLinksNetwork({ currentSlug = '', showExternal = f
       badgeColor: '#3B82F6',
       desc: 'Slash high commercial power tariffs for offices, schools, and hospitals with rapid 3-year capital payback.',
       href: '/commercial-solar',
+      actionLabel: 'Explore Commercial Solar & 40% Tax Depreciation',
     },
     {
       slug: 'industrial',
@@ -39,6 +43,7 @@ export default function RelatedLinksNetwork({ currentSlug = '', showExternal = f
       badgeColor: '#8B5CF6',
       desc: 'Heavy-duty non-penetrating PEB shed mounting, 11kV/33kV HT grid synchronization, and zero-export relays.',
       href: '/industrial-solar',
+      actionLabel: 'Explore Industrial MW Solar Plants & HT Metering',
     },
     {
       slug: 'amc',
@@ -47,6 +52,7 @@ export default function RelatedLinksNetwork({ currentSlug = '', showExternal = f
       badgeColor: '#EC4899',
       desc: 'Demineralized RO water cleaning, drone thermal imaging, and 18-point electrical diagnostic inspections.',
       href: '/solar-amc',
+      actionLabel: 'Explore Solar AMC & RO Cleaning Packages',
     },
     {
       slug: 'privacy',
@@ -55,6 +61,7 @@ export default function RelatedLinksNetwork({ currentSlug = '', showExternal = f
       badgeColor: '#6B7280',
       desc: 'Review our certified 25-year performance warranty terms, refund guarantee, and customer data privacy standards.',
       href: '/privacy-policy',
+      actionLabel: 'Review 25-Year Performance Warranty Policy',
     },
     {
       slug: 'terms',
@@ -63,6 +70,7 @@ export default function RelatedLinksNetwork({ currentSlug = '', showExternal = f
       badgeColor: '#6B7280',
       desc: 'Clear, transparent service-level agreements (SLA), net-metering liaisoning commitments, and DISCOM timelines.',
       href: '/terms',
+      actionLabel: 'Review Solar EPC Service Terms & SLA',
     },
   ];
 
@@ -173,8 +181,8 @@ export default function RelatedLinksNetwork({ currentSlug = '', showExternal = f
                 </p>
               </div>
               <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-[11px] font-semibold text-[#0F9D58]">
-                <span>View Full Details</span>
-                <span>Learn More ›</span>
+                <span>{item.actionLabel}</span>
+                <span aria-hidden="true">→</span>
               </div>
             </a>
           ))}

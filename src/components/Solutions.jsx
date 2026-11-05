@@ -90,7 +90,7 @@ export default function Solutions({ onSelectSolution }) {
                       aria-label={sol.ariaLabel}
                       className="inline-flex items-center gap-1 lg:gap-1.5 text-[11px] lg:text-xs font-bold uppercase tracking-widest text-[#00BFA6] hover:text-white transition-colors border-b border-[#00BFA6]/40 pb-0.5 lg:pb-1"
                     >
-                      <span>Explore Dedicated Service Page</span>
+                      <span>{sol.anchorText || `Explore ${sol.title}`}</span>
                       <span aria-hidden="true">→</span>
                     </a>
                     {onSelectSolution && (
@@ -102,13 +102,15 @@ export default function Solutions({ onSelectSolution }) {
                         }}
                         className="text-[10px] lg:text-[11px] font-bold text-white/80 hover:text-white bg-white/10 hover:bg-white/20 px-2 lg:px-2.5 py-0.5 rounded-md border border-white/15 transition-colors"
                       >
-                        Quick Quote
+                        {sol.ctaQuoteText || 'Get Quote'}
                       </button>
                     )}
                   </div>
 
                   <h3 className="text-lg sm:text-xl lg:text-3xl font-extrabold mb-1.5 lg:mb-2.5 transition-colors group-hover:text-[#00BFA6] text-white">
-                    {sol.title}
+                    <a href={sol.href} className="hover:underline">
+                      {sol.title}
+                    </a>
                   </h3>
 
                   <p

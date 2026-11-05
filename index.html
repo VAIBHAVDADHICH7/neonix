@@ -222,7 +222,11 @@
           "@id": "https://www.neonixinfra.in/#website",
           "url": "https://www.neonixinfra.in/",
           "name": "Neonix Infra Solutions",
-          "alternateName": ["Neonix Solar", "Neonix Clean Energy", "Neonix Rooftop Solar"],
+          "alternateName": [
+            "Neonix Solar",
+            "Neonix Clean Energy",
+            "Neonix Rooftop Solar"
+          ],
           "description": "Clean & green energy solutions and high-efficiency rooftop solar panel installations across India under PM Surya Ghar Muft Bijli Yojana.",
           "publisher": {
             "@id": "https://www.neonixinfra.in/#organization"
@@ -230,19 +234,52 @@
           "inLanguage": "en-IN"
         },
         {
-          "@type": "LocalBusiness",
+          "@type": [
+            "LocalBusiness",
+            "SolarEnergyContractor",
+            "Organization"
+          ],
           "@id": "https://www.neonixinfra.in/#organization",
           "name": "Neonix Infra Solutions LLP",
           "legalName": "Neonix Infra Solutions LLP",
-          "taxID": "08AAZFN7491B1ZN",
-          "vatID": "08AAZFN7491B1ZN",
-          "identifier": "LLPIN: ACW-6405",
-          "alternateName": ["Neonix Solar", "Neonix Clean Energy", "Neonix Rooftop Solar"],
+          "alternateName": [
+            "Neonix Solar",
+            "Neonix Clean Energy",
+            "Neonix Rooftop Solar"
+          ],
           "url": "https://www.neonixinfra.in",
-          "logo": "https://www.neonixinfra.in/images/logo.svg",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.neonixinfra.in/images/logo.svg",
+            "width": 140,
+            "height": 38
+          },
           "image": "https://www.neonixinfra.in/images/1.webp",
           "description": "Certified rooftop solar panel installation company in India specializing in residential, commercial, and industrial clean green energy systems under PM Surya Ghar Muft Bijli Yojana.",
-          "telephone": ["+919910000774", "+919088688899"],
+          "founder": {
+            "@type": "Person",
+            "name": "Amit Kumar Sharma",
+            "jobTitle": "Founder & Managing Partner"
+          },
+          "taxID": "08AAZFN7491B1ZN",
+          "vatID": "08AAZFN7491B1ZN",
+          "identifier": [
+            {
+              "@type": "PropertyValue",
+              "name": "LLPIN",
+              "value": "ACW-6405"
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "GSTIN",
+              "value": "08AAZFN7491B1ZN"
+            }
+          ],
+          "telephone": [
+            "+919910000774",
+            "+919088688899"
+          ],
+          "email": "contact@neonixinfra.in",
           "sameAs": [
             "https://www.instagram.com/neonix_infra/",
             "https://www.linkedin.com/in/neonix-infra-solutions-a4a6b3416/",
@@ -259,13 +296,36 @@
           },
           "geo": {
             "@type": "GeoCoordinates",
-            "latitude": 26.8520,
-            "longitude": 75.7600
+            "latitude": 26.852,
+            "longitude": 75.76
+          },
+          "hasMap": "https://maps.google.com/?q=54A,+Jyoti+Vihar,+Manyawas,+Mansarovar,+Jaipur,+Rajasthan+302020",
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "opens": "09:00",
+            "closes": "19:00"
           },
           "areaServed": [
-            { "@type": "City", "name": "Jaipur" },
-            { "@type": "State", "name": "Rajasthan" },
-            { "@type": "Country", "name": "India" }
+            {
+              "@type": "City",
+              "name": "Jaipur"
+            },
+            {
+              "@type": "State",
+              "name": "Rajasthan"
+            },
+            {
+              "@type": "Country",
+              "name": "India"
+            }
           ],
           "aggregateRating": {
             "@type": "AggregateRating",
@@ -375,10 +435,7 @@
             "Instant downloadable feasibility report"
           ],
           "publisher": {
-            "@type": "LocalBusiness",
-            "@id": "https://www.neonixinfra.in/#organization",
-            "name": "Neonix Infra Solutions LLP",
-            "url": "https://www.neonixinfra.in"
+            "@id": "https://www.neonixinfra.in/#organization"
           }
         }
       ]
@@ -402,7 +459,7 @@
               <span style="color: white; font-weight: 900; font-size: 18px; letter-spacing: -0.02em;">Neonix</span>
             </a>
             <div style="display: flex; align-items: center; gap: 8px;">
-              <a href="/solar-calculator" style="color: #00BFA6; font-size: 12px; font-weight: 700; text-decoration: none; padding: 6px 12px;">Calculator</a>
+              <a href="/solar-calculator" style="color: #00BFA6; font-size: 12px; font-weight: 700; text-decoration: none; padding: 6px 12px;">Solar Calculator</a>
               <a href="#contact" style="background: #0F9D58; color: white; font-size: 12px; font-weight: 700; text-decoration: none; padding: 6px 14px; border-radius: 9999px;">Free Survey</a>
             </div>
           </nav>
@@ -439,7 +496,7 @@
                 ⚡ Get Free Quote
               </a>
               <a href="/solar-calculator" style="display: inline-flex; align-items: center; justify-content: center; background: white; color: #1e293b; border: 1px solid #cbd5e1; font-weight: 700; font-size: 13px; padding: 12px 20px; border-radius: 12px; text-decoration: none;">
-                Calculate Savings →
+                Calculate Solar Savings &amp; Subsidy →
               </a>
             </div>
 
